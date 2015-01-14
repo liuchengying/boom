@@ -6,28 +6,28 @@
         jumboMode="false"
         revision="21.0.1"
         sha1="4b74cefe1f0c1b819e7260c8627a14674e37fd35">
-        <dex dex="F:\android\Boom4\app\build\intermediates\pre-dexed\debug\support-annotations-21.0.3-a6066fa93aeaf35db8806181b83af09f6972c97d.jar" />
+        <dex dex="F:\android\BoomTime\app\build\intermediates\pre-dexed\debug\support-annotations-21.0.3-a6066fa93aeaf35db8806181b83af09f6972c97d.jar" />
     </item>
     <item
-        jar="F:\android\Boom4\app\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.3\classes.jar"
-        jumboMode="false"
-        revision="21.0.1"
-        sha1="2c91c949a45a21cdecf26e03951e46c7beec9ad8">
-        <dex dex="F:\android\Boom4\app\build\intermediates\pre-dexed\debug\classes-8b6110a760b78e8334ac3d26781f81b9e32c1aaa.jar" />
-    </item>
-    <item
-        jar="F:\android\Boom4\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\21.0.3\classes.jar"
+        jar="F:\android\BoomTime\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\21.0.3\classes.jar"
         jumboMode="false"
         revision="21.0.1"
         sha1="81d42bf983a8741f4888a6e333e454e4a5e0eeb7">
-        <dex dex="F:\android\Boom4\app\build\intermediates\pre-dexed\debug\classes-4fcfd81534568daa75183897e1fb1f9381a0c4b8.jar" />
+        <dex dex="F:\android\BoomTime\app\build\intermediates\pre-dexed\debug\classes-a6ddf1965a77d25dea42f0ec90c0470c1343d058.jar" />
     </item>
     <item
-        jar="F:\android\Boom4\app\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.3\libs\internal_impl-21.0.3.jar"
+        jar="F:\android\BoomTime\app\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.3\libs\internal_impl-21.0.3.jar"
         jumboMode="false"
         revision="21.0.1"
         sha1="01ec05bfbafcc07646ba813000bf2ef11742dd03">
-        <dex dex="F:\android\Boom4\app\build\intermediates\pre-dexed\debug\internal_impl-21.0.3-aa278b3a443c2aab133ca73725a406780588b8c5.jar" />
+        <dex dex="F:\android\BoomTime\app\build\intermediates\pre-dexed\debug\internal_impl-21.0.3-96c425d68d4d658534456a7d8f457599583d370b.jar" />
+    </item>
+    <item
+        jar="F:\android\BoomTime\app\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.3\classes.jar"
+        jumboMode="false"
+        revision="21.0.1"
+        sha1="2c91c949a45a21cdecf26e03951e46c7beec9ad8">
+        <dex dex="F:\android\BoomTime\app\build\intermediates\pre-dexed\debug\classes-0bd0de2753dc19f289671d738144a173cb1eeb1b.jar" />
     </item>
 
 </items>
