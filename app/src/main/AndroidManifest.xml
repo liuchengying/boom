@@ -1,0 +1,23 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="boom.boom">
+
+    <application android:allowBackup="true" android:label="@string/app_name"
+        android:icon="@drawable/ic_launcher" android:theme="@style/AppTheme">
+        <activity android:name=".Welcome.Welcome_activity"
+            android:theme="@android:style/Theme.Black.NoTitleBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"></action>
+                <category android:name="android.intent.category.LAUNCHER"></category>
+            </intent-filter>
+        </activity>
+             <activity android:name="boom.boom.zhujiemian.Main_activity"
+                        android:theme="@android:style/Theme.Black.NoTitleBar"></activity>
+        <activity android:name="boom.boom.tianzhan.Tiaozhan_activity"
+            android:theme="@android:style/Theme.Black.NoTitleBar"></activity>
+        <activity android:name="boom.boom.denglu.dengluzhuce_activity"
+            android:theme="@android:style/Theme.Black.NoTitleBar"></activity>
+
+
+
+    </application>
+
+</manifest>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="D:\Program Files\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\21.0.3\support-annotations-21.0.3.jar"
+        jumboMode="false"
+        revision="21.0.1"
+        sha1="4b74cefe1f0c1b819e7260c8627a14674e37fd35">
+        <dex dex="F:\android\Boom4\app\build\intermediates\pre-dexed\debug\support-annotations-21.0.3-a6066fa93aeaf35db8806181b83af09f6972c97d.jar" />
+    </item>
+    <item
+        jar="F:\android\Boom4\app\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.3\classes.jar"
+        jumboMode="false"
+        revision="21.0.1"
+        sha1="2c91c949a45a21cdecf26e03951e46c7beec9ad8">
+        <dex dex="F:\android\Boom4\app\build\intermediates\pre-dexed\debug\classes-8b6110a760b78e8334ac3d26781f81b9e32c1aaa.jar" />
+    </item>
+    <item
+        jar="F:\android\Boom4\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\21.0.3\classes.jar"
+        jumboMode="false"
+        revision="21.0.1"
+        sha1="81d42bf983a8741f4888a6e333e454e4a5e0eeb7">
+        <dex dex="F:\android\Boom4\app\build\intermediates\pre-dexed\debug\classes-4fcfd81534568daa75183897e1fb1f9381a0c4b8.jar" />
+    </item>
+    <item
+        jar="F:\android\Boom4\app\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.3\libs\internal_impl-21.0.3.jar"
+        jumboMode="false"
+        revision="21.0.1"
+        sha1="01ec05bfbafcc07646ba813000bf2ef11742dd03">
+        <dex dex="F:\android\Boom4\app\build\intermediates\pre-dexed\debug\internal_impl-21.0.3-aa278b3a443c2aab133ca73725a406780588b8c5.jar" />
+    </item>
+
+</items>
