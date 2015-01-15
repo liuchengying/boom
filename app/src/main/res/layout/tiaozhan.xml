@@ -62,15 +62,19 @@
         android:orientation="vertical"
         android:layout_marginTop="40dp">
         <Button
+            android:id="@+id/danrentiaozhan"
             android:layout_width="wrap_content"
             android:layout_height="130dp"
             android:background="@drawable/android_12"
             />
+        <!--担任挑战按钮-->
         <Button
+            android:id="@+id/faqitiaozhan"
             android:layout_width="wrap_content"
             android:layout_height="130dp"
             android:background="@drawable/android_13"
             android:layout_marginTop="10dp"/>
+        <!--发起挑战按钮-->
     </LinearLayout>
     <LinearLayout
         android:layout_width="fill_parent"
@@ -81,24 +85,30 @@
         android:layout_marginTop="30dp"
         android:layout_marginBottom="10dp">
         <Button
+            android:id="@+id/paihangbang"
             android:layout_weight="1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/android_14"
             android:layout_marginLeft="10dp" />
+        <!--主界面排行榜按钮-->
         <Button
+            android:id="@+id/jiangpin"
             android:layout_weight="1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/android_14"
+            android:background="@drawable/android_15"
             android:layout_marginLeft="20dp"/>
+        <!--主界面奖品按钮-->
         <Button
+            android:id="@+id/shezhi"
             android:layout_weight="1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/android_14"
+            android:background="@drawable/android_16"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="10dp"/>
+        <!--主界面设置按钮-->
     </LinearLayout>
 
 </LinearLayout>

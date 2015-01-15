@@ -39,20 +39,24 @@
 
             />
         <Button
+            android:id="@+id/cehuatiaozhan"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/android_35"
             android:layout_marginTop="10dp"
             android:text="挑战"
             android:textSize="20sp"/>
+        <!--侧滑挑战按钮-->
     </LinearLayout>
     <LinearLayout
+        android:id="@+id/cehuadiyihang"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/android_31"
         android:orientation="horizontal"
 
         >
+        <!--侧滑界面layout第一行，监听事件-->
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -68,11 +72,13 @@
             android:layout_marginLeft="35dp"/>
     </LinearLayout>
     <LinearLayout
+        android:id="@+id/cehuadierhang"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/android_32"
         android:orientation="horizontal"
         >
+        <!--侧滑界面layout第2行，监听事件-->
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -88,11 +94,13 @@
             android:layout_marginLeft="35dp"/>
     </LinearLayout>
     <LinearLayout
+        android:id="@+id/cehuadisanhang"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/android_31"
         android:orientation="horizontal"
         >
+        <!--侧滑界面layout第3行，监听事件-->
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -108,11 +116,13 @@
             android:layout_marginLeft="35dp"/>
     </LinearLayout>
     <LinearLayout
+        android:id="@+id/cehuadisihang"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/android_32"
         android:orientation="horizontal"
         >
+        <!--侧滑界面layout第4行，监听事件-->
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -128,11 +138,13 @@
             android:layout_marginLeft="35dp"/>
     </LinearLayout>
     <LinearLayout
+        android:id="@+id/cehuadiwuhang"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/android_31"
         android:orientation="horizontal"
         >
+        <!--侧滑界面layout第5行，监听事件-->
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
