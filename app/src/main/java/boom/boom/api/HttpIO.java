@@ -18,19 +18,33 @@ import java.util.List;
  * Created by 1eekai on 2015/1/16.
  */
 public class HttpIO {
-    public String URLstr;
+    private String URLstr;
     public HttpIO(String ur1){
-        this.URLstr = ur1;
+        this.SetURL(ur1);
     }
-    public String ResultBuffer;
-    public String Result;
+    private String ResultBuffer;
+    public void SetURL(String UR1){  this.URLstr = UR1;  }
+    public String GetURL(){   return this.URLstr; }
+
     public String POSTToHTTPServer(List<NameValuePair> postParameters) {
+        /*
+         *  POSTToHTTPServer() 用法：
+         *  参数1 ： List<NameValuePair> 传入一个List容器类，容器成员为对称节点。
+         *
+         *  例如：
+         *  HttpIO io = new HttpIO("http://example.com/init.jsp");   // 初始化一个连接（此时客户端并未访问服务器）
+         *  List<NameValuePair> post = new ArrayList<NameValuePair>();
+         *  post.add(new BasicNameValuePair("name", "likai")); // 增加POST表单数据
+         *  io.POSTToHTTPServer(post); // 发送访问请求和POST数据
+         *
+         *  By: M0xkLurk3r
+         */
         String result = null;
         BufferedReader reader = null;
         try {
             HttpClient client = new DefaultHttpClient();
             HttpPost request = new HttpPost();
-            request.setURI(new URI(this.URLstr));
+            request.setURI(new URI(this.GetURL()));
             UrlEncodedFormEntity formEntity = new UrlEncodedFormEntity(
                     postParameters);
             request.setEntity(formEntity);
@@ -58,16 +72,24 @@ public class HttpIO {
                 }
             }
         }
+        this.ResultBuffer = result;
         return result;
     }
+
     public String GETToHTTPServer() {
+        /*
+         *  GetToHTTPServer() 用法：
+         *
+         *  HttpIO io = new HttpIO("http://example.com/test.php?name=likai");
+         *  io.GetToHTTPServer();
+         */
         String result = null;
         BufferedReader reader = null;
         try {
             HttpClient client = new DefaultHttpClient();
             HttpGet request = new HttpGet();
             request.setURI(new URI(
-                    this.URLstr));
+                    this.GetURL()));
             HttpResponse response = client.execute(request);
             reader = new BufferedReader(new InputStreamReader(response
                     .getEntity().getContent()));
@@ -91,7 +113,8 @@ public class HttpIO {
                 }
             }
         }
-
+        this.ResultBuffer = result;
         return result;
     }
+
 }
