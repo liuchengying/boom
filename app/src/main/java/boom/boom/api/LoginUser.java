@@ -17,6 +17,7 @@ import java.util.List;
  *  LoginUser user = new LoginUser("likai", "123456");  // 新建对象，传参，用户名为likai，密码为123456
  *  List<NameValuePair> userd = new List<NameValuePair>();
  */
+
 public class LoginUser {
     private String user;
     private String pass;
