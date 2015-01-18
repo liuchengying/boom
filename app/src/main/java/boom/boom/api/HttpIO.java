@@ -6,6 +6,7 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
+import org.apache.http.cookie.Cookie;
 import org.apache.http.impl.client.DefaultHttpClient;
 
 import java.io.BufferedReader;
@@ -19,12 +20,41 @@ import java.util.List;
  */
 public class HttpIO {
     private String URLstr;
-    public HttpIO(String ur1){
+    public static final int KEEP_COOKIE = 2452134;
+    public static final int DO_NOT_KEEP_ANY_COOKIE= 2452134;
+    private int cookiestate;
+    private List<Cookie> cookies;
+    private int SessionID;
+    public HttpIO(String ur1, int CookieState){
+        this.cookiestate = CookieState;
         this.SetURL(ur1);
+        this.SessionID = -1;
+    }
+    private void SetCustomSessionID(int id){
+        this.SessionID = id;
+    }
+    private int GetSessionID(){
+        return this.SessionID;
     }
     private String ResultBuffer;
     public void SetURL(String UR1){  this.URLstr = UR1;  }
     public String GetURL(){   return this.URLstr; }
+
+    public String getResultData(){
+        return ResultBuffer;
+    }
+
+    public void CleanBuffer(){
+        ResultBuffer = null;
+    }
+
+    public String QueryCookie(String label){
+        int counter;
+        for (counter=0;counter<cookies.size();counter++){
+            if (cookies.get(counter).getName() == label)    return cookies.get(counter).getValue();
+        }
+        return null;
+    }
 
     public String POSTToHTTPServer(List<NameValuePair> postParameters) {
         /*
@@ -42,13 +72,12 @@ public class HttpIO {
         String result = null;
         BufferedReader reader = null;
         try {
-            HttpClient client = new DefaultHttpClient();
+            DefaultHttpClient client = new DefaultHttpClient();
             HttpPost request = new HttpPost();
             request.setURI(new URI(this.GetURL()));
             UrlEncodedFormEntity formEntity = new UrlEncodedFormEntity(
                     postParameters);
             request.setEntity(formEntity);
-
             HttpResponse response = client.execute(request);
             reader = new BufferedReader(new InputStreamReader(response
                     .getEntity().getContent()));
@@ -59,7 +88,7 @@ public class HttpIO {
                 strBuffer.append(line);
             }
             result = strBuffer.toString();
-
+            if (this.cookiestate == KEEP_COOKIE)  cookies = client.getCookieStore().getCookies();
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -72,6 +101,7 @@ public class HttpIO {
                 }
             }
         }
+
         this.ResultBuffer = result;
         return result;
     }
@@ -86,7 +116,7 @@ public class HttpIO {
         String result = null;
         BufferedReader reader = null;
         try {
-            HttpClient client = new DefaultHttpClient();
+            DefaultHttpClient client = new DefaultHttpClient();
             HttpGet request = new HttpGet();
             request.setURI(new URI(
                     this.GetURL()));
@@ -100,7 +130,7 @@ public class HttpIO {
                 strBuffer.append(line);
             }
             result = strBuffer.toString();
-
+            if (this.cookiestate == KEEP_COOKIE)  cookies = client.getCookieStore().getCookies();
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -116,5 +146,4 @@ public class HttpIO {
         this.ResultBuffer = result;
         return result;
     }
-
 }

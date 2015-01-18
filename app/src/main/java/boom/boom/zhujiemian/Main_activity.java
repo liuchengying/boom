@@ -32,12 +32,11 @@ public class Main_activity extends Activity {
         zhucezhanghao =(TextView) findViewById(R.id.zhucezhanghao);
         user = (EditText)findViewById(R.id.yonghuming);
         pass = (EditText) findViewById(R.id.mima);
-        passhash = Utils.StrToMD5(pass.toString());
         denglu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 User userlogin = (User)getApplication();
-                userlogin.loginUser(user.toString(), passhash);
+                userlogin.loginUser(user.toString(), pass.toString());
                 if (userlogin.ifLoggedIn()) {
                     Intent intent = new Intent();
                     intent.setClass(Main_activity.this, Tiaozhan_activity.class);
