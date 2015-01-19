@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffdadada"
+    android:weightSum="1"
+    >
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="60dp"
+        android:background="#ffe14723"
+        android:weightSum="1">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="129dp"
+            android:layout_height="match_parent"
+            ></LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="上传成功"
+            android:textSize="28sp"
+            android:textColor="#ffffffff"
+            android:layout_gravity="center" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal">
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="84dp"
+        android:layout_gravity="center_horizontal"
+        android:weightSum="1"
+        android:layout_weight="0.73">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="0.49"></LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="上传成功"
+            android:id="@+id/textView6"
+            android:textColor="#ffe35433"
+            android:textSize="45dp"
+            android:layout_gravity="center_vertical" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="46dp"
+            android:id="@+id/imageView3"
+            android:background="@drawable/android_80"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="0.16" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="293dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal">
+
+        <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="您还可以"
+        android:id="@+id/textView7"
+        android:textColor="#ffe35433"
+        android:textSize="20dp" />
+        <TextView
+            android:layout_width="358dp"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text=""
+            android:textColor="#ff8e8e8e"
+            android:textSize="15dp" />
+
+        <TextView
+            android:layout_width="358dp"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="1.通过下方点名框，邀请好友一起参与挑战，"
+            android:textColor="#ff8e8e8e"
+            android:textSize="15dp" />
+        <TextView
+            android:layout_width="358dp"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="   若好友完成挑战，您可获得积分奖励。"
+            android:textColor="#ff8e8e8e"
+            android:textSize="15dp" />
+        <TextView
+            android:layout_width="358dp"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="2.通过主页发布挑战，开启属于自己的挑战。"
+            android:textColor="#ff8e8e8e"
+            android:textSize="15dp" />
+        <TextView
+            android:layout_width="358dp"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="3.使用已有积分在商城中进行抽奖或换取奖品。"
+            android:textColor="#ff8e8e8e"
+            android:textSize="15dp" />
+
+        <TextView
+            android:layout_width="358dp"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text=""
+            android:textColor="#ff8e8e8e"
+            android:textSize="15dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="注意"
+            android:textColor="#ffe35433"
+            android:textSize="20dp" />
+        <TextView
+            android:layout_width="358dp"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text=""
+            android:textColor="#ff8e8e8e"
+            android:textSize="15dp" />
+
+        <TextView
+            android:layout_width="358dp"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="1.您的视频已经进入审核，审核完成会在第一时"
+            android:textColor="#ff8e8e8e"
+            android:textSize="15dp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="   间通知您。"
+            android:textColor="#ff8e8e8e"
+            android:textSize="15dp" />
+        <TextView
+            android:layout_width="358dp"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="2.若未完成挑战，您可重新进行挑战并上传。"
+            android:textColor="#ff8e8e8e"
+            android:textSize="15dp" />
+
+        <TextView
+            android:layout_width="358dp"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text=""
+            android:textColor="#ff8e8e8e"
+            android:textSize="15dp" />
+
+
+    </LinearLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal|top"
+            android:background="@drawable/andriod_81"
+          />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="        邀请好友挑战"
+            android:id="@+id/textView8"
+            android:layout_gravity="left|center_vertical"
+            android:textColor="#ff666666" />
+
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:id="@+id/imageView5"
+            android:layout_gravity="right|center_vertical"
+            android:background="@drawable/andriod_82" />
+
+    </FrameLayout>
+
+    <TextView
+        android:layout_width="358dp"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text=""
+        android:textColor="#ff8e8e8e"
+        android:textSize="15dp"
+        android:id="@+id/textView9" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="确定"
+        android:id="@+id/button2"
+        android:background="@drawable/android_83"
+        android:textColor="#ffffffff"
+        android:textSize="30dp"
+        android:layout_gravity="center" />
+
+</LinearLayout>
