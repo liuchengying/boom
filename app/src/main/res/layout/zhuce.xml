@@ -25,7 +25,6 @@
                 android:background="@drawable/android_20"
                 android:gravity="center_horizontal"
                 android:layout_marginLeft="10dp"/>
-            <!--注册账号界面左上角返回按钮-->
         </LinearLayout>
         <LinearLayout
             android:layout_weight="1"
@@ -33,7 +32,6 @@
             android:layout_height="50dp"
             android:gravity="center_vertical">
             <TextView
-
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="账户注册"
@@ -63,16 +61,13 @@
         android:layout_marginTop="10dp"
         >
         <EditText
-            android:id="@+id/zhuceyonghuming"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/android_17"
             android:hint="请输入用户名"
             android:gravity="center"
             android:layout_marginTop="10dp"/>
-        <!--注册用户名编辑框-->
         <EditText
-            android:id="@+id/zhucemima"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/android_17"
@@ -80,9 +75,7 @@
             android:gravity="center"
             android:layout_marginTop="10dp"
             android:password="true"/>
-        <!--注册用户密码编辑框-->
         <EditText
-            android:id="@+id/zhecemima1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/android_17"
@@ -90,7 +83,6 @@
             android:gravity="center"
             android:layout_marginTop="10dp"
             android:password="true"/>
-        <!--注册确认输入密码编辑框-->
         <Button
             android:id="@+id/zhucetijiao"
             android:layout_width="wrap_content"
@@ -99,7 +91,6 @@
             android:hint="提交"
             android:gravity="center"
             android:layout_marginTop="20dp"/>
-        <!--注册提交按钮-->
     </LinearLayout>
 
 
