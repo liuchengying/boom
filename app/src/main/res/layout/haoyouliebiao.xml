@@ -21,7 +21,7 @@
 
             <ImageView
                 android:layout_width="50dp"
-                android:layout_height="39dp"
+                android:layout_height="40dp"
                 android:id="@+id/imageView4"
                 android:background="@drawable/android_92"
                 android:layout_weight="0.02"

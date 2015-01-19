@@ -61,6 +61,7 @@
         android:layout_marginTop="10dp"
         >
         <EditText
+            android:id="@+id/zhuceyonghuming"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/android_17"
@@ -68,6 +69,7 @@
             android:gravity="center"
             android:layout_marginTop="10dp"/>
         <EditText
+            android:id="@+id/zhucemima"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/android_17"
@@ -76,6 +78,7 @@
             android:layout_marginTop="10dp"
             android:password="true"/>
         <EditText
+            android:id="@+id/zhucemima1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/android_17"

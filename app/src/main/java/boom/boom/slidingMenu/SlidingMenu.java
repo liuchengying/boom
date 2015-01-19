@@ -10,6 +10,8 @@ import android.view.WindowManager;
 import android.widget.HorizontalScrollView;
 import android.widget.LinearLayout;
 
+import com.nineoldandroids.view.ViewHelper;
+
 /**
  * Created by 刘成英 on 2015/1/18.
  */
@@ -20,7 +22,7 @@ public class SlidingMenu extends HorizontalScrollView {
     private int mScreenWidth;
 
     private int mMenuWidth;
-    private int mMenuRightPadding = 50;
+    private int mMenuRightPadding = 80;
 
     private boolean once;
 
@@ -31,7 +33,7 @@ public class SlidingMenu extends HorizontalScrollView {
         DisplayMetrics outMetrics = new DisplayMetrics();
         wm.getDefaultDisplay().getMetrics(outMetrics);
         mScreenWidth=outMetrics.widthPixels;
-        mMenuWidth = mMenuRightPadding = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,50,context
+        mMenuRightPadding = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,80,context
                 .getResources().getDisplayMetrics());
     }
 
@@ -41,8 +43,9 @@ public class SlidingMenu extends HorizontalScrollView {
             mWapper = (LinearLayout) getChildAt(0);
             mMenu = (ViewGroup) mWapper.getChildAt(0);
             mContent = (ViewGroup) mWapper.getChildAt(1);
-            mMenu.getLayoutParams().width = mScreenWidth - mMenuRightPadding;
+            mMenuWidth = mMenu.getLayoutParams().width = mScreenWidth - mMenuRightPadding;
             mContent.getLayoutParams().width = mScreenWidth;
+
             once = true;
         }
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
@@ -68,8 +71,10 @@ public class SlidingMenu extends HorizontalScrollView {
                 if (scrollX>=mMenuWidth/2)
                 {
                     this.smoothScrollTo(mMenuWidth,0);
+                    isOpen = false;
                 }else {
                     this.smoothScrollTo(0,0);
+                    isOpen = true;
                 }
             return true;
         }
@@ -79,6 +84,39 @@ public class SlidingMenu extends HorizontalScrollView {
 
         return super.onTouchEvent(ev);
     }
+    public void openMenu()
+    {
+        if (isOpen)
+            return;
+        this.smoothScrollTo(0, 0);
+        isOpen = true;
+    }
+
+    public void closeMenu()
+    {
+        if (!isOpen)
+            return;
+        this.smoothScrollTo(mMenuWidth, 0);
+        isOpen = false;
+    }
+    public void toggle()
+    {
+        if (isOpen)
+        {
+            closeMenu();
+        } else
+        {
+            openMenu();
+        }
+    }
+
+
+    @Override
+    protected void onScrollChanged(int l, int t, int oldl, int oldt) {
+        super.onScrollChanged(l, t, oldl, oldt);
+        float abc = l* 1.0f / mMenuWidth;
+        ViewHelper.setTranslationX(mMenu,mMenuWidth*abc);
 
     }
+}
 

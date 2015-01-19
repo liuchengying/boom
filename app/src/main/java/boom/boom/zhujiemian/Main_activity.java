@@ -50,7 +50,7 @@ public class Main_activity extends Activity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent();
-                intent.setClass(Main_activity.this,dengluzhuce_activity.class);
+                intent.setClass(Main_activity.this,Tiaozhan_activity.class);
                 startActivity(intent);
 
             }

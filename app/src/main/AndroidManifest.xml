@@ -15,6 +15,12 @@
             android:theme="@android:style/Theme.Black.NoTitleBar"></activity>
         <activity android:name="boom.boom.denglu.dengluzhuce_activity"
             android:theme="@android:style/Theme.Black.NoTitleBar"></activity>
+        <activity android:name="boom.boom.shezhi.Shezhi_activity"
+            android:theme="@android:style/Theme.Black.NoTitleBar"></activity>
+        <activity android:name="boom.boom.wanshanxinxi.Wanshanxinxi_activity"
+            android:theme="@android:style/Theme.Black.NoTitleBar"></activity>
+        <activity android:name="boom.boom.zhucechenggong.Zhucechenggong_activity"
+            android:theme="@android:style/Theme.Black.NoTitleBar"></activity>
 
 
 

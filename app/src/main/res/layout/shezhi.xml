@@ -16,6 +16,7 @@
             android:layout_height="wrap_content"
             >
             <Button
+                android:id="@+id/shezhifanhui"
                 android:layout_width="20dp"
                 android:layout_height="30dp"
                 android:background="@drawable/android_51"
@@ -220,6 +221,7 @@
         android:layout_height="wrap_content"
         >
         <Button
+            android:id="@+id/tuichuzhanghu"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/android_59"

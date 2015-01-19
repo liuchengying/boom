@@ -82,7 +82,8 @@
                 android:layout_height="wrap_content"
                 android:text="开始"
                 android:layout_gravity="center"
-                android:textSize="30sp"/>
+                android:textSize="25sp"
+                 />
 
             </FrameLayout>
 
