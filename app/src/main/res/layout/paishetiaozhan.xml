@@ -12,6 +12,7 @@
         android:orientation="horizontal"
         android:gravity="center">
         <LinearLayout
+
             android:layout_weight="1"
             android:layout_width="wrap_content"
             android:layout_height="50dp"
@@ -19,7 +20,8 @@
             >
             <Button
 
-                android:id="@+id/luzhifanhui"
+
+                android:id="@+id/paishefanhui"
                 android:layout_width="18dp"
                 android:layout_height="23dp"
                 android:background="@drawable/android_20"
@@ -71,7 +73,7 @@
             android:layout_gravity="center"
             android:background="@drawable/android_69">
             <Button
-                android:id="@+id/kaishi"
+                android:id="@+id/kaishipaishe"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/android_74"

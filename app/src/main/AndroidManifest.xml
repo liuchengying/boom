@@ -21,6 +21,17 @@
             android:theme="@android:style/Theme.Black.NoTitleBar"></activity>
         <activity android:name="boom.boom.zhucechenggong.Zhucechenggong_activity"
             android:theme="@android:style/Theme.Black.NoTitleBar"></activity>
+        <activity android:name="boom.boom.guizejieshao.Guizejieshao_activity"
+            android:theme="@android:style/Theme.Black.NoTitleBar"></activity>
+        <activity android:name=".paishetiaozhan.Paishetiaozhan_activity"
+            android:theme="@android:style/Theme.Black.NoTitleBar"></activity>
+        <activity android:name=".tingzhitiaozhan.Tingzhipaishe_activity"
+            android:theme="@android:style/Theme.Black.NoTitleBar"></activity>
+        <activity android:name=".shangchuanchenggong.Shangchuanchenggong_activity"
+            android:theme="@android:style/Theme.Black.NoTitleBar"></activity>
+        <activity android:name=".shangchuandengdai.Shangchuandengdai_activity"
+            android:theme="@android:style/Theme.Black.NoTitleBar"></activity>
+
 
 
 

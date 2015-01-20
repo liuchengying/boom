@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 
 import boom.boom.R;
+import boom.boom.paishetiaozhan.Paishetiaozhan_activity;
 import boom.boom.tianzhan.Tiaozhan_activity;
 
 /**
@@ -21,6 +22,16 @@ public class Guizejieshao_activity extends Activity{
         setContentView(R.layout.guizejieshao);
         fanhuitianzhan = (Button) findViewById(R.id.fanhuitiaozhan);
         woyaotianzhan = (Button) findViewById(R.id.woyaotiaozhan);
+        woyaotianzhan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)  {
+                        Intent intent = new Intent();
+                        intent.setClass(Guizejieshao_activity.this, Paishetiaozhan_activity.class);
+                       startActivity(intent);
+                }
+
+
+        });
         fanhuitianzhan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

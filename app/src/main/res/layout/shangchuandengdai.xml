@@ -18,7 +18,8 @@
             android:background="@drawable/android_20"
             android:gravity="center_horizontal"
             android:layout_marginLeft="10dp"
-            android:layout_gravity="center_vertical" />
+            android:layout_gravity="center_vertical"
+            android:id="@+id/shangchuandengdaifanhui" />
 
         <LinearLayout
             android:orientation="horizontal"
@@ -29,7 +30,7 @@
         <LinearLayout
             android:layout_weight="1"
             android:layout_width="wrap_content"
-            android:layout_height="50dp"
+            android:layout_height="fill_parent"
             android:gravity="center_vertical">
             <TextView
                 android:layout_width="wrap_content"
@@ -110,7 +111,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="放弃视频"
-        android:id="@+id/button"
+        android:id="@+id/fangqishangchuan"
         android:layout_gravity="center_horizontal"
         android:background="@drawable/android_77"
         android:textColor="#ffffffff" />
