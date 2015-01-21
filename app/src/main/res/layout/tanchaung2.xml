@@ -25,10 +25,11 @@
             android:textColor="#ffdadada" />
 
         <Button
+
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text=" 确定"
-            android:id="@+id/button3"
+            android:id="@+id/tanchaung1queding"
             android:layout_gravity="left|bottom"
             android:background="@drawable/andriod_89"
             android:textColor="#ffffffff" />
@@ -37,7 +38,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="取消"
-            android:id="@+id/button4"
+            android:id="@+id/tanchaung2quxiao"
             android:layout_gravity="right|bottom"
             android:background="@drawable/andriod_90"
             android:textColor="#ffffffff" />
