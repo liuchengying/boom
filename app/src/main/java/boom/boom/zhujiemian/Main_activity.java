@@ -11,8 +11,6 @@ import android.widget.Toast;
 
 import boom.boom.R;
 import boom.boom.api.User;
-import boom.boom.api.Utils;
-import boom.boom.denglu.dengluzhuce_activity;
 import boom.boom.tianzhan.Tiaozhan_activity;
 
 /**
