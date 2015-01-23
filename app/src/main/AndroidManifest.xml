@@ -31,8 +31,10 @@
             android:theme="@android:style/Theme.Black.NoTitleBar"></activity>
         <activity android:name=".shangchuandengdai.Shangchuandengdai_activity"
             android:theme="@android:style/Theme.Black.NoTitleBar"></activity>
-
-
+        <activity android:name=".xinxizhongxin.xinxizhongxin_activity"
+            android:theme="@android:style/Theme.Black.NoTitleBar"></activity>
+        <activity android:name=".tongxunlu.tongxunlu_activity"
+            android:theme="@android:style/Theme.Black.NoTitleBar"></activity>
 
 
     </application>

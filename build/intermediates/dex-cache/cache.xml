@@ -2,39 +2,25 @@
 <items version="2" >
 
     <item
-        jar="D:\Program Files\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\21.0.3\support-annotations-21.0.3.jar"
+        jar="F:\Android\sdk\android-sdk\extras\android\m2repository\com\android\support\support-v4\19.1.0\support-v4-19.1.0.jar"
         jumboMode="false"
         revision="21.0.1"
-        sha1="4b74cefe1f0c1b819e7260c8627a14674e37fd35">
-        <dex dex="F:\android1\Boom4\app\build\intermediates\pre-dexed\debug\support-annotations-21.0.3-a6066fa93aeaf35db8806181b83af09f6972c97d.jar" />
+        sha1="85f201b380937e61a9dce6ca90ccf6872abbfb67">
+        <dex dex="F:\BoomTime\BoomTime\app\build\intermediates\pre-dexed\debug\support-v4-19.1.0-ecf885e3be02d5e0e12e7fcfdf720f5a82fc5ea3.jar" />
     </item>
     <item
-        jar="F:\android1\Boom4\app\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.3\classes.jar"
+        jar="F:\BoomTime\BoomTime\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\19.1.0\classes.jar"
         jumboMode="false"
         revision="21.0.1"
-        sha1="2c91c949a45a21cdecf26e03951e46c7beec9ad8">
-        <dex dex="F:\android1\Boom4\app\build\intermediates\pre-dexed\debug\classes-e51c7602a6a4479a5ab8790b2d1f44e360f9f0bd.jar" />
+        sha1="3499ceba05ca1f6037c6a2fad73df8f636224a28">
+        <dex dex="F:\BoomTime\BoomTime\app\build\intermediates\pre-dexed\debug\classes-350bf78c85d9c2631f9591274a81030e90218fcb.jar" />
     </item>
     <item
-        jar="F:\android1\Boom4\app\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.3\libs\internal_impl-21.0.3.jar"
-        jumboMode="false"
-        revision="21.0.1"
-        sha1="01ec05bfbafcc07646ba813000bf2ef11742dd03">
-        <dex dex="F:\android1\Boom4\app\build\intermediates\pre-dexed\debug\internal_impl-21.0.3-4e9440aec5d8215c10f6359b5ad788d5875d860e.jar" />
-    </item>
-    <item
-        jar="F:\android1\Boom4\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\21.0.3\classes.jar"
-        jumboMode="false"
-        revision="21.0.1"
-        sha1="81d42bf983a8741f4888a6e333e454e4a5e0eeb7">
-        <dex dex="F:\android1\Boom4\app\build\intermediates\pre-dexed\debug\classes-7dcc7a5abf07622462100657e7bce0e342d7b3e8.jar" />
-    </item>
-    <item
-        jar="F:\android1\Boom4\app\build\nineoldandroids-2.4.0.jar"
+        jar="F:\BoomTime\BoomTime\.idea\libraries\nineoldandroids-2.4.0.jar"
         jumboMode="false"
         revision="21.0.1"
         sha1="59f19e43354d32de831379c23ce03bb259a4c2b7">
-        <dex dex="F:\android1\Boom4\app\build\intermediates\pre-dexed\debug\nineoldandroids-2.4.0-1b46ea1e96a51e98a13c5c53d452a8cd418e7a1a.jar" />
+        <dex dex="F:\BoomTime\BoomTime\app\build\intermediates\pre-dexed\debug\nineoldandroids-2.4.0-6c9fcee0dc954722d2dd6fc2787dc28f1293ca70.jar" />
     </item>
 
 </items>

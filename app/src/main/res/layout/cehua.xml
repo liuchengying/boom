@@ -52,7 +52,7 @@
         android:background="@drawable/android_31"
         android:orientation="horizontal"
 
-        >
+        android:id="@+id/ch_xinxizhongxin">
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -72,7 +72,7 @@
         android:layout_height="wrap_content"
         android:background="@drawable/android_32"
         android:orientation="horizontal"
-        >
+        android:id="@+id/ch_haoyouliebiao">
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -92,7 +92,7 @@
         android:layout_height="wrap_content"
         android:background="@drawable/android_31"
         android:orientation="horizontal"
-        >
+        android:id="@+id/ch_jifenshangcheng">
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -112,7 +112,7 @@
         android:layout_height="wrap_content"
         android:background="@drawable/android_32"
         android:orientation="horizontal"
-        >
+        android:id="@+id/ch_paihangbang">
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -132,7 +132,7 @@
         android:layout_height="wrap_content"
         android:background="@drawable/android_31"
         android:orientation="horizontal"
-        >
+        android:id="@+id/ch_xitongshezhi">
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
