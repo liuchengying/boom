@@ -12,6 +12,7 @@ import boom.boom.tianzhan.Tiaozhan_activity;
 /**
  * Created by 刘成英 on 2015/1/15.
  */
+
 public class Shezhi_activity extends Activity{
     private Button shezhifanhui;
     @Override
@@ -22,9 +23,7 @@ public class Shezhi_activity extends Activity{
         shezhifanhui.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent();
-                intent.setClass(Shezhi_activity.this, Tiaozhan_activity.class);
-                startActivity(intent);
+                finish();
             }
         });
     }
