@@ -2,13 +2,6 @@
 <items version="2" >
 
     <item
-        jar="F:\Android\sdk\android-sdk\extras\android\m2repository\com\android\support\support-v4\19.1.0\support-v4-19.1.0.jar"
-        jumboMode="false"
-        revision="21.0.1"
-        sha1="85f201b380937e61a9dce6ca90ccf6872abbfb67">
-        <dex dex="F:\BoomTime\BoomTime\app\build\intermediates\pre-dexed\debug\support-v4-19.1.0-ecf885e3be02d5e0e12e7fcfdf720f5a82fc5ea3.jar" />
-    </item>
-    <item
         jar="F:\BoomTime\BoomTime\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\19.1.0\classes.jar"
         jumboMode="false"
         revision="21.0.1"
@@ -16,10 +9,17 @@
         <dex dex="F:\BoomTime\BoomTime\app\build\intermediates\pre-dexed\debug\classes-350bf78c85d9c2631f9591274a81030e90218fcb.jar" />
     </item>
     <item
+        jar="F:\Android\sdk\android-sdk\extras\android\m2repository\com\android\support\support-v4\19.1.0\support-v4-19.1.0.jar"
+        jumboMode="false"
+        revision="21.0.1"
+        sha1="85f201b380937e61a9dce6ca90ccf6872abbfb67">
+        <dex dex="F:\BoomTime\BoomTime\app\build\intermediates\pre-dexed\debug\support-v4-19.1.0-ecf885e3be02d5e0e12e7fcfdf720f5a82fc5ea3.jar" />
+    </item>
+    <item
         jar="F:\BoomTime\BoomTime\.idea\libraries\nineoldandroids-2.4.0.jar"
         jumboMode="false"
         revision="21.0.1"
-        sha1="59f19e43354d32de831379c23ce03bb259a4c2b7">
+        sha1="a43cf9e271b5bc564e880a0a4be63ab9c69c97f8">
         <dex dex="F:\BoomTime\BoomTime\app\build\intermediates\pre-dexed\debug\nineoldandroids-2.4.0-6c9fcee0dc954722d2dd6fc2787dc28f1293ca70.jar" />
     </item>
 
