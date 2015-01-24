@@ -18,6 +18,10 @@ import boom.boom.tongxunlu.tongxunlu_activity;
 /**
  * Created by 刘成英 on 2015/1/13.
  */
+
+/**
+ * Added by Lyp on 2015/1/23
+ */
 public class Tiaozhan_activity extends Activity {
     private SlidingMenu mLeftMenu ;
     private Button cahuaanniu;
@@ -55,7 +59,7 @@ public class Tiaozhan_activity extends Activity {
             @Override
             public void onClick(View v) {
                 Intent myIntent=new Intent();
-                myIntent.setClass(Tiaozhan_activity.this,xinxizhongxin_activity.class);    //第一个参数不知道对不对
+                myIntent.setClass(Tiaozhan_activity.this,xinxizhongxin_activity.class);
                 Tiaozhan_activity.this.startActivity(myIntent);
             }
         });                                                                              //信息中心
@@ -84,7 +88,7 @@ public class Tiaozhan_activity extends Activity {
             public void onClick(View v) {
                 Toast.makeText(Tiaozhan_activity.this, "此功能尚未实现，敬请期待！", Toast.LENGTH_SHORT).show();
             }
-        });                                                                             //排行榜
+        });                                                                             //排行榜(侧滑)
 
         LinearLayout xtsz=(LinearLayout)findViewById(R.id.ch_xitongshezhi);
         xtsz.setOnClickListener(new View.OnClickListener() {
@@ -96,6 +100,21 @@ public class Tiaozhan_activity extends Activity {
             }
         });                                                                             //系统设置->设置
 
+        Button paihb=(Button)findViewById(R.id.paihangbang);
+        paihb.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(Tiaozhan_activity.this, "此功能尚未实现，敬请期待！", Toast.LENGTH_SHORT).show();
+            }
+        });                                                                             //排行榜(挑战)
+
+        Button jiangp=(Button)findViewById(R.id.jiangpin);
+        jiangp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(Tiaozhan_activity.this, "此功能尚未实现，敬请期待！", Toast.LENGTH_SHORT).show();
+            }
+        });                                                                             //奖品(挑战)
 
     }
     public void dianjicehua(View view){
