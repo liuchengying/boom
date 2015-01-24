@@ -19,16 +19,17 @@
             android:layout_width="wrap_content"
             android:layout_height="29dp"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="请检查网络畅通"
-            android:id="@+id/textView12"
+            android:text="确定放弃本次挑战视频吗？"
+            android:id="@+id/yn_text"
             android:layout_gravity="center"
-            android:textColor="#ffdadada" />
+            android:textColor="#ffdacaaa" />
 
         <Button
+
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text=" 重新上传"
-            android:id="@+id/button3"
+            android:text=" 确定"
+            android:id="@+id/button_ok_yn"
             android:layout_gravity="left|bottom"
             android:background="@drawable/andriod_89"
             android:textColor="#ffffffff" />
@@ -36,8 +37,8 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="返回主页"
-            android:id="@+id/button4"
+            android:text="取消"
+            android:id="@+id/button_cancel_yn"
             android:layout_gravity="right|bottom"
             android:background="@drawable/andriod_90"
             android:textColor="#ffffffff" />
@@ -46,8 +47,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="上传失败"
-            android:id="@+id/textView13"
+            android:text="放弃挑战"
+            android:id="@+id/yn_title"
             android:layout_gravity="center_horizontal|top"
             android:textColor="#ffe8694c"
             android:textSize="30dp"

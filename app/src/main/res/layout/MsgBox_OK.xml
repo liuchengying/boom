@@ -16,6 +16,7 @@
         android:layout_gravity="center_horizontal">
 
         <Button
+            android:id="@+id/ok_button"
             android:orientation="vertical"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
@@ -26,12 +27,21 @@
 
         <TextView
             android:layout_width="wrap_content"
-            android:layout_height="29dp"
+            android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="已成功邀请邀请好友参与挑战"
-            android:id="@+id/textView12"
+            android:id="@+id/ok_text"
             android:layout_gravity="center"
             android:layout_marginBottom="18dp"
             android:textColor="#ffdadada" />
+
+        <TextView
+            android:layout_width="206dp"
+            android:layout_height="39dp"
+            android:text="New Text"
+            android:id="@+id/ok_title"
+            android:layout_gravity="center|top"
+            android:textColor="#000000"
+            android:textSize="20dp" />
     </FrameLayout>
 </LinearLayout>
