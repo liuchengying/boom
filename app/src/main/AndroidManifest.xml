@@ -6,36 +6,36 @@
         <activity android:name=".Welcome.Welcome_activity"
             android:theme="@android:style/Theme.Black.NoTitleBar">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"></action>
-                <category android:name="android.intent.category.LAUNCHER"></category>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
              <activity android:name="boom.boom.zhujiemian.Main_activity"
-                        android:theme="@android:style/Theme.Black.NoTitleBar"></activity>
+                        android:theme="@android:style/Theme.Black.NoTitleBar"/>
         <activity android:name="boom.boom.tianzhan.Tiaozhan_activity"
-            android:theme="@android:style/Theme.Black.NoTitleBar"></activity>
+            android:theme="@android:style/Theme.Black.NoTitleBar"/>
         <activity android:name="boom.boom.denglu.dengluzhuce_activity"
-            android:theme="@android:style/Theme.Black.NoTitleBar"></activity>
+            android:theme="@android:style/Theme.Black.NoTitleBar"/>
         <activity android:name="boom.boom.shezhi.Shezhi_activity"
-            android:theme="@android:style/Theme.Black.NoTitleBar"></activity>
+            android:theme="@android:style/Theme.Black.NoTitleBar"/>
         <activity android:name="boom.boom.wanshanxinxi.Wanshanxinxi_activity"
-            android:theme="@android:style/Theme.Black.NoTitleBar"></activity>
+            android:theme="@android:style/Theme.Black.NoTitleBar"/>
         <activity android:name="boom.boom.zhucechenggong.Zhucechenggong_activity"
-            android:theme="@android:style/Theme.Black.NoTitleBar"></activity>
+            android:theme="@android:style/Theme.Black.NoTitleBar"/>
         <activity android:name="boom.boom.guizejieshao.Guizejieshao_activity"
-            android:theme="@android:style/Theme.Black.NoTitleBar"></activity>
+            android:theme="@android:style/Theme.Black.NoTitleBar"/>
         <activity android:name=".paishetiaozhan.Paishetiaozhan_activity"
-            android:theme="@android:style/Theme.Black.NoTitleBar"></activity>
+            android:theme="@android:style/Theme.Black.NoTitleBar"/>
         <activity android:name=".tingzhitiaozhan.Tingzhipaishe_activity"
-            android:theme="@android:style/Theme.Black.NoTitleBar"></activity>
+            android:theme="@android:style/Theme.Black.NoTitleBar"/>
         <activity android:name=".shangchuanchenggong.Shangchuanchenggong_activity"
-            android:theme="@android:style/Theme.Black.NoTitleBar"></activity>
+            android:theme="@android:style/Theme.Black.NoTitleBar"/>
         <activity android:name=".shangchuandengdai.Shangchuandengdai_activity"
-            android:theme="@android:style/Theme.Black.NoTitleBar"></activity>
+            android:theme="@android:style/Theme.Black.NoTitleBar"/>
         <activity android:name=".xinxizhongxin.xinxizhongxin_activity"
-            android:theme="@android:style/Theme.Black.NoTitleBar"></activity>
+            android:theme="@android:style/Theme.Black.NoTitleBar"/>
         <activity android:name=".tongxunlu.tongxunlu_activity"
-            android:theme="@android:style/Theme.Black.NoTitleBar"></activity>
+            android:theme="@android:style/Theme.Black.NoTitleBar"/>
 
 
     </application>
