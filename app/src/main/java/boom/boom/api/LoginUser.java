@@ -22,6 +22,8 @@ import java.util.List;
  */
 
 public class LoginUser {
+    private static final String USER_REGISTER_URL = "/api/userRegister.php";
+
     private String user;
     private String pass;
     private boolean reg_ok;
@@ -43,7 +45,7 @@ public class LoginUser {
         /*
          *  尝试注册。
          */
-        HttpIO io = new HttpIO(Utils.serveraddr + "/api/userRegister.jsp", HttpIO.KEEP_COOKIE);
+        HttpIO io = new HttpIO(Utils.serveraddr + USER_REGISTER_URL, HttpIO.KEEP_COOKIE);
         List<NameValuePair> post = new ArrayList<NameValuePair>();
         post.add(new BasicNameValuePair("user", this.user));
         post.add(new BasicNameValuePair("passhash", Utils.StrToMD5(this.pass)));

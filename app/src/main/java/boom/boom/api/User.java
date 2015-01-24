@@ -17,6 +17,8 @@ import java.util.Map;
  * Created by 1eekai on 2015/1/16.
  */
 public class User extends Application {
+    private static final String USER_LOGIN_URL = "/api/userlogin.jsp";
+
     private String username;
     private String password;
     private boolean ifUserLoggedIn;
@@ -41,7 +43,7 @@ public class User extends Application {
     }
 
     public String getServerErr(){
-        HttpIO io = new HttpIO(Utils.serveraddr + "/api/userlogin.jsp?lasterror=true",HttpIO.KEEP_COOKIE);
+        HttpIO io = new HttpIO(Utils.serveraddr + USER_LOGIN_URL + "?lasterror=true", HttpIO.KEEP_COOKIE);
         io.GETToHTTPServer();
         try {
             JSONObject obj = new JSONObject(io.getResultData());
@@ -54,7 +56,7 @@ public class User extends Application {
 
     public boolean SyncUserData(int ToWhere){
         if (ToWhere == this.SERVER_TO_CLIENT){
-            HttpIO io = new HttpIO(Utils.serveraddr + "/api/userdata.jsp?getuserdata=true",HttpIO.KEEP_COOKIE);
+            HttpIO io = new HttpIO(Utils.serveraddr + USER_LOGIN_URL + "?getuserdata=true",HttpIO.KEEP_COOKIE);
 
         }
         return true;

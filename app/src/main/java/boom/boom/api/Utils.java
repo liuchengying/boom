@@ -11,7 +11,7 @@ import java.security.NoSuchAlgorithmException;
  * Created by 1eekai on 2015/1/17.
  */
 public class Utils {
-    public static final String serveraddr = "http://myhome2.leekai1995.com:10000/";
+    public static final String serveraddr = "http://myhome2.leekai1995.com:82/";
 
     public static String StrToMD5(String string) {
         /*
