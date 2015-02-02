@@ -20,7 +20,7 @@ import boom.boom.tingzhitiaozhan.Tingzhipaishe_activity;
 public class Paishetiaozhan_activity extends Activity {
     private Button paishefanhui;
     private Button kaishipaishe;
-    private boolean bianliang;
+
 
 
 
@@ -36,7 +36,7 @@ public class Paishetiaozhan_activity extends Activity {
                 Intent intent = new Intent();
                 intent.setClass(Paishetiaozhan_activity.this,Tingzhipaishe_activity.class);
                 startActivity(intent);
-                bianliang = true;
+
 
 
             }
@@ -51,19 +51,6 @@ public class Paishetiaozhan_activity extends Activity {
 
             }
         });
-        Timer timer = new Timer();
-        TimerTask task = new TimerTask(){
-            @Override
-            public void run() {
-                if(bianliang) {
-                    Intent intent = new Intent(Paishetiaozhan_activity.this, Shangchuandengdai_activity.class);
-                    startActivity(intent);
-                    Paishetiaozhan_activity.this.finish();
-
-                }
-            }
-        };
-        timer.schedule(task, 2000);
 
 
     }

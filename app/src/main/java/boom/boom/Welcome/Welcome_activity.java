@@ -1,7 +1,9 @@
 package boom.boom.Welcome;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import java.util.Timer;
@@ -14,10 +16,12 @@ import boom.boom.zhujiemian.Main_activity;
  * Created by 刘成英 on 2015/1/13.
  */
 public class Welcome_activity extends Activity {
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.huanyingjiemian);
+
         Timer timer = new Timer();
         TimerTask task = new TimerTask(){
             @Override
@@ -27,7 +31,7 @@ public class Welcome_activity extends Activity {
                 Welcome_activity.this.finish();
             }
         };
-        timer.schedule(task, 2000);
+        timer.schedule(task, 1000);
 
 
 

@@ -1,4 +1,4 @@
-package boom.boom.cehua;
+package boom.boom.xiaoxizhongxin;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -6,12 +6,12 @@ import android.os.Bundle;
 import boom.boom.R;
 
 /**
- * Created by 刘成英 on 2015/1/14.
+ * Created by 刘成英 on 2015/1/21.
  */
-public class cehua_activity extends Activity {
+public class Xiaoxizhongxin_activity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.cehua);
+        setContentView(R.layout.xinxizhongxin);
     }
 }

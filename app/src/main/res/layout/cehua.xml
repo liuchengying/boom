@@ -47,6 +47,7 @@
             android:textSize="20sp"/>
     </LinearLayout>
     <LinearLayout
+        android:onClick="xinxizhongxin"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/android_31"

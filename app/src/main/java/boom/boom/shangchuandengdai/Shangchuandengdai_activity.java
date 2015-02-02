@@ -1,5 +1,6 @@
 package boom.boom.shangchuandengdai;
 
+import android.animation.AnimatorSet;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -10,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 
 import boom.boom.R;
+import boom.boom.api.MsgBox;
 import boom.boom.paishetiaozhan.Paishetiaozhan_activity;
 import boom.boom.tianzhan.Tiaozhan_activity;
 
@@ -51,23 +53,23 @@ public class Shangchuandengdai_activity extends Activity {
                 showDialog1();
 
 
+
             }
         });
     }
     private  void showDialog1(){
-        LayoutInflater inflater = LayoutInflater.from(this);
-        View view = inflater.inflate(R.layout.tanchaung2,null);
+        final LayoutInflater inflater = LayoutInflater.from(this);
+        View view = inflater.inflate(R.layout.msgbox_yesno,null);
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setView(view);
-
-
-
-
-
         AlertDialog dialog = builder.create();
         dialog.show();
 
 
-    }
-   }
+
+
+               }
+
+
+           }
 
