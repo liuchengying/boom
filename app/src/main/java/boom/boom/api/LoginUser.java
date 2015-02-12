@@ -45,7 +45,7 @@ public class LoginUser {
         /*
          *  尝试注册。
          */
-        HttpIO io = new HttpIO(Utils.serveraddr + USER_REGISTER_URL, HttpIO.KEEP_COOKIE);
+        HttpIO io = new HttpIO(Utils.serveraddr + USER_REGISTER_URL);
         List<NameValuePair> post = new ArrayList<NameValuePair>();
         post.add(new BasicNameValuePair("user", this.user));
         post.add(new BasicNameValuePair("passhash", Utils.StrToMD5(this.pass)));

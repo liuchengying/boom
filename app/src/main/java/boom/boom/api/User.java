@@ -43,7 +43,7 @@ public class User extends Application {
     }
 
     public String getServerErr(){
-        HttpIO io = new HttpIO(Utils.serveraddr + USER_LOGIN_URL + "?lasterror=true", HttpIO.KEEP_COOKIE);
+        HttpIO io = new HttpIO(Utils.serveraddr + USER_LOGIN_URL + "?lasterror=true");
         io.GETToHTTPServer();
         try {
             JSONObject obj = new JSONObject(io.getResultData());
@@ -56,7 +56,7 @@ public class User extends Application {
 
     public boolean SyncUserData(int ToWhere){
         if (ToWhere == this.SERVER_TO_CLIENT){
-            HttpIO io = new HttpIO(Utils.serveraddr + USER_LOGIN_URL + "?getuserdata=true",HttpIO.KEEP_COOKIE);
+            HttpIO io = new HttpIO(Utils.serveraddr + USER_LOGIN_URL + "?getuserdata=true");
 
         }
         return true;
@@ -69,7 +69,7 @@ public class User extends Application {
     public boolean AttemptLogin()
             throws JSONException {
         String url_request = Utils.serveraddr + "/api/userlogin.jsp";
-        HttpIO io = new HttpIO(url_request, HttpIO.KEEP_COOKIE);
+        HttpIO io = new HttpIO(url_request);
         List<NameValuePair> post = new ArrayList<NameValuePair>();
         post.add(new BasicNameValuePair("name", this.username));
         post.add(new BasicNameValuePair("passhash", Utils.StrToMD5(this.password)));

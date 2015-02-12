@@ -61,7 +61,7 @@
                 android:textSize="20sp"
                 android:text="完成"
                 android:layout_marginLeft="10dp"
-                android:id="@+id/" />
+                android:id="@+id/ok" />
             <ImageView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
