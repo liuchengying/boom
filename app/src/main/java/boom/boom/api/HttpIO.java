@@ -20,20 +20,22 @@ import java.util.List;
  */
 public class HttpIO {
     private String URLstr;
-    public static final int KEEP_COOKIE = 2452134;
-    public static final int DO_NOT_KEEP_ANY_COOKIE= 2452134;
-    private int cookiestate;
-    private List<Cookie> cookies;
-    private int SessionID;
-    public HttpIO(String ur1, int CookieState){
-        this.cookiestate = CookieState;
+    private boolean sessionState;
+    public String SessionID;
+
+    public HttpIO(String ur1){
+        this.sessionState = true;      // 默认情况下，保持SESSION。
         this.SetURL(ur1);
-        this.SessionID = -1;
     }
-    private void SetCustomSessionID(int id){
+
+    public HttpIO(String ur1, boolean SessionState){
+        this.sessionState = SessionState;   // 重构构造函数。
+        this.SetURL(ur1);
+    }
+    private void SetCustomSessionID(String id){
         this.SessionID = id;
     }
-    private int GetSessionID(){
+    private String GetSessionID(){
         return this.SessionID;
     }
     private String ResultBuffer;
@@ -48,13 +50,6 @@ public class HttpIO {
         ResultBuffer = null;
     }
 
-    public String QueryCookie(String label){
-        int counter;
-        for (counter=0;counter<cookies.size();counter++){
-            if (cookies.get(counter).getName() == label)    return cookies.get(counter).getValue();
-        }
-        return null;
-    }
 
     public String POSTToHTTPServer(List<NameValuePair> postParameters) {
         /*
@@ -88,7 +83,6 @@ public class HttpIO {
                 strBuffer.append(line);
             }
             result = strBuffer.toString();
-            if (this.cookiestate == KEEP_COOKIE)  cookies = client.getCookieStore().getCookies();
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -130,7 +124,6 @@ public class HttpIO {
                 strBuffer.append(line);
             }
             result = strBuffer.toString();
-            if (this.cookiestate == KEEP_COOKIE)  cookies = client.getCookieStore().getCookies();
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
