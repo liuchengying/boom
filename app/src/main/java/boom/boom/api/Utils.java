@@ -13,6 +13,33 @@ import java.security.NoSuchAlgorithmException;
 public class Utils {
     public static final String serveraddr = "http://myhome2.leekai1995.com:82/";
 
+    public static class GetBuilder {
+        private String str;
+
+        public GetBuilder(String initial){
+            str = "";
+            str += initial + "?";
+        }
+
+        public GetBuilder(String initial, String item){
+            str = "";
+            str += initial + "?" + item;
+        }
+
+        public void addItem(String label, String value){
+            str = str + label + "=" + value + "&";
+        }
+
+        public static String Item(String label, String value){
+            return label + "=" + value + "&";
+        }
+
+        public String toString(){
+            return str.substring(0,str.length()-1); //  删除末尾的 & 符号。
+        }
+
+    }
+
     public static String StrToMD5(String string) {
         /*
          * StrToMD5(String string) ，把字符串转化为MD5。

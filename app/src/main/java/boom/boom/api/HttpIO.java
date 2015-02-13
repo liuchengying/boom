@@ -22,8 +22,10 @@ public class HttpIO {
     private String URLstr;
     private boolean sessionState;
     public String SessionID;
-
+    public List<Cookie> cookiearray;
+    private static String SESSION_MAGIC_STRING = "PHPSESSID";   // SESSION中的魔法字串
     public HttpIO(String ur1){
+        SessionID = null;
         this.sessionState = true;      // 默认情况下，保持SESSION。
         this.SetURL(ur1);
     }
@@ -32,11 +34,26 @@ public class HttpIO {
         this.sessionState = SessionState;   // 重构构造函数。
         this.SetURL(ur1);
     }
+
     private void SetCustomSessionID(String id){
+        if (!this.sessionState) return;
         this.SessionID = id;
     }
+
     private String GetSessionID(){
+        if (!this.sessionState) return null;
         return this.SessionID;
+    }
+
+    public String UpdateSessionID(){
+        if (!this.sessionState)     return null;
+        for (int counter=0; counter<this.cookiearray.size();counter++){
+            if (SESSION_MAGIC_STRING.equals(this.cookiearray.get(counter).getName())){
+                this.SessionID = this.cookiearray.get(counter).getValue();
+                return this.SessionID;
+            }
+        }
+        return null;
     }
     private String ResultBuffer;
     public void SetURL(String UR1){  this.URLstr = UR1;  }
@@ -69,14 +86,20 @@ public class HttpIO {
         try {
             DefaultHttpClient client = new DefaultHttpClient();
             HttpPost request = new HttpPost();
+            if (this.SessionID != null){
+                request.setHeader("Cookie", "PHPSESSID=" + this.SessionID);
+            }
             request.setURI(new URI(this.GetURL()));
             UrlEncodedFormEntity formEntity = new UrlEncodedFormEntity(
                     postParameters);
             request.setEntity(formEntity);
             HttpResponse response = client.execute(request);
+            if (this.sessionState) {
+                cookiearray = client.getCookieStore().getCookies();
+                UpdateSessionID();
+            }
             reader = new BufferedReader(new InputStreamReader(response
                     .getEntity().getContent()));
-
             StringBuffer strBuffer = new StringBuffer("");
             String line = null;
             while ((line = reader.readLine()) != null) {
@@ -112,9 +135,16 @@ public class HttpIO {
         try {
             DefaultHttpClient client = new DefaultHttpClient();
             HttpGet request = new HttpGet();
+            if (this.SessionID != null){
+                request.setHeader("Cookie", "PHPSESSID=" + this.SessionID);
+            }
             request.setURI(new URI(
                     this.GetURL()));
             HttpResponse response = client.execute(request);
+            if (this.sessionState){
+                cookiearray = client.getCookieStore().getCookies();
+                UpdateSessionID();
+            }
             reader = new BufferedReader(new InputStreamReader(response
                     .getEntity().getContent()));
 
