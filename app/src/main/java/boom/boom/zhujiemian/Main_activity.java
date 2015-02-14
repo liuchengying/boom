@@ -3,11 +3,14 @@ package boom.boom.zhujiemian;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import org.json.JSONObject;
 
 import boom.boom.R;
 import boom.boom.api.User;
@@ -33,10 +36,12 @@ public class Main_activity extends Activity {
         denglu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                User userlogin = (User)getApplication();
-                userlogin.loginUser(user.toString(), pass.toString());
+                User userlogin = new User(user.toString(), pass.toString());
                 if (userlogin.ifLoggedIn()) {
                     Intent intent = new Intent();
+                    intent.putExtra("session_id", userlogin.getSessionId());
+                    intent.putExtra("userdata",userlogin.getUserDataJSONObject().toString());
+                    Log.d("UserData toString Debug by M0xkLurk3r", userlogin.getUserDataJSONObject().toString());
                     intent.setClass(Main_activity.this, Tiaozhan_activity.class);
                     startActivity(intent);
                 }else{

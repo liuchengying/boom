@@ -16,24 +16,23 @@ import java.util.Map;
 /**
  * Created by 1eekai on 2015/1/16.
  */
-public class User extends Application {
-    private static final String USER_LOGIN_URL = "/api/userlogin.jsp";
-
+public class User {
+    private static final String USER_LOGIN_URL = Utils.serveraddr + "/api/userlogin.php";
+    private static final String USER_DATA_URL = Utils.serveraddr + "/api/userdata.php";
+    private static String session_id;
     private String username;
     private String password;
     private boolean ifUserLoggedIn;
     private String ServerErr;
-    public JSONObject userData;
+    private JSONObject userData;
     public static final int SERVER_TO_CLIENT = 33311312;
     public static final int CLIENT_TO_SERVER = 31455144;
-    public void onCreate(){
-        super.onCreate();
-        ServerErr = null;
 
-    }
-    public void loginUser(String user, String pass) {
+    public User(String user, String pass) {
         this.username = user;
         this.password = pass;
+        ServerErr = null;
+        session_id = null;
         try {
             AttemptLogin();
         } catch (JSONException e) {
@@ -57,9 +56,27 @@ public class User extends Application {
     public boolean SyncUserData(int ToWhere){
         if (ToWhere == this.SERVER_TO_CLIENT){
             HttpIO io = new HttpIO(new Utils.GetBuilder(USER_LOGIN_URL, Utils.GetBuilder.Item("action", "getuaerdata")).toString());
-
+            io.GETToHTTPServer();
+            try {
+                this.userData = new JSONObject(io.getResultData());
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
         }
         return true;
+    }
+
+    public String getUserData(String label){
+        try {
+            return this.userData.getString(label);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public JSONObject getUserDataJSONObject(){
+        return this.userData;
     }
 
     public boolean ifLoggedIn(){
@@ -82,11 +99,16 @@ public class User extends Application {
         */
         io.GETToHTTPServer();
         String httpResult = io.getResultData();
+        this.session_id = io.GetSessionID();
         JSONObject obj = new JSONObject(httpResult);
         String status = obj.getString("status");
         if (status == "FAIL")   ifUserLoggedIn = false;
         if (status == "SUCCESS")    ifUserLoggedIn = true;
         return this.ifLoggedIn();
+    }
+
+    public String getSessionId(){
+        return this.session_id;
     }
 
  //   public String

@@ -35,12 +35,12 @@ public class HttpIO {
         this.SetURL(ur1);
     }
 
-    private void SetCustomSessionID(String id){
+    public void SetCustomSessionID(String id){
         if (!this.sessionState) return;
         this.SessionID = id;
     }
 
-    private String GetSessionID(){
+    public String GetSessionID(){
         if (!this.sessionState) return null;
         return this.SessionID;
     }
