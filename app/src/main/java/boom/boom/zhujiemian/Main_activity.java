@@ -14,6 +14,7 @@ import org.json.JSONObject;
 
 import boom.boom.R;
 import boom.boom.api.User;
+import boom.boom.api.UserData;
 import boom.boom.tianzhan.Tiaozhan_activity;
 
 /**
@@ -38,10 +39,12 @@ public class Main_activity extends Activity {
             public void onClick(View v) {
                 User userlogin = new User(user.toString(), pass.toString());
                 if (userlogin.ifLoggedIn()) {
+                    UserData data = new UserData(userlogin.getSessionId());
                     Intent intent = new Intent();
                     intent.putExtra("session_id", userlogin.getSessionId());
-                    intent.putExtra("userdata",userlogin.getUserDataJSONObject().toString());
-                    Log.d("UserData toString Debug by M0xkLurk3r", userlogin.getUserDataJSONObject().toString());
+                    intent.putExtra("name", data.QueryData("name"));
+                    intent.putExtra("nickname", data.QueryData("nickname"));
+                    intent.putExtra("uniquesign", data.QueryData("uniquesign"));
                     intent.setClass(Main_activity.this, Tiaozhan_activity.class);
                     startActivity(intent);
                 }else{

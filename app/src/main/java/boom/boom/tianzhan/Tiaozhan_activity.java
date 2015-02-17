@@ -28,6 +28,7 @@ public class Tiaozhan_activity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.tiaozhan);
+
         cahuaanniu = (Button) findViewById(R.id.cehuaanniu);
         mLeftMenu = (SlidingMenu) findViewById(R.id.cehuacaidan);
         danrentiaozhan = (Button) findViewById(R.id.danrentiaozhan);
