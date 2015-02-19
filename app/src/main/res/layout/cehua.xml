@@ -23,18 +23,19 @@
         android:gravity="center_horizontal"
         android:orientation="vertical">
         <TextView
+            android:id="@+id/nickname"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:text="昵称"
+            android:text="BOOMTIME 用户"
             android:gravity="center"
-
             />
         <TextView
+            android:id="@+id/mycoins"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:text="我的积分：250"
+            android:text="我的积分：0"
             android:gravity="center"
 
             />
