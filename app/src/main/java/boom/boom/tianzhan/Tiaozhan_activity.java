@@ -75,7 +75,7 @@ public class Tiaozhan_activity extends Activity {
 
     @Override
     public void onBackPressed() {
-        exitDialog(Tiaozhan_activity.this, "QQ提示", "亲！您真的要退出吗？");
+        exitDialog(Tiaozhan_activity.this, "提示", "亲！您真的要退出吗？");
 
     }
     private void exitDialog(Context context, String title, String msg) {
