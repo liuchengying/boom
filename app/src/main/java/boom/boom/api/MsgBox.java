@@ -12,7 +12,7 @@ import boom.boom.R;
 public class MsgBox extends Activity {
 
     /*
-     *  MsgBox：在页面上绘制一个MsgBox弹窗。
+     *  mbox：在页面上绘制一个mbox弹窗。
      *  示例：
      *
      *  class MainActivity extends Activity{
@@ -25,10 +25,10 @@ public class MsgBox extends Activity {
      *      // ... 你的代码
      *      //
      *
-     *      Intent intent = new Intent(MainActivity.this, MsgBox.class);
+     *      Intent intent = new Intent(MainActivity.this, mbox.class);
      *      intent.putExtra("title", "我的标题");   // 这里编写标题
      *      intent.putExtra("text", "hello world!");    // 这里编写弹窗正文
-     *      intent.putExtra("flags", MsgBox.MB_YESNO); // 设置确定取消按钮类型
+     *      intent.putExtra("flags", mbox.MB_YESNO); // 设置确定取消按钮类型
      *      startActivityForResult(intent, REQUESTCODE);    //返回结果
      *  }
      *  @Override
@@ -73,7 +73,7 @@ public class MsgBox extends Activity {
         int Flags = intent.getIntExtra("flags", MB_OK);
         switch (Flags){
             case MB_OK: {
-                setContentView(R.layout.msgbox_ok);
+                setContentView(R.layout.mbox_ok);
                 TextView _title = (TextView) findViewById(R.id.ok_title);
                 TextView _text = (TextView) findViewById(R.id.ok_text);
                 Button button = (Button) findViewById(R.id.ok_button);
@@ -91,7 +91,7 @@ public class MsgBox extends Activity {
             }
                 break;
             case MB_YESNO: {
-                setContentView(R.layout.msgbox_yesno);
+                setContentView(R.layout.mbox_yesno);
                 TextView _title = (TextView) findViewById(R.id.yn_title);
                 TextView _text = (TextView) findViewById(R.id.yn_text);
                 Button button_yes = (Button) findViewById(R.id.button_ok_yn);
@@ -119,7 +119,7 @@ public class MsgBox extends Activity {
             }
                 break;
             case MB_RETRY:{
-                setContentView(R.layout.msgbox_yesno);
+                setContentView(R.layout.mbox_yesno);
                 TextView _title = (TextView) findViewById(R.id.rt_title);
                 TextView _text = (TextView) findViewById(R.id.rt_text);
                 Button button_yes = (Button) findViewById(R.id.rt_retry);
