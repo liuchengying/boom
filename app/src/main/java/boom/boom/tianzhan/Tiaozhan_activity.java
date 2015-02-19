@@ -8,6 +8,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
+
+import org.w3c.dom.Text;
 
 import boom.boom.R;
 import boom.boom.guizejieshao.Guizejieshao_activity;
@@ -24,6 +27,9 @@ public class Tiaozhan_activity extends Activity {
     private Button jiangpin;
     private Button paihangbang;
     private Button shezhi;
+    private TextView nickname;
+    private TextView coins;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,6 +55,14 @@ public class Tiaozhan_activity extends Activity {
                 startActivity(intent);
             }
         });
+        nickname = (TextView) findViewById(R.id.nickname);
+        coins = (TextView) findViewById(R.id.mycoins);
+        Intent intent = getIntent();
+        String user_name = intent.getStringExtra("name");
+        String user_nickname = intent.getStringExtra("nickname");
+        String user_coins = intent.getStringExtra("coins");
+        nickname.setText(user_nickname);
+        coins.setText("积分：" + user_coins);
     }
     public void dianjicehua(View view){
         mLeftMenu.toggle();
