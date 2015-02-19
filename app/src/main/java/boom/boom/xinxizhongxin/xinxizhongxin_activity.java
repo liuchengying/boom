@@ -19,11 +19,13 @@ public class xinxizhongxin_activity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.xinxizhongxin);
         Button fh=(Button)findViewById(R.id.xxzx_fanhui);
+        Button rightSideButton;
         fh.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
             }
         });
+
     }
 }

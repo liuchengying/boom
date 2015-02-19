@@ -4,7 +4,8 @@
     android:layout_height="match_parent"
     android:background="#ffdadada"
     android:orientation="vertical"
-    android:weightSum="1">
+    android:weightSum="1"
+    android:id="@+id/">
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="60dp"

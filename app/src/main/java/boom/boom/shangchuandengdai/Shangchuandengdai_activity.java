@@ -40,10 +40,6 @@ public class Shangchuandengdai_activity extends Activity {
                 startActivity(intent);
             }
         });
-
-
-
-
 }
 
     private void initEvent() {
@@ -51,24 +47,18 @@ public class Shangchuandengdai_activity extends Activity {
             @Override
             public void onClick(View v) {
                 showDialog1();
-
-
-
             }
         });
     }
+
     private  void showDialog1(){
         final LayoutInflater inflater = LayoutInflater.from(this);
-        View view = inflater.inflate(R.layout.msgbox_yesno,null);
+        View view = inflater.inflate(R.layout.mbox_yesno,null);
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setView(view);
         AlertDialog dialog = builder.create();
         dialog.show();
-
-
-
-
-               }
+    }
 
 
            }

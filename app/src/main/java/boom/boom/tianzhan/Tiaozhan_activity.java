@@ -13,6 +13,7 @@ import android.widget.TextView;
 import org.w3c.dom.Text;
 
 import boom.boom.R;
+import boom.boom.api.Static;
 import boom.boom.guizejieshao.Guizejieshao_activity;
 import boom.boom.shezhi.Shezhi_activity;
 import boom.boom.slidingMenu.SlidingMenu;
@@ -29,24 +30,30 @@ public class Tiaozhan_activity extends Activity {
     private Button shezhi;
     private TextView nickname;
     private TextView coins;
-
+    private Button button_startChallenge;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.tiaozhan);
-
+        Intent intent = getIntent();
+        String user_name = Static.username;
+        String user_nickname = Static.nickname;
+        int user_coins = Static.coins;
         cahuaanniu = (Button) findViewById(R.id.cehuaanniu);
         mLeftMenu = (SlidingMenu) findViewById(R.id.cehuacaidan);
         danrentiaozhan = (Button) findViewById(R.id.danrentiaozhan);
         shezhi = (Button) findViewById(R.id.shezhi);
-        danrentiaozhan.setOnClickListener(new View.OnClickListener() {
+        button_startChallenge = (Button) findViewById(R.id.button_startchallenge);
+        View.OnClickListener toBeginSingleChallenge = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent();
                 intent.setClass(Tiaozhan_activity.this, Guizejieshao_activity.class);
                 startActivity(intent);
             }
-        });
+        };
+        danrentiaozhan.setOnClickListener(toBeginSingleChallenge);
+        button_startChallenge.setOnClickListener(toBeginSingleChallenge);
         shezhi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -57,12 +64,9 @@ public class Tiaozhan_activity extends Activity {
         });
         nickname = (TextView) findViewById(R.id.nickname);
         coins = (TextView) findViewById(R.id.mycoins);
-        Intent intent = getIntent();
-        String user_name = intent.getStringExtra("name");
-        String user_nickname = intent.getStringExtra("nickname");
-        String user_coins = intent.getStringExtra("coins");
         nickname.setText(user_nickname);
         coins.setText("积分：" + user_coins);
+
     }
     public void dianjicehua(View view){
         mLeftMenu.toggle();

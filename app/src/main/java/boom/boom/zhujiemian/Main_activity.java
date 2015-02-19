@@ -13,6 +13,7 @@ import android.widget.Toast;
 import org.json.JSONObject;
 
 import boom.boom.R;
+import boom.boom.api.Static;
 import boom.boom.api.User;
 import boom.boom.api.UserData;
 import boom.boom.tianzhan.Tiaozhan_activity;
@@ -41,11 +42,16 @@ public class Main_activity extends Activity {
                 if (userlogin.ifLoggedIn()) {
                     UserData data = new UserData(userlogin.getSessionId());
                     Intent intent = new Intent();
-                    intent.putExtra("session_id", userlogin.getSessionId());
-                    intent.putExtra("name", data.QueryData("name"));
-                    intent.putExtra("nickname", data.QueryData("nickname"));
-                    intent.putExtra("uniquesign", data.QueryData("uniquesign"));
-                    intent.putExtra("coins", data.QueryData("coins"));
+//                    intent.putExtra("session_id", userlogin.getSessionId());
+//                    intent.putExtra("name", data.QueryData("name"));
+//                    intent.putExtra("nickname", data.QueryData("nickname"));
+//                    intent.putExtra("uniquesign", data.QueryData("uniquesign"));
+//                    intent.putExtra("coins", data.QueryData("coins"));
+                    Static.session_id = userlogin.getSessionId();
+                    Static.username = data.QueryData("name");
+                    Static.nickname = data.QueryData("nickname");
+                    Static.uniqueSign = data.QueryData("uniquesign");
+                    Static.coins = Integer.parseInt(String.valueOf(data.QueryData("coins")));
                     intent.setClass(Main_activity.this, Tiaozhan_activity.class);
                     startActivity(intent);
                 }else{
