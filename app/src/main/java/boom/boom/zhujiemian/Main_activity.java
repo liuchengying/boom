@@ -45,6 +45,7 @@ public class Main_activity extends Activity {
                     intent.putExtra("name", data.QueryData("name"));
                     intent.putExtra("nickname", data.QueryData("nickname"));
                     intent.putExtra("uniquesign", data.QueryData("uniquesign"));
+                    intent.putExtra("coins", data.QueryData("coins"));
                     intent.setClass(Main_activity.this, Tiaozhan_activity.class);
                     startActivity(intent);
                 }else{
