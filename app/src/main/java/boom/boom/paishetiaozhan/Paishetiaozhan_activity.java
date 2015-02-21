@@ -15,12 +15,21 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.Toast;
 
+import org.json.JSONObject;
+
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.Timer;
 
 import boom.boom.R;
+import boom.boom.api.Challenge;
+import boom.boom.api.FormFile;
+import boom.boom.api.HttpIO;
+import boom.boom.api.SocketHttpRequester;
+import boom.boom.api.Utils;
 import boom.boom.guizejieshao.Guizejieshao_activity;
+import boom.boom.shangchuanchenggong.Shangchuanchenggong_activity;
 import boom.boom.tingzhitiaozhan.Tingzhipaishe_activity;
 
 /**
@@ -43,6 +52,9 @@ public class Paishetiaozhan_activity extends Activity implements SurfaceHolder.C
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Intent intent = getIntent();
+        int position = intent.getIntExtra("challenge_number", 1);
+        final String cl_name = intent.getStringExtra("challenge_name");
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         getWindow().setFormat(PixelFormat.TRANSLUCENT);
@@ -70,9 +82,22 @@ public class Paishetiaozhan_activity extends Activity implements SurfaceHolder.C
                         }
                     }
                 }).start();
+                SocketHttpRequester requester = new SocketHttpRequester();
+                FormFile file = new FormFile(StoreFile.getName(), StoreFile, "file", "video/3gp");
+                try {
+                    requester.post(Utils.serveraddr + Utils.put_file_api, new HashMap<String, String>(), file);
+                    JSONObject result = new JSONObject(requester.getResultData());
+                    if (result.getString("state") == "FAILED"){
+                        Toast.makeText(getApplicationContext(), "上传失败！请重试。", Toast.LENGTH_SHORT);
+                        finish();
+                    }
+                    Challenge.subMitChallenge(cl_name, result.getString("fileToken"));
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
                 Intent intent = new Intent();
                 intent.putExtra("challenge_name", "cups");
-                intent.setClass(Paishetiaozhan_activity.this,Tingzhipaishe_activity.class);
+                intent.setClass(Paishetiaozhan_activity.this,Shangchuanchenggong_activity.class);
                 startActivity(intent);
             }
         });
