@@ -45,12 +45,14 @@
         android:orientation="vertical"
         android:layout_marginTop="20dp">
         <TextView
+            android:id="@+id/challenge_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="斜立易拉罐规则介绍"
             android:textColor="#787878"
             android:textSize="18sp"/>
         <TextView
+            android:id="@+id/challenge_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/android_66"
@@ -89,7 +91,7 @@
            android:gravity="center"
            android:textSize="15sp"/>
        <TextView
-           android:id="@+id/guizejieshao"
+           android:id="@+id/challenge_text"
            android:layout_width="wrap_content"
            android:layout_height="wrap_content"
            android:text="服务器中的游戏规则"/>

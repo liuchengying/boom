@@ -12,6 +12,7 @@ import java.security.NoSuchAlgorithmException;
  */
 public class Utils {
     public static final String serveraddr = "http://myhome2.leekai1995.com:10000/";
+    public static final String video = "/api/getvideo.php";
 
     public static class GetBuilder {
         private String str;
@@ -68,5 +69,9 @@ public class Utils {
          * GetSubJSONObject(), 得到JSONObject中的子JSONObject。
          */
         return grandObj.getJSONObject(key);
+    }
+
+    public static String getVideoAPI(String Token){
+        return Utils.video + "?token=" + Token;
     }
 }
