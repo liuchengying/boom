@@ -17,7 +17,7 @@
 
         <Button
             android:id="@+id/ok_button"
-            android:orientation="vertical"
+
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:layout_gravity="center_horizontal|bottom"
@@ -34,14 +34,15 @@
             android:layout_gravity="center"
             android:layout_marginBottom="18dp"
             android:textColor="#ffdadada" />
-
         <TextView
-            android:layout_width="206dp"
-            android:layout_height="39dp"
-            android:text="New Text"
+            android:layout_marginTop="5dp"
             android:id="@+id/ok_title"
-            android:layout_gravity="center|top"
-            android:textColor="#000000"
-            android:textSize="20dp" />
+            android:gravity="center"
+            android:layout_gravity="center_horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="好友邀请提示"
+            android:textSize="20sp"/>
+
     </FrameLayout>
 </LinearLayout>
