@@ -1,5 +1,7 @@
 package boom.boom.api;
 
+import android.widget.Toast;
+
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.HttpClient;
@@ -15,16 +17,22 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URI;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 /**
  * Created by 1eekai on 2015/1/16.
  */
 public class HttpIO {
+    private static int CONNECTION_TIMED_OUT = 5744643;
     private String URLstr;
     private boolean sessionState;
     public String SessionID;
     public List<Cookie> cookiearray;
     private static String SESSION_MAGIC_STRING = "PHPSESSID";   // SESSION中的魔法字串
+    Boolean bFinished;          //多线程同步事件
+    HttpResponse response;
+    public int LastError;
     public HttpIO(String ur1){
         SessionID = null;
         this.sessionState = true;      // 默认情况下，保持SESSION。
@@ -131,17 +139,48 @@ public class HttpIO {
          *  HttpIO io = new HttpIO("http://example.com/test.php?name=likai");
          *  io.GetToHTTPServer();
          */
+        //final Boolean bFinished;
+
         String result = null;
         BufferedReader reader = null;
+        bFinished=false;
         try {
-            DefaultHttpClient client = new DefaultHttpClient();
-            HttpGet request = new HttpGet();
+            final DefaultHttpClient client = new DefaultHttpClient();
+            final HttpGet request = new HttpGet();
             if (this.SessionID != null){
                 request.setHeader("Cookie", "PHPSESSID=" + this.SessionID);
             }
             request.setURI(new URI(
                     this.GetURL()));
-            HttpResponse response = client.execute(request);
+            Thread thread=new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        response = client.execute(request);
+                        bFinished = true;
+                    }
+                    catch (Exception e)
+                    {
+                        e.printStackTrace();
+                    }
+                }
+            });
+            thread.start();
+            TimerTask task=new TimerTask() {
+                @Override
+                public void run() {
+                    bFinished=true;
+                }
+            };
+            Timer timer=new Timer(true);
+            timer.schedule(task,5000);
+            while(!bFinished){}
+            if(response==null)
+            {
+                //Toast toast=new Toast(getApplicationContext(),"",Toast.LENGTH_SHORT);
+                LastError = CONNECTION_TIMED_OUT;
+                return null;
+            }
             if (this.sessionState){
                 cookiearray = client.getCookieStore().getCookies();
                 UpdateSessionID();

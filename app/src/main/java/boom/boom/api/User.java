@@ -1,6 +1,8 @@
 package boom.boom.api;
 
 import android.app.Application;
+import android.content.Context;
+import android.widget.Toast;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
@@ -44,6 +46,9 @@ public class User {
             this.ServerErr = obj.getString("errmsg");
         } catch (JSONException e) {
             e.printStackTrace();
+        }catch (Exception e)
+        {
+            e.printStackTrace();
         }
         return this.ServerErr;
     }
@@ -67,12 +72,17 @@ public class User {
         io.POSTToHTTPServer(post);
         */
         io.GETToHTTPServer();
-        String httpResult = io.getResultData();
-        this.session_id = io.GetSessionID();
-        JSONObject obj = new JSONObject(httpResult);
-        String status = obj.getString("status");
-        if (status == "FAIL")   ifUserLoggedIn = false;
-        if (status == "SUCCESS")    ifUserLoggedIn = true;
+        if(io.LastError==0) {
+            String httpResult = io.getResultData();
+            this.session_id = io.GetSessionID();
+            JSONObject obj = new JSONObject(httpResult);
+            String status = obj.getString("status");
+            if (status == "FAIL") ifUserLoggedIn = false;
+            if (status == "SUCCESS") ifUserLoggedIn = true;
+        }
+        else {
+            ifUserLoggedIn = false;
+        }
         return this.ifLoggedIn();
     }
 
