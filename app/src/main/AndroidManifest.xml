@@ -45,7 +45,8 @@
             android:theme="@android:style/Theme.Black.NoTitleBar"></activity>
         <activity android:name="boom.boom.paisheshangchuan.Paisheshangchuan_activity"
             android:theme="@android:style/Theme.Black.NoTitleBar"></activity>
-
+        <activity android:name="boom.boom.xinxizhongxin.xinxizhongxin_activity"
+            android:theme="@android:style/Theme.Black.NoTitleBar"></activity>
 
 
 
