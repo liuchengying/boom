@@ -47,7 +47,8 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:gravity="center">
-        <VideoView
+        <SurfaceView
+            android:id="@+id/syncRecord_monitor"
             android:layout_width="fill_parent"
             android:layout_height="260dp" />
         <LinearLayout

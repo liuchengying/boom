@@ -61,7 +61,7 @@ public class Paishetiaozhan_activity extends Activity implements SurfaceHolder.C
         setContentView(R.layout.paishetiaozhan);
         paishefanhui = (Button) findViewById(R.id.paishefanhui);
         kaishipaishe = (Button) findViewById(R.id.kaishipaishe);
-        sv = (SurfaceView) findViewById(R.id.challengerecord_surface);
+        sv = (SurfaceView) findViewById(R.id.syncRecord_monitor);
         surfaceHolder = sv.getHolder();
         surfaceHolder.addCallback(this);
         surfaceHolder.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);
