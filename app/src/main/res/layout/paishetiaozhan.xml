@@ -19,6 +19,8 @@
             android:gravity="center_vertical"
             >
             <Button
+
+
                 android:id="@+id/paishefanhui"
                 android:layout_width="18dp"
                 android:layout_height="23dp"
@@ -32,8 +34,7 @@
             android:layout_weight="1"
             android:layout_width="wrap_content"
             android:layout_height="50dp"
-            android:gravity="center_vertical"
-            android:weightSum="1">
+            android:gravity="center_vertical">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -46,8 +47,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:gravity="center">
-        <SurfaceView
-            android:id="@+id/challengerecord_surface"
+        <VideoView
             android:layout_width="fill_parent"
             android:layout_height="260dp" />
         <LinearLayout
@@ -80,7 +80,6 @@
                 android:layout_gravity="center"/>
             <!--开始录制视频按钮-->
             <TextView
-                android:id="@+id/begin_prompt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="开始"
