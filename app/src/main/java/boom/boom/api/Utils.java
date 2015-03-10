@@ -13,6 +13,7 @@ import java.security.NoSuchAlgorithmException;
 public class Utils {
     public static final String serveraddr = "http://myhome2.leekai1995.com:10000/";
     public static final String video = "/api/getvideo.php";
+    public static final String put_file_api = "/api/put_file.php";
 
     public static class GetBuilder {
         private String str;

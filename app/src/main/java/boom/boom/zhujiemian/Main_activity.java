@@ -55,7 +55,8 @@ public class Main_activity extends Activity {
                     intent.setClass(Main_activity.this, Tiaozhan_activity.class);
                     startActivity(intent);
                 }else{
-                    Toast.makeText(getApplicationContext(), "无法登陆到服务器！错误信息：" + userlogin.getServerErr(), Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(getApplicationContext(), "无法登陆到服务器！错误信息：" + userlogin.getServerErr(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "无法登陆到服务器！错误信息：", Toast.LENGTH_SHORT).show();
                 }
             }
         });
