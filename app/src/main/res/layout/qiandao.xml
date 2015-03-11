@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:background="@drawable/android_8"
+    android:orientation="vertical"
+    >
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="180dp"
+        android:orientation="vertical"
+        android:gravity="bottom"
+
+
+        >
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/android_1"
+            android:layout_gravity="center"
+            />
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:orientation="vertical"
+        android:layout_gravity="center"
+        >
+        <TextView
+            android:id="@+id/yonghuming"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:background="@drawable/android_2"
+            android:hint="已累计到第X天"
+            android:textSize="16sp"
+            android:gravity="center"
+            android:textColor="#eeeeee"
+            />
+        <TextView
+            android:id="@+id/mima"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:background="@drawable/android_2"
+            android:hint="距离获得积分还有X天"
+            android:textSize="16sp"
+            android:gravity="center"
+            android:layout_marginTop="13dp"
+            android:password="true"
+            android:textColor="#eeeeee"
+            />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:background="@drawable/android_3"
+            android:layout_marginTop="13dp"
+            android:text="完成"
+            android:textSize="18sp"
+            android:id="@+id/denglu"
+            android:textColor="#eeeeee"/>
+
+    </LinearLayout>
+
+</LinearLayout>
