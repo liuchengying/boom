@@ -17,7 +17,7 @@ import boom.boom.api.Static;
 import boom.boom.api.User;
 import boom.boom.api.UserData;
 import boom.boom.tianzhan.Tiaozhan_activity;
-
+import boom.boom.denglu.*;
 /**
  * Created by 刘成英 on 2015/1/13.
  */
@@ -38,7 +38,7 @@ public class Main_activity extends Activity {
         denglu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                User userlogin = new User(user.toString(), pass.toString());
+                User userlogin = new User(user.getText().toString(), pass.getText().toString());
                 if (userlogin.ifLoggedIn()) {
                     UserData data = new UserData(userlogin.getSessionId());
                     Intent intent = new Intent();
@@ -51,12 +51,16 @@ public class Main_activity extends Activity {
                     Static.username = data.QueryData("name");
                     Static.nickname = data.QueryData("nickname");
                     Static.uniqueSign = data.QueryData("uniquesign");
-                    Static.coins = Integer.parseInt(String.valueOf(data.QueryData("coins")));
+                    if (String.valueOf(data.QueryData("coins")) == "null"){
+                        Static.coins = 0;
+                    }else {
+                        Static.coins = Integer.parseInt(String.valueOf(data.QueryData("coins")));
+                    }
                     intent.setClass(Main_activity.this, Tiaozhan_activity.class);
                     startActivity(intent);
                 }else{
-                    //Toast.makeText(getApplicationContext(), "无法登陆到服务器！错误信息：" + userlogin.getServerErr(), Toast.LENGTH_SHORT).show();
-                    Toast.makeText(getApplicationContext(), "无法登陆到服务器！错误信息：", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "无法登陆到服务器！错误信息：" + userlogin.getServerErr(), Toast.LENGTH_SHORT).show();
+
                 }
             }
         });
@@ -64,7 +68,7 @@ public class Main_activity extends Activity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent();
-                intent.setClass(Main_activity.this,Tiaozhan_activity.class);
+                intent.setClass(Main_activity.this,dengluzhuce_activity.class);
                 startActivity(intent);
 
             }

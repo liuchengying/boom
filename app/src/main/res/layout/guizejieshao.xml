@@ -67,7 +67,7 @@
         android:gravity="center"
         android:orientation="vertical">
 
-    <SurfaceView
+    <VideoView
         android:layout_width="330dp"
         android:layout_height="170dp"
         android:id="@+id/videoView_front"

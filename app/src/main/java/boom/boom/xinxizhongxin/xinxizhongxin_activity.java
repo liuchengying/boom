@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.Toast;
@@ -25,17 +26,27 @@ public class xinxizhongxin_activity extends Activity {
       protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.xinxizhongxin);
-        Button fh=(Button)findViewById(R.id.xxzx_fanhui);
+        LinearLayout fh=(LinearLayout)findViewById(R.id.xxzx_fanhui);
 //        Button rightSideButton;
         final ArrayList<Map<String, Object>> listItem = new ArrayList<>();
         list = (ListView)findViewById(R.id.challenge_list);
         while (true) {
             Msg msg = new Msg();
             Map<String, Object> map = new HashMap<String, Object>();
-            map = msg.GetSimpleMap();
-            if (map == null) {
+            if(msg.LastError==0) {
+                map = msg.GetSimpleMap();
+                if (map == null) {
+                    break;
+                }
+                listItem.add(map);
+            }
+            else
+            {
+                Toast.makeText(getApplicationContext(),"数据错误！",Toast.LENGTH_LONG).show();
                 break;
             }
+            map.put("label", "1");
+            map.put("text", "2");
             listItem.add(map);
         }
         SimpleAdapter listItemAdapter = new SimpleAdapter(this,listItem,
@@ -46,7 +57,7 @@ public class xinxizhongxin_activity extends Activity {
         list.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(getApplicationContext(), "删除、回信功能尚未实现，敬请期待。", Toast.LENGTH_SHORT);
+                Toast.makeText(getApplicationContext(), "删除、回信功能尚未实现，敬请期待。", Toast.LENGTH_SHORT).show();
                 return false;
             }
         });

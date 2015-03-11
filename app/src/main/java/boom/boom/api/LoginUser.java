@@ -45,11 +45,16 @@ public class LoginUser {
         /*
          *  尝试注册。
          */
-        HttpIO io = new HttpIO(Utils.serveraddr + USER_REGISTER_URL);
-        List<NameValuePair> post = new ArrayList<NameValuePair>();
-        post.add(new BasicNameValuePair("user", this.user));
-        post.add(new BasicNameValuePair("passhash", Utils.StrToMD5(this.pass)));
-        io.POSTToHTTPServer(post);
+//        HttpIO io = new HttpIO(Utils.serveraddr + USER_REGISTER_URL);
+          Utils.GetBuilder getMethod = new Utils.GetBuilder(Utils.serveraddr + this.USER_REGISTER_URL);
+          getMethod.addItem("user", this.user);
+          getMethod.addItem("passhash", Utils.StrToMD5(this.pass));
+          HttpIO io = new HttpIO(getMethod.toString());
+//        List<NameValuePair> post = new ArrayList<NameValuePair>();
+//        post.add(new BasicNameValuePair("user", this.user));
+//        post.add(new BasicNameValuePair("passhash", Utils.StrToMD5(this.pass)));
+//        io.POSTToHTTPServer(post);
+          io.GETToHTTPServer();
         try {
             JSONObject obj = new JSONObject(io.getResultData());
             if (obj.getString("status") == "SUCCESS")    reg_ok = true;

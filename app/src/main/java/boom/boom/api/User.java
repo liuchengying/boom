@@ -76,9 +76,9 @@ public class User {
             String httpResult = io.getResultData();
             this.session_id = io.GetSessionID();
             JSONObject obj = new JSONObject(httpResult);
-            String status = obj.getString("status");
-            if (status == "FAIL") ifUserLoggedIn = false;
-            if (status == "SUCCESS") ifUserLoggedIn = true;
+            String status = obj.getString("state");
+            if (status.equalsIgnoreCase("FAIL")) ifUserLoggedIn = false;
+            if (status.equalsIgnoreCase("SUCCESS")) ifUserLoggedIn = true;
         }
         else {
             ifUserLoggedIn = false;

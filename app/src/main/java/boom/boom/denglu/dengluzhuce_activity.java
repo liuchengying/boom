@@ -45,8 +45,8 @@ public class dengluzhuce_activity extends Activity {
         zhucetijiao.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (text_password.toString() == text_password2.toString()) {
-                    LoginUser user = new LoginUser(text_username.toString(), text_password.toString());
+                if (text_password.getText().toString().equals(text_password2.getText().toString())) {
+                    LoginUser user = new LoginUser(text_username.getText().toString(), text_password.getText().toString());
                     if (user.AttemptToRegisted()) {
                         Intent intent = new Intent();
                         intent.setClass(dengluzhuce_activity.this, Main_activity.class);

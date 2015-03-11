@@ -1,5 +1,7 @@
 package boom.boom.api;
 
+import android.widget.Toast;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -11,6 +13,8 @@ import java.util.Map;
  */
 public class Msg {
     public static String MSG_API_URL = "/api/msg.php";
+    public int DATAERROR=65412;
+    public int LastError = 0;
     private String RawDataStore;
     private JSONObject json_data;
     private static int counter = 0;
@@ -18,11 +22,17 @@ public class Msg {
         HttpIO io = new HttpIO(Utils.serveraddr + MSG_API_URL + "?action=query");
         io.SetCustomSessionID(Static.session_id);
         io.GETToHTTPServer();
-        RawDataStore = io.getResultData();
-        try {
-            json_data = new JSONObject(RawDataStore);
-        } catch (JSONException e) {
-            e.printStackTrace();
+        if(io.LastError==0) {
+            RawDataStore = io.getResultData();
+            try {
+                json_data = new JSONObject(RawDataStore);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+        else
+        {
+            LastError=DATAERROR;
         }
     }
     public Map<String, Object> GetSimpleMap(boolean reset){
@@ -40,6 +50,9 @@ public class Msg {
             map.put("text", tmp.getString("text"));
             return map;
         } catch (JSONException e) {
+            e.printStackTrace();
+        } catch (Exception e)
+        {
             e.printStackTrace();
         }
         return null;
