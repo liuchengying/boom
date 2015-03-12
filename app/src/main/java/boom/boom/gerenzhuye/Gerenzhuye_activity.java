@@ -85,6 +85,7 @@ public class Gerenzhuye_activity extends FragmentActivity
 
         mDatas = new ArrayList<Fragment>();
 
+
         Shipintianzhan_fragment tab01 = new Shipintianzhan_fragment();
         Liuyanban_fragment tab02 = new Liuyanban_fragment();
         Xiangxiziliao_fragment tab03 = new Xiangxiziliao_fragment();
