@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -16,6 +17,7 @@ import org.w3c.dom.Text;
 
 import boom.boom.R;
 import boom.boom.api.Static;
+import boom.boom.gerenzhuye.Gerenzhuye_activity;
 import boom.boom.guizejieshao.Guizejieshao_activity;
 import boom.boom.shezhi.Shezhi_activity;
 import boom.boom.slidingMenu.SlidingMenu;
@@ -33,6 +35,7 @@ public class Tiaozhan_activity extends Activity {
     private TextView nickname;
     private TextView coins;
     private Button button_startChallenge;
+    private ImageView cehuatouxiang;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,6 +44,7 @@ public class Tiaozhan_activity extends Activity {
         String user_name = Static.username;
         String user_nickname = Static.nickname;
         int user_coins = Static.coins;
+        cehuatouxiang = (ImageView) findViewById(R.id.cehuatouxiang);
         cahuaanniu = (Button) findViewById(R.id.cehuaanniu);
         mLeftMenu = (SlidingMenu) findViewById(R.id.cehuacaidan);
         danrentiaozhan = (Button) findViewById(R.id.danrentiaozhan);
@@ -75,6 +79,15 @@ public class Tiaozhan_activity extends Activity {
                 Intent intent=new Intent();
                 intent.setClass(Tiaozhan_activity.this, xinxizhongxin_activity.class);
                 startActivity(intent);
+            }
+        });
+        cehuatouxiang.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setClass(Tiaozhan_activity.this, Gerenzhuye_activity.class);
+                startActivity(intent);
+
             }
         });
     }
