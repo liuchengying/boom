@@ -63,6 +63,11 @@
             android:theme="@android:style/Theme.Black.NoTitleBar"></activity>
         <activity android:name="boom.boom.gerenzhuye.Gerenzhuye_activity"
             android:theme="@android:style/Theme.Black.NoTitleBar"></activity>
+        <activity android:name="boom.boom.paihangbang.Paihangbang_activity"
+            android:theme="@android:style/Theme.Black.NoTitleBar"></activity>
+
+
+
 
 
 

@@ -113,6 +113,8 @@
             android:layout_marginLeft="35dp"/>
     </LinearLayout>
     <LinearLayout
+
+
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/android_32"
