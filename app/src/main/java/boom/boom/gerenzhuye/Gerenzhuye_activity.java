@@ -83,6 +83,7 @@ public class Gerenzhuye_activity extends FragmentActivity
         mViewPager = (ViewPager) findViewById(R.id.id_viewpager);
 
 
+
         mDatas = new ArrayList<Fragment>();
 
 
@@ -109,6 +110,55 @@ public class Gerenzhuye_activity extends FragmentActivity
             }
         };
         mViewPager.setAdapter(mAdapter);
+        mViewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener()
+        {
+            @Override
+            public void onPageSelected(int position)
+            {
+
+
+                mCurrentPageIndex = position;
+
+            }
+
+            @Override
+            public void onPageScrolled(int position, float positionOffset,
+                                       int positionOffsetPx)
+            {
+                Log.e("TAG", position + " , " + positionOffset + " , "
+                        + positionOffsetPx);
+
+                LinearLayout.LayoutParams lp = (android.widget.LinearLayout.LayoutParams) mTabline
+                        .getLayoutParams();
+
+                if (mCurrentPageIndex == 0 && position == 0)// 0->1
+                {
+                    lp.leftMargin = (int) (positionOffset * mScreen1_3 + mCurrentPageIndex
+                            * mScreen1_3);
+                } else if (mCurrentPageIndex == 1 && position == 0)// 1->0
+                {
+                    lp.leftMargin = (int) (mCurrentPageIndex * mScreen1_3 + (positionOffset - 1)
+                            * mScreen1_3);
+                } else if (mCurrentPageIndex == 1 && position == 1) // 1->2
+                {
+                    lp.leftMargin = (int) (mCurrentPageIndex * mScreen1_3 + positionOffset
+                            * mScreen1_3);
+                } else if (mCurrentPageIndex == 2 && position == 1) // 2->1
+                {
+                    lp.leftMargin = (int) (mCurrentPageIndex * mScreen1_3 + ( positionOffset-1)
+                            * mScreen1_3);
+                }
+                mTabline.setLayoutParams(lp);
+
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int arg0)
+            {
+                // TODO Auto-generated method stub
+
+            }
+        });
 
 
 
