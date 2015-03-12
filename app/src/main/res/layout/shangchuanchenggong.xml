@@ -201,7 +201,7 @@
 
         <ImageView
             android:layout_marginRight="10dp"
-            android:layout_width="25dp"
+            android:layout_width="15dp"
             android:layout_height="25dp"
             android:id="@+id/imageView5"
             android:layout_gravity="right|center_vertical"

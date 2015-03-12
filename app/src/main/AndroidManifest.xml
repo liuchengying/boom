@@ -47,6 +47,20 @@
             android:theme="@android:style/Theme.Black.NoTitleBar"></activity>
         <activity android:name="boom.boom.xinxizhongxin.xinxizhongxin_activity"
             android:theme="@android:style/Theme.Black.NoTitleBar"></activity>
+        <activity android:name="boom.boom.shouquanshibai.Shouquanshibai_activity"
+            android:theme="@android:style/Theme.Black.NoTitleBar"></activity>
+        <activity android:name="boom.boom.shouquanchenggong.Shouquanchengong_activity"
+            android:theme="@android:style/Theme.Black.NoTitleBar"></activity>
+        <activity android:name="boom.boom.zhuceyanzheng.Zhuceyanzheng_activity"
+            android:theme="@android:style/Theme.Black.NoTitleBar"></activity>
+        <activity android:name="boom.boom.qiandao.Qiandao_activity"
+            android:theme="@android:style/Theme.Black.NoTitleBar"></activity>
+        <activity android:name="boom.boom.mimazhaohui.Mimazhaohui_activity"
+            android:theme="@android:style/Theme.Black.NoTitleBar"></activity>
+        <activity android:name="boom.boom.mimazhaohui_phone.Mimazhaohui_phone_activity"
+            android:theme="@android:style/Theme.Black.NoTitleBar"></activity>
+        <activity android:name="boom.boom.mimazhaohui_emall.Mimazhaohui_emall_activity"
+            android:theme="@android:style/Theme.Black.NoTitleBar"></activity>
 
 
 
