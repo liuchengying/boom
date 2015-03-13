@@ -13,19 +13,19 @@
 
         >
         <LinearLayout
-            android:onClick="dianjicehua"
+            android:id="@+id/paihangbangfanhuis"
             android:layout_weight="1"
             android:layout_width="wrap_content"
             android:layout_height="50dp"
             android:gravity="center_vertical"
             >
             <Button
-                android:onClick="dianjicehua"
-                android:id="@+id/cehuaanniu"
+
+
 
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/android_11"
+                android:background="@drawable/android_20"
                 android:gravity="center_horizontal"
                 android:layout_marginLeft="10dp"/>
         </LinearLayout>

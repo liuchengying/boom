@@ -9,11 +9,13 @@
     android:id="@+id/cehuacaidan"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
+    android:scrollbars="none"
     >
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:orientation="horizontal"
+
         >
         <include layout="@layout/cehua"
             android:id="@+id/inner_leftside" />

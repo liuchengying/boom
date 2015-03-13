@@ -1,5 +1,6 @@
 package boom.boom.paihangbang;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -9,6 +10,7 @@ import android.support.v4.view.ViewPager;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Display;
+import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.ImageView;
@@ -19,6 +21,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import boom.boom.R;
+import boom.boom.gerenzhuye.Gerenzhuye_activity;
+import boom.boom.tianzhan.Tiaozhan_activity;
 
 /**
  * Created by 刘成英 on 2015/3/12.
@@ -47,6 +51,15 @@ public class Paihangbang_activity extends FragmentActivity
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.paihangbang);
+        LinearLayout phbfh = (LinearLayout)findViewById(R.id.paihangbangfanhuis);
+        phbfh.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setClass(Paihangbang_activity.this, Tiaozhan_activity.class);
+                startActivity(intent);
+            }
+        });
 
         initTabLine();
         initView();
