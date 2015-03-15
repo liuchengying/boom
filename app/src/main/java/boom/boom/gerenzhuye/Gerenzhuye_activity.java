@@ -1,12 +1,14 @@
 package boom.boom.gerenzhuye;
 
 import android.app.Activity;
+import android.app.FragmentManager;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -39,6 +41,9 @@ public class Gerenzhuye_activity extends FragmentActivity
     private TextView mContactTextView;
     private LinearLayout mChatLinearLayout;
     private LinearLayout gerenzhuyefanhui;
+    private TextView l1,l2,l3;
+
+
 
 
     private ImageView mTabline;
@@ -52,6 +57,8 @@ public class Gerenzhuye_activity extends FragmentActivity
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.gerenzhuye);
+
+
         gerenzhuyefanhui = (LinearLayout)findViewById(R.id.gerenzhuyefanhui);
         gerenzhuyefanhui.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,10 +68,36 @@ public class Gerenzhuye_activity extends FragmentActivity
                 startActivity(intent);
             }
         });
-
+        jiantingqiehuan();
         initTabLine();
         initView();
     }
+    private void jiantingqiehuan(){
+        l1 = (TextView)findViewById(R.id.grzy_1);
+        l2 = (TextView)findViewById(R.id.grzy_2);
+        l3 = (TextView)findViewById(R.id.grzy_3);
+
+        l1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mViewPager.setCurrentItem(0);
+            }
+        });
+        l2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mViewPager.setCurrentItem(1);
+            }
+        });
+        l3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mViewPager.setCurrentItem(2);
+            }
+        });
+
+    }
+
 
     private void initTabLine()
     {

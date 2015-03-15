@@ -37,6 +37,7 @@ public class Paihangbang_activity extends FragmentActivity
     private TextView mFriendTextView;
     private TextView mContactTextView;
     private LinearLayout mChatLinearLayout;
+    private TextView t1,t2;
 
 
 
@@ -60,7 +61,7 @@ public class Paihangbang_activity extends FragmentActivity
                 startActivity(intent);
             }
         });
-
+        jiantingqiehuan1();
         initTabLine();
         initView();
     }
@@ -75,6 +76,23 @@ public class Paihangbang_activity extends FragmentActivity
         ViewGroup.LayoutParams lp = mTabline.getLayoutParams();
         lp.width = mScreen1_2;
         mTabline.setLayoutParams(lp);
+    }
+    private void jiantingqiehuan1(){
+        t1 = (TextView) findViewById(R.id.phb_1);
+        t2 = (TextView) findViewById(R.id.phb_2);
+
+        t1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mViewPager.setCurrentItem(0);
+            }
+        });
+        t2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mViewPager.setCurrentItem(1);
+            }
+        });
     }
 
     private void initView()
