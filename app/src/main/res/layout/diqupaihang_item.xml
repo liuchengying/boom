@@ -3,7 +3,8 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_gravity="center_horizontal"
-    android:gravity="center_horizontal">
+    android:gravity="center_horizontal"
+    android:layout_marginTop="10dp">
     <LinearLayout
         android:layout_marginTop="10dp"
         android:layout_width="wrap_content"
@@ -46,11 +47,11 @@
             android:layout_height="fill_parent"
             android:orientation="vertical"
 
-            android:layout_marginLeft="10dp">
+            android:layout_marginLeft="5dp">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="斜立易拉罐"
+                android:text="XXX"
                 android:textSize="20sp"
                 android:textColor="#FF4444"
                 android:layout_marginTop="15dp"
@@ -88,7 +89,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="12.23 19:00"
+                    android:text="完成用时10s"
                     android:textSize="13sp"
                     android:textColor="#ff6a6a6a"/>
 
