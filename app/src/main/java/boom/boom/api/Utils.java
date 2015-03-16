@@ -13,7 +13,7 @@ import java.security.NoSuchAlgorithmException;
  * Created by 1eekai on 2015/1/17.
  */
 public class Utils {
-    public static final String serveraddr = "http://172.21.129.80/";
+    public static final String serveraddr = "http://172.24.10.118/";
     public static final String video = "/api/getvideo.php";
     public static final String put_file_api = "/api/put_file.php";
 
