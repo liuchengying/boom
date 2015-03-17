@@ -10,6 +10,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import boom.boom.R;
+import boom.boom.api.SysApplication;
 import boom.boom.paishetiaozhan.Paishetiaozhan_activity;
 import boom.boom.shangchuanchenggong.Shangchuanchenggong_activity;
 import boom.boom.shangchuandengdai.Shangchuandengdai_activity;
@@ -27,6 +28,7 @@ public class Paisheshangchuan_activity extends Activity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.paisheshangchuan);
+        SysApplication.getInstance().addActivity(this);
         shangchuanpaishefanhui= (Button) findViewById(R.id.paisheshangchuanfanhui);
         paisheshangchuan = (Button) findViewById(R.id.paisheshangchuan);
         shangchuanpaishefanhui.setOnClickListener(new View.OnClickListener() {

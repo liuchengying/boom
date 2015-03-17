@@ -15,6 +15,7 @@ import org.json.JSONObject;
 
 import boom.boom.R;
 import boom.boom.api.Challenge;
+import boom.boom.api.SysApplication;
 import boom.boom.api.Utils;
 import boom.boom.paishetiaozhan.Paishetiaozhan_activity;
 import boom.boom.tianzhan.Tiaozhan_activity;
@@ -34,6 +35,7 @@ public class Guizejieshao_activity extends Activity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.guizejieshao);
+        SysApplication.getInstance().addActivity(this);
         Intent intent = getIntent();
         final int position = intent.getIntExtra("challenge_number", 1);
         try {

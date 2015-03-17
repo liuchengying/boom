@@ -10,6 +10,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import boom.boom.R;
+import boom.boom.api.SysApplication;
 import boom.boom.zhujiemian.Main_activity;
 
 /**
@@ -21,6 +22,7 @@ public class Welcome_activity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.huanyingjiemian);
+        SysApplication.getInstance().addActivity(this);
 
         Timer timer = new Timer();
         TimerTask task = new TimerTask(){

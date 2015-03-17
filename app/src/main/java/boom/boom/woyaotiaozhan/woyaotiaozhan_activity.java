@@ -17,6 +17,7 @@ import java.util.Map;
 import boom.boom.R;
 import boom.boom.api.Challenge;
 import boom.boom.api.Msg;
+import boom.boom.api.SysApplication;
 import boom.boom.guizejieshao.Guizejieshao_activity;
 
 /**
@@ -29,6 +30,7 @@ public class woyaotiaozhan_activity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.woyaotiaozhan);
         Button fh=(Button)findViewById(R.id.wytz_fanhui);
+          SysApplication.getInstance().addActivity(this);
 //        Button rightSideButton;
         final ArrayList<Map<String, Object>> listItem = new ArrayList<>();
         list = (ListView)findViewById(R.id.challenge1_list);

@@ -16,12 +16,14 @@ import android.os.Bundle;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.LinearLayout;
 import android.widget.RadioGroup;
 import android.widget.ToggleButton;
 
 import boom.boom.R;
+import boom.boom.api.SysApplication;
 
 /**
  * Created by 刘成英 on 2015/1/15.
@@ -29,15 +31,26 @@ import boom.boom.R;
 
 public class Shezhi_activity extends Activity{
     private LinearLayout shezhifanhui;
+    private Button tuichuzhanghu;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.shezhi);
+
+        SysApplication.getInstance().addActivity(this);
         shezhifanhui = (LinearLayout) findViewById(R.id.shezhifanhui);
         shezhifanhui.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
+            }
+        });
+        tuichuzhanghu = (Button)findViewById(R.id.tuichuzhanghu);
+        tuichuzhanghu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SysApplication.getInstance().exit();
+
             }
         });
         final ToggleButton mTogBtn = (ToggleButton) findViewById(R.id.sz_toggle1);

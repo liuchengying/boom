@@ -21,6 +21,7 @@ import android.widget.Toast;
 
 import boom.boom.R;
 import boom.boom.api.LoginUser;
+import boom.boom.api.SysApplication;
 import boom.boom.zhujiemian.Main_activity;
 
 /**
@@ -38,6 +39,7 @@ public class dengluzhuce_activity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.zhuce);
+        SysApplication.getInstance().addActivity(this);
         zhucetijiao = (Button) findViewById(R.id.zhucetijiao);
         fanhui = (Button) findViewById(R.id.zhucufanhui);
         text_username = (EditText) findViewById(R.id.zhuceyonghuming);

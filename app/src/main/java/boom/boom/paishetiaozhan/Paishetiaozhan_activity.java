@@ -27,6 +27,7 @@ import boom.boom.api.Challenge;
 import boom.boom.api.FormFile;
 import boom.boom.api.HttpIO;
 import boom.boom.api.SocketHttpRequester;
+import boom.boom.api.SysApplication;
 import boom.boom.api.Utils;
 import boom.boom.guizejieshao.Guizejieshao_activity;
 import boom.boom.shangchuanchenggong.Shangchuanchenggong_activity;
@@ -59,6 +60,7 @@ public class Paishetiaozhan_activity extends Activity implements SurfaceHolder.C
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         getWindow().setFormat(PixelFormat.TRANSLUCENT);
         setContentView(R.layout.paishetiaozhan);
+        SysApplication.getInstance().addActivity(this);
         paishefanhui = (Button) findViewById(R.id.paishefanhui);
         kaishipaishe = (Button) findViewById(R.id.kaishipaishe);
         sv = (SurfaceView) findViewById(R.id.syncRecord_monitor);

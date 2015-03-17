@@ -12,6 +12,7 @@ import android.widget.Button;
 
 import boom.boom.R;
 import boom.boom.api.MsgBox;
+import boom.boom.api.SysApplication;
 import boom.boom.paishetiaozhan.Paishetiaozhan_activity;
 import boom.boom.tianzhan.Tiaozhan_activity;
 
@@ -28,6 +29,7 @@ public class Shangchuandengdai_activity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.shangchuandengdai);
+        SysApplication.getInstance().addActivity(this);
         initEvent();
         shangchuandengdaifanhui = (Button) findViewById(R.id.shangchuandengdaifanhui);
         fangqishangchuang = (Button) findViewById(R.id.fangqishangchuan);

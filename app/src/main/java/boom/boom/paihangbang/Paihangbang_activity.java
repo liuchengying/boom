@@ -21,6 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import boom.boom.R;
+import boom.boom.api.SysApplication;
 import boom.boom.gerenzhuye.Gerenzhuye_activity;
 import boom.boom.tianzhan.Tiaozhan_activity;
 
@@ -52,6 +53,7 @@ public class Paihangbang_activity extends FragmentActivity
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.paihangbang);
+        SysApplication.getInstance().addActivity(this);
         LinearLayout phbfh = (LinearLayout)findViewById(R.id.paihangbangfanhuis);
         phbfh.setOnClickListener(new View.OnClickListener() {
             @Override

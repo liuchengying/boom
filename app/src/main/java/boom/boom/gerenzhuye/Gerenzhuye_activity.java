@@ -25,6 +25,7 @@ import java.util.List;
 
 import boom.boom.R;
 import boom.boom.Welcome.Welcome_activity;
+import boom.boom.api.SysApplication;
 import boom.boom.tianzhan.Tiaozhan_activity;
 
 /**
@@ -57,6 +58,7 @@ public class Gerenzhuye_activity extends FragmentActivity
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.gerenzhuye);
+        SysApplication.getInstance().addActivity(this);
 
 
         gerenzhuyefanhui = (LinearLayout)findViewById(R.id.gerenzhuyefanhui);

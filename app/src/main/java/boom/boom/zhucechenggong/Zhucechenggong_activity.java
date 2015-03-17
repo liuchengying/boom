@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 
 import boom.boom.R;
+import boom.boom.api.SysApplication;
 import boom.boom.wanshanxinxi.Wanshanxinxi_activity;
 
 /**
@@ -18,6 +19,7 @@ public class Zhucechenggong_activity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.zhucechenggong);
+        SysApplication.getInstance().addActivity(this);
         wanshanxinxi=(Button)findViewById(R.id.wanshanxinxi);
         wanshanxinxi.setOnClickListener(new View.OnClickListener() {
             @Override

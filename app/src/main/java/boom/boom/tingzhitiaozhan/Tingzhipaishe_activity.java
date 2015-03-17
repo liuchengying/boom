@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 
 import boom.boom.R;
+import boom.boom.api.SysApplication;
 import boom.boom.paisheshangchuan.Paisheshangchuan_activity;
 import boom.boom.tianzhan.Tiaozhan_activity;
 
@@ -21,6 +22,7 @@ public class Tingzhipaishe_activity extends Activity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.tingzhipaishe);
+        SysApplication.getInstance().addActivity(this);
         tingzhipaishefanhui = (Button) findViewById(R.id.tingzhipaishefanhui);
         paishetingzhi = (Button) findViewById(R.id.tingzhipaishe);
         paishetingzhi.setOnClickListener(new View.OnClickListener() {

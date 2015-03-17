@@ -7,6 +7,8 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 
 import boom.boom.R;
+import boom.boom.api.SysApplication;
+
 /**
  * Created by Lyp on 2015/1/22.
  */
@@ -22,5 +24,6 @@ public class tongxunlu_activity extends Activity{
                 finish();
             }
         });
+        SysApplication.getInstance().addActivity(this);
     }
 }

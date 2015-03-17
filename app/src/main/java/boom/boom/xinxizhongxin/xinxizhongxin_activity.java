@@ -18,6 +18,7 @@ import java.util.Map;
 
 import boom.boom.R;
 import boom.boom.api.Msg;
+import boom.boom.api.SysApplication;
 
 /**
  * Created by Lyp on 2015/1/22
@@ -28,6 +29,7 @@ public class xinxizhongxin_activity extends Activity {
       protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.xinxizhongxin);
+          SysApplication.getInstance().addActivity(this);
         LinearLayout fh=(LinearLayout)findViewById(R.id.xxzx_fanhui);
 //        Button rightSideButton;
         final ArrayList<Map<String, Object>> listItem = new ArrayList<>();

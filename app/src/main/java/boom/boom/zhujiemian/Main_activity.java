@@ -19,6 +19,7 @@ import org.json.JSONObject;
 
 import boom.boom.R;
 import boom.boom.api.Static;
+import boom.boom.api.SysApplication;
 import boom.boom.api.User;
 import boom.boom.api.UserData;
 import boom.boom.tianzhan.Tiaozhan_activity;
@@ -37,6 +38,7 @@ public class Main_activity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.zhujiemian);
+        SysApplication.getInstance().addActivity(this);
         FontManager.changeFonts(FontManager.getContentView(this),this);//字体
         if (isNetworkAvailable(Main_activity.this))
         {
