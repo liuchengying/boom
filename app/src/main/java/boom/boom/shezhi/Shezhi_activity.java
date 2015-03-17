@@ -13,6 +13,7 @@ import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.os.Vibrator;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
@@ -21,6 +22,7 @@ import android.widget.CompoundButton;
 import android.widget.LinearLayout;
 import android.widget.RadioGroup;
 import android.widget.ToggleButton;
+import android.os.Vibrator;
 
 import boom.boom.R;
 import boom.boom.api.SysApplication;
@@ -32,12 +34,14 @@ import boom.boom.api.SysApplication;
 public class Shezhi_activity extends Activity{
     private LinearLayout shezhifanhui;
     private Button tuichuzhanghu;
+    private Vibrator vibrator;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.shezhi);
 
         SysApplication.getInstance().addActivity(this);
+        vibrator = (Vibrator) this.getSystemService(VIBRATOR_SERVICE);
         shezhifanhui = (LinearLayout) findViewById(R.id.shezhifanhui);
         shezhifanhui.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -63,7 +67,11 @@ public class Shezhi_activity extends Activity{
                 // TODO Auto-generated method stub
                 if (isChecked) {
                 //isChecken = ture   条件下的操作
+                    vibrator.cancel();
+
+
                 }else{
+                    vibrator.vibrate(new long[]{10, 10, 50, 50, 50}, -1);
                     //isChecken = ture
                 }
             }
