@@ -17,6 +17,9 @@ import android.widget.Toast;
 import android.graphics.Typeface;
 import org.json.JSONObject;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 import boom.boom.R;
 import boom.boom.api.Static;
 import boom.boom.api.SysApplication;
@@ -133,5 +136,26 @@ public class Main_activity extends Activity {
             }
         }
         return false;
+    }
+    private static Boolean isExit = false;
+    private void exitBy2Click() {
+        Timer tExit = null;
+
+        if (isExit == false) {
+            isExit = true;
+            Toast.makeText(this, "再按一次退出程序", Toast.LENGTH_SHORT).show();
+            tExit = new Timer();
+            tExit.schedule(new TimerTask() {
+                @Override
+                public void run() {
+                    isExit = false; // 取消退出
+
+                }
+            }, 2000);
+
+        } else {
+            finish();
+            SysApplication.getInstance().exit();
+        }
     }
 }
