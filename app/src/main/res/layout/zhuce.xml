@@ -9,8 +9,6 @@
         android:background="#ffe14723"
         android:orientation="horizontal"
         android:gravity="center"
-
-
         >
         <LinearLayout
             android:layout_weight="1"
