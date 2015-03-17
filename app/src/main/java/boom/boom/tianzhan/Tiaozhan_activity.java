@@ -118,7 +118,7 @@ public class Tiaozhan_activity extends Activity {
 
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        System.exit(1);
+                        System.exit(0);
                     }
                 }).setNegativeButton("取消", null).create().show();
     }

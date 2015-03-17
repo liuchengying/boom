@@ -45,9 +45,10 @@
                 android:text="我的积分:  "
                 android:textColor="#ffe14723"/>
             <TextView
+                android:id="@+id/mycoins"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="243"
+                android:text="2436"
                 android:textColor="#ffe14723"/>
              <ImageView
                  android:layout_width="wrap_content"
