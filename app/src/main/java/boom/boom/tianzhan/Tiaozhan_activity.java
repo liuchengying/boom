@@ -72,7 +72,7 @@ public class Tiaozhan_activity extends Activity {
         nickname = (TextView) findViewById(R.id.nickname);
         coins = (TextView) findViewById(R.id.mycoins);
         nickname.setText(user_nickname);
-        coins.setText("积分：" + user_coins);
+        coins.setText("" + user_coins);
         LinearLayout xxzx=(LinearLayout)findViewById(R.id.ch_xinxizhongxin);
         xxzx.setOnClickListener(new View.OnClickListener() {
             @Override
