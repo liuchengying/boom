@@ -11,7 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-
+import android.graphics.Typeface;
 import org.json.JSONObject;
 
 import boom.boom.R;
@@ -20,6 +20,7 @@ import boom.boom.api.User;
 import boom.boom.api.UserData;
 import boom.boom.tianzhan.Tiaozhan_activity;
 import boom.boom.denglu.*;
+import boom.boom.FontManager.FontManager;
 /**
  * Created by 刘成英 on 2015/1/13.
  */
@@ -33,14 +34,19 @@ public class Main_activity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.zhujiemian);
+        FontManager.changeFonts(FontManager.getContentView(this),this);//字体
+
         denglu = (Button) findViewById(R.id.denglu);
         zhucezhanghao =(TextView) findViewById(R.id.zhucezhanghao);
         user = (EditText)findViewById(R.id.yonghuming);
         pass = (EditText) findViewById(R.id.mima);
+
         denglu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                User userlogin = new User(user.getText().toString(), pass.getText().toString());
+                String user_Str = user.getText().toString();
+                String pass_Str = pass.getText().toString();
+                User userlogin = new User(user_Str, pass_Str);
                 if (userlogin.ifLoggedIn()) {
                     UserData data = new UserData(userlogin.getSessionId());
                     Intent intent = new Intent();
@@ -70,7 +76,7 @@ public class Main_activity extends Activity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent();
-                intent.setClass(Main_activity.this,Tiaozhan_activity.class);
+                intent.setClass(Main_activity.this,dengluzhuce_activity.class);
                 startActivity(intent);
 
             }

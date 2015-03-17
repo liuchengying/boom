@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import boom.boom.FontManager.FontManager;
 import boom.boom.R;
 import boom.boom.api.Static;
 import boom.boom.gerenzhuye.Gerenzhuye_activity;
@@ -38,6 +39,8 @@ public class Tiaozhan_activity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.tiaozhan);
+        FontManager.changeFonts(FontManager.getContentView(this), this);//字体
+
         Intent intent = getIntent();
         String user_name = Static.username;
         String user_nickname = Static.nickname;

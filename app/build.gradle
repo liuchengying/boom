@@ -23,6 +23,7 @@ android {
 dependencies {
     compile 'com.android.support:appcompat-v7:19+'
     compile fileTree(include: ['*.jar'], dir: 'libs')
+    provided files('src/main/assets')
     compile files('libs/nineoldandroids-2.4.0.jar')
     //  compile files('.idea/libraries/nineoldandroids-2.4.0.jar')
  //   compile files('F:/BoomTime/BoomTime/.idea/libraries/nineoldandroids-2.4.0.jar')

@@ -104,7 +104,7 @@
             </LinearLayout>
         <EditText
 
-            android:id="@+id/zhuceyonghuming"
+            android:id="@+id/zhucexinmima"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/android_17"
