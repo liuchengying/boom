@@ -48,7 +48,7 @@
                 android:id="@+id/mycoins"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="2436"
+                android:text="243"
                 android:textColor="#ffe14723"/>
              <ImageView
                  android:layout_width="wrap_content"
@@ -69,7 +69,7 @@
     </LinearLayout>
     <LinearLayout
 
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="40dp"
         android:onClick="xinxizhongxin"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"

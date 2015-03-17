@@ -49,7 +49,8 @@ public class LoginUser {
          */
 //        HttpIO io = new HttpIO(Utils.serveraddr + USER_REGISTER_URL);
           Utils.GetBuilder getMethod = new Utils.GetBuilder(Utils.serveraddr + this.USER_REGISTER_URL);
-          getMethod.addItem("user", this.user);
+          getMethod.addItem("action","newuser");
+          getMethod.addItem("user",this.user);
           getMethod.addItem("passhash", Utils.StrToMD5(this.pass));
           HttpIO io = new HttpIO(getMethod.toString());
 //        List<NameValuePair> post = new ArrayList<NameValuePair>();
@@ -59,9 +60,10 @@ public class LoginUser {
           io.GETToHTTPServer();
         try {
             JSONObject obj = new JSONObject(io.getResultData());
-            if (obj.getString("status") == "SUCCESS")    reg_ok = true;
-            if (obj.getString("status") == "FAIL"){
-                this.LastError = obj.getString("errmsg");
+            String state=obj.getString("state");
+            if (state.equalsIgnoreCase("SUCCESS"))    reg_ok = true;
+            if (state.equalsIgnoreCase("FAILED")){
+                this.LastError = obj.getString("reason");
                 reg_ok = false;
             }
         } catch (JSONException e) {
