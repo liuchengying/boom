@@ -67,7 +67,8 @@
             android:background="@drawable/android_17"
             android:hint="请输入用户名"
             android:gravity="center"
-            android:layout_marginTop="10dp"/>
+            android:layout_marginTop="10dp"
+            android:singleLine="true"/>
         <EditText
             android:id="@+id/zhucemima"
             android:layout_width="wrap_content"
@@ -76,7 +77,8 @@
             android:hint="请输入密码"
             android:gravity="center"
             android:layout_marginTop="10dp"
-            android:password="true"/>
+            android:password="true"
+            android:singleLine="true"/>
         <EditText
             android:id="@+id/zhucemima1"
             android:layout_width="wrap_content"
@@ -85,7 +87,7 @@
             android:hint="请再次输入密码"
             android:gravity="center"
             android:layout_marginTop="10dp"
-
+            android:singleLine="true"
             android:password="true"/>
         <Button
             android:id="@+id/zhucetijiao"

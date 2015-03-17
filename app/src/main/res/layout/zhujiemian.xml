@@ -35,6 +35,7 @@
             android:hint="请输入用户名"
             android:textSize="16sp"
             android:gravity="center"
+            android:singleLine="true"
             />
         <EditText
             android:id="@+id/mima"
@@ -46,6 +47,7 @@
             android:gravity="center"
             android:layout_marginTop="13dp"
             android:password="true"
+            android:singleLine="true"
             />
         <Button
             android:layout_width="wrap_content"

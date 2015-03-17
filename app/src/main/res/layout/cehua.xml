@@ -75,7 +75,8 @@
         android:background="@drawable/android_31"
         android:orientation="horizontal"
 
-        android:id="@+id/ch_xinxizhongxin">
+        android:id="@+id/ch_xinxizhongxin"
+        android:layout_marginTop="20dp">
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

@@ -63,9 +63,7 @@ public class Gerenzhuye_activity extends FragmentActivity
         gerenzhuyefanhui.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent();
-                intent.setClass(Gerenzhuye_activity.this, Tiaozhan_activity.class);
-                startActivity(intent);
+                finish();
             }
         });
         jiantingqiehuan();
