@@ -51,6 +51,7 @@
             android:textSize="20sp"/>
     </LinearLayout>
     <LinearLayout
+
         android:layout_marginTop="20dp"
         android:onClick="xinxizhongxin"
         android:layout_width="fill_parent"
