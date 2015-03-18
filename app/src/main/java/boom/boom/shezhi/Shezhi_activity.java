@@ -66,13 +66,11 @@ public class Shezhi_activity extends Activity{
             public void onCheckedChanged(CompoundButton buttonView,boolean isChecked) {
                 // TODO Auto-generated method stub
                 if (isChecked) {
-                //isChecken = ture   条件下的操作
+
                     vibrator.cancel();
+                 }else{
+                    vibrator.vibrate(new long[]{10, 100, 0, 0, 0}, -1);
 
-
-                }else{
-                    vibrator.vibrate(new long[]{10, 10, 50, 50, 50}, -1);
-                    //isChecken = ture
                 }
             }
         });
