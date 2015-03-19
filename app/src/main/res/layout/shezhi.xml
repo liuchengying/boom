@@ -50,12 +50,16 @@
         </LinearLayout>
         </LinearLayout>
     <LinearLayout
+        android:id="@+id/sz_xggrzl"
         android:layout_width="fill_parent"
         android:layout_height="45dp"
         android:orientation="horizontal"
         android:background="@drawable/android_57"
         android:layout_marginTop="10dp">
         <TextView
+            android:id="@+id/sz_xggrzl1"
+
+            android:clickable="true"
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
             android:text="修改个人资料"

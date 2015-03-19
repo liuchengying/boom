@@ -103,7 +103,7 @@
                     android:layout_marginTop="30dp"
                     android:layout_marginBottom="10dp">
                     <Button
-                       android:layout_gravity="bottom"
+                        android:layout_gravity="bottom"
                         android:id="@+id/jiangpin"
 
                         android:layout_width="100dp"
@@ -115,6 +115,6 @@
             </LinearLayout>
 
         </LinearLayout>
-        </LinearLayout>
+    </LinearLayout>
 
 </LinearLayout>

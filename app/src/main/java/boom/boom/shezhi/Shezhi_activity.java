@@ -4,6 +4,7 @@ package boom.boom.shezhi;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -21,11 +22,14 @@ import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.LinearLayout;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.ToggleButton;
 import android.os.Vibrator;
 
 import boom.boom.R;
 import boom.boom.api.SysApplication;
+import boom.boom.bianjixinxi.Bianjixinxi_activity;
+import boom.boom.zhujiemian.Main_activity;
 
 /**
  * Created by 刘成英 on 2015/1/15.
@@ -43,6 +47,24 @@ public class Shezhi_activity extends Activity{
         SysApplication.getInstance().addActivity(this);
         vibrator = (Vibrator) this.getSystemService(VIBRATOR_SERVICE);
         shezhifanhui = (LinearLayout) findViewById(R.id.shezhifanhui);
+        TextView xggezl1 = (TextView)findViewById(R.id.sz_xggrzl1);
+        xggezl1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setClass(Shezhi_activity.this, Bianjixinxi_activity.class);
+                startActivity(intent);
+            }
+        });
+        LinearLayout xggezl = (LinearLayout)findViewById(R.id.sz_xggrzl);
+        xggezl.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setClass(Shezhi_activity.this, Bianjixinxi_activity.class);
+                startActivity(intent);
+            }
+        });
         shezhifanhui.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
