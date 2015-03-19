@@ -68,6 +68,8 @@
             android:theme="@android:style/Theme.Black.NoTitleBar"></activity>
         <activity android:name="boom.boom.bianjixinxi.Bianjixinxi_activity"
             android:theme="@android:style/Theme.Black.NoTitleBar"></activity>
+        <activity android:name= "boom.boom.mimaxiugai.Mimaxiugai_activity"
+            android:theme="@android:style/Theme.Black.NoTitleBar"></activity>
 
 
 

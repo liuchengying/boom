@@ -29,6 +29,7 @@ import android.os.Vibrator;
 import boom.boom.R;
 import boom.boom.api.SysApplication;
 import boom.boom.bianjixinxi.Bianjixinxi_activity;
+import boom.boom.mimaxiugai.Mimaxiugai_activity;
 import boom.boom.zhujiemian.Main_activity;
 
 /**
@@ -47,6 +48,15 @@ public class Shezhi_activity extends Activity{
         SysApplication.getInstance().addActivity(this);
         vibrator = (Vibrator) this.getSystemService(VIBRATOR_SERVICE);
         shezhifanhui = (LinearLayout) findViewById(R.id.shezhifanhui);
+        LinearLayout mmxg = (LinearLayout)findViewById(R.id.sz_mmxg);
+        mmxg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setClass(Shezhi_activity.this, Mimaxiugai_activity.class);
+                startActivity(intent);
+            }
+        });
         TextView xggezl1 = (TextView)findViewById(R.id.sz_xggrzl1);
         xggezl1.setOnClickListener(new View.OnClickListener() {
             @Override
