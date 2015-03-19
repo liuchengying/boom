@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center_horizontal"
+    android:orientation="vertical"
+    >
+<RelativeLayout
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:weightSum="1"
+    android:background="@drawable/android_94"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp"
+    android:layout_marginTop="18dp">
+
+
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView8"
+        android:background="@drawable/android_99"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="15dp" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="圣诞有礼 挑战积分双倍送！"
+        android:id="@+id/textView15"
+        android:layout_gravity="center_horizontal"
+        android:password="false"
+        android:textColor="#ffe24723"
+        android:textSize="16dp"
+
+        android:layout_toRightOf="@+id/imageView8"
+        android:layout_toEndOf="@+id/imageView8"
+        android:layout_marginLeft="10dp"
+        android:layout_alignTop="@+id/imageView8" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:text="活动期间 参与挑战可双倍aoshdkasjhdkakjaskjaskhaskhjdhkjahkjhkjshkhkkkakka"
+        android:id="@+id/textView16"
+        android:textColor="#ff959595"
+        android:layout_gravity="center_vertical|right"
+        android:textSize="15dp"
+        android:singleLine="false"
+        android:layout_alignLeft="@+id/textView15"
+        android:layout_alignStart="@+id/textView15"
+        android:layout_below="@+id/textView15"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="20dp" />
+    <ImageView
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:id="@+id/imageView9"
+        android:layout_gravity="center_horizontal|bottom"
+        android:background="@drawable/android_97"
+        android:layout_below="@+id/textView16"
+        android:layout_alignLeft="@+id/textView16"
+        android:layout_alignStart="@+id/textView16" /><!--        android:layout_alignLeft="@+id/textView16"
+        android:layout_alignStart="@+id/textView16"-->
+        android:layout_alignParentTop="false"
+        android:layout_marginTop="6dp" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="2014.12.31 21:56"
+        android:id="@+id/textView17"
+        android:layout_gravity="center_horizontal|bottom"
+        android:textColor="#ff020202"
+        android:layout_toRightOf="@+id/imageView9"
+        android:layout_toEndOf="@+id/imageView9"
+        android:layout_marginLeft="5dp"
+        android:layout_alignTop="@+id/imageView9"
+        android:layout_marginBottom="10dp" />
+
+
+</RelativeLayout>
+
+</LinearLayout>

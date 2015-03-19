@@ -39,7 +39,7 @@ public class Shipintianzhan_fragment extends Fragment {
                         "title", "count"},
                 new int[] {R.id.title,R.id.count}
         );
-        lv.setAdapter(mSimpleAdapter);
+
         return v;
     }
 }
