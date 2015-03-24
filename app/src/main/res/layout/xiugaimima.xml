@@ -66,35 +66,41 @@
         android:layout_marginTop="10dp"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/android_152"
+        android:background="@drawable/android_151"
         >
         <EditText
+            android:layout_marginLeft="50dp"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:hint="    旧密码"
+            android:background="@drawable/android_151"
+            android:hint="旧密码"
             android:textSize="20sp"
             />
         </LinearLayout>
     <LinearLayout
+        android:background="@drawable/android_151"
         android:layout_marginTop="10dp"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
 
+
         android:orientation="vertical"
         >
         <EditText
+            android:layout_marginLeft="50dp"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:hint="      新密码"
+        android:hint="新密码"
         android:textSize="20sp"
             android:background="@drawable/android_151"
         />
         <EditText
+            android:layout_marginLeft="50dp"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:hint="      确认密码"
+            android:hint="确认密码"
             android:textSize="20sp"
-            android:background="@drawable/android_152"
+            android:background="@drawable/android_151"
             />
 
     </LinearLayout>

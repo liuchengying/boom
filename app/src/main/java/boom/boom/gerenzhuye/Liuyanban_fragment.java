@@ -33,7 +33,7 @@ public class Liuyanban_fragment extends Fragment
             listItem.add(map);
         }
         SimpleAdapter mSimpleAdapter = new SimpleAdapter(getActivity(),listItem,//需要绑定的数据
-                R.layout.liuyanban_item,//每一行的布局//动态数组中的数据源的键对应到定义布局的View中
+                R.layout.diqupaihang_item,//每一行的布局//动态数组中的数据源的键对应到定义布局的View中
                 new String[] {
                         "title", "count"},
                 new int[] {R.id.title,R.id.count}

@@ -45,6 +45,7 @@ public class Shezhi_activity extends Activity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.shezhi);
 
+
         SysApplication.getInstance().addActivity(this);
         vibrator = (Vibrator) this.getSystemService(VIBRATOR_SERVICE);
         shezhifanhui = (LinearLayout) findViewById(R.id.shezhifanhui);

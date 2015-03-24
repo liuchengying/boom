@@ -26,6 +26,7 @@ import java.util.List;
 import boom.boom.R;
 import boom.boom.Welcome.Welcome_activity;
 import boom.boom.api.SysApplication;
+import boom.boom.paihangbang.Shipintianzhan_fragment;
 import boom.boom.tianzhan.Tiaozhan_activity;
 
 /**

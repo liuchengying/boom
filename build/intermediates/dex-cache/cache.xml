@@ -2,25 +2,46 @@
 <items version="2" >
 
     <item
-        jar="F:\android1\Boom4\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\19.1.0\classes.jar"
+        jar="F:\android1\BoomTime\app\libs\library.jar"
+        jumboMode="false"
+        revision="21.0.1"
+        sha1="4df74cd603ab4590e758c91ac1135456ed8c76bd">
+        <dex dex="F:\android1\BoomTime\app\build\intermediates\pre-dexed\debug\library-e2d822a09383e18015def0d2c661e3f89b85f6c6.jar" />
+    </item>
+    <item
+        jar="F:\android1\BoomTime\app\libs\pulltorefreshlistfragment.jar"
+        jumboMode="false"
+        revision="21.0.1"
+        sha1="71e6af02797f0978efbf71804463d387dbf7a574">
+        <dex dex="F:\android1\BoomTime\app\build\intermediates\pre-dexed\debug\pulltorefreshlistfragment-8f2a91bf15564ed5c146e937b8574821be1c18c2.jar" />
+    </item>
+    <item
+        jar="F:\android1\BoomTime\app\libs\pulltorefreshviewpager.jar"
+        jumboMode="false"
+        revision="21.0.1"
+        sha1="7ed984f707ee272a89875d89f3839fc5727292c4">
+        <dex dex="F:\android1\BoomTime\app\build\intermediates\pre-dexed\debug\pulltorefreshviewpager-112004d8ee5a281ebace0cec7251dcfed4e22217.jar" />
+    </item>
+    <item
+        jar="F:\android1\BoomTime\app\libs\nineoldandroids-2.4.0.jar"
+        jumboMode="false"
+        revision="21.0.1"
+        sha1="59f19e43354d32de831379c23ce03bb259a4c2b7">
+        <dex dex="F:\android1\BoomTime\app\build\intermediates\pre-dexed\debug\nineoldandroids-2.4.0-197a24ebce4af194f780a906e1127023860933e7.jar" />
+    </item>
+    <item
+        jar="F:\android1\BoomTime\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\19.1.0\classes.jar"
         jumboMode="false"
         revision="21.0.1"
         sha1="3499ceba05ca1f6037c6a2fad73df8f636224a28">
-        <dex dex="F:\android1\Boom4\app\build\intermediates\pre-dexed\debug\classes-5628df8c250cd24993b2f80d371321f7788f3ba3.jar" />
+        <dex dex="F:\android1\BoomTime\app\build\intermediates\pre-dexed\debug\classes-e673aea44ab59a83364631092bacc07ffe1d173e.jar" />
     </item>
     <item
         jar="D:\Program Files\Android\sdk\extras\android\m2repository\com\android\support\support-v4\19.1.0\support-v4-19.1.0.jar"
         jumboMode="false"
         revision="21.0.1"
         sha1="85f201b380937e61a9dce6ca90ccf6872abbfb67">
-        <dex dex="F:\android1\Boom4\app\build\intermediates\pre-dexed\debug\support-v4-19.1.0-b1cd452c9f7e8f930f0821eb70bd9d7542935010.jar" />
-    </item>
-    <item
-        jar="F:\android1\Boom4\app\libs\nineoldandroids-2.4.0.jar"
-        jumboMode="false"
-        revision="21.0.1"
-        sha1="59f19e43354d32de831379c23ce03bb259a4c2b7">
-        <dex dex="F:\android1\Boom4\app\build\intermediates\pre-dexed\debug\nineoldandroids-2.4.0-ab1a7b58e7820d0284b6fc06e6c87d4c25bfb408.jar" />
+        <dex dex="F:\android1\BoomTime\app\build\intermediates\pre-dexed\debug\support-v4-19.1.0-b1cd452c9f7e8f930f0821eb70bd9d7542935010.jar" />
     </item>
 
 </items>

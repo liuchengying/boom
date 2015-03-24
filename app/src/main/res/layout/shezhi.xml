@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent" android:layout_height="match_parent"
     android:gravity="center_horizontal"
     android:orientation="vertical"
-    android:background="#ffdadada">
+    android:background="#ffdadada"
+    android:scrollbarAlwaysDrawVerticalTrack="true">
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="60dp"
@@ -49,6 +52,18 @@
 
         </LinearLayout>
         </LinearLayout>
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical"
+        android:gravity="center_horizontal">
+
     <LinearLayout
         android:id="@+id/sz_xggrzl"
         android:layout_width="fill_parent"
@@ -80,6 +95,7 @@
         android:orientation="horizontal"
         android:background="@drawable/android_57">
         <TextView
+            android:clickable="true"
             android:id="@+id/sz_mmxg1"
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
@@ -164,7 +180,6 @@
             android:layout_height="fill_parent"
             android:text="仅wifi模式播放"
             android:gravity="center_vertical"
-
             android:textSize="11sp"
             />
         <ToggleButton
@@ -244,6 +259,37 @@
 
     </LinearLayout>
     <LinearLayout
+        android:layout_marginTop="10dp"
+        android:layout_width="fill_parent"
+        android:layout_height="45dp"
+        android:orientation="horizontal"
+        android:background="@drawable/android_57">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:text="帮助与反馈"
+            android:gravity="center_vertical"
+            android:layout_marginLeft="30dp"
+            android:textSize="17sp"
+            />
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="45dp"
+        android:orientation="horizontal"
+        android:background="@drawable/android_57">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:text="关于我们"
+            android:gravity="center_vertical"
+            android:layout_marginLeft="30dp"
+            android:textSize="17sp"
+            />
+
+    </LinearLayout>
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         >
@@ -257,6 +303,9 @@
             android:textSize="20sp"
             android:textColor="#dddddd"/>
         </LinearLayout>
+    </LinearLayout>
+    </RelativeLayout>
+    </ScrollView>
 
 
 
@@ -264,3 +313,5 @@
 
 
 </LinearLayout>
+</RelativeLayout>
+

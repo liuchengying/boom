@@ -2,6 +2,7 @@ package boom.boom.mimaxiugai;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.LinearLayout;
 
 import boom.boom.R;
@@ -17,6 +18,11 @@ public class Mimaxiugai_activity extends Activity{
         setContentView(R.layout.xiugaimima);
         SysApplication.getInstance().addActivity(this);
         LinearLayout mmxg_fh = (LinearLayout)findViewById(R.id.mimaxiugai_fh);
-        finish();
+        mmxg_fh.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 }

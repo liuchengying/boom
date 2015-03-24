@@ -8,6 +8,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/listView3"
         android:layout_weight="1"
+
         android:layout_marginLeft="10dp"
         android:listSelector="@android:color/transparent"
         android:dividerHeight="10dp"
