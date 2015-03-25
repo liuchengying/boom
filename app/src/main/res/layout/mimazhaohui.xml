@@ -28,7 +28,7 @@
 
                     >
                     <LinearLayout
-                        android:onClick="dianjicehua"
+                        android:id="@+id/mmzh_fh"
                         android:layout_weight="1"
                         android:layout_width="wrap_content"
                         android:layout_height="50dp"
@@ -76,7 +76,7 @@
                     android:layout_marginTop="40dp"
                     android:gravity="center">
                     <Button
-                        android:id="@+id/danrentiaozhan"
+                        android:id="@+id/mmzh_phone"
                         android:layout_width="wrap_content"
                         android:layout_height="145dp"
                         android:background="@drawable/android_111"
@@ -84,7 +84,7 @@
                         android:gravity="center"
                         />
                     <Button
-                        android:id="@+id/fabutiaozhan"
+                        android:id="@+id/mmzh_emill"
                         android:layout_width="wrap_content"
                         android:layout_height="145dp"
                         android:background="@drawable/android_112"

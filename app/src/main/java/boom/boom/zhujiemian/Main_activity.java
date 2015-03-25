@@ -25,6 +25,8 @@ import boom.boom.api.Static;
 import boom.boom.api.SysApplication;
 import boom.boom.api.User;
 import boom.boom.api.UserData;
+import boom.boom.mimaxiugai.Mimaxiugai_activity;
+import boom.boom.mimazhaohui.Mimazhaohui_activity;
 import boom.boom.tianzhan.Tiaozhan_activity;
 import boom.boom.denglu.*;
 import boom.boom.FontManager.FontManager;
@@ -37,6 +39,7 @@ public class Main_activity extends Activity {
     private EditText user;
     private EditText pass;
     protected String passhash;
+    private TextView mmzh;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,6 +67,16 @@ public class Main_activity extends Activity {
         zhucezhanghao =(TextView) findViewById(R.id.zhucezhanghao);
         user = (EditText)findViewById(R.id.yonghuming);
         pass = (EditText) findViewById(R.id.mima);
+        mmzh = (TextView)findViewById(R.id.mmzh);
+        mmzh.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setClass(Main_activity.this,Mimazhaohui_activity.class);
+                startActivity(intent);
+            }
+        });
+
 
         denglu.setOnClickListener(new View.OnClickListener() {
             @Override

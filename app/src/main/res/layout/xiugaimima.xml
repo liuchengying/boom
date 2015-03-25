@@ -86,7 +86,8 @@
             android:layout_height="45dp"
             android:background="#ffffff"
             android:password="true"
-            android:textColor="#ffdadada"/>
+            android:textColor="#ffdadada"
+            android:singleLine="true" />
         </LinearLayout>
     <LinearLayout
         android:background="@drawable/android_151"
@@ -117,7 +118,7 @@
                 android:background="#ffffff"
                 android:password="true"
                 android:textColor="#ffdadada"
-            />
+                android:singleLine="true" />
 
             </LinearLayout>
         <LinearLayout
@@ -140,7 +141,8 @@
                 android:layout_height="45dp"
                 android:background="#ffffff"
                 android:password="true"
-                android:textColor="#ffdadada"/>
+                android:textColor="#ffdadada"
+                android:singleLine="true" />
 
         </LinearLayout>
 

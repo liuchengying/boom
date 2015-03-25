@@ -13,6 +13,7 @@
 
         >
         <LinearLayout
+            android:id="@+id/mmzh_phone_fh"
             android:layout_weight="1"
             android:layout_width="wrap_content"
             android:layout_height="50dp"
