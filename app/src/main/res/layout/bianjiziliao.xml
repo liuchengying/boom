@@ -121,7 +121,7 @@
                     android:gravity="center_vertical"
                     android:weightSum="1">
                     <LinearLayout
-                        android:layout_weight="0.75"
+                        android:layout_weight="1.23"
                         android:layout_width="wrap_content"
                         android:layout_height="fill_parent"
                         android:gravity="center_vertical">
@@ -132,24 +132,23 @@
                             android:text="性别 "
                             android:textSize="20sp"
                             android:textColor="#ffdadada"/>
-                        <EditText
+                        <Spinner
+
 
                             android:layout_marginLeft="5dp"
-                            android:layout_width="wrap_content"
+                            android:layout_width="144dp"
                             android:layout_height="40dp"
                             android:background="#ffffff"
                             android:gravity="center_vertical"
                             android:text="男"
                             android:textSize="20sp"
                             android:textColor="#ffdadada"
-                            android:layout_weight="0.5"
-                            android:id="@+id/bjxx_xb" />
+                            android:id="@+id/spinner" />
                     </LinearLayout>
                     <LinearLayout
-                        android:layout_weight="0.25"
-                        android:layout_width="wrap_content"
+                        android:layout_width="36dp"
                         android:layout_height="fill_parent"
-                        android:gravity="center_vertical"
+
                         >
                         <ImageView
                             android:layout_marginLeft="45dp"
@@ -244,8 +243,10 @@
                         android:text="星座 "
                         android:textSize="20sp"
                         android:textColor="#ffdadada"/>
-                    <EditText
+                    <Spinner
                         android:background="#ffffff"
+
+
 
                         android:layout_marginLeft="5dp"
                         android:layout_width="wrap_content"
@@ -255,16 +256,16 @@
                         android:textSize="20sp"
                         android:textColor="#ffdadada"
                         android:layout_weight="0.5"
-                        android:id="@+id/bjxx_xz" />
+                        android:id="@+id/spinner1" />
                 </LinearLayout>
                 <LinearLayout
-                    android:layout_weight="1"
+
                     android:layout_width="wrap_content"
                     android:layout_height="fill_parent"
                     android:gravity="center_vertical"
                     >
                     <ImageView
-                        android:layout_marginLeft="45dp"
+                        android:layout_marginLeft="10dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:src="@drawable/android_145"/>

@@ -14,7 +14,7 @@
 
         >
         <LinearLayout
-            android:id="@+id/mimaxiugai_fh"
+            android:id="@+id/zntz_fh"
             android:onClick="dianjicehua"
             android:layout_weight="1"
             android:layout_width="wrap_content"
@@ -39,7 +39,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="修改密码"
+                android:text="自拟挑战"
                 android:textSize="25sp"
                 android:textColor="#ffffff"
 
@@ -56,89 +56,116 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="确定"
+                android:text="    "
                 android:textSize="20sp"
                 android:textColor="#ffffff"
                 android:layout_gravity="center_vertical"/>
         </LinearLayout>
     </LinearLayout>
     <LinearLayout
-        android:layout_marginTop="10dp"
-        android:layout_width="fill_parent"
+        android:layout_marginTop="15dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/android_151"
-        android:orientation="horizontal"
-        android:gravity="center_vertical"
-
-        android:layout_gravity="center_vertical"
-        >
-        <TextView
-            android:layout_marginLeft="40dp"
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-            android:text="旧密码"
-            android:gravity="center_vertical"
-            android:textSize="20sp"
-            />
-        <EditText
-            android:layout_marginLeft="10dp"
-            android:layout_width="fill_parent"
-            android:layout_height="45dp"
-            android:background="#ffffff"/>
-        </LinearLayout>
-    <LinearLayout
-        android:background="@drawable/android_151"
-        android:layout_marginTop="10dp"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-         android:orientation="vertical"
-
-        >
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:layout_gravity="center_horizontal">
         <LinearLayout
-            android:layout_width="fill_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@drawable/android_153"
             android:orientation="horizontal"
-            android:gravity="center_vertical"
-            android:background="@drawable/android_151">
+            android:gravity="center_vertical">
             <TextView
-                android:layout_marginLeft="40dp"
+                android:layout_marginLeft="20sp"
                 android:layout_width="wrap_content"
                 android:layout_height="fill_parent"
-                android:text="新密码"
+                android:text="挑战名称"
                 android:gravity="center_vertical"
-                android:textSize="20sp"
-                />
+                android:textSize="20sp"/>
             <EditText
                 android:layout_marginLeft="10dp"
                 android:layout_width="fill_parent"
-                android:layout_height="45dp"
+                android:layout_height="50dp"
                 android:background="#ffffff"/>
 
             </LinearLayout>
         <LinearLayout
-            android:layout_width="fill_parent"
+            android:layout_marginTop="10dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_vertical"
-            android:background="@drawable/android_152">
+            android:background="@drawable/android_154"
+            android:orientation="horizontal">
             <TextView
-                android:layout_marginLeft="20dp"
                 android:layout_width="wrap_content"
                 android:layout_height="fill_parent"
-                android:text="确认密码"
-                android:gravity="center_vertical"
+                android:text="规则细节"
                 android:textSize="20sp"
-                />
+                android:layout_marginLeft="20dp"/>
             <EditText
                 android:layout_marginLeft="10dp"
                 android:layout_width="fill_parent"
-                android:layout_height="45dp"
+                android:layout_height="fill_parent"
                 android:background="#ffffff"/>
 
+            </LinearLayout>
+        </LinearLayout>
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20sp"
+        android:background="@drawable/android_155"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center">
+            //没铺完
         </LinearLayout>
 
+        </LinearLayout>
+                <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/android_156"  >
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/android_158"/>
 
-    </LinearLayout>
+
+
+        </LinearLayout>
+    <LinearLayout
+        android:layout_width="250dp"
+        android:layout_height="130dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="提示"/>
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:text="服务器上"/>
+        </LinearLayout>
+    <Button
+        android:id="@+id/zntz_tijiaoshenhe"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@drawable/android_157"
+        android:text="提交审核"
+        android:textSize="20sp"
+        android:textColor="#ffffff"/>
+
+
+
+
+
 
 
 </LinearLayout>

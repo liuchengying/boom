@@ -21,6 +21,7 @@ import boom.boom.FontManager.FontManager;
 import boom.boom.R;
 import boom.boom.api.Static;
 import boom.boom.api.SysApplication;
+import boom.boom.faqitianzhan.Faqitianzhan_activity;
 import boom.boom.gerenzhuye.Gerenzhuye_activity;
 import boom.boom.guizejieshao.Guizejieshao_activity;
 import boom.boom.paihangbang.Paihangbang_activity;
@@ -41,6 +42,7 @@ public class Tiaozhan_activity extends Activity {
     private TextView coins;
     private Button button_startChallenge;
     private ImageView cehuatouxiang;
+    private Button faqitianzhan;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,6 +59,15 @@ public class Tiaozhan_activity extends Activity {
         mLeftMenu = (SlidingMenu) findViewById(R.id.cehuacaidan);
         danrentiaozhan = (Button) findViewById(R.id.danrentiaozhan);
         shezhi = (Button) findViewById(R.id.shezhi);
+        faqitianzhan = (Button) findViewById(R.id.fabutiaozhan);
+        faqitianzhan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setClass(Tiaozhan_activity.this, Faqitianzhan_activity.class);
+                startActivity(intent);
+            }
+        });
         button_startChallenge = (Button) findViewById(R.id.button_startchallenge);
         View.OnClickListener toBeginSingleChallenge = new View.OnClickListener() {
             @Override

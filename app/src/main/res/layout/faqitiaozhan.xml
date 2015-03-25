@@ -28,6 +28,7 @@
 
                     >
                     <LinearLayout
+                        android:id="@+id/fqtz_fh"
                         android:onClick="dianjicehua"
                         android:layout_weight="1"
                         android:layout_width="wrap_content"
@@ -35,12 +36,12 @@
                         android:gravity="center_vertical"
                         >
                         <Button
-                            android:onClick="dianjicehua"
+
                             android:id="@+id/cehuaanniu"
 
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:background="@drawable/android_11"
+                            android:background="@drawable/android_20"
                             android:gravity="center_horizontal"
                             android:layout_marginLeft="10dp"/>
                     </LinearLayout>
@@ -78,7 +79,7 @@
                     android:layout_marginTop="40dp"
                     android:gravity="center">
                     <Button
-                        android:id="@+id/danrentiaozhan"
+
                         android:layout_width="wrap_content"
                         android:layout_height="130dp"
                         android:background="@drawable/android_105"
@@ -86,7 +87,7 @@
                         android:gravity="center"
                         />
                     <Button
-                        android:id="@+id/fabutiaozhan"
+                        android:id="@+id/zntz"
                         android:layout_width="wrap_content"
                         android:layout_height="130dp"
                         android:background="@drawable/android_106"
