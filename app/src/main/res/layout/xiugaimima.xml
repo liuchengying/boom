@@ -84,7 +84,9 @@
             android:layout_marginLeft="10dp"
             android:layout_width="fill_parent"
             android:layout_height="45dp"
-            android:background="#ffffff"/>
+            android:background="#ffffff"
+            android:password="true"
+            android:textColor="#ffdadada"/>
         </LinearLayout>
     <LinearLayout
         android:background="@drawable/android_151"
@@ -112,7 +114,10 @@
                 android:layout_marginLeft="10dp"
                 android:layout_width="fill_parent"
                 android:layout_height="45dp"
-                android:background="#ffffff"/>
+                android:background="#ffffff"
+                android:password="true"
+                android:textColor="#ffdadada"
+            />
 
             </LinearLayout>
         <LinearLayout
@@ -133,7 +138,9 @@
                 android:layout_marginLeft="10dp"
                 android:layout_width="fill_parent"
                 android:layout_height="45dp"
-                android:background="#ffffff"/>
+                android:background="#ffffff"
+                android:password="true"
+                android:textColor="#ffdadada"/>
 
         </LinearLayout>
 
