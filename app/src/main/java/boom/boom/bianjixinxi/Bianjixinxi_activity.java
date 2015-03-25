@@ -11,6 +11,7 @@ import android.widget.Spinner;
 import java.util.ArrayList;
 import java.util.List;
 
+import boom.boom.FontManager.FontManager;
 import boom.boom.R;
 import boom.boom.api.SysApplication;
 import boom.boom.shezhi.Shezhi_activity;
@@ -33,6 +34,7 @@ public class Bianjixinxi_activity  extends Activity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.bianjiziliao);
         SysApplication.getInstance().addActivity(this);
+        FontManager.changeFonts(FontManager.getContentView(this), this);//字体
         LinearLayout fanhui = (LinearLayout)findViewById(R.id.bianjixinxi_fh);
 
         list.add("男");

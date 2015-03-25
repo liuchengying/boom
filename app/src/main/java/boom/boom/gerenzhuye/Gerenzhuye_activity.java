@@ -23,6 +23,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
+import boom.boom.FontManager.FontManager;
 import boom.boom.R;
 import boom.boom.Welcome.Welcome_activity;
 import boom.boom.api.SysApplication;
@@ -60,7 +61,7 @@ public class Gerenzhuye_activity extends FragmentActivity
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.gerenzhuye);
         SysApplication.getInstance().addActivity(this);
-
+        FontManager.changeFonts(FontManager.getContentView(this), this);//字体
 
         gerenzhuyefanhui = (LinearLayout)findViewById(R.id.gerenzhuyefanhui);
         gerenzhuyefanhui.setOnClickListener(new View.OnClickListener() {

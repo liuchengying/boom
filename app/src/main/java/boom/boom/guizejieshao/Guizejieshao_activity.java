@@ -13,6 +13,7 @@ import android.widget.VideoView;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import boom.boom.FontManager.FontManager;
 import boom.boom.R;
 import boom.boom.api.Challenge;
 import boom.boom.api.SysApplication;
@@ -36,6 +37,7 @@ public class Guizejieshao_activity extends Activity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.guizejieshao);
         SysApplication.getInstance().addActivity(this);
+        FontManager.changeFonts(FontManager.getContentView(this), this);//字体
         Intent intent = getIntent();
         final int position = intent.getIntExtra("challenge_number", 1);
         try {

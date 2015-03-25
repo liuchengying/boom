@@ -43,6 +43,7 @@ public class Tiaozhan_activity extends Activity {
     private Button button_startChallenge;
     private ImageView cehuatouxiang;
     private Button faqitianzhan;
+    private Button tz_grzy;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,7 +60,17 @@ public class Tiaozhan_activity extends Activity {
         mLeftMenu = (SlidingMenu) findViewById(R.id.cehuacaidan);
         danrentiaozhan = (Button) findViewById(R.id.danrentiaozhan);
         shezhi = (Button) findViewById(R.id.shezhi);
+        tz_grzy = (Button) findViewById(R.id.tz_grzy);
+        tz_grzy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setClass(Tiaozhan_activity.this, Gerenzhuye_activity.class);
+                startActivity(intent);
+            }
+        });
         faqitianzhan = (Button) findViewById(R.id.fabutiaozhan);
+
         faqitianzhan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -81,12 +92,13 @@ public class Tiaozhan_activity extends Activity {
         button_startChallenge.setOnClickListener(toBeginSingleChallenge);
         shezhi.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(final View v) {
                 Intent intent = new Intent();
                 intent.setClass(Tiaozhan_activity.this, Shezhi_activity.class);
                 startActivity(intent);
             }
         });
+
         nickname = (TextView) findViewById(R.id.nickname);
         coins = (TextView) findViewById(R.id.mycoins);
         nickname.setText(user_nickname);
@@ -94,29 +106,51 @@ public class Tiaozhan_activity extends Activity {
         LinearLayout xxzx=(LinearLayout)findViewById(R.id.ch_xinxizhongxin);
         xxzx.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(final View v) {
                 Intent intent=new Intent();
                 intent.setClass(Tiaozhan_activity.this, xinxizhongxin_activity.class);
                 startActivity(intent);
+                Timer timer=new Timer();
+                TimerTask timerTask=new TimerTask() {
+                    @Override
+                    public void run() {
+                        dianjicehua(v);
+                    }
+                };
+                timer.schedule(timerTask, 1000);
             }
         });
         LinearLayout phg=(LinearLayout)findViewById(R.id.ch_paihangbang);
         phg.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(final View v) {
                 Intent intent=new Intent();
                 intent.setClass(Tiaozhan_activity.this, Paihangbang_activity.class);
                 startActivity(intent);
-
+                Timer timer=new Timer();
+                TimerTask timerTask=new TimerTask() {
+                    @Override
+                    public void run() {
+                        dianjicehua(v);
+                    }
+                };
+                timer.schedule(timerTask, 1000);
             }
         });
         cehuatouxiang.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(final View v) {
                 Intent intent = new Intent();
                 intent.setClass(Tiaozhan_activity.this, Gerenzhuye_activity.class);
                 startActivity(intent);
-
+                Timer timer=new Timer();
+                TimerTask timerTask=new TimerTask() {
+                    @Override
+                    public void run() {
+                        dianjicehua(v);
+                    }
+                };
+                timer.schedule(timerTask, 1000);
             }
         });
     }

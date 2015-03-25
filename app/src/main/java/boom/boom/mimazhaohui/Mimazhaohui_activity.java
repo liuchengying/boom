@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
+import boom.boom.FontManager.FontManager;
 import boom.boom.R;
 import boom.boom.api.SysApplication;
 import boom.boom.mimaxiugai.Mimaxiugai_activity;
@@ -24,6 +25,7 @@ public class Mimazhaohui_activity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.mimazhaohui);
         SysApplication.getInstance().addActivity(this);
+        FontManager.changeFonts(FontManager.getContentView(this), this);//字体
         LinearLayout mmzh_fh = (LinearLayout)findViewById(R.id.mmzh_fh);
         mmzh_phone= (Button)findViewById(R.id.mmzh_phone);
         mmzh_emill= (Button)findViewById(R.id.mmzh_emill);

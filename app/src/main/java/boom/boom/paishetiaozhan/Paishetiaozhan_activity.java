@@ -22,6 +22,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Timer;
 
+import boom.boom.FontManager.FontManager;
 import boom.boom.R;
 import boom.boom.api.Challenge;
 import boom.boom.api.FormFile;
@@ -53,6 +54,7 @@ public class Paishetiaozhan_activity extends Activity implements SurfaceHolder.C
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        FontManager.changeFonts(FontManager.getContentView(this), this);//字体
         Intent intent = getIntent();
         int position = intent.getIntExtra("challenge_number", 1);
         final String cl_name = intent.getStringExtra("challenge_name");

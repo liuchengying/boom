@@ -9,6 +9,7 @@ import android.os.Bundle;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import boom.boom.FontManager.FontManager;
 import boom.boom.R;
 import boom.boom.api.SysApplication;
 import boom.boom.zhujiemian.Main_activity;
@@ -23,7 +24,7 @@ public class Welcome_activity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.huanyingjiemian);
         SysApplication.getInstance().addActivity(this);
-
+        FontManager.changeFonts(FontManager.getContentView(this), this);//字体
         Timer timer = new Timer();
         TimerTask task = new TimerTask(){
             @Override

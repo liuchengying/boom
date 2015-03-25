@@ -21,6 +21,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import boom.boom.FontManager.FontManager;
 import boom.boom.R;
 import boom.boom.api.Msg;
 import boom.boom.api.SysApplication;
@@ -36,6 +37,7 @@ public class xinxizhongxin_activity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.xinxizhongxin);
         SysApplication.getInstance().addActivity(this);
+        FontManager.changeFonts(FontManager.getContentView(this), this);//字体
         LinearLayout fh = (LinearLayout) findViewById(R.id.xxzx_fanhui);
 //        Button rightSideButton;
         final ArrayList<Map<String, Object>> listItem = new ArrayList<>();

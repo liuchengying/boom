@@ -58,9 +58,7 @@ public class Paihangbang_activity extends FragmentActivity
         phbfh.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent();
-                intent.setClass(Paihangbang_activity.this, Tiaozhan_activity.class);
-                startActivity(intent);
+                finish();
             }
         });
         jiantingqiehuan1();

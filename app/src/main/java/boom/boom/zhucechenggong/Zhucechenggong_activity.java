@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import boom.boom.FontManager.FontManager;
 import boom.boom.R;
 import boom.boom.api.SysApplication;
 import boom.boom.wanshanxinxi.Wanshanxinxi_activity;
@@ -20,6 +21,7 @@ public class Zhucechenggong_activity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.zhucechenggong);
         SysApplication.getInstance().addActivity(this);
+        FontManager.changeFonts(FontManager.getContentView(this), this);//字体
         wanshanxinxi=(Button)findViewById(R.id.wanshanxinxi);
         wanshanxinxi.setOnClickListener(new View.OnClickListener() {
             @Override

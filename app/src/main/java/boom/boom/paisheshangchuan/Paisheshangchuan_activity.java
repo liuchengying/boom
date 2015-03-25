@@ -9,6 +9,7 @@ import android.widget.Button;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import boom.boom.FontManager.FontManager;
 import boom.boom.R;
 import boom.boom.api.SysApplication;
 import boom.boom.paishetiaozhan.Paishetiaozhan_activity;
@@ -29,6 +30,7 @@ public class Paisheshangchuan_activity extends Activity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.paisheshangchuan);
         SysApplication.getInstance().addActivity(this);
+        FontManager.changeFonts(FontManager.getContentView(this), this);//字体
         shangchuanpaishefanhui= (Button) findViewById(R.id.paisheshangchuanfanhui);
         paisheshangchuan = (Button) findViewById(R.id.paisheshangchuan);
         shangchuanpaishefanhui.setOnClickListener(new View.OnClickListener() {

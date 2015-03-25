@@ -19,6 +19,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import boom.boom.FontManager.FontManager;
 import boom.boom.R;
 import boom.boom.api.LoginUser;
 import boom.boom.api.SysApplication;
@@ -40,6 +41,7 @@ public class dengluzhuce_activity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.zhuce);
         SysApplication.getInstance().addActivity(this);
+        FontManager.changeFonts(FontManager.getContentView(this), this);//字体
         zhucetijiao = (Button) findViewById(R.id.zhucetijiao);
         fanhui = (Button) findViewById(R.id.zhucufanhui);
         text_username = (EditText) findViewById(R.id.zhuceyonghuming);

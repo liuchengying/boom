@@ -26,6 +26,7 @@ import android.widget.TextView;
 import android.widget.ToggleButton;
 import android.os.Vibrator;
 
+import boom.boom.FontManager.FontManager;
 import boom.boom.R;
 import boom.boom.api.SysApplication;
 import boom.boom.bianjixinxi.Bianjixinxi_activity;
@@ -47,6 +48,7 @@ public class Shezhi_activity extends Activity{
 
 
         SysApplication.getInstance().addActivity(this);
+        FontManager.changeFonts(FontManager.getContentView(this), this);//字体
         vibrator = (Vibrator) this.getSystemService(VIBRATOR_SERVICE);
         shezhifanhui = (LinearLayout) findViewById(R.id.shezhifanhui);
         LinearLayout mmxg = (LinearLayout)findViewById(R.id.sz_mmxg);

@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import boom.boom.FontManager.FontManager;
 import boom.boom.R;
 import boom.boom.api.Challenge;
 import boom.boom.api.Msg;
@@ -29,6 +30,7 @@ public class woyaotiaozhan_activity extends Activity {
       protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.woyaotiaozhan);
+          FontManager.changeFonts(FontManager.getContentView(this), this);//字体
         Button fh=(Button)findViewById(R.id.wytz_fanhui);
           SysApplication.getInstance().addActivity(this);
 //        Button rightSideButton;

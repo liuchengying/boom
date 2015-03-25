@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import boom.boom.FontManager.FontManager;
 import boom.boom.R;
 import boom.boom.api.SysApplication;
 import boom.boom.paisheshangchuan.Paisheshangchuan_activity;
@@ -23,6 +24,7 @@ public class Tingzhipaishe_activity extends Activity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.tingzhipaishe);
         SysApplication.getInstance().addActivity(this);
+        FontManager.changeFonts(FontManager.getContentView(this), this);//字体
         tingzhipaishefanhui = (Button) findViewById(R.id.tingzhipaishefanhui);
         paishetingzhi = (Button) findViewById(R.id.tingzhipaishe);
         paishetingzhi.setOnClickListener(new View.OnClickListener() {

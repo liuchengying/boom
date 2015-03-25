@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
+import boom.boom.FontManager.FontManager;
 import boom.boom.R;
 import boom.boom.guizejieshao.Guizejieshao_activity;
 import boom.boom.zinitiaozhan.Zinitianzhan_activity;
@@ -19,6 +20,7 @@ public class Faqitianzhan_activity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.faqitiaozhan);
+        FontManager.changeFonts(FontManager.getContentView(this), this);//字体
         final LinearLayout fqtz_fh = (LinearLayout)findViewById(R.id.fqtz_fh);
         Button zntz = (Button)findViewById(R.id.zntz);
         zntz.setOnClickListener(new View.OnClickListener() {

@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 
+import boom.boom.FontManager.FontManager;
 import boom.boom.R;
 import boom.boom.api.MsgBox;
 import boom.boom.api.SysApplication;
@@ -30,6 +31,7 @@ public class Shangchuandengdai_activity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.shangchuandengdai);
         SysApplication.getInstance().addActivity(this);
+        FontManager.changeFonts(FontManager.getContentView(this), this);//字体
         initEvent();
         shangchuandengdaifanhui = (Button) findViewById(R.id.shangchuandengdaifanhui);
         fangqishangchuang = (Button) findViewById(R.id.fangqishangchuan);

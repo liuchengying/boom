@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
+import boom.boom.FontManager.FontManager;
 import boom.boom.R;
 
 /**
@@ -23,6 +24,6 @@ public class Zinitianzhan_activity extends Activity {
                 finish();
             }
         });
-
+        FontManager.changeFonts(FontManager.getContentView(this), this);//字体
     }
 }
