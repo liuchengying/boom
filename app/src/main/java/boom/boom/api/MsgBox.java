@@ -16,6 +16,7 @@ public class MsgBox extends Activity {
      *  示例：
      *
      *  class MainActivity extends Activity{
+     *
      *  private final int REQUESTCODE=1;    // 返回的结果码
      *
      *  public void onCreate(Bundle savedInstanceState){
