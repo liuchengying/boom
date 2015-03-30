@@ -10,8 +10,8 @@ import java.util.Map;
  * Created by 1eekai on 2015/2/22.
  */
 public class Challenge {
-    public static final String challenge_api = "getChallenge.php";
-    public static final String take_cl_api = "takeChallenge.php";
+    public static final String challenge_api = "/api/getChallenge.php";
+    public static final String take_cl_api = "/api/takeChallenge.php";
     private String RawDataStore;
     private JSONObject json_data;
     private int counter = 0;
