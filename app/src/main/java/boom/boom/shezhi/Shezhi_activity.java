@@ -29,6 +29,7 @@ import android.os.Vibrator;
 import boom.boom.FontManager.FontManager;
 import boom.boom.R;
 import boom.boom.api.SysApplication;
+import boom.boom.bangzhuyufankui.Bangzhuyufankui_activity;
 import boom.boom.bianjixinxi.Bianjixinxi_activity;
 import boom.boom.mimaxiugai.Mimaxiugai_activity;
 import boom.boom.zhujiemian.Main_activity;
@@ -41,6 +42,7 @@ public class Shezhi_activity extends Activity{
     private LinearLayout shezhifanhui;
     private Button tuichuzhanghu;
     private Vibrator vibrator;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,6 +53,7 @@ public class Shezhi_activity extends Activity{
         FontManager.changeFonts(FontManager.getContentView(this), this);//字体
         vibrator = (Vibrator) this.getSystemService(VIBRATOR_SERVICE);
         shezhifanhui = (LinearLayout) findViewById(R.id.shezhifanhui);
+
         LinearLayout mmxg = (LinearLayout)findViewById(R.id.sz_mmxg);
         mmxg.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -75,6 +78,15 @@ public class Shezhi_activity extends Activity{
             public void onClick(View v) {
                 Intent intent = new Intent();
                 intent.setClass(Shezhi_activity.this, Bianjixinxi_activity.class);
+                startActivity(intent);
+            }
+        });
+        LinearLayout sz_bzyfk = (LinearLayout) findViewById(R.id.sz_bbyfk);
+        sz_bzyfk.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setClass(Shezhi_activity.this, Bangzhuyufankui_activity.class);
                 startActivity(intent);
             }
         });
