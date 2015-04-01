@@ -25,10 +25,10 @@ import java.util.List;
 
 import boom.boom.FontManager.FontManager;
 import boom.boom.R;
-import boom.boom.Welcome.Welcome_activity;
+
 import boom.boom.api.SysApplication;
-import boom.boom.paihangbang.Shipintianzhan_fragment;
-import boom.boom.tianzhan.Tiaozhan_activity;
+
+
 
 /**
  * Created by 刘成英 on 2015/3/12.

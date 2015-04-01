@@ -14,13 +14,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.graphics.Typeface;
-import org.json.JSONObject;
 
 import java.util.Timer;
 import java.util.TimerTask;
 
 import boom.boom.R;
+
 import boom.boom.api.Static;
 import boom.boom.api.SysApplication;
 import boom.boom.api.User;
@@ -40,6 +39,7 @@ public class Main_activity extends Activity {
     private EditText pass;
     protected String passhash;
     private TextView mmzh;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,6 +67,9 @@ public class Main_activity extends Activity {
         zhucezhanghao =(TextView) findViewById(R.id.zhucezhanghao);
         user = (EditText)findViewById(R.id.yonghuming);
         pass = (EditText) findViewById(R.id.mima);
+
+
+
         mmzh = (TextView)findViewById(R.id.mmzh);
         mmzh.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -81,6 +84,9 @@ public class Main_activity extends Activity {
         denglu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+
+
                 String user_Str = user.getText().toString();
                 String pass_Str = pass.getText().toString();
                 User userlogin = new User(user_Str, pass_Str);
