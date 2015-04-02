@@ -6,6 +6,7 @@ import android.hardware.Camera;
 import android.graphics.PixelFormat;
 import android.media.MediaRecorder;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
 import android.view.SurfaceHolder;
@@ -17,6 +18,8 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationSet;
 import android.view.animation.TranslateAnimation;
 import android.widget.Button;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.json.JSONObject;
@@ -55,10 +58,28 @@ public class Paishetiaozhan_activity extends Activity implements SurfaceHolder.C
     private final int maxDurationInMs = 20000;
     private final long maxFileSizeInBytes = 500000;
     private final int videoFramesPerSecond = 20;
+    private ProgressBar mprogress;
+    private int a;
+
+    //private Handler myMessageHandler;
+    /*Handler myMessageHandler = new Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+            sss.setText(a+"s");
+            super.handleMessage(msg);
+        }
+    };*/
+    Handler myMessageHandler = new Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            sss.setText(a+"s");
+            }};
+    private TextView sss;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Intent intent = getIntent();
+        final Intent intent = getIntent();
         int position = intent.getIntExtra("challenge_number", 1);
         final String cl_name = intent.getStringExtra("challenge_name");
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
@@ -71,14 +92,44 @@ public class Paishetiaozhan_activity extends Activity implements SurfaceHolder.C
         kaishipaishe = (Button) findViewById(R.id.kaishipaishe);
         fangqipaishe = (Button) findViewById(R.id.fangqipaishe);
         sv = (SurfaceView) findViewById(R.id.syncRecord_monitor);
+        mprogress = (ProgressBar) findViewById(R.id.mprogress);
+        sss= (TextView) findViewById(R.id.ssss);
+
+
         surfaceHolder = sv.getHolder();
         surfaceHolder.addCallback(this);
         surfaceHolder.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);
         kaishipaishe.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+
+
+
+
+
+
+
                 if(kaishipaishe.getText().equals("开始")) {
+                    new Thread(new Runnable() {
+                        @Override
+
+                        public void run() {
+                            for ( a = 1; a < 21; a++) {
+                                try {
+                                    mprogress.incrementProgressBy(1);
+                                    Message m = new Message();
+                                    m.what=1;
+                                    Paishetiaozhan_activity.this.myMessageHandler.sendMessage(m);
+                                    Thread.sleep(1000);
+                                } catch (InterruptedException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        }
+                    }).start();
                     kaishipaishe.setText("停止");
+
                             startRecording();
                     new Thread(new Runnable() {
                         @Override
