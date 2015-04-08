@@ -39,6 +39,7 @@ import boom.boom.api.SysApplication;
 import boom.boom.api.Utils;
 import boom.boom.guizejieshao.Guizejieshao_activity;
 import boom.boom.shangchuanchenggong.Shangchuanchenggong_activity;
+import boom.boom.shangchuandengdai.Shangchuandengdai_activity;
 import boom.boom.tingzhitiaozhan.Tingzhipaishe_activity;
 
 /**
@@ -82,8 +83,7 @@ public class Paishetiaozhan_activity extends Activity implements SurfaceHolder.C
         final Intent intent = getIntent();
         int position = intent.getIntExtra("challenge_number", 1);
         final String cl_name = intent.getStringExtra("challenge_name");
-        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
         getWindow().setFormat(PixelFormat.TRANSLUCENT);
         setContentView(R.layout.paishetiaozhan);
         SysApplication.getInstance().addActivity(this);
@@ -104,22 +104,16 @@ public class Paishetiaozhan_activity extends Activity implements SurfaceHolder.C
             public void onClick(View v) {
 
 
-
-
-
-
-
-
-                if(kaishipaishe.getText().equals("开始")) {
+                if (kaishipaishe.getText().equals("开始")) {
                     new Thread(new Runnable() {
                         @Override
 
                         public void run() {
-                            for ( a = 1; a < 21; a++) {
+                            for (a = 0; a < 20; a++) {
                                 try {
                                     mprogress.incrementProgressBy(1);
                                     Message m = new Message();
-                                    m.what=1;
+                                    m.what = 1;
                                     Paishetiaozhan_activity.this.myMessageHandler.sendMessage(m);
                                     Thread.sleep(1000);
                                 } catch (InterruptedException e) {
@@ -130,7 +124,9 @@ public class Paishetiaozhan_activity extends Activity implements SurfaceHolder.C
                     }).start();
                     kaishipaishe.setText("停止");
 
-                            startRecording();
+
+                    startRecording();
+
                     new Thread(new Runnable() {
                         @Override
                         public void run() {
@@ -162,29 +158,34 @@ public class Paishetiaozhan_activity extends Activity implements SurfaceHolder.C
                     intent.setClass(Paishetiaozhan_activity.this, Shangchuanchenggong_activity.class);
                     startActivity(intent);*/
 
-                }
-                else if(kaishipaishe.getText().equals("停止"))
-                {
+                } else if (kaishipaishe.getText().equals("停止")) {
                     kaishipaishe.setText("上传");
                     AnimationSet animationSet = new AnimationSet(true);
-                    TranslateAnimation translateAnimation= new TranslateAnimation(Animation.RELATIVE_TO_SELF,0f,
-                                                                                   Animation.RELATIVE_TO_SELF,-0.6f,
-                                                                                   Animation.RELATIVE_TO_SELF,0f,
-                                                                                   Animation.RELATIVE_TO_SELF,0f);
+                    TranslateAnimation translateAnimation = new TranslateAnimation(Animation.RELATIVE_TO_SELF, 0f,
+                            Animation.RELATIVE_TO_SELF, -0.6f,
+                            Animation.RELATIVE_TO_SELF, 0f,
+                            Animation.RELATIVE_TO_SELF, 0f);
                     translateAnimation.setDuration(1000);
                     animationSet.addAnimation(translateAnimation);
                     animationSet.setFillAfter(true);
                     kaishipaishe.startAnimation(animationSet);
                     fangqipaishe.setVisibility(View.VISIBLE);
                     AnimationSet animationSet1 = new AnimationSet(true);
-                    AlphaAnimation alphaAnimation=new AlphaAnimation(-1,1);
+                    AlphaAnimation alphaAnimation = new AlphaAnimation(-1, 1);
                     alphaAnimation.setDuration(2000);
                     animationSet1.addAnimation(alphaAnimation);
                     animationSet1.setFillAfter(true);
                     fangqipaishe.startAnimation(animationSet1);
+                }else if(kaishipaishe.getText().equals("上传")){
+                    Intent intent = new Intent();
+                    intent.setClass(Paishetiaozhan_activity.this,Shangchuandengdai_activity.class);
+                    startActivity(intent);
+
                 }
+
             }
         });
+
         paishefanhui.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

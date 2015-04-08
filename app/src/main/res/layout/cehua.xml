@@ -11,11 +11,11 @@
         android:layout_height="150dp"
         android:gravity="center_horizontal"
         >
-        <ImageView
+        <boom.boom.myview.CircleImageView
             android:id="@+id/cehuatouxiang"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/android_33"
+            android:src="@drawable/android_icon"
             android:layout_gravity="bottom"
             />
     </LinearLayout>

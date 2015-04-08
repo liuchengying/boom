@@ -24,6 +24,7 @@ import boom.boom.api.SysApplication;
 import boom.boom.faqitianzhan.Faqitianzhan_activity;
 import boom.boom.gerenzhuye.Gerenzhuye_activity;
 import boom.boom.guizejieshao.Guizejieshao_activity;
+import boom.boom.myview.CircleImageView;
 import boom.boom.paihangbang.Paihangbang_activity;
 import boom.boom.shezhi.Shezhi_activity;
 import boom.boom.slidingMenu.SlidingMenu;
@@ -41,7 +42,7 @@ public class Tiaozhan_activity extends Activity {
     private TextView nickname;
     private TextView coins;
     private Button button_startChallenge;
-    private ImageView cehuatouxiang;
+    private CircleImageView cehuatouxiang;
     private Button faqitianzhan;
     private Button tz_grzy;
     @Override
@@ -55,7 +56,7 @@ public class Tiaozhan_activity extends Activity {
         String user_name = Static.username;
         String user_nickname = Static.nickname;
         int user_coins = Static.coins;
-        cehuatouxiang = (ImageView) findViewById(R.id.cehuatouxiang);
+        cehuatouxiang = (CircleImageView) findViewById(R.id.cehuatouxiang);
         cahuaanniu = (Button) findViewById(R.id.cehuaanniu);
         mLeftMenu = (SlidingMenu) findViewById(R.id.cehuacaidan);
         danrentiaozhan = (Button) findViewById(R.id.danrentiaozhan);
