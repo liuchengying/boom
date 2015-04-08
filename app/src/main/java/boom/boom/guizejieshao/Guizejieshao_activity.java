@@ -60,7 +60,9 @@ public class Guizejieshao_activity extends Activity{
         MediaController ctrller = new MediaController(this);
         ctrller.setAnchorView(frame_frontvideo);
         frame_frontvideo.setMediaController(ctrller);
-        frame_frontvideo.setVideoURI(Uri.parse(Utils.serveraddr+Utils.getVideoAPI(demoToken)));
+//        String debug = Utils.serveraddr+Utils.getVideoAPI(demoToken);
+//        frame_frontvideo.setVideoURI(Uri.parse("http://172.24.10.118/download/download1.mp4"));
+        frame_frontvideo.setVideoURI(Uri.parse(Utils.serveraddr+Utils.getVideoAPI(demoToken)+"&"+Utils.parsSessionViaGET()));
         //frame_frontvideo.requestFocus();
         frame_frontvideo.start();
         woyaotianzhan.setOnClickListener(new View.OnClickListener() {
