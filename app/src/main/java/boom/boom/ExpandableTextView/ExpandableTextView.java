@@ -34,6 +34,7 @@ public class ExpandableTextView extends LinearLayout implements View.OnClickList
     /* The default alpha value when the animation starts */
     private static final float DEFAULT_ANIM_ALPHA_START = 0.7f;
 
+
     protected TextView mTv;
 
     protected ImageButton mButton; // Button to expand/collapse
