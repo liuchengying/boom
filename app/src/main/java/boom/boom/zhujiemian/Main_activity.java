@@ -49,11 +49,6 @@ public class Main_activity extends Activity {
         if (isNetworkAvailable(Main_activity.this))
         {
             Toast.makeText(getApplicationContext(), "当前有可用网络！", Toast.LENGTH_LONG).show();
-
-
-
-
-
         }
         else
         {
