@@ -42,35 +42,51 @@
     </LinearLayout>
 
     <FrameLayout
+           android:layout_marginTop="40dp"
         android:layout_width="match_parent"
-        android:layout_height="171dp">
+        android:layout_height="wrap_content">
 
+        <boom.boom.myview.ProgressBar
+
+
+            android:id="@+id/progress123"
+            android:layout_width="265dp"
+            android:layout_height="265dp"
+            android:layout_gravity="center"
+            style="?android:attr/progressBarStyleLarge"/>
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/imageView"
             android:layout_gravity="center"
-            android:background="@drawable/andriod_78" />
+            android:src="@drawable/android_170" />
 
+
+
+    </FrameLayout>
+    <LinearLayout
+        android:layout_marginTop="10dp"
+        android:layout_width="fill_parent"
+        android:layout_height="60dp"
+        android:gravity="center">
         <TextView
+
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="68%"
-            android:id="@+id/textView"
+            android:text=""
+            android:id="@+id/scdd_jindu"
             android:layout_gravity="center"
-            android:textColor="#ffffffff"
+            android:textColor="#ffe14723"
             android:textSize="30sp" />
+        </LinearLayout>
 
-    </FrameLayout>
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/imageView2"
-        android:layout_gravity="center_horizontal"
-        android:background="@drawable/andriod_79" />
-
+<LinearLayout
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    android:gravity="bottom">
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -112,8 +128,9 @@
         android:layout_height="wrap_content"
         android:text="放弃视频"
         android:id="@+id/fangqishangchuan"
-        android:layout_gravity="center_horizontal"
+        android:layout_gravity="center_horizontal|bottom"
         android:background="@drawable/android_77"
-        android:textColor="#ffffffff" />
-
+        android:textColor="#ffffffff"
+        />
+</LinearLayout>
 </LinearLayout>
