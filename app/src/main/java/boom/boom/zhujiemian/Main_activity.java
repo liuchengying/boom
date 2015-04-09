@@ -43,7 +43,6 @@ public class Main_activity extends Activity {
     protected String passhash;
     private TextView mmzh;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
