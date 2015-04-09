@@ -45,6 +45,7 @@ public class ExpandableTextView extends LinearLayout implements View.OnClickList
 
     private int mCollapsedHeight;
 
+
     private int mTextHeightWithMaxLines;
 
     private int mMaxCollapsedLines;

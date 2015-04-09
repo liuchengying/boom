@@ -62,25 +62,32 @@
             android:gravity="center"
             android:textColor="#ffffff"/>
         </LinearLayout>
-    <LinearLayout
+    <FrameLayout
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="200dp"
         android:layout_marginTop="10dp"
         android:gravity="center"
         android:orientation="vertical">
 
     <VideoView
-        android:layout_width="330dp"
-        android:layout_height="170dp"
+        android:layout_width="350dp"
+        android:layout_height="200dp"
         android:id="@+id/videoView_front"
         android:layout_gravity="center_horizontal"
         />
+        <Button
+            android:id="@+id/shipinbofang"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/android_172"
+            android:layout_gravity="center"
+            android:visibility="visible"/>
 
 
-    </LinearLayout>
+    </FrameLayout>
    <LinearLayout
        android:layout_width="wrap_content"
-       android:layout_height="170dp"
+       android:layout_height="150dp"
        android:background="@drawable/android_67"
        android:layout_gravity="center"
        android:layout_marginTop="10dp"
