@@ -24,6 +24,8 @@ import org.json.JSONObject;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Timer;
 
 import boom.boom.FontManager.FontManager;
@@ -61,8 +63,8 @@ public class Paishetiaozhan_activity extends Activity implements SurfaceHolder.C
         Intent intent = getIntent();
         int position = intent.getIntExtra("challenge_number", 1);
         final String cl_name = intent.getStringExtra("challenge_name");
-        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        //this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+        //        WindowManager.LayoutParams.FLAG_FULLSCREEN);
         getWindow().setFormat(PixelFormat.TRANSLUCENT);
         setContentView(R.layout.paishetiaozhan);
         SysApplication.getInstance().addActivity(this);
@@ -167,8 +169,16 @@ public class Paishetiaozhan_activity extends Activity implements SurfaceHolder.C
         //p.setPreviewSize(width, height);
         //p.setPreviewFormat(PixelFormat.JPEG);
         camera.setDisplayOrientation(90);
-        camera.setParameters(p);
 
+        List<Camera.Size> sizeList = p.getSupportedPreviewSizes();
+        Iterator<Camera.Size> itor1 = sizeList.iterator();
+        Camera.Size cur1=null;
+        while (itor1.hasNext()) {
+            cur1 = itor1.next();}
+            p.setPreviewSize(height, height);
+        int w=sv.getWidth();
+        int h=sv.getHeight();
+        camera.setParameters(p);
         try {
             camera.setPreviewDisplay(holder);
             camera.startPreview();
@@ -180,8 +190,7 @@ public class Paishetiaozhan_activity extends Activity implements SurfaceHolder.C
         }
     }
 
-    @Override
-    public void surfaceDestroyed(SurfaceHolder holder) {
+        public void surfaceDestroyed(SurfaceHolder holder) {
         camera.stopPreview();
         previewRunning = false;
         camera.release();

@@ -15,11 +15,14 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.json.JSONException;
+
 import java.util.Timer;
 import java.util.TimerTask;
 
 import boom.boom.R;
 
+import boom.boom.api.LoadingDialog;
 import boom.boom.api.Static;
 import boom.boom.api.SysApplication;
 import boom.boom.api.User;
@@ -87,9 +90,24 @@ public class Main_activity extends Activity {
 
 
 
-                String user_Str = user.getText().toString();
-                String pass_Str = pass.getText().toString();
-                User userlogin = new User(user_Str, pass_Str);
+                final String user_Str = user.getText().toString();
+                final String pass_Str = pass.getText().toString();
+                LoadingDialog dialog = new LoadingDialog(Main_activity.this);
+                dialog.show();
+
+                final User userlogin= new User(user_Str, pass_Str);
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+
+                        try {
+                            userlogin.AttemptLogin();
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }).start();
+
                 if (userlogin.ifLoggedIn()) {
                     UserData data = new UserData(userlogin.getSessionId());
                     Intent intent = new Intent();

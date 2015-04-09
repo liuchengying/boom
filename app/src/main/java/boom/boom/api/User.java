@@ -33,11 +33,7 @@ public class User {
         this.password = pass;
         ServerErr = null;
         session_id = null;
-        try {
-            AttemptLogin();
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+
     }
 
     public String getServerErr() {
