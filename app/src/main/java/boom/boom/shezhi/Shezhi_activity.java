@@ -31,6 +31,7 @@ import boom.boom.R;
 import boom.boom.api.SysApplication;
 import boom.boom.bangzhuyufankui.Bangzhuyufankui_activity;
 import boom.boom.bianjixinxi.Bianjixinxi_activity;
+import boom.boom.guanyuwomen.Guanyuwomen_activity;
 import boom.boom.mimaxiugai.Mimaxiugai_activity;
 import boom.boom.zhujiemian.Main_activity;
 
@@ -87,6 +88,15 @@ public class Shezhi_activity extends Activity{
             public void onClick(View v) {
                 Intent intent = new Intent();
                 intent.setClass(Shezhi_activity.this, Bangzhuyufankui_activity.class);
+                startActivity(intent);
+            }
+        });
+        LinearLayout sz_gywm = (LinearLayout) findViewById(R.id.sz_gywm);
+        sz_gywm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setClass(Shezhi_activity.this, Guanyuwomen_activity.class);
                 startActivity(intent);
             }
         });

@@ -76,6 +76,9 @@
             android:theme="@android:style/Theme.Black.NoTitleBar"></activity>
         <activity android:name= "boom.boom.bangzhuyufankui.Bangzhuyufankui_activity"
             android:theme="@android:style/Theme.Black.NoTitleBar"></activity>
+        <activity android:name= "boom.boom.guanyuwomen.Guanyuwomen_activity"
+            android:theme="@android:style/Theme.Black.NoTitleBar"></activity>
+
 
 
 

@@ -3,6 +3,7 @@ package boom.boom.guizejieshao;
 import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
+import android.util.Log;
 import android.widget.MediaController;
 import android.os.Bundle;
 import android.view.View;
@@ -32,6 +33,8 @@ public class Guizejieshao_activity extends Activity{
     private TextView challenge_text;
     private JSONObject challenge_data;
     private String demoToken;
+    private Button shipinbofang;
+    private int PlayerState = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,6 +50,7 @@ public class Guizejieshao_activity extends Activity{
         }
         fanhuitianzhan = (Button) findViewById(R.id.fanhuitiaozhan);
         woyaotianzhan = (Button) findViewById(R.id.woyaotiaozhan);
+        shipinbofang = (Button)findViewById(R.id.shipinbofang);
         frame_frontvideo = (VideoView) findViewById(R.id.videoView_front);
         challenge_title = (TextView) findViewById(R.id.challenge_title);
         challenge_text = (TextView) findViewById(R.id.challenge_text);
@@ -57,12 +61,50 @@ public class Guizejieshao_activity extends Activity{
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        MediaController ctrller = new MediaController(this);
-        ctrller.setAnchorView(frame_frontvideo);
-        frame_frontvideo.setMediaController(ctrller);
-        frame_frontvideo.setVideoURI(Uri.parse(Utils.serveraddr+Utils.getVideoAPI(demoToken)));
+        //MediaController ctrller = new MediaController(this);
+        //ctrller.setAnchorView(frame_frontvideo);
+        //frame_frontvideo.setMediaController(ctrller);
+//        String debug = Utils.serveraddr+Utils.getVideoAPI(demoToken);
+//        frame_frontvideo.setVideoURI(Uri.parse("http://172.24.10.118/download/download1.mp4"));
+        frame_frontvideo.setVideoURI(Uri.parse(Utils.serveraddr+Utils.getVideoAPI(demoToken)+"&"+Utils.parsSessionViaGET()));
         //frame_frontvideo.requestFocus();
-        frame_frontvideo.start();
+//        shipinbofang.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                switch (PlayerState){
+//                    case 0:
+//                    frame_frontvideo.start();
+//                    shipinbofang.setVisibility(View.INVISIBLE);
+//                    PlayerState = 1;
+//                        break;
+//                    case 1:
+//                    shipinbofang.setVisibility(View.VISIBLE);
+//                    frame_frontvideo.pause();
+//                    PlayerState = 0;
+//                        break;
+//                }
+//            }
+//        });
+
+        frame_frontvideo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                switch (PlayerState) {
+                    case 0:
+                        Log.e("Video", "======== VideoView start playing =========");
+                        frame_frontvideo.start();
+                        shipinbofang.setVisibility(View.INVISIBLE);
+                        PlayerState = 1;
+                        break;
+                    case 1:
+                        Log.e("Video", "========  VideoView stop playing =========");
+                        shipinbofang.setVisibility(View.VISIBLE);
+                        frame_frontvideo.pause();
+                        PlayerState = 0;
+                        break;
+                }
+            }
+        });
         woyaotianzhan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v)  {
@@ -85,5 +127,7 @@ public class Guizejieshao_activity extends Activity{
                 startActivity(intent);
             }
         });
-    }
+
+        }
+
 }

@@ -15,12 +15,14 @@
         android:orientation="horizontal"
         android:gravity="center">
         <LinearLayout
+
             android:layout_weight="1"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/shezhifanhui"
+            android:layout_height="fill_parent"
+            android:id="@+id/guanyuwomen_fh"
             >
             <Button
+                android:layout_gravity="center_vertical"
 
                 android:layout_width="25dp"
                 android:layout_height="30dp"
@@ -35,9 +37,10 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="系统设置"
+                android:text="关于我们"
                 android:textSize="23dp"
-                android:gravity="center"/>
+                android:gravity="center"
+                android:textColor="#ffffff"/>
 
         </LinearLayout>
         <LinearLayout
@@ -67,30 +70,102 @@
         android:gravity="center_horizontal">
 
     <LinearLayout
-        android:id="@+id/sz_xggrzl"
+
         android:layout_width="fill_parent"
         android:layout_height="45dp"
         android:orientation="horizontal"
         android:background="@drawable/android_57"
         android:layout_marginTop="10dp">
         <TextView
-            android:id="@+id/sz_xggrzl1"
 
+            android:text="去评分"
             android:clickable="true"
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
-            android:text="修改个人资料"
             android:gravity="center_vertical"
             android:layout_marginLeft="30dp"
-            android:textSize="17sp"/>
+            android:textSize="17sp"
+             />
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/android_52"
-            android:layout_marginLeft="200dp"/>
+            android:layout_marginLeft="240dp"
+            />
 
         </LinearLayout>
+        <LinearLayout
 
+            android:layout_width="fill_parent"
+            android:layout_height="45dp"
+            android:orientation="horizontal"
+            android:background="@drawable/android_57"
+            >
+            <TextView
+
+
+                android:clickable="true"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:text="欢迎页"
+                android:gravity="center_vertical"
+                android:layout_marginLeft="30dp"
+                android:textSize="17sp"/>
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/android_52"
+                android:layout_marginLeft="240dp"/>
+
+        </LinearLayout>
+        <LinearLayout
+
+            android:layout_width="fill_parent"
+            android:layout_height="45dp"
+            android:orientation="horizontal"
+            android:background="@drawable/android_57"
+       >
+            <TextView
+
+
+                android:clickable="true"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:text="功能介绍"
+                android:gravity="center_vertical"
+                android:layout_marginLeft="30dp"
+                android:textSize="17sp"/>
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/android_52"
+                android:layout_marginLeft="222dp"/>
+
+        </LinearLayout>
+        <LinearLayout
+
+            android:layout_width="fill_parent"
+            android:layout_height="45dp"
+            android:orientation="horizontal"
+            android:background="@drawable/android_57"
+            >
+            <TextView
+
+
+                android:clickable="true"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:text="检查新版本"
+                android:gravity="center_vertical"
+                android:layout_marginLeft="30dp"
+                android:textSize="17sp"/>
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/android_52"
+                android:layout_marginLeft="205dp"/>
+
+        </LinearLayout>
 
     </LinearLayout>
 

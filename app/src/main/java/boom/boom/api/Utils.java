@@ -77,4 +77,8 @@ public class Utils {
     public static String getVideoAPI(String Token){
         return Utils.video + "?token=" + Token;
     }
+
+    public static String parsSessionViaGET(){
+        return  "s_id=" + Static.session_id;
+    }
 }
