@@ -103,7 +103,6 @@ public class Main_activity extends Activity {
                     }
                 }).start();
 
-
                 if (userlogin.ifLoggedIn()) {
                     UserData data = new UserData(userlogin.getSessionId());
                     Intent intent = new Intent();
