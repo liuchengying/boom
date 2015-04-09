@@ -85,6 +85,7 @@ public class Guizejieshao_activity extends Activity{
 //                }
 //            }
 //        });
+
         frame_frontvideo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
