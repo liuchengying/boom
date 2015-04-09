@@ -3,7 +3,9 @@ package boom.boom.guizejieshao;
 import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
+import android.provider.MediaStore;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.widget.MediaController;
 import android.os.Bundle;
 import android.view.View;
@@ -37,6 +39,7 @@ public class Guizejieshao_activity extends Activity{
     private int PlayerState = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Log.e("Video", "Video frame entry here.");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.guizejieshao);
         SysApplication.getInstance().addActivity(this);
@@ -68,27 +71,27 @@ public class Guizejieshao_activity extends Activity{
 //        frame_frontvideo.setVideoURI(Uri.parse("http://172.24.10.118/download/download1.mp4"));
         frame_frontvideo.setVideoURI(Uri.parse(Utils.serveraddr+Utils.getVideoAPI(demoToken)+"&"+Utils.parsSessionViaGET()));
         //frame_frontvideo.requestFocus();
-//        shipinbofang.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                switch (PlayerState){
-//                    case 0:
-//                    frame_frontvideo.start();
-//                    shipinbofang.setVisibility(View.INVISIBLE);
-//                    PlayerState = 1;
-//                        break;
-//                    case 1:
-//                    shipinbofang.setVisibility(View.VISIBLE);
-//                    frame_frontvideo.pause();
-//                    PlayerState = 0;
-//                        break;
-//                }
-//            }
-//        });
-
-        frame_frontvideo.setOnClickListener(new View.OnClickListener() {
+        shipinbofang.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                switch (PlayerState){
+                    case 0:
+                    frame_frontvideo.start();
+                    shipinbofang.setVisibility(View.INVISIBLE);
+                    PlayerState = 1;
+                        break;
+                    case 1:
+                    shipinbofang.setVisibility(View.VISIBLE);
+                    frame_frontvideo.pause();
+                    PlayerState = 0;
+                        break;
+                }
+            }
+        });
+        frame_frontvideo.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                Log.e("Video", "====== Enter video view switcher ========");
                 switch (PlayerState) {
                     case 0:
                         Log.e("Video", "======== VideoView start playing =========");
@@ -103,8 +106,15 @@ public class Guizejieshao_activity extends Activity{
                         PlayerState = 0;
                         break;
                 }
+                return false;
             }
         });
+//        frame_frontvideo.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//
+//            }
+//        });
         woyaotianzhan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v)  {
