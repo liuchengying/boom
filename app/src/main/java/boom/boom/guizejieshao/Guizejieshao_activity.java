@@ -73,6 +73,7 @@ public class Guizejieshao_activity extends Activity{
         //frame_frontvideo.requestFocus();
         shipinbofang.setOnClickListener(new View.OnClickListener() {
             @Override
+
             public void onClick(View v) {
                 switch (PlayerState){
                     case 0:

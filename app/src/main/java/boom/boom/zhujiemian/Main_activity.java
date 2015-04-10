@@ -91,17 +91,22 @@ public class Main_activity extends Activity {
                 dialog.show();
 
                 final User userlogin= new User(user_Str, pass_Str);
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-
-                        try {
-                            userlogin.AttemptLogin();
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                }).start();
+                try {
+                    userlogin.AttemptLogin();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+//                new Thread(new Runnable() {
+//                    @Override
+//                    public void run() {
+//
+//                        try {
+//                            userlogin.AttemptLogin();
+//                        } catch (JSONException e) {
+//                            e.printStackTrace();
+//                        }
+//                    }
+//                }).start();
 
                 if (userlogin.ifLoggedIn()) {
                     UserData data = new UserData(userlogin.getSessionId());

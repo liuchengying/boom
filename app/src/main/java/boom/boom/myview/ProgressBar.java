@@ -250,5 +250,6 @@ public class ProgressBar extends View {
     }
 
 
-
+    public void incrementProgressBy(int i) {
+    }
 }

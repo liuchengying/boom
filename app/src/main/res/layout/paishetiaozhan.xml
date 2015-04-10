@@ -71,7 +71,7 @@
             android:max="20"
             android:progress="0"
             android:layout_gravity="center_vertical"
-           style="?android:attr/progressBarStyleHorizontal"
+           style="@style/mProgress_horizontal"
 
             />
         </LinearLayout>
