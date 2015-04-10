@@ -40,6 +40,7 @@ public class Zinitianzhan_activity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.zinitiaozhan);
         LinearLayout zntz_fh = (LinearLayout) findViewById(R.id.zntz_fh);
         zntz_fh.setOnClickListener(new View.OnClickListener() {
