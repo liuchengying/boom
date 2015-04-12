@@ -27,7 +27,7 @@ import boom.boom.FontManager.FontManager;
 import boom.boom.R;
 
 import boom.boom.api.SysApplication;
-
+import boom.boom.myview.SildingFinishLayout;
 
 
 /**
@@ -63,11 +63,25 @@ public class Gerenzhuye_activity extends FragmentActivity
         SysApplication.getInstance().addActivity(this);
         FontManager.changeFonts(FontManager.getContentView(this), this);//字体
 
+        SildingFinishLayout mSildingFinishLayout = (SildingFinishLayout) findViewById(R.id.sildingFinishLayout1);
+        mSildingFinishLayout
+                .setOnSildingFinishListener(new SildingFinishLayout.OnSildingFinishListener() {
+
+                    @Override
+                    public void onSildingFinish() {
+                        Gerenzhuye_activity.this.finish();
+                    }
+                });
+
+        mSildingFinishLayout.setTouchView(mSildingFinishLayout);
+
+
         gerenzhuyefanhui = (LinearLayout)findViewById(R.id.gerenzhuyefanhui);
         gerenzhuyefanhui.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
+                overridePendingTransition(0, R.anim.base_slide_right_out);
             }
         });
         jiantingqiehuan();
@@ -207,5 +221,9 @@ public class Gerenzhuye_activity extends FragmentActivity
         mFriendTextView.setTextColor(Color.BLACK);
         mContactTextView.setTextColor(Color.BLACK);
     }
-
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        overridePendingTransition(0, R.anim.base_slide_right_out);
+    }
 }

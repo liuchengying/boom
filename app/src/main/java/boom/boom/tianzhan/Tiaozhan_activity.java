@@ -78,6 +78,7 @@ public class Tiaozhan_activity extends Activity {
                 Intent intent = new Intent();
                 intent.setClass(Tiaozhan_activity.this, Faqitianzhan_activity.class);
                 startActivity(intent);
+                overridePendingTransition(R.anim.base_slide_right_in, R.anim.base_slide_remain);
             }
         });
         button_startChallenge = (Button) findViewById(R.id.button_startchallenge);
@@ -87,6 +88,7 @@ public class Tiaozhan_activity extends Activity {
                 Intent intent = new Intent();
                 intent.setClass(Tiaozhan_activity.this, Guizejieshao_activity.class);
                 startActivity(intent);
+
             }
         };
         danrentiaozhan.setOnClickListener(toBeginSingleChallenge);
@@ -151,7 +153,8 @@ public class Tiaozhan_activity extends Activity {
                         dianjicehua(v);
                     }
                 };
-                timer.schedule(timerTask, 1000);
+                timer.schedule(timerTask, 1250);
+                overridePendingTransition(R.anim.base_slide_right_in, R.anim.base_slide_remain);
             }
         });
     }
@@ -192,4 +195,10 @@ public class Tiaozhan_activity extends Activity {
             finish();
             SysApplication.getInstance().exit();
         }
-    }  }
+    }
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        overridePendingTransition(0, R.anim.base_slide_right_out);
+    }
+}

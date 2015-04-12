@@ -63,7 +63,7 @@
         <activity android:name="boom.boom.mimazhaohui_emall.Mimazhaohui_emall_activity"
             android:theme="@android:style/Theme.Black.NoTitleBar"></activity>
         <activity android:name="boom.boom.gerenzhuye.Gerenzhuye_activity"
-            android:theme="@android:style/Theme.Black.NoTitleBar"></activity>
+            android:theme="@android:style/Theme.Translucent"></activity>
         <activity android:name="boom.boom.paihangbang.Paihangbang_activity"
             android:theme="@android:style/Theme.Black.NoTitleBar"></activity>
         <activity android:name="boom.boom.bianjixinxi.Bianjixinxi_activity"
@@ -71,7 +71,7 @@
         <activity android:name= "boom.boom.mimaxiugai.Mimaxiugai_activity"
             android:theme="@android:style/Theme.Black.NoTitleBar"></activity>
         <activity android:name= "boom.boom.faqitianzhan.Faqitianzhan_activity"
-            android:theme="@android:style/Theme.Black.NoTitleBar"></activity>
+            android:theme="@android:style/Theme.Translucent"></activity>
         <activity android:name= "boom.boom.zinitiaozhan.Zinitianzhan_activity"
             android:theme="@android:style/Theme.Black.NoTitleBar"></activity>
         <activity android:name= "boom.boom.bangzhuyufankui.Bangzhuyufankui_activity"
