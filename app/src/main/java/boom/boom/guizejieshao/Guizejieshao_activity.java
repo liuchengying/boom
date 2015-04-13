@@ -6,6 +6,8 @@ import android.net.Uri;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.MotionEvent;
+import android.view.Window;
+import android.widget.LinearLayout;
 import android.widget.MediaController;
 import android.os.Bundle;
 import android.view.View;
@@ -21,6 +23,7 @@ import boom.boom.R;
 import boom.boom.api.Challenge;
 import boom.boom.api.SysApplication;
 import boom.boom.api.Utils;
+import boom.boom.myview.SildingFinishLayout;
 import boom.boom.paishetiaozhan.Paishetiaozhan_activity;
 import boom.boom.tianzhan.Tiaozhan_activity;
 
@@ -28,7 +31,7 @@ import boom.boom.tianzhan.Tiaozhan_activity;
  * Created by 刘成英 on 2015/1/19.
  */
 public class Guizejieshao_activity extends Activity{
-    private Button fanhuitianzhan;
+    private LinearLayout fanhuitianzhan;
     private  Button woyaotianzhan;
     private VideoView frame_frontvideo;
     private TextView challenge_title;
@@ -41,7 +44,9 @@ public class Guizejieshao_activity extends Activity{
     protected void onCreate(Bundle savedInstanceState) {
         Log.e("Video", "Video frame entry here.");
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.guizejieshao);
+
         SysApplication.getInstance().addActivity(this);
         FontManager.changeFonts(FontManager.getContentView(this), this);//字体
         Intent intent = getIntent();
@@ -51,7 +56,7 @@ public class Guizejieshao_activity extends Activity{
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        fanhuitianzhan = (Button) findViewById(R.id.fanhuitiaozhan);
+        fanhuitianzhan = (LinearLayout) findViewById(R.id.fanhuitiaozhan);
         woyaotianzhan = (Button) findViewById(R.id.woyaotiaozhan);
         shipinbofang = (Button)findViewById(R.id.shipinbofang);
         frame_frontvideo = (VideoView) findViewById(R.id.videoView_front);
@@ -133,9 +138,7 @@ public class Guizejieshao_activity extends Activity{
         fanhuitianzhan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent();
-                intent.setClass(Guizejieshao_activity.this, Tiaozhan_activity.class);
-                startActivity(intent);
+                finish();
             }
         });
 

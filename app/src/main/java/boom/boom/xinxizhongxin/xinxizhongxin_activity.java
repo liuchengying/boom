@@ -9,6 +9,7 @@ import android.util.SparseBooleanArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.Button;
@@ -26,6 +27,8 @@ import boom.boom.R;
 import boom.boom.api.Msg;
 import boom.boom.api.SysApplication;
 import boom.boom.ExpandableTextView.ExpandableTextView;
+import boom.boom.myview.SildingFinishLayout;
+
 /**
  * Created by Lyp on 2015/1/22
  */
@@ -35,7 +38,19 @@ public class xinxizhongxin_activity extends Activity {
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.xinxizhongxin);
+        SildingFinishLayout mSildingFinishLayout = (SildingFinishLayout) findViewById(R.id.sildingFinishLayout);
+        mSildingFinishLayout
+                .setOnSildingFinishListener(new SildingFinishLayout.OnSildingFinishListener() {
+
+                    @Override
+                    public void onSildingFinish() {
+                        xinxizhongxin_activity.this.finish();
+                    }
+                });
+
+        mSildingFinishLayout.setTouchView(mSildingFinishLayout);
         SysApplication.getInstance().addActivity(this);
         FontManager.changeFonts(FontManager.getContentView(this), this);//字体
         LinearLayout fh = (LinearLayout) findViewById(R.id.xxzx_fanhui);
@@ -84,8 +99,14 @@ public class xinxizhongxin_activity extends Activity {
             @Override
             public void onClick(View v) {
                 finish();
+                overridePendingTransition(0, R.anim.base_slide_right_out);
             }
         });
+    }
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        overridePendingTransition(0, R.anim.base_slide_right_out);
     }
 }
     class ExpandableAdapter extends BaseAdapter {
@@ -141,4 +162,5 @@ public class xinxizhongxin_activity extends Activity {
     private static class ViewHolder{
         ExpandableTextView expandableTextView;
     }
+
 }

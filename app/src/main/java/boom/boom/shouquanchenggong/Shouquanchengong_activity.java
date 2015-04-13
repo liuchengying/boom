@@ -2,10 +2,12 @@ package boom.boom.shouquanchenggong;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.view.Window;
 
 import boom.boom.FontManager.FontManager;
 import boom.boom.R;
 import boom.boom.api.SysApplication;
+import boom.boom.myview.SildingFinishLayout;
 
 /**
  * Created by 刘成英 on 2015/3/12.

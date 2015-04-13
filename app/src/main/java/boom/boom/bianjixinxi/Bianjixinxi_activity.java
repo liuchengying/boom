@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
 import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
@@ -14,6 +15,7 @@ import java.util.List;
 import boom.boom.FontManager.FontManager;
 import boom.boom.R;
 import boom.boom.api.SysApplication;
+import boom.boom.myview.SildingFinishLayout;
 import boom.boom.shezhi.Shezhi_activity;
 import boom.boom.zhujiemian.Main_activity;
 
@@ -32,7 +34,19 @@ public class Bianjixinxi_activity  extends Activity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.bianjiziliao);
+        SildingFinishLayout mSildingFinishLayout = (SildingFinishLayout) findViewById(R.id.sildingFinishLayout);
+        mSildingFinishLayout
+                .setOnSildingFinishListener(new SildingFinishLayout.OnSildingFinishListener() {
+
+                    @Override
+                    public void onSildingFinish() {
+                        Bianjixinxi_activity.this.finish();
+                    }
+                });
+
+        mSildingFinishLayout.setTouchView(mSildingFinishLayout);
         SysApplication.getInstance().addActivity(this);
         FontManager.changeFonts(FontManager.getContentView(this), this);//字体
         LinearLayout fanhui = (LinearLayout)findViewById(R.id.bianjixinxi_fh);
@@ -69,7 +83,12 @@ public class Bianjixinxi_activity  extends Activity{
             @Override
             public void onClick(View v) {
                 finish();
+                overridePendingTransition(0, R.anim.base_slide_right_out);
             }
         });
+    }
+    public void onBackPressed() {
+        super.onBackPressed();
+        overridePendingTransition(0, R.anim.base_slide_right_out);
     }
 }

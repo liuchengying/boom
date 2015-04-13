@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -13,6 +14,7 @@ import android.widget.TextView;
 
 import boom.boom.FontManager.FontManager;
 import boom.boom.R;
+import boom.boom.myview.SildingFinishLayout;
 
 
 /**
@@ -41,12 +43,25 @@ public class Zinitianzhan_activity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.zinitiaozhan);
+        SildingFinishLayout mSildingFinishLayout = (SildingFinishLayout) findViewById(R.id.sildingFinishLayout);
+        mSildingFinishLayout
+                .setOnSildingFinishListener(new SildingFinishLayout.OnSildingFinishListener() {
+
+                    @Override
+                    public void onSildingFinish() {
+                        Zinitianzhan_activity.this.finish();
+                    }
+                });
+
+        mSildingFinishLayout.setTouchView(mSildingFinishLayout);
         LinearLayout zntz_fh = (LinearLayout) findViewById(R.id.zntz_fh);
         zntz_fh.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
+                overridePendingTransition(0, R.anim.base_slide_right_out);
             }
         });
         FontManager.changeFonts(FontManager.getContentView(this), this);//字体
@@ -84,5 +99,11 @@ public class Zinitianzhan_activity extends Activity {
 
         });
     }
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        overridePendingTransition(0, R.anim.base_slide_right_out);
+    }
+
 }
 

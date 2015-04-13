@@ -23,6 +23,7 @@ import java.util.List;
 import boom.boom.R;
 import boom.boom.api.SysApplication;
 import boom.boom.gerenzhuye.Gerenzhuye_activity;
+import boom.boom.myview.SildingFinishLayout;
 import boom.boom.tianzhan.Tiaozhan_activity;
 
 /**
@@ -53,12 +54,24 @@ public class Paihangbang_activity extends FragmentActivity
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.paihangbang);
+        SildingFinishLayout mSildingFinishLayout = (SildingFinishLayout) findViewById(R.id.sildingFinishLayout);
+        mSildingFinishLayout
+                .setOnSildingFinishListener(new SildingFinishLayout.OnSildingFinishListener() {
+
+                    @Override
+                    public void onSildingFinish() {
+                        Paihangbang_activity.this.finish();
+                    }
+                });
+
+        mSildingFinishLayout.setTouchView(mSildingFinishLayout);
         SysApplication.getInstance().addActivity(this);
         LinearLayout phbfh = (LinearLayout)findViewById(R.id.paihangbangfanhuis);
         phbfh.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
+                overridePendingTransition(0, R.anim.base_slide_right_out);
             }
         });
         jiantingqiehuan1();
@@ -181,5 +194,9 @@ public class Paihangbang_activity extends FragmentActivity
         mFriendTextView.setTextColor(Color.BLACK);
         mContactTextView.setTextColor(Color.BLACK);
     }
-
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        overridePendingTransition(0, R.anim.base_slide_right_out);
+    }
 }

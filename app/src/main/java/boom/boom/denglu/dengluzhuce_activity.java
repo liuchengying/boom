@@ -13,6 +13,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -23,13 +24,14 @@ import boom.boom.FontManager.FontManager;
 import boom.boom.R;
 import boom.boom.api.LoginUser;
 import boom.boom.api.SysApplication;
+import boom.boom.myview.SildingFinishLayout;
 import boom.boom.zhujiemian.Main_activity;
 
 /**
  * Created by 刘成英 on 2015/1/13.
  */
 public class dengluzhuce_activity extends Activity {
-    private Button fanhui;
+    private LinearLayout fanhui;
     private Button zhucetijiao;
     private EditText text_username;
     private EditText text_password;
@@ -39,11 +41,23 @@ public class dengluzhuce_activity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.zhuce);
+        SildingFinishLayout mSildingFinishLayout = (SildingFinishLayout) findViewById(R.id.sildingFinishLayout);
+        mSildingFinishLayout
+                .setOnSildingFinishListener(new SildingFinishLayout.OnSildingFinishListener() {
+
+                    @Override
+                    public void onSildingFinish() {
+                        dengluzhuce_activity.this.finish();
+                    }
+                });
+
+        mSildingFinishLayout.setTouchView(mSildingFinishLayout);
         SysApplication.getInstance().addActivity(this);
         FontManager.changeFonts(FontManager.getContentView(this), this);//字体
         zhucetijiao = (Button) findViewById(R.id.zhucetijiao);
-        fanhui = (Button) findViewById(R.id.zhucufanhui);
+        fanhui = (LinearLayout) findViewById(R.id.zhucufanhui);
         text_username = (EditText) findViewById(R.id.zhuceyonghuming);
         text_password = (EditText) findViewById(R.id.zhucemima);
         text_password2 = (EditText) findViewById(R.id.zhucemima);
@@ -68,10 +82,8 @@ public class dengluzhuce_activity extends Activity {
         fanhui.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent();
-                intent.setClass(dengluzhuce_activity.this, Main_activity.class);
-                startActivity(intent);
-
+                finish();
+                overridePendingTransition(0, R.anim.base_slide_right_out);
             }
         });
     }
@@ -112,5 +124,10 @@ public class dengluzhuce_activity extends Activity {
                 }).setNegativeButton("取消", null).create().show();
 
 
+    }
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        overridePendingTransition(0, R.anim.base_slide_right_out);
     }
 }

@@ -18,6 +18,7 @@ import android.os.Vibrator;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.LinearLayout;
@@ -33,6 +34,7 @@ import boom.boom.bangzhuyufankui.Bangzhuyufankui_activity;
 import boom.boom.bianjixinxi.Bianjixinxi_activity;
 import boom.boom.guanyuwomen.Guanyuwomen_activity;
 import boom.boom.mimaxiugai.Mimaxiugai_activity;
+import boom.boom.myview.SildingFinishLayout;
 import boom.boom.zhujiemian.Main_activity;
 
 /**
@@ -47,7 +49,19 @@ public class Shezhi_activity extends Activity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.shezhi);
+        SildingFinishLayout mSildingFinishLayout = (SildingFinishLayout) findViewById(R.id.sildingFinishLayout);
+        mSildingFinishLayout
+                .setOnSildingFinishListener(new SildingFinishLayout.OnSildingFinishListener() {
+
+                    @Override
+                    public void onSildingFinish() {
+                        Shezhi_activity.this.finish();
+                    }
+                });
+
+        mSildingFinishLayout.setTouchView(mSildingFinishLayout);
 
 
         SysApplication.getInstance().addActivity(this);
@@ -104,6 +118,7 @@ public class Shezhi_activity extends Activity{
             @Override
             public void onClick(View v) {
                 finish();
+                overridePendingTransition(0, R.anim.base_slide_right_out);
             }
         });
         tuichuzhanghu = (Button)findViewById(R.id.tuichuzhanghu);
@@ -156,5 +171,10 @@ public class Shezhi_activity extends Activity{
             }
         });
 
+    }
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        overridePendingTransition(0, R.anim.base_slide_right_out);
     }
 }

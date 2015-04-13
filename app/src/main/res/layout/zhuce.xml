@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
+<boom.boom.myview.SildingFinishLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:id="@+id/sildingFinishLayout">
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent" android:layout_height="match_parent"
     android:background="#ffdadada"
@@ -15,9 +20,10 @@
             android:layout_width="wrap_content"
             android:layout_height="50dp"
             android:gravity="center_vertical"
+            android:id="@+id/zhucufanhui"
             >
             <Button
-                android:id="@+id/zhucufanhui"
+
                 android:layout_width="18dp"
                 android:layout_height="23dp"
                 android:background="@drawable/android_20"
@@ -100,3 +106,4 @@
 
 
 </LinearLayout>
+</boom.boom.myview.SildingFinishLayout>

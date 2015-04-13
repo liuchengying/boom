@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
+<boom.boom.myview.SildingFinishLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:id="@+id/sfl">
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
@@ -11,8 +16,6 @@
         android:background="#ffe14723"
         android:orientation="horizontal"
         android:gravity="center"
-
-
         >
         <LinearLayout
             android:id="@+id/bangzhuyufankui_fh"
@@ -81,3 +84,4 @@
 
 
 </LinearLayout>
+</boom.boom.myview.SildingFinishLayout>

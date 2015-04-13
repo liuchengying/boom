@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
@@ -20,6 +21,7 @@ import boom.boom.api.Challenge;
 import boom.boom.api.Msg;
 import boom.boom.api.SysApplication;
 import boom.boom.guizejieshao.Guizejieshao_activity;
+import boom.boom.myview.SildingFinishLayout;
 
 /**
  * Created by Lyp on 2015/1/22
@@ -29,7 +31,20 @@ public class woyaotiaozhan_activity extends Activity {
       private ListView list;
       protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.woyaotiaozhan);
+          requestWindowFeature(Window.FEATURE_NO_TITLE);
+          setContentView(R.layout.woyaotiaozhan);
+          SildingFinishLayout mSildingFinishLayout = (SildingFinishLayout) findViewById(R.id.sildingFinishLayout);
+          mSildingFinishLayout
+                  .setOnSildingFinishListener(new SildingFinishLayout.OnSildingFinishListener() {
+
+                      @Override
+                      public void onSildingFinish() {
+                          woyaotiaozhan_activity.this.finish();
+                      }
+                  });
+
+          mSildingFinishLayout.setTouchView(mSildingFinishLayout);
+
           FontManager.changeFonts(FontManager.getContentView(this), this);//字体
         Button fh=(Button)findViewById(R.id.wytz_fanhui);
           SysApplication.getInstance().addActivity(this);
@@ -70,7 +85,14 @@ public class woyaotiaozhan_activity extends Activity {
             @Override
             public void onClick(View v) {
                 finish();
+                overridePendingTransition(0, R.anim.base_slide_right_out);
             }
         });
     }
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        overridePendingTransition(0, R.anim.base_slide_right_out);
+    }
+
 }
