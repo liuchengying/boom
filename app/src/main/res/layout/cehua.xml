@@ -59,7 +59,7 @@
 
             </LinearLayout>
         <Button
-            android:id="@+id/button_startchallenge"
+            android:id="@+id/qiandao"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/android_35"

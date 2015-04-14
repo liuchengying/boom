@@ -12,12 +12,14 @@ import boom.boom.FontManager.FontManager;
 import boom.boom.R;
 import boom.boom.guizejieshao.Guizejieshao_activity;
 import boom.boom.myview.SildingFinishLayout;
+
 import boom.boom.zinitiaozhan.Zinitianzhan_activity;
 
 /**
  * Created by 刘成英 on 2015/3/25.
  */
 public class Faqitianzhan_activity extends Activity {
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,6 +58,8 @@ public class Faqitianzhan_activity extends Activity {
                 overridePendingTransition(0, R.anim.base_slide_right_out);
             }
         });
+        Button wangqitianzhan= (Button) findViewById(R.id.wangqitiaozhan);
+
 
     }
     @Override

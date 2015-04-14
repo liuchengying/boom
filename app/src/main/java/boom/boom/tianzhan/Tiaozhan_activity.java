@@ -26,6 +26,7 @@ import boom.boom.gerenzhuye.Gerenzhuye_activity;
 import boom.boom.guizejieshao.Guizejieshao_activity;
 import boom.boom.myview.CircleImageView;
 import boom.boom.paihangbang.Paihangbang_activity;
+import boom.boom.qiandao.Qiandao_activity;
 import boom.boom.shezhi.Shezhi_activity;
 import boom.boom.slidingMenu.SlidingMenu;
 import boom.boom.xinxizhongxin.xinxizhongxin_activity;
@@ -41,7 +42,7 @@ public class Tiaozhan_activity extends Activity {
     private Button shezhi;
     private TextView nickname;
     private TextView coins;
-    private Button button_startChallenge;
+    private Button qiandao;
     private CircleImageView cehuatouxiang;
     private Button faqitianzhan;
     private Button tz_grzy;
@@ -61,6 +62,16 @@ public class Tiaozhan_activity extends Activity {
         mLeftMenu = (SlidingMenu) findViewById(R.id.cehuacaidan);
         danrentiaozhan = (Button) findViewById(R.id.danrentiaozhan);
         shezhi = (Button) findViewById(R.id.shezhi);
+        paihangbang = (Button) findViewById(R.id.paihangbang);
+        paihangbang.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setClass(Tiaozhan_activity.this, Paihangbang_activity.class);
+                startActivity(intent);
+                overridePendingTransition(R.anim.base_slide_right_in, R.anim.base_slide_remain);
+            }
+        });
         tz_grzy = (Button) findViewById(R.id.tz_grzy);
         tz_grzy.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -68,6 +79,7 @@ public class Tiaozhan_activity extends Activity {
                 Intent intent = new Intent();
                 intent.setClass(Tiaozhan_activity.this, Gerenzhuye_activity.class);
                 startActivity(intent);
+                overridePendingTransition(R.anim.base_slide_right_in, R.anim.base_slide_remain);
             }
         });
         faqitianzhan = (Button) findViewById(R.id.fabutiaozhan);
@@ -81,24 +93,44 @@ public class Tiaozhan_activity extends Activity {
                 overridePendingTransition(R.anim.base_slide_right_in, R.anim.base_slide_remain);
             }
         });
-        button_startChallenge = (Button) findViewById(R.id.button_startchallenge);
+        qiandao = (Button) findViewById(R.id.qiandao);
+        qiandao.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(final View v) {
+                Intent intent = new Intent();
+                intent.setClass(Tiaozhan_activity.this, Qiandao_activity.class);
+                startActivity(intent);
+                Timer timer=new Timer();
+                TimerTask timerTask=new TimerTask() {
+                    @Override
+                    public void run() {
+                        dianjicehua(v);
+                    }
+                };
+                timer.schedule(timerTask, 1250);
+                overridePendingTransition(R.anim.base_slide_right_in, R.anim.base_slide_remain);
+            }
+        });
         View.OnClickListener toBeginSingleChallenge = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent();
                 intent.setClass(Tiaozhan_activity.this, Guizejieshao_activity.class);
                 startActivity(intent);
+                overridePendingTransition(R.anim.base_slide_right_in, R.anim.base_slide_remain);
 
             }
         };
         danrentiaozhan.setOnClickListener(toBeginSingleChallenge);
-        button_startChallenge.setOnClickListener(toBeginSingleChallenge);
+
+
         shezhi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View v) {
                 Intent intent = new Intent();
                 intent.setClass(Tiaozhan_activity.this, Shezhi_activity.class);
                 startActivity(intent);
+                overridePendingTransition(R.anim.base_slide_right_in, R.anim.base_slide_remain);
             }
         });
 

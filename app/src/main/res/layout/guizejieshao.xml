@@ -1,9 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<boom.boom.myview.SildingFinishLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:id="@+id/sildingFinishLayout">
+
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
@@ -18,14 +14,13 @@
         android:orientation="horizontal"
         android:gravity="center">
         <LinearLayout
-            android:id="@+id/fanhuitiaozhan"
             android:layout_weight="1"
             android:layout_width="wrap_content"
             android:layout_height="50dp"
             android:gravity="center_vertical"
             >
             <Button
-
+                android:id="@+id/fanhuitiaozhan"
                 android:layout_width="18dp"
                 android:layout_height="23dp"
                 android:background="@drawable/android_20"
@@ -80,12 +75,11 @@
         </LinearLayout>
     <FrameLayout
         android:layout_gravity="center_horizontal"
-        android:layout_width="325dp"
+        android:layout_width="330dp"
         android:layout_height="190dp"
         android:layout_marginTop="10dp"
         android:gravity="center"
         android:orientation="vertical"
-
         >
 
     <VideoView
@@ -94,7 +88,8 @@
         android:layout_width="320dp"
         android:layout_height="175dp"
         android:id="@+id/videoView_front"
-        android:layout_gravity="center" />
+        android:layout_gravity="center"
+        />
         <ImageView
             android:layout_marginTop="6dp"
             android:layout_width="wrap_content"
@@ -159,4 +154,3 @@
         </LinearLayout>
 
 </LinearLayout>
-</boom.boom.myview.SildingFinishLayout>

@@ -1,11 +1,4 @@
-/**
- * @file XListView.java
- * @package me.maxwin.view
- * @create Mar 18, 2012 6:28:41 PM
- * @author Maxwin
- * @description An ListView support (a) Pull down to refresh, (b) Pull up to load more.
- * 		Implement IXListViewListener, and see stopRefresh() / stopLoadMore().
- */
+
 package boom.boom.myview;
 
 

@@ -84,6 +84,7 @@
                     android:layout_marginTop="40dp"
                     android:gravity="center">
                     <Button
+                        android:id="@+id/wangqitiaozhan"
 
                         android:layout_width="wrap_content"
                         android:layout_height="130dp"

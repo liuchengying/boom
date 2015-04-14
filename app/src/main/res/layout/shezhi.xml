@@ -204,7 +204,7 @@
         android:layout_height="45dp"
         android:orientation="horizontal"
 
-        android:layout_marginTop="10dp">
+        >
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
@@ -216,10 +216,13 @@
 
     </LinearLayout>
     <LinearLayout
+        android:id="@+id/sz_jinzijikejian"
+
         android:layout_width="fill_parent"
         android:layout_height="45dp"
         android:orientation="horizontal"
-        android:background="@drawable/android_57">
+        android:background="@drawable/android_57"
+        android:gravity="center_vertical">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
@@ -228,15 +231,24 @@
             android:layout_marginLeft="30dp"
             android:textSize="17sp"
             />
+        <ImageView
+            android:id="@+id/sz_img1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/android_175"
+            android:layout_marginLeft="180dp"
+            android:visibility="invisible"/>
 
 
 
     </LinearLayout>
     <LinearLayout
+        android:id="@+id/sz_jinhaoyoukejian"
         android:layout_width="fill_parent"
         android:layout_height="45dp"
         android:orientation="horizontal"
-        android:background="@drawable/android_57">
+        android:background="@drawable/android_57"
+        android:gravity="center_vertical">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
@@ -245,13 +257,22 @@
             android:layout_marginLeft="30dp"
             android:textSize="17sp"
            />
+        <ImageView
+            android:id="@+id/sz_img2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/android_175"
+            android:layout_marginLeft="180dp"
+            android:visibility="invisible"/>
 
     </LinearLayout>
     <LinearLayout
+        android:id="@+id/sz_suoyourenkejian"
         android:layout_width="fill_parent"
         android:layout_height="45dp"
         android:orientation="horizontal"
-        android:background="@drawable/android_57">
+        android:background="@drawable/android_57"
+        android:gravity="center_vertical">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
@@ -260,6 +281,13 @@
             android:layout_marginLeft="30dp"
             android:textSize="17sp"
             />
+        <ImageView
+            android:id="@+id/sz_img3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/android_175"
+            android:layout_marginLeft="180dp"
+            android:visibility="invisible"/>
 
     </LinearLayout>
     <LinearLayout

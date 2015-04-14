@@ -21,6 +21,7 @@ import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.CompoundButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -45,6 +46,13 @@ public class Shezhi_activity extends Activity{
     private LinearLayout shezhifanhui;
     private Button tuichuzhanghu;
     private Vibrator vibrator;
+    private LinearLayout sz_jinzijikejian;
+    private LinearLayout sz_jinhaoyoukejian;
+    private LinearLayout sz_suoyourenkejian;
+    private ImageView sz_img1;
+    private ImageView sz_img2;
+    private ImageView sz_img3;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,6 +76,13 @@ public class Shezhi_activity extends Activity{
         FontManager.changeFonts(FontManager.getContentView(this), this);//字体
         vibrator = (Vibrator) this.getSystemService(VIBRATOR_SERVICE);
         shezhifanhui = (LinearLayout) findViewById(R.id.shezhifanhui);
+        sz_jinzijikejian = (LinearLayout) findViewById(R.id.sz_jinzijikejian);
+        sz_jinhaoyoukejian = (LinearLayout) findViewById(R.id.sz_jinhaoyoukejian);
+        sz_suoyourenkejian = (LinearLayout) findViewById(R.id.sz_suoyourenkejian);
+        sz_img1 = (ImageView) findViewById(R.id.sz_img1);
+        sz_img2 = (ImageView) findViewById(R.id.sz_img2);
+        sz_img3 = (ImageView) findViewById(R.id.sz_img3);
+        sz_img();
 
         LinearLayout mmxg = (LinearLayout)findViewById(R.id.sz_mmxg);
         mmxg.setOnClickListener(new View.OnClickListener() {
@@ -132,6 +147,7 @@ public class Shezhi_activity extends Activity{
         final ToggleButton mTogBtn = (ToggleButton) findViewById(R.id.sz_toggle1);
         final ToggleButton mTogBtn1 = (ToggleButton) findViewById(R.id.sz_toggle2);
         final ToggleButton mTogBtn2 = (ToggleButton) findViewById(R.id.sz_toggle3);// 获取到控件
+
         mTogBtn.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 
             @Override
@@ -171,6 +187,32 @@ public class Shezhi_activity extends Activity{
             }
         });
 
+    }
+    private void sz_img(){
+        sz_jinzijikejian.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                sz_img1.setVisibility(View.VISIBLE);
+                sz_img2.setVisibility(View.INVISIBLE);
+                sz_img3.setVisibility(View.INVISIBLE);
+            }
+        });
+        sz_jinhaoyoukejian.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                sz_img2.setVisibility(View.VISIBLE);
+                sz_img1.setVisibility(View.INVISIBLE);
+                sz_img3.setVisibility(View.INVISIBLE);
+            }
+        });
+        sz_suoyourenkejian.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                sz_img3.setVisibility(View.VISIBLE);
+                sz_img2.setVisibility(View.INVISIBLE);
+                sz_img1.setVisibility(View.INVISIBLE);
+            }
+        });
     }
     @Override
     public void onBackPressed() {

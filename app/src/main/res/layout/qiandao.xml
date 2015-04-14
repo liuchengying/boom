@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
+<boom.boom.myview.SildingFinishLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:id="@+id/sildingFinishLayout">
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent" android:layout_height="match_parent"
     android:background="@drawable/android_8"
@@ -32,7 +37,7 @@
             android:layout_width="wrap_content"
             android:layout_height="40dp"
             android:background="@drawable/android_2"
-            android:hint="已累计到第X天"
+            android:hint="已累计到第 X 天"
             android:textSize="16sp"
             android:gravity="center"
             android:textColor="#eeeeee"
@@ -42,7 +47,7 @@
             android:layout_width="wrap_content"
             android:layout_height="40dp"
             android:background="@drawable/android_2"
-            android:hint="距离获得积分还有X天"
+            android:hint="距离获得积分还有 X 天"
             android:textSize="16sp"
             android:gravity="center"
             android:layout_marginTop="13dp"
@@ -50,15 +55,17 @@
             android:textColor="#eeeeee"
             />
         <Button
+
             android:layout_width="wrap_content"
             android:layout_height="40dp"
             android:background="@drawable/android_3"
             android:layout_marginTop="13dp"
             android:text="完成"
             android:textSize="18sp"
-            android:id="@+id/denglu"
+            android:id="@+id/qiandao_wancheng"
             android:textColor="#eeeeee"/>
 
     </LinearLayout>
 
 </LinearLayout>
+</boom.boom.myview.SildingFinishLayout>
