@@ -111,17 +111,26 @@ public class Tiaozhan_activity extends Activity {
                 overridePendingTransition(R.anim.base_slide_right_in, R.anim.base_slide_remain);
             }
         });
-        View.OnClickListener toBeginSingleChallenge = new View.OnClickListener() {
+//        View.OnClickListener toBeginSingleChallenge = new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent();
+//                intent.setClass(Tiaozhan_activity.this, Guizejieshao_activity.class);
+//                startActivity(intent);
+//                overridePendingTransition(R.anim.base_slide_right_in, R.anim.base_slide_remain);
+//
+//            }
+//        };
+//        danrentiaozhan.setOnClickListener(toBeginSingleChallenge);
+        danrentiaozhan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent();
                 intent.setClass(Tiaozhan_activity.this, Guizejieshao_activity.class);
                 startActivity(intent);
-                overridePendingTransition(R.anim.base_slide_right_in, R.anim.base_slide_remain);
 
             }
-        };
-        danrentiaozhan.setOnClickListener(toBeginSingleChallenge);
+        });
 
 
         shezhi.setOnClickListener(new View.OnClickListener() {

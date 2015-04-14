@@ -14,13 +14,14 @@
         android:orientation="horizontal"
         android:gravity="center">
         <LinearLayout
+            android:id="@+id/fanhuitiaozhan"
             android:layout_weight="1"
             android:layout_width="wrap_content"
             android:layout_height="50dp"
             android:gravity="center_vertical"
             >
             <Button
-                android:id="@+id/fanhuitiaozhan"
+
                 android:layout_width="18dp"
                 android:layout_height="23dp"
                 android:background="@drawable/android_20"
