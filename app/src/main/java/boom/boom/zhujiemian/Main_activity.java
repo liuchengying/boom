@@ -8,6 +8,8 @@ import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.os.Looper;
+import android.os.Message;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -19,6 +21,7 @@ import org.json.JSONException;
 
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.logging.Handler;
 
 import boom.boom.R;
 
@@ -42,7 +45,38 @@ public class Main_activity extends Activity {
     private EditText pass;
     protected String passhash;
     private TextView mmzh;
+    User userlogin;
+    LoadingDialog dialog;
+    android.os.Handler myMessageHandler = new android.os.Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
 
+            if (userlogin.ifLoggedIn()) {
+                UserData data = new UserData(userlogin.getSessionId());
+                Intent intent = new Intent();
+//                    intent.putExtra("session_id", userlogin.getSessionId());
+//                    intent.putExtra("name", data.QueryData("name"));
+//                    intent.putExtra("nickname", data.QueryData("nickname"));
+//                    intent.putExtra("uniquesign", data.QueryData("uniquesign"));
+//                    intent.putExtra("coins", data.QueryData("coins"));
+                Static.session_id = userlogin.getSessionId();
+                Static.username = data.QueryData("name");
+                Static.nickname = data.QueryData("nickname");
+                Static.uniqueSign = data.QueryData("uniquesign");
+                if (String.valueOf(data.QueryData("coins")) == "null"){
+                    Static.coins = 0;
+                }else {
+                    Static.coins = Integer.parseInt(String.valueOf(data.QueryData("coins")));
+                }
+                intent.setClass(Main_activity.this, Tiaozhan_activity.class);
+                startActivity(intent);
+            }else{
+                dialog.cancel();
+                Toast.makeText(getApplicationContext(), "登陆失败：" + userlogin.getServerErr(), Toast.LENGTH_SHORT).show();
+
+            }
+        }};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -87,28 +121,31 @@ public class Main_activity extends Activity {
 
                 final String user_Str = user.getText().toString();
                 final String pass_Str = pass.getText().toString();
-                LoadingDialog dialog = new LoadingDialog(Main_activity.this);
+                dialog = new LoadingDialog(Main_activity.this);
                 dialog.show();
 
-                final User userlogin= new User(user_Str, pass_Str);
-                try {
+                userlogin= new User(user_Str, pass_Str);
+
+            /*    try {
                     userlogin.AttemptLogin();
                 } catch (JSONException e) {
                     e.printStackTrace();
-                }
-//                new Thread(new Runnable() {
-//                    @Override
-//                    public void run() {
-//
-//                        try {
-//                            userlogin.AttemptLogin();
-//                        } catch (JSONException e) {
-//                            e.printStackTrace();
-//                        }
-//                    }
-//                }).start();
+                }*/
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
 
-                if (userlogin.ifLoggedIn()) {
+                        try {
+                            userlogin.AttemptLogin();
+                            Message m = new Message();
+                            Main_activity.this.myMessageHandler.sendMessage(m);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }).start();
+
+                /*if (userlogin.ifLoggedIn()) {
                     UserData data = new UserData(userlogin.getSessionId());
                     Intent intent = new Intent();
 //                    intent.putExtra("session_id", userlogin.getSessionId());
@@ -130,7 +167,7 @@ public class Main_activity extends Activity {
                 }else{
                     Toast.makeText(getApplicationContext(), "无法登陆到服务器！错误信息：" + userlogin.getServerErr(), Toast.LENGTH_SHORT).show();
 
-                }
+                }*/
             }
         });
         zhucezhanghao.setOnClickListener(new View.OnClickListener() {

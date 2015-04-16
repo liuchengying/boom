@@ -37,18 +37,7 @@ public class User {
     }
 
     public String getServerErr() {
-        HttpIO io = new HttpIO(Utils.serveraddr + USER_LOGIN_URL + "?action=lasterror");
-        io.GETToHTTPServer();
-        try {
-            JSONObject obj = new JSONObject(io.getResultData());
-            this.ServerErr = obj.getString("errmsg");
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }catch (Exception e)
-        {
-            e.printStackTrace();
-        }
-        return this.ServerErr;
+       return this.ServerErr;
     }
 
     public boolean ifLoggedIn(){
@@ -75,11 +64,15 @@ public class User {
             this.session_id = io.GetSessionID();
             JSONObject obj = new JSONObject(httpResult);
             String status = obj.getString("state");
-            if (status.equalsIgnoreCase("FAIL")) ifUserLoggedIn = false;
+            if (status.equalsIgnoreCase("FAILED"))
+            {   ifUserLoggedIn = false;
+                ServerErr="用户名或密码错误！";
+            }
             if (status.equalsIgnoreCase("SUCCESS")) ifUserLoggedIn = true;
         }
         else {
             ifUserLoggedIn = false;
+            ServerErr="登陆超时！";
         }
         return this.ifLoggedIn();
     }
