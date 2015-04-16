@@ -4,14 +4,15 @@
     android:layout_height="wrap_content"
     android:layout_gravity="center_horizontal"
     android:background="@drawable/android_179"
-   >
+    android:id="@+id/wqtzitem2">
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="fill_parent"
         android:text="协力易拉罐"
         android:gravity="center_vertical"
         android:layout_marginLeft="30dp"
-        android:textSize="17sp"/>
+        android:textSize="17sp"
+        android:id="@+id/text_item" />
 
 
 

@@ -78,6 +78,8 @@
             android:theme="@android:style/Theme.Black.NoTitleBar"></activity>
         <activity android:name= "boom.boom.guanyuwomen.Guanyuwomen_activity"
             android:theme="@android:style/Theme.Black.NoTitleBar"></activity>
+        <activity android:name= "boom.boom.wangqitiaozhan.wangqitiaozhan"
+            android:theme="@android:style/Theme.Black.NoTitleBar"></activity>
 
 
 

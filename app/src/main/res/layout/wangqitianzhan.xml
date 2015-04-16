@@ -45,14 +45,28 @@
                 android:textColor="#ffffffff" />
         </LinearLayout>
     </LinearLayout>
+   <LinearLayout
+       android:layout_width="fill_parent"
+       android:layout_height="fill_parent"
+
+       android:layout_gravity="center_horizontal"
+       android:orientation="vertical">
     <ExpandableListView
-        android:layout_width="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center_horizontal"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        >
+        android:id="@+id/expand"
+        android:groupIndicator="@null"
+        android:divider="#ffdadada"
+        android:listSelector="#ffdadada"
+        android:layout_marginLeft="9dp"
+        android:layout_marginRight="9dp">
 
         </ExpandableListView>
 
-
+   </LinearLayout>
 
 </LinearLayout>
 </boom.boom.myview.SildingFinishLayout>

@@ -54,7 +54,8 @@
         android:id="@+id/challenge_list"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:divider="#00000000" />
+        android:divider="#00000000"
+        android:listSelector="#ffdadada" />
 
 </LinearLayout>
 </boom.boom.myview.SildingFinishLayout>

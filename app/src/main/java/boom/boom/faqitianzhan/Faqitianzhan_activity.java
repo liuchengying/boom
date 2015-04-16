@@ -14,7 +14,7 @@ import boom.boom.guizejieshao.Guizejieshao_activity;
 import boom.boom.myview.SildingFinishLayout;
 
 import boom.boom.zinitiaozhan.Zinitianzhan_activity;
-
+import boom.boom.wangqitiaozhan.wangqitiaozhan;
 /**
  * Created by 刘成英 on 2015/3/25.
  */
@@ -58,8 +58,15 @@ public class Faqitianzhan_activity extends Activity {
                 overridePendingTransition(0, R.anim.base_slide_right_out);
             }
         });
-        Button wangqitianzhan= (Button) findViewById(R.id.wangqitiaozhan);
-
+        Button wangqitianzhan_button= (Button) findViewById(R.id.wangqitiaozhan);
+        wangqitianzhan_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setClass(Faqitianzhan_activity.this, wangqitiaozhan.class);
+                startActivity(intent);
+            }
+        });
 
     }
     @Override
