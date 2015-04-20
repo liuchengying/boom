@@ -27,8 +27,8 @@ public class FormFile {
         if(contentType!=null) this.contentType = contentType;
     }
 
-    public FormFile(String filname, File file, String parameterName, String contentType) {
-        this.filname = filname;
+    public FormFile(/*String filname,*/File file, String parameterName, String contentType) {
+//        this.filname = filname;
         this.parameterName = parameterName;
         this.file = file;
         try {

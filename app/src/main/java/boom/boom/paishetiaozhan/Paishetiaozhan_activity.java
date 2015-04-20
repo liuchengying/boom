@@ -12,7 +12,6 @@ import android.util.Log;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
-import android.view.WindowManager;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.AnimationSet;
@@ -22,25 +21,16 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.json.JSONObject;
-
 import java.io.File;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Timer;
+import java.util.List;
 
 import boom.boom.FontManager.FontManager;
 import boom.boom.R;
-import boom.boom.api.Challenge;
-import boom.boom.api.FormFile;
-import boom.boom.api.HttpIO;
-import boom.boom.api.SocketHttpRequester;
 import boom.boom.api.SysApplication;
 import boom.boom.api.Utils;
 import boom.boom.guizejieshao.Guizejieshao_activity;
-import boom.boom.shangchuanchenggong.Shangchuanchenggong_activity;
 import boom.boom.shangchuandengdai.Shangchuandengdai_activity;
-import boom.boom.tingzhitiaozhan.Tingzhipaishe_activity;
 
 /**
  * Created by 刘成英 on 2015/1/20.
@@ -55,9 +45,9 @@ public class Paishetiaozhan_activity extends Activity implements SurfaceHolder.C
     private boolean previewRunning;
     private File StoreFile;
     private MediaRecorder mediaRecorder;
-    private final String tmpFilename = "tmpvideo";
+//    private final String tmpFilename = "tmpvideo";
     private final int maxDurationInMs = 20000;
-    private final long maxFileSizeInBytes = 500000;
+    private final long maxFileSizeInBytes = 31457280;
     private final int videoFramesPerSecond = 20;
     private ProgressBar mprogress;
     private int a;
@@ -123,41 +113,20 @@ public class Paishetiaozhan_activity extends Activity implements SurfaceHolder.C
                         }
                     }).start();
                     kaishipaishe.setText("停止");
-
-
                     startRecording();
-
                     new Thread(new Runnable() {
                         @Override
                         public void run() {
                             try {
                                 Message message = new Message();
                                 message.what = 1;
-                                Thread.sleep(20);
+                                Thread.sleep(20000);
                                 stopRecording();
                             } catch (InterruptedException e) {
                                 e.printStackTrace();
                             }
                         }
                     }).start();
-                    /*SocketHttpRequester requester = new SocketHttpRequester();
-                    FormFile file = new FormFile(StoreFile.getName(), StoreFile, "file", "video/3gp");
-                    try {
-                        requester.post(Utils.serveraddr + Utils.put_file_api, new HashMap<String, String>(), file);
-                        JSONObject result = new JSONObject(requester.getResultData());
-                        if (result.getString("state") == "FAILED") {
-                            Toast.makeText(getApplicationContext(), "上传失败！请重试。", Toast.LENGTH_SHORT);
-                            finish();
-                        }
-                        Challenge.subMitChallenge(cl_name, result.getString("fileToken"));
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                    Intent intent = new Intent();
-                    intent.putExtra("challenge_name", "cups");
-                    intent.setClass(Paishetiaozhan_activity.this, Shangchuanchenggong_activity.class);
-                    startActivity(intent);*/
-
                 } else if (kaishipaishe.getText().equals("停止")) {
                     kaishipaishe.setText("上传");
                     AnimationSet animationSet = new AnimationSet(true);
@@ -178,6 +147,7 @@ public class Paishetiaozhan_activity extends Activity implements SurfaceHolder.C
                     fangqipaishe.startAnimation(animationSet1);
                 }else if(kaishipaishe.getText().equals("上传")){
                     Intent intent = new Intent();
+                    intent.putExtra("file_path", StoreFile.getAbsolutePath());
                     intent.setClass(Paishetiaozhan_activity.this,Shangchuandengdai_activity.class);
                     startActivity(intent);
 
@@ -203,9 +173,8 @@ public class Paishetiaozhan_activity extends Activity implements SurfaceHolder.C
         if (camera != null){
             Camera.Parameters params = camera.getParameters();
             camera.setParameters(params);
-        }
-        else {
-            Toast.makeText(getApplicationContext(), "Camera not available!", Toast.LENGTH_LONG).show();
+        } else {
+            Toast.makeText(getApplicationContext(), "错误：相机暂时不可用！", Toast.LENGTH_LONG).show();
             finish();
         }
     }
@@ -216,8 +185,13 @@ public class Paishetiaozhan_activity extends Activity implements SurfaceHolder.C
             camera.stopPreview();
         }
         Camera.Parameters p = camera.getParameters();
-        //p.setPreviewSize(width, height);
-        //p.setPreviewFormat(PixelFormat.JPEG);
+        List<Camera.Size> mSupportedPreviewSizes;
+        mSupportedPreviewSizes = camera.getParameters().getSupportedPreviewSizes();
+        Camera.Size mPreviewSize = Utils.CameraUtils.getOptimalPreviewSize(mSupportedPreviewSizes, width, height);
+//        p.setPreviewSize(width, height);
+        p.setPreviewSize(mPreviewSize.width, mPreviewSize.height);
+        Log.d("CAMREA", "Support size: width ==> "+mPreviewSize.width+", height ==> "+mPreviewSize.height);
+//        p.setPreviewFormat(PixelFormat.JPEG);
         camera.setDisplayOrientation(90);
         camera.setParameters(p);
 
@@ -246,9 +220,16 @@ public class Paishetiaozhan_activity extends Activity implements SurfaceHolder.C
             mediaRecorder.setCamera(camera);
             mediaRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
             mediaRecorder.setVideoSource(MediaRecorder.VideoSource.CAMERA);
-            mediaRecorder.setOutputFormat(MediaRecorder.OutputFormat.DEFAULT);
+            mediaRecorder.setOutputFormat(MediaRecorder.OutputFormat.MPEG_4);
+//            mediaRecorder.setOutputFormat(MediaRecorder.OutputFormat.DEFAULT);
             mediaRecorder.setMaxDuration(maxDurationInMs);
-            StoreFile = new File(getCacheDir(),tmpFilename);
+            File dirStorage = new File(Utils.getVideoPath());
+            if (dirStorage == null){
+                Log.e("CAMERA", "Unable to got the sdcard read access. Fall back to /data mode.");
+                dirStorage = getCacheDir();
+            }
+            Log.d("CAMERA", "File path: ==> " + dirStorage.getAbsolutePath());
+            StoreFile = new File(dirStorage, Utils.getRandomName("mp4"));
             mediaRecorder.setOutputFile(StoreFile.getPath());
             mediaRecorder.setVideoFrameRate(videoFramesPerSecond);
             mediaRecorder.setVideoSize(sv.getWidth(), sv.getHeight());
@@ -271,7 +252,13 @@ public class Paishetiaozhan_activity extends Activity implements SurfaceHolder.C
     }
 
     public void stopRecording(){
-        mediaRecorder.stop();
+        Log.e("CAMERA", "Record process gonna be stop.");
+        try {
+            mediaRecorder.stop();
+        }catch (RuntimeException e){
+            e.printStackTrace();
+        }
+        Log.e("CAMERA", "Attempting to lock the camera hardware.");
         camera.lock();
     }
 

@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.os.Environment;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -15,8 +16,15 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.apache.http.util.EncodingUtils;
 import org.json.JSONException;
+import org.json.JSONObject;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -42,32 +50,53 @@ public class Main_activity extends Activity {
     private EditText pass;
     protected String passhash;
     private TextView mmzh;
-
+    private boolean LoggedLastTime = false;
+    private JSONObject login_obj = null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.zhujiemian);
         SysApplication.getInstance().addActivity(this);
         FontManager.changeFonts(FontManager.getContentView(this),this);//字体
-        if (isNetworkAvailable(Main_activity.this))
-        {
-            Toast.makeText(getApplicationContext(), "当前有可用网络！", Toast.LENGTH_LONG).show();
+        File file = new File(Environment.getDataDirectory(), "user.json");
+        try {
+            FileInputStream f_in = new FileInputStream(file);
+            int available_read = f_in.available();
+            if (available_read != 0) {
+                byte[] buff = new byte[available_read];
+                f_in.read(buff);
+                login_obj = new JSONObject(EncodingUtils.getString(buff, "UTF-8"));
+                LoggedLastTime = true;
+            }else{
+                LoggedLastTime = false;
+            }
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+            Log.e("File", "Error: "+file.getAbsolutePath()+" : No such file or directory.");
+        } catch (IOException e) {
+            e.printStackTrace();
+            Log.e("File", "Error: "+file.getAbsolutePath()+" : I/O Error.");
+        } catch (JSONException e) {
+            e.printStackTrace();
+            Log.e("File", "Error: "+file.getAbsolutePath()+" : JSON encode error.");
         }
-        else
-        {
+        if (isNetworkAvailable(Main_activity.this)){
+            Toast.makeText(getApplicationContext(), "当前有可用网络！", Toast.LENGTH_LONG).show();
+        }else{
             Toast.makeText(getApplicationContext(), "当前没有可用网络！", Toast.LENGTH_LONG).show();
-
-
-
         }
 
         denglu = (Button) findViewById(R.id.denglu);
         zhucezhanghao =(TextView) findViewById(R.id.zhucezhanghao);
         user = (EditText)findViewById(R.id.yonghuming);
         pass = (EditText) findViewById(R.id.mima);
-
-
-
+        if (LoggedLastTime == true) try {
+            user.setText(login_obj.getString("name"));
+            pass.setText("********");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
         mmzh = (TextView)findViewById(R.id.mmzh);
         mmzh.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -82,9 +111,9 @@ public class Main_activity extends Activity {
         denglu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (LoggedLastTime == true){
 
-
-
+                }
                 final String user_Str = user.getText().toString();
                 final String pass_Str = pass.getText().toString();
                 LoadingDialog dialog = new LoadingDialog(Main_activity.this);

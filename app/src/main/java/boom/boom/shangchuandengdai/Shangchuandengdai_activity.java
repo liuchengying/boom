@@ -1,9 +1,7 @@
 package boom.boom.shangchuandengdai;
 
-import android.animation.AnimatorSet;
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -11,13 +9,19 @@ import android.os.Message;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ProgressBar;
 import android.widget.TextView;
+
+import java.io.File;
 
 import boom.boom.FontManager.FontManager;
 import boom.boom.R;
+import boom.boom.api.FileUploadAsyncTask;
+import boom.boom.api.FormFile;
 import boom.boom.api.MsgBox;
+import boom.boom.api.SocketHttpRequester;
+import boom.boom.api.Static;
 import boom.boom.api.SysApplication;
+import boom.boom.api.Utils;
 import boom.boom.paishetiaozhan.Paishetiaozhan_activity;
 import boom.boom.tianzhan.Tiaozhan_activity;
 
@@ -30,12 +34,12 @@ public class Shangchuandengdai_activity extends Activity {
     private Button tanchuang1queding;
     private Button tanchuang2quxiao;
     private boom.boom.myview.ProgressBar progressBar;
-    private int progress = 0;
-    private int b=0;
+    private Integer progress;
+    private int int_progress;
+    private Boolean upload_onComplete;
+//    private int b=0;
     private TextView scdd_jindu;
-
-
-
+    private FileUploadAsyncTask ftask;
 
     Handler myMessageHandler = new Handler(){
         @Override
@@ -50,20 +54,37 @@ public class Shangchuandengdai_activity extends Activity {
         SysApplication.getInstance().addActivity(this);
         FontManager.changeFonts(FontManager.getContentView(this), this);//字体
         initEvent();
+        final String path = getIntent().getStringExtra("file_path");
         shangchuandengdaifanhui = (Button) findViewById(R.id.shangchuandengdaifanhui);
         progressBar = (boom.boom.myview.ProgressBar) findViewById(R.id.progress123);
         fangqishangchuang = (Button) findViewById(R.id.fangqishangchuan);
         scdd_jindu = (TextView) findViewById(R.id.scdd_jindu);
+        progress = new Integer("0");
+        upload_onComplete = new Boolean(false);
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Utils.GetBuilder get = new Utils.GetBuilder(Utils.serveraddr + Utils.put_file_api);
+                    get.addItem("s_id", Static.session_id);
+                    ftask = new FileUploadAsyncTask(getApplicationContext(), progress, upload_onComplete);
+                    ftask.doInBackground(new File(path));
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
         new Thread(new Runnable() {
             @Override
 
             public void run() {
-                for (b = 0; b < 50; b++) {
+                while (ftask == null);
+                for (; !ftask.getState(); int_progress = ftask.getProgress()) {
                     try {
-                        progressBar.setProgress(progress += 2);
-                        Message m = new Message();
-                        m.what = 1;
-                        Shangchuandengdai_activity.this.myMessageHandler.sendMessage(m);
+                        progressBar.setProgress(int_progress);
+//                        Message m = new Message();
+//                        m.what = 1;
+//                        Shangchuandengdai_activity.this.myMessageHandler.sendMessage(m);
                         Thread.sleep(1000);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
@@ -71,8 +92,6 @@ public class Shangchuandengdai_activity extends Activity {
                 }
             }
         }).start();
-
-
         shangchuandengdaifanhui.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -26,4 +26,6 @@ dependencies {
     provided files('src/main/assets')
     compile files('libs/nineoldandroids-2.4.0.jar')
     compile files('build/nineoldandroids-2.4.0.jar')
+    compile files('libs/commons-logging-1.2.jar')
+    compile files('libs/commons-codec-1.9.jar')
 }

@@ -128,7 +128,7 @@ public class ExpandableTextView extends LinearLayout implements View.OnClickList
 
     @Override
     public boolean onInterceptTouchEvent(MotionEvent ev) {
-        // while an animation is in progress, intercept all the touch events to children to
+        // while an animation is in progress, intercept all the touch events to children for
         // prevent extra clicks during the animation
         return mAnimating;
     }

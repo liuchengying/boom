@@ -3,12 +3,10 @@ package boom.boom.guizejieshao;
 import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
-import android.provider.MediaStore;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.Window;
 import android.widget.LinearLayout;
-import android.widget.MediaController;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -23,9 +21,7 @@ import boom.boom.R;
 import boom.boom.api.Challenge;
 import boom.boom.api.SysApplication;
 import boom.boom.api.Utils;
-import boom.boom.myview.SildingFinishLayout;
 import boom.boom.paishetiaozhan.Paishetiaozhan_activity;
-import boom.boom.tianzhan.Tiaozhan_activity;
 
 /**
  * Created by 刘成英 on 2015/1/19.
