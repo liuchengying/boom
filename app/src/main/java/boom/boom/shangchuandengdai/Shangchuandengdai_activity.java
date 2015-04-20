@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -16,14 +17,10 @@ import java.io.File;
 import boom.boom.FontManager.FontManager;
 import boom.boom.R;
 import boom.boom.api.FileUploadAsyncTask;
-import boom.boom.api.FormFile;
-import boom.boom.api.MsgBox;
-import boom.boom.api.SocketHttpRequester;
 import boom.boom.api.Static;
 import boom.boom.api.SysApplication;
 import boom.boom.api.Utils;
 import boom.boom.paishetiaozhan.Paishetiaozhan_activity;
-import boom.boom.tianzhan.Tiaozhan_activity;
 
 /**
  * Created by 刘成英 on 2015/1/20.
@@ -45,7 +42,7 @@ public class Shangchuandengdai_activity extends Activity {
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
-            scdd_jindu.setText(progress+"%");
+            scdd_jindu.setText(int_progress+"%");
         }};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,18 +75,22 @@ public class Shangchuandengdai_activity extends Activity {
             @Override
 
             public void run() {
+                Log.d("UPLOAD", "Awaiting ftask instantiable");
                 while (ftask == null);
+                Log.d("UPLOAD", "Ok, now set progress from another thread.");
                 for (; !ftask.getState(); int_progress = ftask.getProgress()) {
                     try {
+                        Log.d("UPLOAD", "======= TEST: int_progress = "+int_progress+" \tprogress = "+ progress +" ===========");
                         progressBar.setProgress(int_progress);
-//                        Message m = new Message();
-//                        m.what = 1;
-//                        Shangchuandengdai_activity.this.myMessageHandler.sendMessage(m);
+                        Message m = new Message();
+                        m.what = 1;
+                        Shangchuandengdai_activity.this.myMessageHandler.sendMessage(m);
                         Thread.sleep(1000);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
                 }
+                Log.d("UPLOAD", "Upload complete. Sent "+ int_progress +" bytes to the goddamn server.");
             }
         }).start();
         shangchuandengdaifanhui.setOnClickListener(new View.OnClickListener() {
