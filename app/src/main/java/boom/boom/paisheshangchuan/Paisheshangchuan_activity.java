@@ -6,14 +6,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import java.util.Timer;
-import java.util.TimerTask;
-
 import boom.boom.FontManager.FontManager;
 import boom.boom.R;
 import boom.boom.api.SysApplication;
-import boom.boom.paishetiaozhan.Paishetiaozhan_activity;
-import boom.boom.shangchuanchenggong.Shangchuanchenggong_activity;
 import boom.boom.shangchuandengdai.Shangchuandengdai_activity;
 import boom.boom.tingzhitiaozhan.Tingzhipaishe_activity;
 
