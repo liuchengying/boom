@@ -37,12 +37,14 @@ public class Shangchuandengdai_activity extends Activity {
 //    private int b=0;
     private TextView scdd_jindu;
     private FileUploadAsyncTask ftask;
+    private File upload_file;
+    private long file_length;
 
     Handler myMessageHandler = new Handler(){
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
-            scdd_jindu.setText(int_progress+"%");
+            scdd_jindu.setText(Integer.valueOf((int) (100*(int_progress/file_length)))+"%");
         }};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,7 +67,10 @@ public class Shangchuandengdai_activity extends Activity {
                     Utils.GetBuilder get = new Utils.GetBuilder(Utils.serveraddr + Utils.put_file_api);
                     get.addItem("s_id", Static.session_id);
                     ftask = new FileUploadAsyncTask(getApplicationContext(), progress, upload_onComplete);
-                    ftask.doInBackground(new File(path));
+                    ftask.addGetParameters(Utils.GetBuilder.Item("type", "video"));
+                    upload_file = new File(path);
+                    file_length = upload_file.length();
+                    ftask.doInBackground(upload_file);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -81,11 +86,11 @@ public class Shangchuandengdai_activity extends Activity {
                 for (; !ftask.getState(); int_progress = ftask.getProgress()) {
                     try {
                         Log.d("UPLOAD", "======= TEST: int_progress = "+int_progress+" \tprogress = "+ progress +" ===========");
-                        progressBar.setProgress(int_progress);
+                        progressBar.setProgress(Integer.valueOf((int) (100*(int_progress/file_length))));
                         Message m = new Message();
                         m.what = 1;
                         Shangchuandengdai_activity.this.myMessageHandler.sendMessage(m);
-                        Thread.sleep(1000);
+                        Thread.sleep(100);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }

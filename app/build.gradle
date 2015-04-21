@@ -37,4 +37,5 @@ dependencies {
     compile files('libs/commons-codec-1.9.jar')
     compile files('libs/httpclient-4.4.1.jar')
     compile files('libs/httpclient-win-4.4.1.jar')
+    compile files('libs/httpcore-4.3.3.jar')
 }

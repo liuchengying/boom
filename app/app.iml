@@ -85,21 +85,17 @@
     </content>
     <orderEntry type="jdk" jdkName="Android API 21 Platform" jdkType="Android SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" exported="" name="assets" level="project" />
     <orderEntry type="library" exported="" name="httpclient-4.4.1" level="project" />
-    <orderEntry type="library" exported="" name="fluent-hc-4.4.1" level="project" />
     <orderEntry type="library" exported="" name="appcompat-v7-19.1.0" level="project" />
-    <orderEntry type="library" exported="" name="httpclient-cache-4.4.1" level="project" />
     <orderEntry type="library" exported="" name="nineoldandroids-2.4.0" level="project" />
     <orderEntry type="library" exported="" name="1_nineoldandroids-2.4.0" level="project" />
-    <orderEntry type="library" exported="" name="support-v4-19.1.0" level="project" />
     <orderEntry type="library" exported="" name="commons-logging-1.2" level="project" />
-    <orderEntry type="library" exported="" name="httpmime-4.4.1" level="project" />
-    <orderEntry type="library" exported="" name="assets" level="project" />
-    <orderEntry type="library" exported="" name="jna-platform-4.1.0" level="project" />
+    <orderEntry type="library" exported="" name="support-v4-19.1.0" level="project" />
     <orderEntry type="library" exported="" name="commons-codec-1.9" level="project" />
-    <orderEntry type="library" exported="" name="httpcore-4.4.1" level="project" />
+    <orderEntry type="library" exported="" name="httpcore-4.3.3" level="project" />
     <orderEntry type="library" exported="" name="httpclient-win-4.4.1" level="project" />
-    <orderEntry type="library" exported="" name="jna-4.1.0" level="project" />
+    <orderEntry type="library" exported="" name="httpmime-4.3.6" level="project" />
   </component>
 </module>
 

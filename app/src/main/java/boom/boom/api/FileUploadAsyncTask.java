@@ -37,10 +37,20 @@ public class FileUploadAsyncTask extends AsyncTask<File, Integer, String> {
     private Boolean onComplete;
 
     public FileUploadAsyncTask(Context context, Integer progress_percent, Boolean _onComplete) {
+        url = url + "?s_id=" + Static.session_id;
         this.context = context;
         progress_long = progress_percent;
         onComplete = _onComplete;
         onComplete = false;
+    }
+
+    public void SetCustomURI(String url_in){
+        this.url = url_in;
+    }
+
+    public void addGetParameters(String params){
+        url = url + "&" + params;
+        url = url.substring(0,url.length()-1);
     }
 
     public boolean getState(){
@@ -80,6 +90,7 @@ public class FileUploadAsyncTask extends AsyncTask<File, Integer, String> {
             }
         });
 //        return uploadFile(url, progressHttpEntity);
+        uploadFile(url, progressHttpEntity);
         return null;
     }
 
@@ -93,11 +104,6 @@ public class FileUploadAsyncTask extends AsyncTask<File, Integer, String> {
         pd.dismiss();
         Toast.makeText(context, result, Toast.LENGTH_SHORT).show();
     }
-
-
-    //上传文件到服务器
-    //服务器地址
-    //文件
 
     public void uploadFile(String url, ProgressOutHttpEntity entity) {
         HttpClient httpClient = new DefaultHttpClient();

@@ -2,6 +2,13 @@
 <items version="2" >
 
     <item
+        jar="D:\Program Files\Android\sdk\extras\android\m2repository\com\android\support\support-v4\19.1.0\support-v4-19.1.0.jar"
+        jumboMode="false"
+        revision="20.0.0"
+        sha1="85f201b380937e61a9dce6ca90ccf6872abbfb67">
+        <dex dex="C:\Users\lenovo\AndroidStudioProjects\BoomTime\app\build\intermediates\pre-dexed\debug\support-v4-19.1.0-b1cd452c9f7e8f930f0821eb70bd9d7542935010.jar" />
+    </item>
+    <item
         jar="C:\Users\lenovo\AndroidStudioProjects\BoomTime\app\libs\nineoldandroids-2.4.0.jar"
         jumboMode="false"
         revision="20.0.0"
@@ -9,11 +16,18 @@
         <dex dex="C:\Users\lenovo\AndroidStudioProjects\BoomTime\app\build\intermediates\pre-dexed\debug\nineoldandroids-2.4.0-30ab040803651b5e1b87d28b50de66770cef131d.jar" />
     </item>
     <item
-        jar="D:\Program Files\Android\sdk\extras\android\m2repository\com\android\support\support-v4\19.1.0\support-v4-19.1.0.jar"
+        jar="C:\Users\lenovo\AndroidStudioProjects\BoomTime\app\libs\httpmime-4.3.6.jar"
         jumboMode="false"
         revision="20.0.0"
-        sha1="85f201b380937e61a9dce6ca90ccf6872abbfb67">
-        <dex dex="C:\Users\lenovo\AndroidStudioProjects\BoomTime\app\build\intermediates\pre-dexed\debug\support-v4-19.1.0-b1cd452c9f7e8f930f0821eb70bd9d7542935010.jar" />
+        sha1="66a39a5e37d5da40fdad6176fc24ef4316e74702">
+        <dex dex="C:\Users\lenovo\AndroidStudioProjects\BoomTime\app\build\intermediates\pre-dexed\debug\httpmime-4.3.6-99e41003075c133ef07fc7cbc16f8a3f6c0a3161.jar" />
+    </item>
+    <item
+        jar="C:\Users\lenovo\AndroidStudioProjects\BoomTime\app\libs\httpcore-4.3.3.jar"
+        jumboMode="false"
+        revision="20.0.0"
+        sha1="f91b7a4aadc5cf486df6e4634748d7dd7a73f06d">
+        <dex dex="C:\Users\lenovo\AndroidStudioProjects\BoomTime\app\build\intermediates\pre-dexed\debug\httpcore-4.3.3-0cb8816349b890f6f8f23639c90076f5fc54cbb1.jar" />
     </item>
     <item
         jar="C:\Users\lenovo\AndroidStudioProjects\BoomTime\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\19.1.0\classes.jar"
