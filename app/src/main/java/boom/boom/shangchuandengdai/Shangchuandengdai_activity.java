@@ -19,6 +19,7 @@ import boom.boom.R;
 import boom.boom.api.MsgBox;
 import boom.boom.api.SysApplication;
 import boom.boom.paishetiaozhan.Paishetiaozhan_activity;
+import boom.boom.shangchuanchenggong.Shangchuanchenggong1_activity;
 import boom.boom.tianzhan.Tiaozhan_activity;
 
 /**
@@ -42,6 +43,8 @@ public class Shangchuandengdai_activity extends Activity {
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
             scdd_jindu.setText(progress+"%");
+
+            baifenbi();
         }};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,9 +61,9 @@ public class Shangchuandengdai_activity extends Activity {
             @Override
 
             public void run() {
-                for (b = 0; b < 50; b++) {
+                for (b = 0; b < 10; b++) {
                     try {
-                        progressBar.setProgress(progress += 2);
+                        progressBar.setProgress(progress += 10);
                         Message m = new Message();
                         m.what = 1;
                         Shangchuandengdai_activity.this.myMessageHandler.sendMessage(m);
@@ -83,7 +86,12 @@ public class Shangchuandengdai_activity extends Activity {
         });
 
     }
-
+private void baifenbi(){
+    if(progress == 100){
+        Intent intent = new Intent();
+        intent.setClass(Shangchuandengdai_activity.this, Shangchuanchenggong1_activity.class);
+        startActivity(intent);}
+}
     private void initEvent() {
         findViewById(R.id.fangqishangchuan).setOnClickListener(new View.OnClickListener() {
             @Override

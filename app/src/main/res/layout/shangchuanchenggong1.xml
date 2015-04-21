@@ -74,7 +74,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:background="@drawable/android_184"
+        android:background="@drawable/android_190"
         >
         <TextView
             android:layout_width="wrap_content"

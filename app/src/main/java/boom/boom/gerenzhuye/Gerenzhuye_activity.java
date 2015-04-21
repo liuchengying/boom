@@ -115,6 +115,13 @@ public class Gerenzhuye_activity extends FragmentActivity
     }
 
 
+
+
+
+
+
+
+
     private void initTabLine()
     {
         mTabline = (ImageView) findViewById(R.id.gundongtiao);

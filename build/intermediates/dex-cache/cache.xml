@@ -58,18 +58,18 @@
         <dex dex="F:\android1\BoomTime\app\build\intermediates\pre-dexed\debug\httpclient-cache-4.4.1-a3239b96f4f5881f7ba9d7cd98d10f8ce7157295.jar" />
     </item>
     <item
-        jar="F:\android1\BoomTime\app\libs\commons-codec-1.9.jar"
-        jumboMode="false"
-        revision="20.0.0"
-        sha1="9ce04e34240f674bc72680f8b843b1457383161a">
-        <dex dex="F:\android1\BoomTime\app\build\intermediates\pre-dexed\debug\commons-codec-1.9-3bc39392bb320076b0f7a062e29f9c3d5467f9af.jar" />
-    </item>
-    <item
         jar="D:\Program Files\Android\sdk\extras\android\m2repository\com\android\support\support-v4\19.1.0\support-v4-19.1.0.jar"
         jumboMode="false"
         revision="20.0.0"
         sha1="85f201b380937e61a9dce6ca90ccf6872abbfb67">
         <dex dex="F:\android1\BoomTime\app\build\intermediates\pre-dexed\debug\support-v4-19.1.0-b1cd452c9f7e8f930f0821eb70bd9d7542935010.jar" />
+    </item>
+    <item
+        jar="F:\android1\BoomTime\app\libs\commons-codec-1.9.jar"
+        jumboMode="false"
+        revision="20.0.0"
+        sha1="9ce04e34240f674bc72680f8b843b1457383161a">
+        <dex dex="F:\android1\BoomTime\app\build\intermediates\pre-dexed\debug\commons-codec-1.9-3bc39392bb320076b0f7a062e29f9c3d5467f9af.jar" />
     </item>
     <item
         jar="F:\android1\BoomTime\app\libs\jna-platform-4.1.0.jar"

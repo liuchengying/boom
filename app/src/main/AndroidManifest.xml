@@ -40,7 +40,7 @@
             android:theme="@android:style/Theme.Black.NoTitleBar"></activity>
         <activity android:name=".tingzhitiaozhan.Tingzhipaishe_activity"
             android:theme="@android:style/Theme.Black.NoTitleBar"></activity>
-        <activity android:name=".shangchuanchenggong.Shangchuanchenggong_activity"
+        <activity android:name=".shangchuanchenggong.Shangchuanchenggong1_activity"
             android:theme="@android:style/Theme.Black.NoTitleBar"></activity>
         <activity android:name=".shangchuandengdai.Shangchuandengdai_activity"
             android:theme="@android:style/Theme.Black.NoTitleBar"></activity>
@@ -78,6 +78,9 @@
             android:theme="@android:style/Theme.Black.NoTitleBar"></activity>
         <activity android:name= "boom.boom.guanyuwomen.Guanyuwomen_activity"
             android:theme="@android:style/Theme.Black.NoTitleBar"></activity>
+        <activity android:name= "boom.boom.tongxunlu.tongxunlu_activity"
+            android:theme="@android:style/Theme.Black.NoTitleBar"></activity>
+
 
 
 
