@@ -32,6 +32,10 @@
         <item name="android:maxHeight">10dip</item>
     </style>
 
+    <style name="CustomCheckboxTheme" parent="@android:style/Widget.CompoundButton.CheckBox">
+        <item name="android:button">@drawable/checkbox</item>
+    </style>
+
 
 
 

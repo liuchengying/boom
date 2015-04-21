@@ -50,7 +50,10 @@
         </LinearLayout>
 
     </LinearLayout>
+
+
     <LinearLayout
+
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/android_113"
@@ -79,7 +82,9 @@
             android:textSize="16sp"
             android:textColor="#eeeeee"
             android:layout_marginTop="5dp"/>
-        </LinearLayout>
+    </LinearLayout>
+
+
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"

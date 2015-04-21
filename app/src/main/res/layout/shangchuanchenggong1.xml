@@ -11,10 +11,11 @@
         android:orientation="horizontal"
         android:gravity="center">
         <LinearLayout
+            android:id="@+id/sccg_fh"
             android:layout_weight="1"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            >
+            android:layout_height="fill_parent"
+            android:gravity="center_vertical">
             <Button
                 android:id="@+id/shezhifanhui"
                 android:layout_width="20dp"
@@ -30,9 +31,10 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="系统设置"
+                android:text="上传成功"
                 android:textSize="23dp"
-                android:gravity="center"/>
+                android:gravity="center"
+                android:textColor="#ffffff"/>
 
         </LinearLayout>
         <LinearLayout
@@ -66,13 +68,42 @@
             android:textSize="40sp"
             android:textColor="#ffe14723"/>
         </LinearLayout>
+    <LinearLayout
+        android:id="@+id/yaoqinghaoyoutianzhan"
+        android:layout_marginTop="70dp"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@drawable/android_184"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:text="邀请好友挑战"
+            android:gravity="center_vertical"
+            android:layout_marginLeft="40dp"
+            android:textSize="20sp"/>
+        <LinearLayout
+            android:layout_marginLeft="120dp"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:gravity="center">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:src="@drawable/android_185"/>
+
+            </LinearLayout>
+
+
+    </LinearLayout>
    <LinearLayout
        android:layout_width="fill_parent"
        android:layout_height="fill_parent"
        android:layout_gravity="center_horizontal"
-       android:gravity="center"
+       android:gravity="center">
 
-       >
        <Button
            android:layout_gravity="bottom"
            android:layout_width="wrap_content"
