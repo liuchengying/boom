@@ -2,8 +2,8 @@ package boom.boom.paishetiaozhan;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.hardware.Camera;
 import android.graphics.PixelFormat;
+import android.hardware.Camera;
 import android.media.MediaRecorder;
 import android.os.Bundle;
 import android.os.Handler;
@@ -12,7 +12,6 @@ import android.util.Log;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
-import android.view.WindowManager;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.AnimationSet;
@@ -22,25 +21,15 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.json.JSONObject;
-
 import java.io.File;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Timer;
 
 import boom.boom.FontManager.FontManager;
 import boom.boom.R;
-import boom.boom.api.Challenge;
-import boom.boom.api.FormFile;
-import boom.boom.api.HttpIO;
-import boom.boom.api.SocketHttpRequester;
 import boom.boom.api.SysApplication;
 import boom.boom.api.Utils;
 import boom.boom.guizejieshao.Guizejieshao_activity;
-
 import boom.boom.shangchuandengdai.Shangchuandengdai_activity;
-import boom.boom.tingzhitiaozhan.Tingzhipaishe_activity;
 
 /**
  * Created by 刘成英 on 2015/1/20.
@@ -133,7 +122,7 @@ public class Paishetiaozhan_activity extends Activity implements SurfaceHolder.C
                             try {
                                 Message message = new Message();
                                 message.what = 1;
-                                Thread.sleep(20);
+                                Thread.sleep(20000);
                                 stopRecording();
                             } catch (InterruptedException e) {
                                 e.printStackTrace();
@@ -178,6 +167,7 @@ public class Paishetiaozhan_activity extends Activity implements SurfaceHolder.C
                     fangqipaishe.startAnimation(animationSet1);
                 }else if(kaishipaishe.getText().equals("上传")){
                     Intent intent = new Intent();
+                    intent.putExtra("file_path", StoreFile.getAbsolutePath());
                     intent.setClass(Paishetiaozhan_activity.this,Shangchuandengdai_activity.class);
                     startActivity(intent);
 
@@ -246,10 +236,23 @@ public class Paishetiaozhan_activity extends Activity implements SurfaceHolder.C
             mediaRecorder.setCamera(camera);
             mediaRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
             mediaRecorder.setVideoSource(MediaRecorder.VideoSource.CAMERA);
-            mediaRecorder.setOutputFormat(MediaRecorder.OutputFormat.DEFAULT);
+            mediaRecorder.setOutputFormat(MediaRecorder.OutputFormat.MPEG_4);
+//            mediaRecorder.setOutputFormat(MediaRecorder.OutputFormat.DEFAULT);
             mediaRecorder.setMaxDuration(maxDurationInMs);
-            StoreFile = new File(getCacheDir(),tmpFilename);
-            mediaRecorder.setOutputFile(StoreFile.getPath());
+            File dirStorage = new File(Utils.getVideoPath());
+            if (dirStorage == null){
+                Log.e("CAMERA", "Unable to got the sdcard read access. Fall back to /data mode.");
+                dirStorage = getCacheDir();
+            }
+            Log.d("CAMERA", "Store path: ==> " + dirStorage.getAbsolutePath());
+            String random_name = Utils.getRandomName("mp4");
+            Log.d("CAMERA", "Store file path ==> "+ dirStorage + "/" + random_name);
+            StoreFile = new File(dirStorage, random_name);
+            if (StoreFile.exists() == false){
+                StoreFile.createNewFile();
+            }
+            Log.d("CAMERA", "File absolutely path ==> "+ StoreFile.getAbsolutePath());
+            mediaRecorder.setOutputFile(StoreFile.getAbsolutePath());
             mediaRecorder.setVideoFrameRate(videoFramesPerSecond);
             mediaRecorder.setVideoSize(sv.getWidth(), sv.getHeight());
             mediaRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.DEFAULT);
@@ -272,6 +275,7 @@ public class Paishetiaozhan_activity extends Activity implements SurfaceHolder.C
 
     public void stopRecording(){
         mediaRecorder.stop();
+        camera.setPreviewCallback(null);
         camera.lock();
     }
 

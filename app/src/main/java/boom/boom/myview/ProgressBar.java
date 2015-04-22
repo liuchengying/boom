@@ -122,7 +122,7 @@ public class ProgressBar extends View {
         paint.setAntiAlias(false);  //消除锯齿
         canvas.drawCircle(centre, centre, radius, paint); //画出圆环
 
-        Log.e("log", centre + "");
+        Log.i("log", centre + "");
 
         /**
          * 画进度百分比

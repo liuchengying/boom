@@ -82,9 +82,14 @@ public class Shangchuandengdai_activity extends Activity {
             public void run() {
                 Log.d("UPLOAD", "Awaiting ftask instantiable");
                 while (ftask == null);
+                while (upload_file == null);
                 Log.d("UPLOAD", "Ok, now set progress from another thread.");
                 for (; !ftask.getState(); int_progress = ftask.getProgress()) {
                     try {
+                        Log.d("UPLOAD", "Get the file!");
+                        Log.d("UPLOAD", "-> File path ==> " + upload_file.getPath());
+                        Log.d("UPLOAD", "-> File length ==> "+file_length);
+                        Log.d("UPLOAD", "Now,start uploading!");
                         Log.d("UPLOAD", "======= TEST: int_progress = "+int_progress+" \tprogress = "+ progress +" ===========");
                         progressBar.setProgress(Integer.valueOf((int) (100*(int_progress/file_length))));
                         Message m = new Message();
