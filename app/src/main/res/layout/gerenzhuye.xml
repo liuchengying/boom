@@ -50,46 +50,43 @@
         </LinearLayout>
 
     </LinearLayout>
-<ScrollView
-    android:layout_width="fill_parent"
-    android:layout_height="wrap_content">
-<LinearLayout
-    android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical">
+
 
     <LinearLayout
-
+        android:visibility="visible"
+        android:id="@+id/gerenzhuye_yincang"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/android_113"
         android:orientation="vertical"
         android:gravity="center_horizontal"
         >
-        <ImageView
+        <boom.boom.myview.CircleImageView
+            android:id="@+id/gerenzhuye_touxiang"
             android:layout_marginTop="40dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/android_114"
             />
         <TextView
+            android:id="@+id/gerenzhuye_yonghuming"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="用户名"
-            android:textSize="25sp"
+            android:textSize="20sp"
             android:textColor="#eaeaea"
             android:layout_marginTop="5dp"/>
         <TextView
+            android:id="@+id/gerenzhuye_qianming"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/android_115"
             android:text="服务器上的个性签名"
             android:gravity="center"
-            android:textSize="16sp"
+            android:textSize="15sp"
             android:textColor="#eeeeee"
             android:layout_marginTop="5dp"/>
     </LinearLayout>
-
 
     <LinearLayout
         android:layout_width="fill_parent"
@@ -141,17 +138,17 @@
                 android:src="@drawable/android_116"/>
             </LinearLayout>
     </LinearLayout>
-</LinearLayout>
-</ScrollView>
+
+
 
     <android.support.v4.view.ViewPager
         android:layout_width="wrap_content"
-        android:layout_height="fill_parent"
+        android:layout_height="0dp"
         android:layout_weight="1"
         android:id="@+id/id_viewpager"
         />
 
-    </LinearLayout>
 
+</LinearLayout>
 
 </boom.boom.myview.SildingFinishLayout>

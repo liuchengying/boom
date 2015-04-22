@@ -4,9 +4,9 @@
     android:background="#ffdadada"
     android:orientation="vertical"
     android:gravity="center">
-    <ListView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <boom.boom.myview.XListView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
         android:id="@+id/listView4"
         android:layout_weight="1"
         android:layout_marginLeft="10dp"

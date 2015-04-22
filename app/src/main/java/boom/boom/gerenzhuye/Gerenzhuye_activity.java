@@ -13,6 +13,7 @@ import android.support.v4.view.ViewPager;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Display;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -27,6 +28,7 @@ import boom.boom.FontManager.FontManager;
 import boom.boom.R;
 
 import boom.boom.api.SysApplication;
+import boom.boom.myview.CircleImageView;
 import boom.boom.myview.SildingFinishLayout;
 
 
@@ -45,7 +47,7 @@ public class Gerenzhuye_activity extends FragmentActivity
     private LinearLayout mChatLinearLayout;
     private LinearLayout gerenzhuyefanhui;
     private TextView l1,l2,l3;
-
+    private CircleImageView gerenzhuye_touxing;
 
 
 
@@ -75,7 +77,7 @@ public class Gerenzhuye_activity extends FragmentActivity
 
         mSildingFinishLayout.setTouchView(mSildingFinishLayout);
 
-
+       gerenzhuye_touxing = (CircleImageView) findViewById(R.id.gerenzhuye_touxiang);
         gerenzhuyefanhui = (LinearLayout)findViewById(R.id.gerenzhuyefanhui);
         gerenzhuyefanhui.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -233,5 +235,14 @@ public class Gerenzhuye_activity extends FragmentActivity
     public void onBackPressed() {
         super.onBackPressed();
         overridePendingTransition(0, R.anim.base_slide_right_out);
+    }
+    @Override
+    public boolean onTouchEvent(MotionEvent ev) {
+        switch (ev.getAction()){
+            case MotionEvent.ACTION_DOWN:
+                LinearLayout yincang = (LinearLayout) findViewById(R.id.gerenzhuye_yincang);
+                yincang.setVisibility(View.GONE);
+        }
+        return super.onTouchEvent(ev);
     }
 }

@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Locale;
-import java.util.logging.Handler;
+
 
 import boom.boom.R;
 import boom.boom.myview.XListView;
@@ -48,7 +48,7 @@ public class Shipintianzhan_fragment extends Fragment implements XListView.IXLis
             listItem.add(map);
         }
         SimpleAdapter mSimpleAdapter = new SimpleAdapter(getActivity(),listItem,//需要绑定的数据
-                R.layout.diqupaihang_item,//每一行的布局//动态数组中的数据源的键对应到定义布局的View中
+                R.layout.shipintiaozhan_item,//每一行的布局//动态数组中的数据源的键对应到定义布局的View中
                 new String[] {
                         "title", "count"},
                 new int[] {R.id.title,R.id.count}

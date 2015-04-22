@@ -6,7 +6,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ListView;
+
 import android.widget.SimpleAdapter;
 
 import java.text.SimpleDateFormat;
@@ -44,7 +44,7 @@ public class Liuyanban_fragment extends Fragment implements XListView.IXListView
             listItem.add(map);
         }
         SimpleAdapter mSimpleAdapter = new SimpleAdapter(getActivity(),listItem,//需要绑定的数据
-                R.layout.diqupaihang_item,//每一行的布局//动态数组中的数据源的键对应到定义布局的View中
+                R.layout.liuyanban_item,//每一行的布局//动态数组中的数据源的键对应到定义布局的View中
                 new String[] {
                         "title", "count"},
                 new int[] {R.id.title,R.id.count}

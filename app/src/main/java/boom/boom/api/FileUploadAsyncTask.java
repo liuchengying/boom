@@ -3,6 +3,7 @@ package boom.boom.api;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
+import android.util.Log;
 import android.widget.Toast;
 
 import org.apache.http.HttpEntity;
@@ -16,12 +17,14 @@ import org.apache.http.conn.ConnectTimeoutException;
 import org.apache.http.entity.mime.HttpMultipartMode;
 import org.apache.http.entity.mime.MultipartEntityBuilder;
 import org.apache.http.entity.mime.content.FileBody;
+import org.apache.http.entity.mime.content.StringBody;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.params.CoreConnectionPNames;
 import org.apache.http.params.CoreProtocolPNames;
 import org.apache.http.protocol.HTTP;
 
 import java.io.File;
+import java.io.UnsupportedEncodingException;
 import java.nio.charset.Charset;
 
 /**
@@ -79,8 +82,16 @@ public class FileUploadAsyncTask extends AsyncTask<File, Integer, String> {
 
         File file = params[0];
         entitys.addPart("file", new FileBody(file));
+        try {
+            entitys.addPart("enctype", new StringBody("multipart/form-data"));
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+            Log.e("UPLOAD", "Add `enctype` to POST method caught a error. Give up.");
+        }
+
         HttpEntity httpEntity = entitys.build();
         totalSize = httpEntity.getContentLength();
+        Log.d("AsyncTask", "Total size ==> " + totalSize);
         ProgressOutHttpEntity progressHttpEntity = new ProgressOutHttpEntity(
                 httpEntity, new ProgressListener() {
             @Override
@@ -96,7 +107,8 @@ public class FileUploadAsyncTask extends AsyncTask<File, Integer, String> {
 
     @Override
     protected void onProgressUpdate(Integer... progress) {
-        pd.setProgress((int) (progress[0]));
+//        pd.setProgress((int) (progress[0]));
+
     }
 
     @Override
@@ -111,7 +123,7 @@ public class FileUploadAsyncTask extends AsyncTask<File, Integer, String> {
                 CoreProtocolPNames.PROTOCOL_VERSION, HttpVersion.HTTP_1_1);
         // 设置连接超时时间
         httpClient.getParams().setParameter(
-                CoreConnectionPNames.CONNECTION_TIMEOUT, 5000);
+                CoreConnectionPNames.CONNECTION_TIMEOUT, 50000);
         HttpPost httpPost = new HttpPost(url);
         httpPost.setEntity(entity);
         try {
