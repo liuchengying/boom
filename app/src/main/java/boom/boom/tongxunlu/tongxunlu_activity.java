@@ -151,8 +151,6 @@ public class tongxunlu_activity extends Activity{
                 // 取出holder
                 holder = (ViewHolder) convertView.getTag();
             }
-
-
             // 设置list中TextView的显示
             holder.tv.setText(list.get(position));
             // 根据isSelected来设置checkbox的选中状况
