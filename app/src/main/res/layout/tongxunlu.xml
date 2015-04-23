@@ -93,12 +93,26 @@
             android:textSize="20sp"
             />
         </FrameLayout>
+<HorizontalScrollView
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/andriod_86"
+    android:layout_gravity="center"
+
+    >
     <LinearLayout
+        android:paddingLeft="50dp"
+        android:layout_gravity="center"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/andriod_86">
+        android:layout_height="fill_parent"
+       android:gravity="center"
+        android:orientation="horizontal"
+        android:id="@+id/horizon"
+        >
+
 
         </LinearLayout>
+</HorizontalScrollView>
     <TextView
         android:layout_width="fill_parent"
         android:layout_height="50dp"

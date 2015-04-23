@@ -33,7 +33,7 @@ import static android.app.PendingIntent.getActivity;
  * Created by Lyp on 2015/1/22.
  */
 public class tongxunlu_activity extends Activity{
-
+    LinearLayout horizon;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +53,15 @@ public class tongxunlu_activity extends Activity{
         SysApplication.getInstance().addActivity(this);
         FontManager.changeFonts(FontManager.getContentView(this), this);//字体
         ListView lv = (ListView) findViewById(R.id.tongxunlu_listview);
+
+        horizon=(LinearLayout)findViewById(R.id.horizon);
+        for(int i=0;i<15;i++)
+        {
+            ImageView imageView=new ImageView(this);
+            imageView.setImageResource(R.drawable.android_181);
+            imageView.setPadding(10,0,0,0);
+            horizon.addView(imageView);
+        }
 
         ArrayList<String> listItem = new ArrayList<>();
         for(int i=0;i<30;i++)
