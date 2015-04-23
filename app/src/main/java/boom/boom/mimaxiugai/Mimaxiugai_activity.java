@@ -45,6 +45,7 @@ public class Mimaxiugai_activity extends Activity{
             {
                 case 1:AlertDialog alertDialog=new AlertDialog.Builder(Mimaxiugai_activity.this).create();
                     alertDialog.show();
+                    alertDialog.setCancelable(false);
                     Window window=alertDialog.getWindow();
                     window.setContentView(R.layout.mbox_ok);
                     TextView ok_title=(TextView)window.findViewById(R.id.ok_title);

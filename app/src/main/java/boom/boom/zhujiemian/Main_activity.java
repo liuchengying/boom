@@ -123,6 +123,7 @@ public class Main_activity extends Activity {
                 final String pass_Str = pass.getText().toString();
                 dialog = new LoadingDialog(Main_activity.this);
                 dialog.show();
+                dialog.setCancelable(false);
 
                 userlogin= new User(user_Str, pass_Str);
 
