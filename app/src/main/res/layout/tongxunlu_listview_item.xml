@@ -40,7 +40,7 @@
             android:id="@+id/tongxunlu_check"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            />
+            android:clickable="false" />
         <!--<ImageView-->
             <!--android:id="@+id/dianhaoyou_a"-->
             <!--android:layout_width="wrap_content"-->

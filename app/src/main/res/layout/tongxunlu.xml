@@ -91,28 +91,37 @@
             android:layout_marginLeft="20dp"
             android:background="#ffffff"
             android:textSize="20sp"
-            />
+            android:singleLine="true" />
         </FrameLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center">
 <HorizontalScrollView
-    android:layout_width="fill_parent"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
+    android:layout_centerHorizontal="true"
+
+    android:scrollbars="none"
     android:background="@drawable/andriod_86"
     android:layout_gravity="center"
 
     >
+
     <LinearLayout
-        android:paddingLeft="50dp"
-        android:layout_gravity="center"
+
+
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-       android:gravity="center"
+        android:layout_gravity="center_vertical"
         android:orientation="horizontal"
         android:id="@+id/horizon"
         >
+    </LinearLayout>
 
 
-        </LinearLayout>
 </HorizontalScrollView>
+    </RelativeLayout>
     <TextView
         android:layout_width="fill_parent"
         android:layout_height="50dp"

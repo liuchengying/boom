@@ -25,6 +25,7 @@ import boom.boom.R;
 import boom.boom.api.SysApplication;
 
 
+import boom.boom.mimaxiugai.Mimaxiugai_activity;
 import boom.boom.myview.SildingFinishLayout;
 
 import static android.app.PendingIntent.getActivity;
@@ -34,6 +35,7 @@ import static android.app.PendingIntent.getActivity;
  */
 public class tongxunlu_activity extends Activity{
     LinearLayout horizon;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,13 +57,7 @@ public class tongxunlu_activity extends Activity{
         ListView lv = (ListView) findViewById(R.id.tongxunlu_listview);
 
         horizon=(LinearLayout)findViewById(R.id.horizon);
-        for(int i=0;i<15;i++)
-        {
-            ImageView imageView=new ImageView(this);
-            imageView.setImageResource(R.drawable.android_181);
-            imageView.setPadding(10,0,0,0);
-            horizon.addView(imageView);
-        }
+
 
         ArrayList<String> listItem = new ArrayList<>();
         for(int i=0;i<30;i++)
@@ -107,6 +103,7 @@ public class tongxunlu_activity extends Activity{
         private ArrayList<String> list;
         // 用来控制CheckBox的选中状况
         private HashMap<Integer,Boolean> isSelected;
+
         // 上下文
         private Context context;
         // 用来导入布局
@@ -120,6 +117,7 @@ public class tongxunlu_activity extends Activity{
             isSelected = new HashMap<Integer, Boolean>();
             // 初始化数据
             initDate();
+
         }
 
         // 初始化isSelected的数据
@@ -143,7 +141,19 @@ public class tongxunlu_activity extends Activity{
         public long getItemId(int position) {
             return position;
         }
-
+        void selectedChanged()
+        {
+            horizon.removeAllViews();
+            for(int i=0;i<getIsSelected().size();i++)
+            {
+                if(getIsSelected().get(i)){
+                    ImageView imageView=new ImageView(tongxunlu_activity.this);
+                    imageView.setImageResource(R.drawable.android_181);
+                    imageView.setPadding(10,0,0,0);
+                    horizon.addView(imageView);
+                }
+            }
+        }
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
             ViewHolder holder = null;
@@ -174,6 +184,7 @@ public class tongxunlu_activity extends Activity{
         public void select(int position) {
             getIsSelected().put(position,!getIsSelected().get(position));
             notifyDataSetChanged();
+            selectedChanged();
         }
 class ViewHolder
 {
