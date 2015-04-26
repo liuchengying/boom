@@ -23,7 +23,7 @@
             android:onClick="dianjicehua"
             android:layout_weight="1"
             android:layout_width="wrap_content"
-            android:layout_height="50dp"
+            android:layout_height="fill_parent"
             android:gravity="center_vertical"
             >
             <Button
@@ -39,7 +39,7 @@
         <LinearLayout
             android:layout_weight="1"
             android:layout_width="wrap_content"
-            android:layout_height="50dp"
+            android:layout_height="fill_parent"
             android:gravity="center">
             <TextView
                 android:layout_width="wrap_content"
@@ -51,20 +51,23 @@
                 />
         </LinearLayout>
         <LinearLayout
+            android:layout_weight="0.30"
 
-            android:layout_weight="1"
             android:layout_width="wrap_content"
-            android:layout_height="50dp"
-            android:gravity="right"
-            android:layout_marginRight="10dp"
-            android:id="@+id/mimaxiugai_qd">
+            android:layout_height="fill_parent"
+            android:gravity="center"
+
+            android:id="@+id/xgmm_ok">
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="确定"
+                android:layout_width="74dp"
+                android:layout_height="fill_parent"
+                android:text="     确定"
+               android:gravity="center"
                 android:textSize="20sp"
+
                 android:textColor="#ffffff"
-                android:layout_gravity="center_vertical"/>
+                android:layout_gravity="center"
+                 />
         </LinearLayout>
     </LinearLayout>
     <LinearLayout
@@ -86,13 +89,15 @@
             android:textSize="20sp"
             />
         <EditText
+
             android:layout_marginLeft="10dp"
             android:layout_width="fill_parent"
             android:layout_height="45dp"
             android:background="#ffffff"
             android:password="true"
             android:textColor="#ffdadada"
-            android:singleLine="true" />
+            android:singleLine="true"
+            android:id="@+id/xgmm_oldpw" />
         </LinearLayout>
     <LinearLayout
         android:background="@drawable/android_151"
@@ -123,7 +128,8 @@
                 android:background="#ffffff"
                 android:password="true"
                 android:textColor="#ffdadada"
-                android:singleLine="true" />
+                android:singleLine="true"
+                android:id="@+id/xgmm_newpw" />
 
             </LinearLayout>
         <LinearLayout
@@ -147,7 +153,8 @@
                 android:background="#ffffff"
                 android:password="true"
                 android:textColor="#ffdadada"
-                android:singleLine="true" />
+                android:singleLine="true"
+                android:id="@+id/xgmm_confirmpw" />
 
         </LinearLayout>
 

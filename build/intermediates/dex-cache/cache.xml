@@ -2,39 +2,39 @@
 <items version="2" >
 
     <item
-        jar="F:\android1\BoomTime\app\libs\httpcore-4.3.3.jar"
-        jumboMode="false"
-        revision="20.0.0"
-        sha1="f91b7a4aadc5cf486df6e4634748d7dd7a73f06d">
-        <dex dex="F:\android1\BoomTime\app\build\intermediates\pre-dexed\debug\httpcore-4.3.3-d2cfc21edfe35e04e57d465e6313d017d2f482b3.jar" />
-    </item>
-    <item
-        jar="F:\android1\BoomTime\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\19.1.0\classes.jar"
-        jumboMode="false"
-        revision="20.0.0"
-        sha1="3499ceba05ca1f6037c6a2fad73df8f636224a28">
-        <dex dex="F:\android1\BoomTime\app\build\intermediates\pre-dexed\debug\classes-e673aea44ab59a83364631092bacc07ffe1d173e.jar" />
-    </item>
-    <item
-        jar="F:\android1\BoomTime\app\libs\nineoldandroids-2.4.0.jar"
-        jumboMode="false"
-        revision="20.0.0"
-        sha1="59f19e43354d32de831379c23ce03bb259a4c2b7">
-        <dex dex="F:\android1\BoomTime\app\build\intermediates\pre-dexed\debug\nineoldandroids-2.4.0-197a24ebce4af194f780a906e1127023860933e7.jar" />
-    </item>
-    <item
-        jar="F:\android1\BoomTime\app\libs\httpmime-4.3.6.jar"
+        jar="D:\workspace\BoomTime\app\libs\httpmime-4.3.6.jar"
         jumboMode="false"
         revision="20.0.0"
         sha1="66a39a5e37d5da40fdad6176fc24ef4316e74702">
-        <dex dex="F:\android1\BoomTime\app\build\intermediates\pre-dexed\debug\httpmime-4.3.6-54034ce3b9f91709e62f230f8f74d34e528e5e3c.jar" />
+        <dex dex="D:\workspace\BoomTime\app\build\intermediates\pre-dexed\debug\httpmime-4.3.6-afc9283e4acd08c0b27c9aaac0fb4b9a9c6f8c4b.jar" />
     </item>
     <item
-        jar="D:\Program Files\Android\sdk\extras\android\m2repository\com\android\support\support-v4\19.1.0\support-v4-19.1.0.jar"
+        jar="D:\workspace\BoomTime\app\libs\httpcore-4.3.3.jar"
+        jumboMode="false"
+        revision="20.0.0"
+        sha1="f91b7a4aadc5cf486df6e4634748d7dd7a73f06d">
+        <dex dex="D:\workspace\BoomTime\app\build\intermediates\pre-dexed\debug\httpcore-4.3.3-274fec5ced0da238c328a4b5e6cd0daece319574.jar" />
+    </item>
+    <item
+        jar="E:\sdk\extras\android\m2repository\com\android\support\support-v4\19.1.0\support-v4-19.1.0.jar"
         jumboMode="false"
         revision="20.0.0"
         sha1="85f201b380937e61a9dce6ca90ccf6872abbfb67">
-        <dex dex="F:\android1\BoomTime\app\build\intermediates\pre-dexed\debug\support-v4-19.1.0-b1cd452c9f7e8f930f0821eb70bd9d7542935010.jar" />
+        <dex dex="D:\workspace\BoomTime\app\build\intermediates\pre-dexed\debug\support-v4-19.1.0-2e6e25d109b7d5cb6678a669b8dfd80fa379256f.jar" />
+    </item>
+    <item
+        jar="D:\workspace\BoomTime\app\libs\nineoldandroids-2.4.0.jar"
+        jumboMode="false"
+        revision="20.0.0"
+        sha1="59f19e43354d32de831379c23ce03bb259a4c2b7">
+        <dex dex="D:\workspace\BoomTime\app\build\intermediates\pre-dexed\debug\nineoldandroids-2.4.0-b2d87a670b7a0ca27d42a0431d5e2f065e6f9af0.jar" />
+    </item>
+    <item
+        jar="D:\workspace\BoomTime\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\19.1.0\classes.jar"
+        jumboMode="false"
+        revision="20.0.0"
+        sha1="3499ceba05ca1f6037c6a2fad73df8f636224a28">
+        <dex dex="D:\workspace\BoomTime\app\build\intermediates\pre-dexed\debug\classes-cc75af89cd8c3b95a82eac46d5c6755153051800.jar" />
     </item>
 
 </items>
