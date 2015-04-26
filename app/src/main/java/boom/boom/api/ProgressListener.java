@@ -5,5 +5,7 @@ package boom.boom.api;
  */
 
 public interface ProgressListener {
+    public void transferred(int transferedBytes);
+
     public void transferred(long transferedBytes);
 }

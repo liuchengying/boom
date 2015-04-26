@@ -75,6 +75,7 @@
                     android:layout_height="wrap_content"
                     android:src="@drawable/android_125"/>
                 <TextView
+                    android:id="@+id/location"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="辽宁大连"
@@ -86,6 +87,7 @@
                     android:src="@drawable/android_126"
                     android:layout_marginLeft="10dp"/>
                 <TextView
+                    android:id="@+id/assign_time"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="12.23 19:00"
@@ -116,7 +118,8 @@
                     android:textColor="#ffffff"
                     android:layout_marginLeft="21dp"
                     android:layout_marginTop="8dp"
-                    android:textSize="12sp"/>
+                    android:textSize="12sp"
+                    android:id="@+id/elapsed"/>
                 </FrameLayout>
 
         </LinearLayout>

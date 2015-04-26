@@ -55,6 +55,14 @@ public class Challenge {
         io.GETToHTTPServer();
         return io.getResultData();
     }
+
+    public static String getChallengeByIdentify(int number){
+        HttpIO io = new HttpIO(Utils.serveraddr + challenge_api + "?action=fetchbyIdentifyDigit&identify=" + number);
+        io.SetCustomSessionID(Static.session_id);
+        io.GETToHTTPServer();
+        return io.getResultData();
+    }
+
     public static boolean subMitChallenge(String challenge, String Token){
         HttpIO io = new HttpIO(Utils.serveraddr + take_cl_api + Utils.GetBuilder.Item("dvtoken", Token) + Utils.GetBuilder.Item("challenge", challenge));
         io.SetCustomSessionID(Static.session_id);
@@ -69,5 +77,4 @@ public class Challenge {
         return false;
     }
 
-//    public static JSONObject getChall
 }

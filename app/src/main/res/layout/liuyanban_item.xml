@@ -33,12 +33,14 @@
             android:orientation="vertical"
             android:layout_marginLeft="10dp">
             <TextView
+                android:id="@+id/nickname"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="XXX"
                 android:textSize="25sp"
                 android:textColor="#FF4444"/>
             <TextView
+                android:id="@+id/text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="今天试了一下斜立易拉罐"/>
@@ -52,6 +54,7 @@
        android:layout_height="wrap_content"
        android:gravity="right">
        <TextView
+           android:id="@+id/date"
            android:layout_width="wrap_content"
            android:layout_height="wrap_content"
            android:text="2014.5.8"
@@ -75,6 +78,7 @@
                 android:layout_height="wrap_content"
                 android:src="@drawable/android_133"/>
             <TextView
+                android:id="@+id/like"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="#ffffff"
@@ -94,6 +98,7 @@
                 android:layout_height="wrap_content"
                 android:src="@drawable/android_133"/>
             <TextView
+                android:id="@+id/comment"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="#ffffff"

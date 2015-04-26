@@ -1,14 +1,10 @@
 package boom.boom.gerenzhuye;
 
-import android.app.Activity;
-import android.app.FragmentManager;
-import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -21,12 +17,13 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import boom.boom.FontManager.FontManager;
 import boom.boom.R;
-
 import boom.boom.api.SysApplication;
 import boom.boom.myview.CircleImageView;
 import boom.boom.myview.SildingFinishLayout;
@@ -48,7 +45,7 @@ public class Gerenzhuye_activity extends FragmentActivity
     private LinearLayout gerenzhuyefanhui;
     private TextView l1,l2,l3;
     private CircleImageView gerenzhuye_touxing;
-
+    public static JSONObject obj;
 
 
     private ImageView mTabline;
@@ -115,17 +112,7 @@ public class Gerenzhuye_activity extends FragmentActivity
         });
 
     }
-
-
-
-
-
-
-
-
-
-    private void initTabLine()
-    {
+    private void initTabLine(){
         mTabline = (ImageView) findViewById(R.id.gundongtiao);
         Display display = getWindow().getWindowManager().getDefaultDisplay();
         DisplayMetrics outMetrics = new DisplayMetrics();
@@ -136,16 +123,9 @@ public class Gerenzhuye_activity extends FragmentActivity
         mTabline.setLayoutParams(lp);
     }
 
-    private void initView()
-    {
+    private void initView(){
         mViewPager = (ViewPager) findViewById(R.id.id_viewpager);
-
-
-
-
         mDatas = new ArrayList<Fragment>();
-
-
         Shipintianzhan_fragment tab01 = new Shipintianzhan_fragment();
         Liuyanban_fragment tab02 = new Liuyanban_fragment();
         Xiangxiziliao_fragment tab03 = new Xiangxiziliao_fragment();

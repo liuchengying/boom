@@ -48,19 +48,4 @@ public class Paisheshangchuan_activity extends Activity
 
 
     }
-   /** Timer timer = new Timer();
-    TimerTask task = new TimerTask(){
-        @Override
-        public void run() {
-            if(bianliang) {
-                Intent intent = new Intent(Paishetiaozhan_activity.this, Shangchuandengdai_activity.class);
-                startActivity(intent);
-                Paishetiaozhan_activity.this.finish();
-
-            }
-        }
-    };
-    timer.schedule(task, 2000);
-    **/
-
 }

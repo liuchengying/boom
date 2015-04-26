@@ -6,8 +6,10 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import android.widget.SimpleAdapter;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -16,6 +18,9 @@ import java.util.HashMap;
 import java.util.Locale;
 
 import boom.boom.R;
+import boom.boom.api.HttpIO;
+import boom.boom.api.Static;
+import boom.boom.api.Utils;
 import boom.boom.myview.XListView;
 
 /**
@@ -26,7 +31,7 @@ public class Liuyanban_fragment extends Fragment implements XListView.IXListView
     private XListView lv;
     private Handler mHandler;
     private final static String DATE_FORMAT_STR = "yyyy-MM-dd HH:mm";
-
+    private SimpleAdapter mSimpleAdapter;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState)
@@ -35,20 +40,7 @@ public class Liuyanban_fragment extends Fragment implements XListView.IXListView
         lv= (XListView) v.findViewById(R.id.listView3);
         lv.setPullLoadEnable(true);
         mHandler = new Handler();
-        ArrayList<HashMap<String, Object>> listItem = new ArrayList<HashMap<String,     Object>>();//*在数组中存放数据*//*
-        for(int i=0;i<10;i++)
-        {
-            HashMap<String, Object> map = new HashMap<String, Object>();
-            map.put("title","XXX");//加入图片            map.put("ItemTitle", "第"+i+"行");
-            map.put("count", "这是第"+i+"行");
-            listItem.add(map);
-        }
-        SimpleAdapter mSimpleAdapter = new SimpleAdapter(getActivity(),listItem,//需要绑定的数据
-                R.layout.liuyanban_item,//每一行的布局//动态数组中的数据源的键对应到定义布局的View中
-                new String[] {
-                        "title", "count"},
-                new int[] {R.id.title,R.id.count}
-        );
+        this.onSyncDataFromServer();
         lv.setPullLoadEnable(true);
 		lv.setPullRefreshEnable(true);
         lv.setXListViewListener(this);
@@ -66,7 +58,7 @@ public class Liuyanban_fragment extends Fragment implements XListView.IXListView
         mHandler.postDelayed(new Runnable() {
             @Override
             public void run() {
-
+        onSyncDataFromServer();
                 onLoad();
             }
         }, 2000);
@@ -83,5 +75,48 @@ public class Liuyanban_fragment extends Fragment implements XListView.IXListView
             }
         }, 2000);
 
+    }
+
+    public void onSyncDataFromServer(){
+        String challenge_name = null, challenge_nickname = null;
+        ArrayList<HashMap<String, Object>> listItem = new ArrayList<HashMap<String,     Object>>();//*在数组中存放数据*//*
+        Utils.GetBuilder get = new Utils.GetBuilder(Utils.serveraddr + "/api/rank.php");
+        get.addItem("action", "getrank");
+        HttpIO io = new HttpIO(get.toString());
+        Gerenzhuye_activity.obj = null;
+
+        int round = 0;
+        io.GETToHTTPServer();
+        try {
+            Gerenzhuye_activity.obj = new JSONObject(io.getResultData());
+            JSONObject tmp = Utils.GetSubJSONObject(Gerenzhuye_activity.obj, "response");
+            round = Integer.parseInt(tmp.getString("limit"));
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+//        JSONObject obj_new = Challenge.getChallengeByIdentify()
+        for(int i=0;i<round;i++){
+            String title = null, text = null, like = null, comment = null;
+            if (Gerenzhuye_activity.obj != null) try {
+                JSONObject tmp = Utils.GetSubJSONObject(Gerenzhuye_activity.obj, "line"+i);
+                title = tmp.getString("frontname");
+//                text = tmp.getString()
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            HashMap<String, Object> map = new HashMap<String, Object>();
+            map.put("title", Static.nickname);//加入图片            map.put("ItemTitle", "第"+i+"行");
+            map.put("text", text);
+            map.put("like", like);
+            map.put("comment", comment);
+            listItem.add(map);
+        }
+        mSimpleAdapter = new SimpleAdapter(getActivity(),listItem,//需要绑定的数据
+                R.layout.liuyanban_item,//每一行的布局//动态数组中的数据源的键对应到定义布局的View中
+                new String[] {
+                        "title", "count"},
+                new int[] {R.id.title,R.id.count}
+        );
     }
 }

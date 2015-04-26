@@ -99,6 +99,8 @@ public class FileUploadAsyncTask extends AsyncTask<File, Integer, String> {
 //                publishProgress((int) (100 * transferedBytes / totalSize));
                 progress_long = Integer.valueOf(new Long(transferedBytes).intValue());
             }
+
+            public void transferred(int transferedBytes){}
         });
 //        return uploadFile(url, progressHttpEntity);
         uploadFile(url, progressHttpEntity);
