@@ -172,7 +172,7 @@
                 android:layout_height="fill_parent"
                 android:background="@drawable/android_148"
                 android:gravity="center"
-                >
+                android:id="@+id/sz_touxiang">
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

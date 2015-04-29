@@ -1,52 +1,142 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent"
-   >
-
-    <LinearLayout
-        android:orientation="horizontal"
+<boom.boom.myview.SildingFinishLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:id="@+id/sildingFinishLayout">
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:background="@drawable/andriod_91"
-        android:weightSum="1">
-
+        android:layout_height="fill_parent"
+        android:background="#ffdadada"
+        >
         <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="60dp"
+            android:background="#ffe14723"
             android:orientation="horizontal"
+            android:gravity="center"
+
+
+            >
+            <LinearLayout
+                android:id="@+id/haoyouliebiao_fh"
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:gravity="center_vertical"
+                >
+                <Button
+                    android:id="@+id/zhucufanhui"
+                    android:layout_width="18dp"
+                    android:layout_height="23dp"
+                    android:background="@drawable/android_20"
+                    android:gravity="center_horizontal"
+                    android:layout_marginLeft="10dp"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:gravity="center">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="好友列表"
+                    android:textSize="25sp"
+                    android:textColor="#eeeeee"
+
+
+                    />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:gravity="right">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="    "
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginRight="10dp"/>
+            </LinearLayout>
+
+
+        </LinearLayout>
+        <FrameLayout
+            android:layout_width="fill_parent"
+            android:layout_height="85dp"
+            android:gravity="center"
+            android:focusable="true"
+            android:focusableInTouchMode="true" >
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/andriod_84"
+                android:layout_gravity="center"/>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/android_85"
+                android:layout_gravity="center_vertical"
+                android:paddingLeft="35dp"/>
+            <EditText
+
+                android:hint="请输入好友昵称/ID"
+                android:layout_width="260dp"
+                android:layout_height="42dp"
+                android:layout_gravity="center"
+                android:layout_marginLeft="20dp"
+                android:background="#ffffff"
+                android:textSize="20sp"
+                android:singleLine="true" />
+        </FrameLayout>
+       <LinearLayout
+           android:id="@+id/haoyouiebiao_yaoqing"
+           android:layout_width="fill_parent"
+           android:layout_height="wrap_content"
+           android:background="@drawable/andriod_86"
+           android:orientation="horizontal"
+           android:gravity="center_vertical"
+           android:weightSum="1">
+           <ImageView
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:src="@drawable/android_194"
+               android:paddingLeft="30dp"/>
+           <TextView
+               android:layout_width="wrap_content"
+               android:layout_height="fill_parent"
+               android:gravity="center_vertical"
+               android:text="邀请好友"
+               android:layout_marginLeft="30dp"
+               android:textSize="20sp"
+               android:layout_weight="0.83" />
+           <ImageView
+               android:layout_width="wrap_content"
+               android:layout_height="fill_parent"
+               android:src="@drawable/android_52"/>
+
+
+
+
+           </LinearLayout>
+        <TextView
             android:layout_width="fill_parent"
             android:layout_height="50dp"
-            android:weightSum="1"
-            >
+            android:text="我的好友"
+            android:gravity="center_vertical"
+            android:paddingLeft="25dp"
+            android:textSize="20sp"
+            />
+        <ListView
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:id="@+id/haoyouliebiao_listview"
+            android:paddingTop="5dp">
 
-            <ImageView
-                android:layout_width="50dp"
-                android:layout_height="40dp"
-                android:id="@+id/imageView4"
-                android:background="@drawable/android_92"
-                android:layout_weight="0.02"
-                android:layout_gravity="center"
-                android:layout_marginLeft="20dp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="好友昵称"
-                android:id="@+id/textView14"
-                android:layout_weight="0.02"
-                android:textColor="#ff8e8e8e"
-                android:layout_gravity="center"
-                android:layout_marginLeft="25dp" />
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/imageView6"
-                android:layout_weight="0.02"
-                android:background="@drawable/andriod_93"
-                android:layout_gravity="center|right"
-                android:layout_marginLeft="150dp" />
-        </LinearLayout>
+        </ListView>
     </LinearLayout>
-</LinearLayout>
+</boom.boom.myview.SildingFinishLayout>
