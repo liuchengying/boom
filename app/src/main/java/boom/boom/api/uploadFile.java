@@ -1,6 +1,8 @@
 package boom.boom.api;
 
-import android.util.Log;
+/**
+ * Created by lenovo on 2015/4/28.
+ */
 
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
@@ -10,70 +12,72 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-/**
- * Created by lenovo on 2015/4/25.
- */
-public class uploadFile {
-    private static final int timeout = 30000;
-    public static String  uploadFile(ProgressListener listener, String url, String fullFilePath, String fileName){
-        String requestURL = url;
+public class uploadFile{
+    public static String uploadFile(ProgressListener listener, String URL, String fileFullPath, String fileName){
+        int timeout = 5000;
+        String requestURL = URL;
+
 
         String end = "\r\n";
         String twoHyphens = "--";
-        String boundary = "******";
+        String boundary = "sdfgfhgtfjhrfshrhtyhtyhutht";
         StringBuffer sb = new StringBuffer();
         try{
-//            SSLContext sc = SSLContext.getInstance("TLS");
-//            sc.init(null, new TrustManager[] { (TrustManager) new MyTrustManager() }, new SecureRandom());
-//            HttpURLConnection.setDefaultSSLSocketFactory(sc.getSocketFactory());
-//            HttpURLConnection.setDefaultHostnameVerifier((HostnameVerifier) new MyHostnameVerifier());
             HttpURLConnection conn = (HttpURLConnection) new URL(requestURL).openConnection();
-            conn.setChunkedStreamingMode(1024 * 1024*10);	// 1M
+//            conn.setChunkedStreamingMode(1024*1024);	// 立即输出到网络流
             conn.setDoOutput(true);
             conn.setDoInput(true);
-            conn.setUseCaches(true);
+            conn.setUseCaches(false);
             conn.setConnectTimeout(timeout);
             conn.setReadTimeout(timeout * 2);
+
+            // 发送文件
+            int fileLength = 0;
+            int percentage = -1;
+            double sendLength = 0;
+
+            FileInputStream fis = new FileInputStream(fileFullPath);
+            fileLength = fis.available();
+            fis.close();
 
             conn.setRequestMethod("POST");
             conn.setRequestProperty("Connection", "Keep-Alive");
             conn.setRequestProperty("Charset", "UTF-8");
+            conn.setRequestProperty("User-Agent", "Generic/Boom");
+//            conn.setRequestProperty("Content-Length", fileLength + "");
             conn.setRequestProperty("Content-Type", "multipart/form-data;boundary=" + boundary);
             DataOutputStream dos = new DataOutputStream(conn.getOutputStream());
-            // 开始构造文件表单
+
             dos.writeBytes(twoHyphens + boundary + end);
-            dos.writeBytes("Content-Disposition: form-data; name=\"uploaded_file\"; filename=\"" + fileName + "\"" + end);
+            dos.writeBytes("Content-Disposition: form-data; name=\"file\"; filename=" + fileName + "" + end + "Content-Type: video/mp4" + end);
             dos.writeBytes(end);
 
-            int fileLength = 0;
-            FileInputStream fis = new FileInputStream(fullFilePath);
-            fileLength = fis.available();
+            fis = new FileInputStream(fileFullPath);
+
             byte[] buffer = new byte[1024];
             int count = 0;
             // 读取文件
-            int percentage = -1;
-            double sendLength = 0;
-            while ((count = fis.read(buffer)) != -1) {
-                sendLength += count;
+            while ((count = fis.read(buffer)) != -1){
                 dos.write(buffer, 0, count);
+
+                sendLength += count;
                 int p = (int) (sendLength / fileLength * 100);
                 if (p > 100)
                     p = 100;
-                if (p != percentage)
-                {
+                if (p != percentage){
                     percentage = p;
-                    if (listener != null) {
-                        Log.d("UPLOAD", "Percentage while upload ==> " + percentage);
+                    if (listener != null)
+//                        listener.onPercentageChange(percentage);
                         listener.transferred(percentage);
-                    }
                 }
-
             }
-            fis.close();
 
+            fis.close();
             dos.writeBytes(end);
+
             dos.writeBytes(twoHyphens + boundary + twoHyphens + end);
             dos.flush();
+
             InputStream is = conn.getInputStream();
             InputStreamReader isr = new InputStreamReader(is, "UTF-8");
             BufferedReader br = new BufferedReader(isr);
@@ -81,15 +85,17 @@ public class uploadFile {
             String line;
             while ((line = br.readLine()) != null)
                 sb.append(line);
+
             dos.close();
             is.close();
             conn.disconnect();
         }
-        catch (Exception e)
-        {
+        catch (Exception e){
             e.printStackTrace();
+            return "<NetworkError>"+e.toString()+"</NetworkError>";
         }
 
         return sb.toString();
     }
+
 }

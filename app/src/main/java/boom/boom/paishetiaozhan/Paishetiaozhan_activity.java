@@ -49,7 +49,8 @@ public class Paishetiaozhan_activity extends Activity implements SurfaceHolder.C
     private final long maxFileSizeInBytes = 500000;
     private final int videoFramesPerSecond = 20;
     private ProgressBar mprogress;
-    private int a;
+    private int a = 0;
+    private boolean onThreadStartStop = false;
 
     //private Handler myMessageHandler;
     /*Handler myMessageHandler = new Handler(){
@@ -65,6 +66,35 @@ public class Paishetiaozhan_activity extends Activity implements SurfaceHolder.C
             super.handleMessage(msg);
             sss.setText(a+"s");
             }};
+    Thread thread_progress = new Thread(new Runnable() {
+        @Override
+        public void run() {
+            for (; a < 20; a++) {
+                try {
+//                    mprogress.incrementProgressBy(1);
+                    mprogress.setProgress(a);
+                    Message m = new Message();
+                    m.what = 1;
+                    Paishetiaozhan_activity.this.myMessageHandler.sendMessage(m);
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    });
+    Handler on_thread_progress = new Handler(){
+        @Override
+        public void handleMessage(Message msg){
+            super.handleMessage(msg);
+            if (onThreadStartStop = !onThreadStartStop){
+                thread_progress.start();
+            }else{
+                a = 20;
+                thread_progress.interrupt();
+            }
+        }
+    };
     private TextView sss;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,8 +113,6 @@ public class Paishetiaozhan_activity extends Activity implements SurfaceHolder.C
         sv = (SurfaceView) findViewById(R.id.syncRecord_monitor);
         mprogress = (ProgressBar) findViewById(R.id.mprogress);
         sss= (TextView) findViewById(R.id.ssss);
-
-
         surfaceHolder = sv.getHolder();
         surfaceHolder.addCallback(this);
         surfaceHolder.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);
@@ -94,85 +122,35 @@ public class Paishetiaozhan_activity extends Activity implements SurfaceHolder.C
 
 
                 if (kaishipaishe.getText().equals("开始")) {
-                    new Thread(new Runnable() {
-                        @Override
-
-                        public void run() {
-                            for (a = 0; a < 20; a++) {
-                                try {
-                                    mprogress.incrementProgressBy(1);
-                                    Message m = new Message();
-                                    m.what = 1;
-                                    Paishetiaozhan_activity.this.myMessageHandler.sendMessage(m);
-                                    Thread.sleep(1000);
-                                } catch (InterruptedException e) {
-                                    e.printStackTrace();
-                                }
-                            }
-                        }
-                    }).start();
+                    Message m = new Message();
+                    m.what = 1;
+                    Paishetiaozhan_activity.this.on_thread_progress.sendMessage(m);
                     kaishipaishe.setText("停止");
-
-
                     startRecording();
-
                     new Thread(new Runnable() {
                         @Override
                         public void run() {
                             try {
-                                Message message = new Message();
-                                message.what = 1;
+//                                Message message = new Message();
+//                                message.what = 1;
                                 Thread.sleep(20000);
-                                stopRecording();
+                                onStopRecording();
                             } catch (InterruptedException e) {
                                 e.printStackTrace();
                             }
                         }
                     }).start();
-                    /*SocketHttpRequester requester = new SocketHttpRequester();
-                    FormFile file = new FormFile(StoreFile.getName(), StoreFile, "file", "video/3gp");
-                    try {
-                        requester.post(Utils.serveraddr + Utils.put_file_api, new HashMap<String, String>(), file);
-                        JSONObject result = new JSONObject(requester.getResultData());
-                        if (result.getString("state") == "FAILED") {
-                            Toast.makeText(getApplicationContext(), "上传失败！请重试。", Toast.LENGTH_SHORT);
-                            finish();
-                        }
-                        Challenge.subMitChallenge(cl_name, result.getString("fileToken"));
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                    Intent intent = new Intent();
-                    intent.putExtra("challenge_name", "cups");
-                    intent.setClass(Paishetiaozhan_activity.this, Shangchuanchenggong_activity.class);
-                    startActivity(intent);*/
-
                 } else if (kaishipaishe.getText().equals("停止")) {
-                    kaishipaishe.setText("上传");
-                    AnimationSet animationSet = new AnimationSet(true);
-                    TranslateAnimation translateAnimation = new TranslateAnimation(Animation.RELATIVE_TO_SELF, 0f,
-                            Animation.RELATIVE_TO_SELF, -0.6f,
-                            Animation.RELATIVE_TO_SELF, 0f,
-                            Animation.RELATIVE_TO_SELF, 0f);
-                    translateAnimation.setDuration(1000);
-                    animationSet.addAnimation(translateAnimation);
-                    animationSet.setFillAfter(true);
-                    kaishipaishe.startAnimation(animationSet);
-                    fangqipaishe.setVisibility(View.VISIBLE);
-                    AnimationSet animationSet1 = new AnimationSet(true);
-                    AlphaAnimation alphaAnimation = new AlphaAnimation(-1, 1);
-                    alphaAnimation.setDuration(2000);
-                    animationSet1.addAnimation(alphaAnimation);
-                    animationSet1.setFillAfter(true);
-                    fangqipaishe.startAnimation(animationSet1);
-                }else if(kaishipaishe.getText().equals("上传")){
+                    onStopRecording();
+                    Message m = new Message();
+                    m.what = 1;
+                    Paishetiaozhan_activity.this.on_thread_progress.sendMessage(m);
+                }else if (kaishipaishe.getText().equals("上传")){
                     Intent intent = new Intent();
                     intent.putExtra("file_path", StoreFile.getAbsolutePath());
                     intent.setClass(Paishetiaozhan_activity.this,Shangchuandengdai_activity.class);
                     startActivity(intent);
-
                 }
-
             }
         });
 
@@ -187,6 +165,26 @@ public class Paishetiaozhan_activity extends Activity implements SurfaceHolder.C
 
     }
 
+    public void onStopRecording(){
+        stopRecording();
+        kaishipaishe.setText("上传");
+        AnimationSet animationSet = new AnimationSet(true);
+        TranslateAnimation translateAnimation = new TranslateAnimation(Animation.RELATIVE_TO_SELF, 0f,
+                Animation.RELATIVE_TO_SELF, -0.6f,
+                Animation.RELATIVE_TO_SELF, 0f,
+                Animation.RELATIVE_TO_SELF, 0f);
+        translateAnimation.setDuration(1000);
+        animationSet.addAnimation(translateAnimation);
+        animationSet.setFillAfter(true);
+        kaishipaishe.startAnimation(animationSet);
+        fangqipaishe.setVisibility(View.VISIBLE);
+        AnimationSet animationSet1 = new AnimationSet(true);
+        AlphaAnimation alphaAnimation = new AlphaAnimation(-1, 1);
+        alphaAnimation.setDuration(2000);
+        animationSet1.addAnimation(alphaAnimation);
+        animationSet1.setFillAfter(true);
+        fangqipaishe.startAnimation(animationSet1);
+    }
     @Override
     public void surfaceCreated(SurfaceHolder holder) {
         camera = Camera.open();

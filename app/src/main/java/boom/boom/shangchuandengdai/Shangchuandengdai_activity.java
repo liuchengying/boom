@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -31,6 +32,7 @@ public class Shangchuandengdai_activity extends Activity {
     private Button tanchuang2quxiao;
     private boom.boom.myview.ProgressBar progressBar;
     private Integer progress;
+    private String path;
 //    private int int_progress;
 //    private Boolean upload_onComplete;
 //    private int b=0;
@@ -55,7 +57,7 @@ public class Shangchuandengdai_activity extends Activity {
         SysApplication.getInstance().addActivity(this);
         FontManager.changeFonts(FontManager.getContentView(this), this);//字体
         initEvent();
-        final String path = getIntent().getStringExtra("file_path");
+        path = getIntent().getStringExtra("file_path");
         shangchuandengdaifanhui = (Button) findViewById(R.id.shangchuandengdaifanhui);
         progressBar = (boom.boom.myview.ProgressBar) findViewById(R.id.progress123);
         fangqishangchuang = (Button) findViewById(R.id.fangqishangchuan);
@@ -68,7 +70,7 @@ public class Shangchuandengdai_activity extends Activity {
                     Utils.GetBuilder get = new Utils.GetBuilder(Utils.serveraddr + Utils.put_file_api);
                     get.addItem("s_id", Static.session_id);
                     get.addItem("type", "video");
-                    uploadFile.uploadFile(new ProgressListener() {
+                    String tmp = uploadFile.uploadFile(new ProgressListener() {
                         @Override
                         public void transferred(int transferedBytes) {
                             Message m = new Message();
@@ -80,6 +82,7 @@ public class Shangchuandengdai_activity extends Activity {
 
                         }
                     }, get.toString(), path, "heheda.mp4");
+                    Log.e("UPLOAD", "Server reply string ==> " + tmp);
                     Intent intent = new Intent();
                     intent.setClass(Shangchuandengdai_activity.this, Shangchuanchenggong1_activity.class);
                     startActivity(intent);

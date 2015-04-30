@@ -1,5 +1,7 @@
 package boom.boom.api;
 
+import android.util.Log;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -16,6 +18,7 @@ public class UserData {
         io.GETToHTTPServer();
         try {
             userdata_str = io.getResultData();
+            Log.e("Uerdata", userdata_str);
             JSONObject json = new JSONObject(this.userdata_str);
             this.userdata = json;
         } catch (JSONException e) {

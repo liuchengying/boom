@@ -1,6 +1,7 @@
 package boom.boom.api;
 
 import android.content.Context;
+import android.util.Log;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -12,15 +13,13 @@ public class ChangePassword {
     public String ServerErr;
 
     private final String USER_LOGIN_URL = Utils.serveraddr + "/api/userRegister.php";
-    //http://172.24.10.118/api/userRegister.php?action=alter_password&old_pass=5d41402abc4b2a76b9719d911017c592&new_pass=fc5e038d38a57032085441e7fe7010b0
+
     public ChangePassword()
     {
 
-
-
     }
 
-    public boolean Change(Context context,String oldPassword,String newPassword)
+    public boolean Change(Context context,String oldPassword, String newPassword)
     {
         try {
             Utils.GetBuilder get = new Utils.GetBuilder(USER_LOGIN_URL);
@@ -61,7 +60,8 @@ public class ChangePassword {
             }
         }
         catch (JSONException e) {
-
+            e.printStackTrace();
+            Log.e("Login_deamon", "Caught a JSON decode error. Application might be crash soon.");
         }
         return false;
     }
