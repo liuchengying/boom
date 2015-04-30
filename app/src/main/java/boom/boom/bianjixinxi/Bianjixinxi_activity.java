@@ -102,6 +102,8 @@ public class Bianjixinxi_activity  extends Activity {
         popupWindowView = inflater.inflate(R.layout.shezhi_touxiang, null);
         popupWindow = new PopupWindow(popupWindowView, LinearLayout.LayoutParams.FILL_PARENT, LinearLayout.LayoutParams.FILL_PARENT, true);
         popupWindow.setBackgroundDrawable(new BitmapDrawable());
+        popupWindow.setOutsideTouchable(true);
+        popupWindow.setFocusable(true);
         sz_touxiang = (LinearLayout) findViewById(R.id.sz_touxiang);
         sz_touxiang.setOnClickListener(new View.OnClickListener() {
             @Override
