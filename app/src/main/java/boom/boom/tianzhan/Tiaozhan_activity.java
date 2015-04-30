@@ -24,6 +24,7 @@ import boom.boom.api.SysApplication;
 import boom.boom.faqitianzhan.Faqitianzhan_activity;
 import boom.boom.gerenzhuye.Gerenzhuye_activity;
 import boom.boom.guizejieshao.Guizejieshao_activity;
+import boom.boom.haoyouliebiao.Haoyouliebiao_activity;
 import boom.boom.myview.CircleImageView;
 import boom.boom.paihangbang.Paihangbang_activity;
 import boom.boom.qiandao.Qiandao_activity;
@@ -46,6 +47,7 @@ public class Tiaozhan_activity extends Activity {
     private CircleImageView cehuatouxiang;
     private Button faqitianzhan;
     private Button tz_grzy;
+    private LinearLayout ch_haoyouliebiao;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -186,6 +188,24 @@ public class Tiaozhan_activity extends Activity {
             public void onClick(final View v) {
                 Intent intent = new Intent();
                 intent.setClass(Tiaozhan_activity.this, Gerenzhuye_activity.class);
+                startActivity(intent);
+                Timer timer=new Timer();
+                TimerTask timerTask=new TimerTask() {
+                    @Override
+                    public void run() {
+                        dianjicehua(v);
+                    }
+                };
+                timer.schedule(timerTask, 1250);
+                overridePendingTransition(R.anim.base_slide_right_in, R.anim.base_slide_remain);
+            }
+        });
+        ch_haoyouliebiao = (LinearLayout) findViewById(R.id.ch_haoyouliebiao);
+        ch_haoyouliebiao.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(final View v) {
+                Intent intent = new Intent();
+                intent.setClass(Tiaozhan_activity.this, Haoyouliebiao_activity.class);
                 startActivity(intent);
                 Timer timer=new Timer();
                 TimerTask timerTask=new TimerTask() {
