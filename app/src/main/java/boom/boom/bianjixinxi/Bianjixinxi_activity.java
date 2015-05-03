@@ -177,11 +177,11 @@ public class Bianjixinxi_activity  extends Activity {
 
             switch (v.getId()) {
                 case R.id.sz_touxiang_paishe:
-                    which = 0;
-                    showPicturePicker(Bianjixinxi_activity.this,false);
+                    which = TAKE_PICTURE;
+                    showPicturePicker(Bianjixinxi_activity.this,true);
                     break;
                 case R.id.sz_touxiang_bendi:
-                    which = 1;
+                    which = CHOOSE_PICTURE;
                     showPicturePicker(Bianjixinxi_activity.this,true);
 
 
