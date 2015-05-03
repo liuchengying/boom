@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.PixelFormat;
 import android.hardware.Camera;
-import android.media.CamcorderProfile;
 import android.media.MediaRecorder;
 import android.os.Bundle;
 import android.os.Handler;
@@ -258,12 +257,13 @@ public class Paishetiaozhan_activity extends Activity implements SurfaceHolder.C
             mediaRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
             mediaRecorder.setVideoSource(MediaRecorder.VideoSource.CAMERA);
             mediaRecorder.setOutputFormat(MediaRecorder.OutputFormat.MPEG_4);
-            CamcorderProfile pro = CamcorderProfile.get(CamcorderProfile.QUALITY_HIGH);
-            mediaRecorder.setProfile(pro);
-            mediaRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AAC);
-            mediaRecorder.setVideoEncoder(MediaRecorder.VideoEncoder.H264);
+
+//            CamcorderProfile pro = CamcorderProfile.get(CamcorderProfile.QUALITY_HIGH);
+//            mediaRecorder.setProfile(pro);
+//            mediaRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AAC);
+//            mediaRecorder.setVideoEncoder(MediaRecorder.VideoEncoder.H264);
 //            mediaRecorder.setOutputFormat(MediaRecorder.OutputFormat.DEFAULT);
-//            mediaRecorder.setMaxDuration(maxDurationInMs);
+            mediaRecorder.setMaxDuration(maxDurationInMs);
             File dirStorage = new File(Utils.getVideoPath());
             if (dirStorage == null){
                 Log.e("CAMERA", "Unable to got the sdcard read access. Fall back to /data mode.");
@@ -279,6 +279,9 @@ public class Paishetiaozhan_activity extends Activity implements SurfaceHolder.C
             Log.d("CAMERA", "File absolutely path ==> "+ StoreFile.getAbsolutePath());
             mediaRecorder.setOutputFile(StoreFile.getAbsolutePath());
             mediaRecorder.setVideoFrameRate(videoFramesPerSecond);
+            mediaRecorder.setVideoEncodingBitRate(2 * 1024 * 1024);
+            mediaRecorder.setAudioEncodingBitRate(2 * 1024 * 1024);
+            mediaRecorder.setAudioSamplingRate(44100);
             mediaRecorder.setVideoSize(sv.getWidth(), sv.getHeight());
             mediaRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.DEFAULT);
             mediaRecorder.setVideoEncoder(MediaRecorder.VideoEncoder.DEFAULT);
