@@ -107,7 +107,9 @@
         </LinearLayout>
 
     </LinearLayout>
-
+    <FrameLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
     <LinearLayout
         android:gravity="center"
         android:layout_width="fill_parent"
@@ -194,7 +196,17 @@
 
     </LinearLayout>
 </LinearLayout>
-
+        <Button
+            android:id="@+id/tianjiahaoyou_button2"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/android_195"
+            android:layout_gravity="bottom"
+            android:text="添加好友"
+            android:textSize="20sp"
+            android:textColor="#ffffff"
+            />
+    </FrameLayout>
 </LinearLayout>
 </RelativeLayout>
 </ScrollView>

@@ -25,7 +25,8 @@
             </intent-filter>
         </activity>
              <activity android:name="boom.boom.zhujiemian.Main_activity"
-                        android:theme="@android:style/Theme.Black.NoTitleBar"></activity>
+                        android:theme="@android:style/Theme.Black.NoTitleBar"
+                 android:screenOrientation="portrait"></activity>
         <activity android:name="boom.boom.tianzhan.Tiaozhan_activity"
             android:theme="@android:style/Theme.Black.NoTitleBar"></activity>
         <activity android:name="boom.boom.denglu.dengluzhuce_activity"
@@ -84,6 +85,8 @@
             android:theme="@android:style/Theme.Black.NoTitleBar"></activity>
         <activity android:name= "boom.boom.haoyouliebiao.Haoyouliebiao_activity"
             android:theme="@android:style/Theme.Black.NoTitleBar"></activity>
+        <!--<activity android:name= "boom.boom.tianjiahaoyou.Tianjiahaoyou_activity"-->
+            <!--android:theme="@android:style/Theme.Black.NoTitleBar"></activity>-->
 
 
 

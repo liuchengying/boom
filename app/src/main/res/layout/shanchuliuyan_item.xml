@@ -16,28 +16,28 @@
         android:paddingRight="10dip"
         android:orientation="vertical"
         android:layout_gravity="bottom">
-        <Button
-            android:id="@+id/sz_touxiang_paishe"
-            android:background="@drawable/android_192"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="拍 摄"
-            android:textSize="20dp"
-            android:textColor="#ffffff"/>
+        <!--<Button-->
+            <!--android:id="@+id/sz_touxiang_paishe"-->
+            <!--android:background="@drawable/android_192"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_gravity="center"-->
+            <!--android:text="拍 摄"-->
+            <!--android:textSize="20dp"-->
+            <!--android:textColor="#ffffff"/>-->
         <Button
             android:layout_marginTop="12dp"
-            android:id="@+id/sz_touxiang_bendi"
+            android:id="@+id/shanchuliuyan"
             android:background="@drawable/android_192"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="从手机相册选取"
+            android:text="删除留言"
             android:textSize="20dp"
             android:textColor="#ffffff"/>
 
         <Button
-            android:id="@+id/cancleButton"
+            android:id="@+id/liuyanban_cencle"
             android:layout_marginTop="12dip"
             android:background="@drawable/android_193"
             android:layout_width="wrap_content"

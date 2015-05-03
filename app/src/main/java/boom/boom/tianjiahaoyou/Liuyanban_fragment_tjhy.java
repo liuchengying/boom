@@ -1,4 +1,4 @@
-package boom.boom.gerenzhuye;
+package boom.boom.tianjiahaoyou;
 
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
@@ -27,28 +27,37 @@ import boom.boom.R;
 import boom.boom.api.HttpIO;
 import boom.boom.api.Static;
 import boom.boom.api.Utils;
+import boom.boom.gerenzhuye.Gerenzhuye_activity;
 import boom.boom.myview.XListView;
 
 /**
  * Created by 刘成英 on 2015/3/12.
  */
-public class Liuyanban_fragment extends Fragment implements XListView.IXListViewListener
+public class Liuyanban_fragment_tjhy extends Fragment implements XListView.IXListViewListener
 {
     private XListView lv;
     private Handler mHandler;
     private final static String DATE_FORMAT_STR = "yyyy-MM-dd HH:mm";
     private SimpleAdapter mSimpleAdapter;
-    private Button button;
-    private Button confirmButton;
-    private Button cancleButton;
-    private PopupWindow popupWindow;
-    private View popupWindowView;
+//    private Button button;
+//    private Button confirmButton;
+//    private Button cancleButton;
+//    private PopupWindow popupWindow;
+//    private View popupWindowView;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState)
     {
-        View v=inflater.inflate(R.layout.gerenzhuye2, container, false);
-        lv= (XListView) v.findViewById(R.id.listView3);
+        View v=inflater.inflate(R.layout.tianjiahaoyou2, container, false);
+        lv= (XListView) v.findViewById(R.id.listView5);
+        final  Button tianjiahaoyou_button = (Button) v.findViewById(R.id.tianjiahaoyou_button1);
+
+        tianjiahaoyou_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                tianjiahaoyou_button.setText("等待通过");
+            }
+        });
         lv.setPullLoadEnable(true);
         mHandler = new Handler();
         this.onSyncDataFromServer();
@@ -58,36 +67,36 @@ public class Liuyanban_fragment extends Fragment implements XListView.IXListView
         lv.setAdapter(mSimpleAdapter);
 
 
-        popupWindowView = inflater.inflate(R.layout.shezhi_touxiang, null);
+//        popupWindowView = inflater.inflate(R.layout.shezhi_touxiang, null);
 
-        lv.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-            @Override
-            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-//                Toast toast = Toast.makeText(getActivity(), "adfadsfasdfasdfadfadsf",
-//                        Toast.LENGTH_LONG);
-//                toast.show();
-                popupWindow = new PopupWindow(popupWindowView);
-                popupWindow.setWidth(LinearLayout.LayoutParams.FILL_PARENT);
-                popupWindow.setHeight(LinearLayout.LayoutParams.FILL_PARENT);
-                // popupWindowView = inflater.inflate(R.layout.shezhi_touxiang, null);
-//        popupWindow = new PopupWindow(popupWindowView, LinearLayout.LayoutParams.FILL_PARENT, LinearLayout.LayoutParams.FILL_PARENT, true);
-                popupWindow.setBackgroundDrawable(new BitmapDrawable());
-                popupWindow.setOutsideTouchable(true);
-                popupWindow.setFocusable(true);
-
-                //设置PopupWindow的弹出和消失效果
-                popupWindow.setAnimationStyle(R.style.popupAnimation);
-
-
-                cancleButton = (Button) popupWindowView.findViewById(R.id.liuyanban_cencle);
-                button = (Button) popupWindowView.findViewById(R.id.shanchuliuyan);
-                popupWindow.showAtLocation(confirmButton, Gravity.CENTER, 0, 0);
-                confirmButton.setOnClickListener(Itemclick);
-
-                button.setOnClickListener(Itemclick);
-                return true;
-            }
-        });
+//        lv.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+//            @Override
+//            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+////                Toast toast = Toast.makeText(getActivity(), "adfadsfasdfasdfadfadsf",
+////                        Toast.LENGTH_LONG);
+////                toast.show();
+//                popupWindow = new PopupWindow(popupWindowView);
+//                popupWindow.setWidth(LinearLayout.LayoutParams.FILL_PARENT);
+//                popupWindow.setHeight(LinearLayout.LayoutParams.FILL_PARENT);
+//                // popupWindowView = inflater.inflate(R.layout.shezhi_touxiang, null);
+////        popupWindow = new PopupWindow(popupWindowView, LinearLayout.LayoutParams.FILL_PARENT, LinearLayout.LayoutParams.FILL_PARENT, true);
+//                popupWindow.setBackgroundDrawable(new BitmapDrawable());
+//                popupWindow.setOutsideTouchable(true);
+//                popupWindow.setFocusable(true);
+//
+//                //设置PopupWindow的弹出和消失效果
+//                popupWindow.setAnimationStyle(R.style.popupAnimation);
+//
+//
+//                cancleButton = (Button) popupWindowView.findViewById(R.id.liuyanban_cencle);
+//                button = (Button) popupWindowView.findViewById(R.id.shanchuliuyan);
+//                popupWindow.showAtLocation(confirmButton, Gravity.CENTER, 0, 0);
+//                confirmButton.setOnClickListener(Itemclick);
+//
+//                button.setOnClickListener(Itemclick);
+//                return true;
+//            }
+//        });
         return v;
     }
     private void onLoad() {
@@ -119,31 +128,31 @@ public class Liuyanban_fragment extends Fragment implements XListView.IXListView
         }, 2000);
 
     }
-    private View.OnClickListener Itemclick = new View.OnClickListener() {
-        @Override
-        public void onClick( View v) {
-            if(popupWindow.isShowing()){
-                popupWindow.dismiss();
-            }
-
-
-
-
-            switch (v.getId()) {
-                case R.id.shanchuliuyan:
-
-                    break;
-                case R.id.liuyanban_cencle:
-
-                    break;
-                default:
-                    break;
-            }
-        }
-
-
-
-    };
+//    private View.OnClickListener Itemclick = new View.OnClickListener() {
+//        @Override
+//        public void onClick( View v) {
+//            if(popupWindow.isShowing()){
+//                popupWindow.dismiss();
+//            }
+//
+//
+//
+//
+//            switch (v.getId()) {
+//                case R.id.shanchuliuyan:
+//
+//                    break;
+//                case R.id.liuyanban_cencle:
+//
+//                    break;
+//                default:
+//                    break;
+//            }
+//        }
+//
+//
+//
+//    };
 
 
     public void onSyncDataFromServer(){
