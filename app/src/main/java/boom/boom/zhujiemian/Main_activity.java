@@ -8,9 +8,7 @@ import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
-import android.os.Looper;
 import android.os.Message;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -21,20 +19,17 @@ import org.json.JSONException;
 
 import java.util.Timer;
 import java.util.TimerTask;
-import java.util.logging.Handler;
 
+import boom.boom.FontManager.FontManager;
 import boom.boom.R;
-
 import boom.boom.api.LoadingDialog;
 import boom.boom.api.Static;
 import boom.boom.api.SysApplication;
 import boom.boom.api.User;
 import boom.boom.api.UserData;
-import boom.boom.mimaxiugai.Mimaxiugai_activity;
+import boom.boom.denglu.dengluzhuce_activity;
 import boom.boom.mimazhaohui.Mimazhaohui_activity;
 import boom.boom.tianzhan.Tiaozhan_activity;
-import boom.boom.denglu.*;
-import boom.boom.FontManager.FontManager;
 /**
  * Created by 刘成英 on 2015/1/13.
  */
@@ -116,9 +111,6 @@ public class Main_activity extends Activity {
         denglu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-
-
                 final String user_Str = user.getText().toString();
                 final String pass_Str = pass.getText().toString();
                 dialog = new LoadingDialog(Main_activity.this);

@@ -124,6 +124,7 @@ public class Guizejieshao_activity extends Activity{
                         intent.putExtra("challenge_number", position);
                 try {
                     intent.putExtra("challenge_name", challenge_data.getString("name"));
+                    intent.putExtra("challenge_id", challenge_data.getString("identifyDigit"));
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }

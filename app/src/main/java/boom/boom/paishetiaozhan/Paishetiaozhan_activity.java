@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.PixelFormat;
 import android.hardware.Camera;
+import android.media.CamcorderProfile;
 import android.media.MediaRecorder;
 import android.os.Bundle;
 import android.os.Handler;
@@ -46,11 +47,13 @@ public class Paishetiaozhan_activity extends Activity implements SurfaceHolder.C
     private MediaRecorder mediaRecorder;
     private final String tmpFilename = "tmpvideo";
     private final int maxDurationInMs = 20000;
-    private final long maxFileSizeInBytes = 500000;
+    private final long maxFileSizeInBytes = 500000000;
     private final int videoFramesPerSecond = 20;
     private ProgressBar mprogress;
     private int a = 0;
     private boolean onThreadStartStop = false;
+    private String cl_id;
+    private String cl_name;
 
     //private Handler myMessageHandler;
     /*Handler myMessageHandler = new Handler(){
@@ -95,14 +98,28 @@ public class Paishetiaozhan_activity extends Activity implements SurfaceHolder.C
             }
         }
     };
+    Handler on_thread_start_stop = new Handler(){
+        @Override
+        public void handleMessage(Message msg){
+            super.handleMessage(msg);
+                switch (msg.what) {
+                    case 1:
+                        onStopRecording();
+                        break;
+                    case 2:
+                        startRecording();
+                        break;
+                }
+            }
+    };
     private TextView sss;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         final Intent intent = getIntent();
         int position = intent.getIntExtra("challenge_number", 1);
-        final String cl_name = intent.getStringExtra("challenge_name");
-
+        cl_name = intent.getStringExtra("challenge_name");
+        cl_id = intent.getStringExtra("challenge_id");
         getWindow().setFormat(PixelFormat.TRANSLUCENT);
         setContentView(R.layout.paishetiaozhan);
         SysApplication.getInstance().addActivity(this);
@@ -134,7 +151,9 @@ public class Paishetiaozhan_activity extends Activity implements SurfaceHolder.C
 //                                Message message = new Message();
 //                                message.what = 1;
                                 Thread.sleep(20000);
-                                onStopRecording();
+                                Message m = new Message();
+                                m.what = 1;
+                                Paishetiaozhan_activity.this.on_thread_start_stop.sendMessage(m);
                             } catch (InterruptedException e) {
                                 e.printStackTrace();
                             }
@@ -148,6 +167,9 @@ public class Paishetiaozhan_activity extends Activity implements SurfaceHolder.C
                 }else if (kaishipaishe.getText().equals("上传")){
                     Intent intent = new Intent();
                     intent.putExtra("file_path", StoreFile.getAbsolutePath());
+                    intent.putExtra("elapsed", a);
+                    intent.putExtra("challenge_name", cl_name);
+                    intent.putExtra("challenge_id", cl_id);
                     intent.setClass(Paishetiaozhan_activity.this,Shangchuandengdai_activity.class);
                     startActivity(intent);
                 }
@@ -166,6 +188,7 @@ public class Paishetiaozhan_activity extends Activity implements SurfaceHolder.C
     }
 
     public void onStopRecording(){
+        mediaRecorder.setOnErrorListener(null);
         stopRecording();
         kaishipaishe.setText("上传");
         AnimationSet animationSet = new AnimationSet(true);
@@ -235,8 +258,12 @@ public class Paishetiaozhan_activity extends Activity implements SurfaceHolder.C
             mediaRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
             mediaRecorder.setVideoSource(MediaRecorder.VideoSource.CAMERA);
             mediaRecorder.setOutputFormat(MediaRecorder.OutputFormat.MPEG_4);
+            CamcorderProfile pro = CamcorderProfile.get(CamcorderProfile.QUALITY_HIGH);
+            mediaRecorder.setProfile(pro);
+            mediaRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AAC);
+            mediaRecorder.setVideoEncoder(MediaRecorder.VideoEncoder.H264);
 //            mediaRecorder.setOutputFormat(MediaRecorder.OutputFormat.DEFAULT);
-            mediaRecorder.setMaxDuration(maxDurationInMs);
+//            mediaRecorder.setMaxDuration(maxDurationInMs);
             File dirStorage = new File(Utils.getVideoPath());
             if (dirStorage == null){
                 Log.e("CAMERA", "Unable to got the sdcard read access. Fall back to /data mode.");

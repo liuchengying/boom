@@ -12,8 +12,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import org.json.JSONObject;
+
 import boom.boom.FontManager.FontManager;
 import boom.boom.R;
+import boom.boom.api.HttpIO;
 import boom.boom.api.ProgressListener;
 import boom.boom.api.Static;
 import boom.boom.api.SysApplication;
@@ -33,6 +36,9 @@ public class Shangchuandengdai_activity extends Activity {
     private boom.boom.myview.ProgressBar progressBar;
     private Integer progress;
     private String path;
+    private String cl_name;
+    private int elapsed;
+    private String cl_id;
 //    private int int_progress;
 //    private Boolean upload_onComplete;
 //    private int b=0;
@@ -57,7 +63,11 @@ public class Shangchuandengdai_activity extends Activity {
         SysApplication.getInstance().addActivity(this);
         FontManager.changeFonts(FontManager.getContentView(this), this);//字体
         initEvent();
-        path = getIntent().getStringExtra("file_path");
+        Intent intent = getIntent();
+        path = intent.getStringExtra("file_path");
+        cl_name  = intent.getStringExtra("challenge_name");
+        elapsed = intent.getIntExtra("elapsed", 20);
+        cl_id = intent.getStringExtra("challenge_id");
         shangchuandengdaifanhui = (Button) findViewById(R.id.shangchuandengdaifanhui);
         progressBar = (boom.boom.myview.ProgressBar) findViewById(R.id.progress123);
         fangqishangchuang = (Button) findViewById(R.id.fangqishangchuan);
@@ -74,7 +84,8 @@ public class Shangchuandengdai_activity extends Activity {
                         @Override
                         public void transferred(int transferedBytes) {
                             Message m = new Message();
-                            m.what = transferedBytes;
+                            if (transferedBytes >= 99)  m.what = 99;
+                            else    m.what = transferedBytes;
                             Shangchuandengdai_activity.this.myMessageHandler.sendMessage(m);
                         }
 
@@ -82,7 +93,23 @@ public class Shangchuandengdai_activity extends Activity {
 
                         }
                     }, get.toString(), path, "heheda.mp4");
+                    JSONObject obj = new JSONObject(tmp);
+                    String token = obj.getString("fileToken");
+                    Utils.GetBuilder get1 = new Utils.GetBuilder(Utils.serveraddr + Utils.take_cl_api);
+                    get1.addItem("challenge", cl_id);
+                    get1.addItem("dvtoken", token);
+                    get1.addItem("elapsed", elapsed + "");
+                    HttpIO io = new HttpIO(get1.toString());
+                    io.SetCustomSessionID(Static.session_id);
+                    io.GETToHTTPServer();
+                    if (io.LastError == 0){
+                        Message m = new Message();
+                        m.what = 100;
+                        Shangchuandengdai_activity.this.myMessageHandler.sendMessage(m);
+                    }
                     Log.e("UPLOAD", "Server reply string ==> " + tmp);
+                    Log.e("UPLOAD", "URL send to server ==>" + get1.toString());
+                    Log.e("UPLOAD", "Server reply string ==>" + io.getResultData());
                     Intent intent = new Intent();
                     intent.setClass(Shangchuandengdai_activity.this, Shangchuanchenggong1_activity.class);
                     startActivity(intent);
@@ -92,33 +119,6 @@ public class Shangchuandengdai_activity extends Activity {
                 }
             }
         }).start();
-//        new Thread(new Runnable() {
-//            @Override
-//
-//            public void run() {
-//                Log.d("UPLOAD", "Awaiting ftask instantiable");
-//                while (ftask == null);
-//                while (upload_file == null);
-//                Log.d("UPLOAD", "Ok, now set progress from another thread.");
-//                for (; !ftask.getState(); int_progress = ftask.getProgress()) {
-//                    try {
-//                        Log.d("UPLOAD", "Get the file!");
-//                        Log.d("UPLOAD", "-> File path ==> " + upload_file.getPath());
-//                        Log.d("UPLOAD", "-> File length ==> "+file_length);
-//                        Log.d("UPLOAD", "Now,start uploading!");
-//                        Log.d("UPLOAD", "======= TEST: int_progress = "+int_progress+" \tprogress = "+ progress +" ===========");
-//                        progressBar.setProgress(Integer.valueOf((int) (100*(int_progress/file_length))));
-//                        Message m = new Message();
-//                        m.what = 1;
-//                        Shangchuandengdai_activity.this.myMessageHandler.sendMessage(m);
-//                        Thread.sleep(100);
-//                    } catch (InterruptedException e) {
-//                        e.printStackTrace();
-//                    }
-//                }
-//                Log.d("UPLOAD", "Upload complete. Sent "+ int_progress +" bytes to the goddamn server.");
-//            }
-//        });
         shangchuandengdaifanhui.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
