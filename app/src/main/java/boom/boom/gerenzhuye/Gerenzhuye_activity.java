@@ -1,7 +1,10 @@
 package boom.boom.gerenzhuye;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -22,11 +25,13 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
+
 import boom.boom.FontManager.FontManager;
 import boom.boom.R;
 import boom.boom.api.SysApplication;
 import boom.boom.myview.CircleImageView;
 import boom.boom.myview.SildingFinishLayout;
+import boom.boom.shipintianzhanpinglun.Shipintianzhan_pinglun;
 
 
 /**
@@ -52,8 +57,15 @@ public class Gerenzhuye_activity extends FragmentActivity
     private int mScreen1_3;
 
     private int mCurrentPageIndex;
-
-    @Override
+    Handler intent_switch = new Handler(){
+        @Override
+        public void handleMessage(Message msg){
+            super.handleMessage(msg);
+            Intent intent = new Intent();
+            intent.setClass(Gerenzhuye_activity.this, Shipintianzhan_pinglun.class);
+            startActivity(intent);
+        }
+    };
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);

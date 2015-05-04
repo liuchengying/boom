@@ -10,6 +10,7 @@ import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
+import android.hardware.Camera;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -177,11 +178,11 @@ public class Bianjixinxi_activity  extends Activity {
 
             switch (v.getId()) {
                 case R.id.sz_touxiang_paishe:
-                    which = TAKE_PICTURE;
+                    which =0;
                     showPicturePicker(Bianjixinxi_activity.this,true);
                     break;
                 case R.id.sz_touxiang_bendi:
-                    which = CHOOSE_PICTURE;
+                    which = 1;
                     showPicturePicker(Bianjixinxi_activity.this,true);
 
 
@@ -195,64 +196,6 @@ public class Bianjixinxi_activity  extends Activity {
         }
     };
 
-
-
-
-
-
-
-
- int which;
-
-
-    public void showPicturePicker(Context context,boolean isCrop){
-        final boolean crop = isCrop;
-
-            //类型码
-            int REQUEST_CODE;
-
-
-                switch (which) {
-                    case TAKE_PICTURE:
-                        Uri imageUri = null;
-                        String fileName = null;
-                        Intent openCameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                        if (crop) {
-                            REQUEST_CODE = CROP;
-                            //删除上一次截图的临时文件
-                            SharedPreferences sharedPreferences = getSharedPreferences("temp",Context.MODE_WORLD_WRITEABLE);
-                            ImageTools.deletePhotoAtPathAndName(Environment.getExternalStorageDirectory().getAbsolutePath(), sharedPreferences.getString("tempName", ""));
-
-                            //保存本次截图临时文件名字
-                            fileName = String.valueOf(System.currentTimeMillis()) + ".jpg";
-                            SharedPreferences.Editor editor = sharedPreferences.edit();
-                            editor.putString("tempName", fileName);
-                            editor.commit();
-                        }else {
-                            REQUEST_CODE = TAKE_PICTURE;
-                            fileName = "image.jpg";
-                        }
-                        imageUri = Uri.fromFile(new File(Environment.getExternalStorageDirectory(),fileName));
-                        //指定照片保存路径（SD卡），image.jpg为一个临时文件，每次拍照后这个图片都会被替换
-                        openCameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
-                        startActivityForResult(openCameraIntent, REQUEST_CODE);
-                        break;
-
-                    case CHOOSE_PICTURE:
-                        Intent openAlbumIntent = new Intent(Intent.ACTION_GET_CONTENT);
-                        if (crop) {
-                            REQUEST_CODE = CROP;
-                        }else {
-                            REQUEST_CODE = CHOOSE_PICTURE;
-                        }
-                        openAlbumIntent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "image/*");
-                        startActivityForResult(openAlbumIntent, REQUEST_CODE);
-                        break;
-
-                    default:
-                        break;
-                }
-            }
 
 
 
@@ -331,8 +274,71 @@ public class Bianjixinxi_activity  extends Activity {
             }
         }
     }
+
+
+ int which;
+
+
+    public void showPicturePicker(Context context,boolean isCrop){
+        final boolean crop = isCrop;
+
+            //类型码
+            int REQUEST_CODE;
+
+
+                switch (which) {
+                    case TAKE_PICTURE:
+                        Uri imageUri = null;
+                        String fileName = null;
+                        Intent openCameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+
+
+                        if (crop) {
+                            REQUEST_CODE = CROP;
+                            //删除上一次截图的临时文件
+                            SharedPreferences sharedPreferences = getSharedPreferences("temp",Context.MODE_WORLD_WRITEABLE);
+                            ImageTools.deletePhotoAtPathAndName(Environment.getExternalStorageDirectory().getAbsolutePath(), sharedPreferences.getString("tempName", ""));
+
+                            //保存本次截图临时文件名字
+                            fileName = String.valueOf(System.currentTimeMillis()) + ".jpg";
+                            SharedPreferences.Editor editor = sharedPreferences.edit();
+                            editor.putString("tempName", fileName);
+                            editor.commit();
+                        }else {
+                            REQUEST_CODE = TAKE_PICTURE;
+                            fileName = "image.jpg";
+                        }
+                        imageUri = Uri.fromFile(new File(Environment.getExternalStorageDirectory(),fileName));
+                        //指定照片保存路径（SD卡），image.jpg为一个临时文件，每次拍照后这个图片都会被替换
+                        openCameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
+
+
+                        startActivityForResult(openCameraIntent, REQUEST_CODE);
+                        break;
+
+                    case CHOOSE_PICTURE:
+                        Intent openAlbumIntent = new Intent(Intent.ACTION_GET_CONTENT);
+                        if (crop) {
+                            REQUEST_CODE = CROP;
+                        }else {
+                            REQUEST_CODE = CHOOSE_PICTURE;
+                        }
+                        openAlbumIntent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "image/*");
+                        startActivityForResult(openAlbumIntent, REQUEST_CODE);
+                        break;
+
+                    default:
+                        break;
+                }
+            }
+
+
+
+
+
     public void cropImage(Uri uri, int outputX, int outputY, int requestCode){
         Intent intent = new Intent("com.android.camera.action.CROP");
+       // intent.setDataAndType(uri,"tempName");
         intent.setDataAndType(uri, "image/*");
         intent.putExtra("crop", "true");
         intent.putExtra("aspectX", 1);
