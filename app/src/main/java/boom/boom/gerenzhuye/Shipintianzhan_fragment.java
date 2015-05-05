@@ -1,11 +1,15 @@
 package boom.boom.gerenzhuye;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.SimpleAdapter;
+import android.widget.Toast;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -21,7 +25,8 @@ import boom.boom.api.HttpIO;
 import boom.boom.api.Static;
 import boom.boom.api.Utils;
 import boom.boom.myview.XListView;
-
+import boom.boom.shipintianzhanpinglun.Shipintianzhan_pinglun;
+import boom.boom.zinitiaozhan.Zinitianzhan_activity;
 
 
 /**
@@ -44,12 +49,25 @@ public class Shipintianzhan_fragment extends Fragment implements XListView.IXLis
         lv.setPullLoadEnable(true);
         mHandler = new android.os.Handler();
         onSyncDataFromServer();
+
         lv.setPullLoadEnable(true);
         lv.setPullRefreshEnable(true);
         lv.setXListViewListener(this);
         lv.setAdapter(mSimpleAdapter);
+
+
+        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Toast.makeText(getActivity(),"adsfadsfasdfasdfasdfasdf!",Toast.LENGTH_SHORT).show();
+                Intent localIntent=new Intent(getActivity(),Shipintianzhan_pinglun.class);
+                startActivity(localIntent);
+
+            }
+        });
         return v;
     }
+
     private void onLoad() {
         lv.stopRefresh();
         lv.stopLoadMore();
