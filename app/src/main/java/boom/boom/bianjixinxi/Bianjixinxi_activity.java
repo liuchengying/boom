@@ -61,11 +61,11 @@ public class Bianjixinxi_activity  extends Activity {
     private PopupWindow popupWindow;
     private View popupWindowView;
 
+    private Uri uritempFile;
 
 
 
-
-    private static final int TAKE_PICTURE = 0;
+    private static final int TAKE_PICTURE = 4;
     private static final int CHOOSE_PICTURE = 1;
     private static final int CROP = 2;
     private static final int CROP_PICTURE = 3;
@@ -178,11 +178,11 @@ public class Bianjixinxi_activity  extends Activity {
 
             switch (v.getId()) {
                 case R.id.sz_touxiang_paishe:
-                    which =0;
+                    which =TAKE_PICTURE;
                     showPicturePicker(Bianjixinxi_activity.this,true);
                     break;
                 case R.id.sz_touxiang_bendi:
-                    which = 1;
+                    which =CHOOSE_PICTURE ;
                     showPicturePicker(Bianjixinxi_activity.this,true);
 
 
@@ -255,10 +255,16 @@ public class Bianjixinxi_activity  extends Activity {
 
                 case CROP_PICTURE:
                     Bitmap photo = null;
-                    Uri photoUri = data.getData();
-                    if (photoUri != null) {
-                        photo = BitmapFactory.decodeFile(photoUri.getPath());
-                    }
+                    /*Uri photoUri = data.getData();
+                    if (photoUri != null) {*/
+                        try {
+                            photo = BitmapFactory.decodeStream(getContentResolver().openInputStream(uritempFile));
+                        } catch (FileNotFoundException e) {
+                            e.printStackTrace();
+                        }
+                        //photo = BitmapFactory.decodeFile(photoUri.getPath());
+                    //
+                    // }
                     if (photo == null) {
                         Bundle extra = data.getExtras();
                         if (extra != null) {
@@ -347,7 +353,11 @@ public class Bianjixinxi_activity  extends Activity {
         intent.putExtra("outputY", outputY);
         intent.putExtra("outputFormat", "JPEG");
         intent.putExtra("noFaceDetection", true);
-        intent.putExtra("return-data", true);
+        //intent.putExtra("return-data", true);
+
+        uritempFile = Uri.parse("file://" + "/" + Environment.getExternalStorageDirectory().getPath() + "/" + "small.jpg");
+        intent.putExtra(MediaStore.EXTRA_OUTPUT, uritempFile);
+        intent.putExtra("outputFormat", Bitmap.CompressFormat.JPEG.toString());
         startActivityForResult(intent, requestCode);
     }
 }

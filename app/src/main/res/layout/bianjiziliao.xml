@@ -63,7 +63,8 @@
                 android:text="保存"
                 android:textSize="20sp"
                 android:textColor="#ffffff"
-                android:layout_gravity="center_vertical"/>
+                android:layout_gravity="center_vertical"
+                 />
         </LinearLayout>
     </LinearLayout>
     <LinearLayout
@@ -112,7 +113,8 @@
                             android:textSize="20sp"
                             android:textColor="#ffdadada"
                             android:layout_weight="0.73"
-                            android:id="@+id/bjxx_nc" />
+                            android:id="@+id/bjxx_nc"
+                            android:singleLine="true" />
                     </LinearLayout>
 
 
@@ -216,7 +218,9 @@
                         android:textSize="20sp"
                         android:textColor="#ffdadada"
                         android:layout_weight="0.5"
-                        android:id="@+id/bjxx_nl" />
+                        android:id="@+id/bjxx_nl"
+                        android:singleLine="true"
+                        android:numeric="integer|decimal" />
                 </LinearLayout>
                 <LinearLayout
                     android:layout_weight="1"
@@ -315,7 +319,8 @@
                     android:textSize="20sp"
                     android:textColor="#ffdadada"
                     android:layout_weight="0.5"
-                    android:id="@+id/bjxx_zy" />
+                    android:id="@+id/bjxx_zy"
+                    android:singleLine="true" />
             </LinearLayout>
             <LinearLayout
                 android:layout_weight="1"
@@ -360,7 +365,8 @@
                     android:textSize="20sp"
                     android:textColor="#ffdadada"
                     android:layout_weight="0.5"
-                    android:id="@+id/bjxx_szd" />
+                    android:id="@+id/bjxx_szd"
+                    android:singleLine="true" />
             </LinearLayout>
             <LinearLayout
                 android:layout_weight="1"
@@ -405,7 +411,8 @@
                     android:textSize="20sp"
                     android:textColor="#ffdadada"
                     android:layout_weight="0.5"
-                    android:id="@+id/bjxx_xx" />
+                    android:id="@+id/bjxx_xx"
+                    android:singleLine="true" />
             </LinearLayout>
 
 
@@ -427,7 +434,7 @@
                     android:text="公司 "
                     android:textSize="20sp"
                     android:textColor="#ffdadada"/>
-                <TextView
+                <EditText
                     android:layout_marginLeft="5dp"
                     android:layout_width="wrap_content"
                     android:layout_height="fill_parent"
@@ -436,7 +443,8 @@
                     android:textSize="20sp"
                     android:textColor="#ffdadada"
                     android:layout_weight="0.5"
-                    android:id="@+id/bjxx_gs" />
+                    android:id="@+id/bjxx_gs"
+                    android:singleLine="true" />
             </LinearLayout>
 
 
@@ -470,7 +478,8 @@
                 android:textSize="20sp"
                 android:textColor="#ffdadada"
                 android:layout_weight="0.5"
-                 android:id="@+id/bjxx_yx" />
+                 android:id="@+id/bjxx_yx"
+                 android:singleLine="true" />
         </LinearLayout>
 
     </LinearLayout>
