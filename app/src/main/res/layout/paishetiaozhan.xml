@@ -46,10 +46,17 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:gravity="center">
+        <FrameLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
         <SurfaceView
             android:id="@+id/syncRecord_monitor"
             android:layout_width="fill_parent"
             android:layout_height="260dp" />
+            <VideoView
+                android:layout_width="fill_parent"
+                android:layout_height="260dp" />
+    </FrameLayout>
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
