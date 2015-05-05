@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.PixelFormat;
 import android.hardware.Camera;
+import android.media.CamcorderProfile;
 import android.media.MediaRecorder;
 import android.os.Bundle;
 import android.os.Handler;
@@ -53,6 +54,7 @@ public class Paishetiaozhan_activity extends Activity implements SurfaceHolder.C
     private boolean onThreadStartStop = false;
     private String cl_id;
     private String cl_name;
+    private boolean onStartStopState = false;
 
     //private Handler myMessageHandler;
     /*Handler myMessageHandler = new Handler(){
@@ -73,12 +75,11 @@ public class Paishetiaozhan_activity extends Activity implements SurfaceHolder.C
         public void run() {
             for (; a < 20; a++) {
                 try {
-//                    mprogress.incrementProgressBy(1);
-                    mprogress.setProgress(a);
+                    Thread.sleep(1000);
+                    mprogress.setProgress(a+1);
                     Message m = new Message();
                     m.what = 1;
                     Paishetiaozhan_activity.this.myMessageHandler.sendMessage(m);
-                    Thread.sleep(1000);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -90,9 +91,11 @@ public class Paishetiaozhan_activity extends Activity implements SurfaceHolder.C
         public void handleMessage(Message msg){
             super.handleMessage(msg);
             if (onThreadStartStop = !onThreadStartStop){
+                onStartStopState = true;
                 thread_progress.start();
             }else{
                 a = 20;
+                onStartStopState = false;
                 thread_progress.interrupt();
             }
         }
@@ -103,10 +106,18 @@ public class Paishetiaozhan_activity extends Activity implements SurfaceHolder.C
             super.handleMessage(msg);
                 switch (msg.what) {
                     case 1:
-                        onStopRecording();
+                        if (onStartStopState == false){}
+                            else{
+                                onStartStopState = false;
+                                onStopRecording();
+                            }
                         break;
                     case 2:
-                        startRecording();
+                        if (onStartStopState == true){}
+                            else{
+                                onStartStopState = true;
+                                startRecording();
+                            }
                         break;
                 }
             }
@@ -256,14 +267,14 @@ public class Paishetiaozhan_activity extends Activity implements SurfaceHolder.C
             mediaRecorder.setCamera(camera);
             mediaRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
             mediaRecorder.setVideoSource(MediaRecorder.VideoSource.CAMERA);
-            mediaRecorder.setOutputFormat(MediaRecorder.OutputFormat.MPEG_4);
+//            mediaRecorder.setOutputFormat(MediaRecorder.OutputFormat.MPEG_4);
 
-//            CamcorderProfile pro = CamcorderProfile.get(CamcorderProfile.QUALITY_HIGH);
-//            mediaRecorder.setProfile(pro);
+            CamcorderProfile pro = CamcorderProfile.get(CamcorderProfile.QUALITY_480P);
+            mediaRecorder.setProfile(pro);
 //            mediaRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AAC);
 //            mediaRecorder.setVideoEncoder(MediaRecorder.VideoEncoder.H264);
 //            mediaRecorder.setOutputFormat(MediaRecorder.OutputFormat.DEFAULT);
-            mediaRecorder.setMaxDuration(maxDurationInMs);
+//            mediaRecorder.setMaxDuration(maxDurationInMs);
             File dirStorage = new File(Utils.getVideoPath());
             if (dirStorage == null){
                 Log.e("CAMERA", "Unable to got the sdcard read access. Fall back to /data mode.");
@@ -278,15 +289,15 @@ public class Paishetiaozhan_activity extends Activity implements SurfaceHolder.C
             }
             Log.d("CAMERA", "File absolutely path ==> "+ StoreFile.getAbsolutePath());
             mediaRecorder.setOutputFile(StoreFile.getAbsolutePath());
-            mediaRecorder.setVideoFrameRate(videoFramesPerSecond);
-            mediaRecorder.setVideoEncodingBitRate(2 * 1024 * 1024);
-            mediaRecorder.setAudioEncodingBitRate(2 * 1024 * 1024);
-            mediaRecorder.setAudioSamplingRate(44100);
-            mediaRecorder.setVideoSize(sv.getWidth(), sv.getHeight());
-            mediaRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.DEFAULT);
-            mediaRecorder.setVideoEncoder(MediaRecorder.VideoEncoder.DEFAULT);
-            mediaRecorder.setPreviewDisplay(surfaceHolder.getSurface());
-            mediaRecorder.setMaxFileSize(maxFileSizeInBytes);
+//            mediaRecorder.setVideoFrameRate(videoFramesPerSecond);
+//            mediaRecorder.setVideoEncodingBitRate(2 * 1024 * 1024);
+//            mediaRecorder.setAudioEncodingBitRate(2 * 1024 * 1024);
+//            mediaRecorder.setAudioSamplingRate(44100);
+//            mediaRecorder.setVideoSize(sv.getWidth(), sv.getHeight());
+//            mediaRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.DEFAULT);
+//            mediaRecorder.setVideoEncoder(MediaRecorder.VideoEncoder.DEFAULT);
+//            mediaRecorder.setPreviewDisplay(surfaceHolder.getSurface());
+//            mediaRecorder.setMaxFileSize(maxFileSizeInBytes);
             mediaRecorder.prepare();
             mediaRecorder.start();
             return true;
@@ -302,6 +313,7 @@ public class Paishetiaozhan_activity extends Activity implements SurfaceHolder.C
     }
 
     public void stopRecording(){
+        mediaRecorder.setOnErrorListener(null);
         mediaRecorder.stop();
         camera.setPreviewCallback(null);
         camera.lock();

@@ -125,10 +125,6 @@ public class Liuyanban_fragment extends Fragment implements XListView.IXListView
             if(popupWindow.isShowing()){
                 popupWindow.dismiss();
             }
-
-
-
-
             switch (v.getId()) {
                 case R.id.shanchuliuyan:
 

@@ -34,6 +34,7 @@ public class Shipintianzhan_fragment extends Fragment implements XListView.IXLis
     private android.os.Handler mHandler;
     private final static String DATE_FORMAT_STR = "yyyy-MM-dd HH:mm";
     private SimpleAdapter mSimpleAdapter;
+    private String resultdata = null;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState)
@@ -78,18 +79,41 @@ public class Shipintianzhan_fragment extends Fragment implements XListView.IXLis
         }, 2000);
 
     }
+/*
+    Handler http_receiver = new Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            Bundle bundle = msg.getData();
+            resultdata = bundle.getString("result");
+        }
+    };
+*/
 
     public void onSyncDataFromServer(){
         ArrayList<HashMap<String, Object>> listItem = new ArrayList<HashMap<String,     Object>>();/*在数组中存放数据*/
-        Utils.GetBuilder get = new Utils.GetBuilder(Utils.serveraddr + "/api/rank.php");
-        get.addItem("action", "getrank");
-        HttpIO io = new HttpIO(get.toString());
-        io.SetCustomSessionID(Static.session_id);
         Gerenzhuye_activity.obj = null;
         int round = 0;
-        io.GETToHTTPServer();
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                Utils.GetBuilder get = new Utils.GetBuilder(Utils.serveraddr + "/api/rank.php");
+                get.addItem("action", "getrank");
+                HttpIO io = new HttpIO(get.toString());
+                io.SetCustomSessionID(Static.session_id);
+                io.GETToHTTPServer();
+                resultdata = io.getResultData();
+//                Bundle bundle = new Bundle();
+//                bundle.putString("result", result);
+//                Message m = new Message();
+//                m.setData(bundle);
+//                m.what = 1;
+//                Shipintianzhan_fragment.this.http_receiver.sendMessage(m);
+            }
+        }).start();
+        while (resultdata == null);
         try {
-            Gerenzhuye_activity.obj = new JSONObject(io.getResultData());
+            Gerenzhuye_activity.obj = new JSONObject(this.resultdata);
             JSONObject tmp = Utils.GetSubJSONObject(Gerenzhuye_activity.obj, "response");
             round = Integer.parseInt(tmp.getString("limit"));
         } catch (JSONException e) {

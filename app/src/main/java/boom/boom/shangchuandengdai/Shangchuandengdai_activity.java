@@ -54,7 +54,8 @@ public class Shangchuandengdai_activity extends Activity {
             int int_progress = msg.what;
             progressBar.setProgress(int_progress);
             scdd_jindu.setText(int_progress+"%");
-        }};
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
