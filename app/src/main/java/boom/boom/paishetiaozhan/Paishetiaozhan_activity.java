@@ -19,6 +19,7 @@ import android.view.animation.AnimationSet;
 import android.view.animation.TranslateAnimation;
 import android.widget.Button;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.VideoView;
@@ -243,6 +244,30 @@ public class Paishetiaozhan_activity extends Activity implements SurfaceHolder.C
                 Animation.RELATIVE_TO_SELF, 0f,
                 Animation.RELATIVE_TO_SELF, 0f);
         translateAnimation.setDuration(1000);
+        translateAnimation.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+                kaishipaishe.setVisibility(View.GONE);
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(
+                        kaishipaishe.getLayoutParams());
+
+                params.setMargins(100,135,0,0);
+
+                kaishipaishe.clearAnimation();
+                kaishipaishe.setLayoutParams(params);
+                kaishipaishe.setVisibility(View.VISIBLE);
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+
+            }
+        });
+
         animationSet.addAnimation(translateAnimation);
         animationSet.setFillAfter(true);
         kaishipaishe.startAnimation(animationSet);

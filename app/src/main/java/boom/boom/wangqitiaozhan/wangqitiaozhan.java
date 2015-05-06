@@ -30,6 +30,7 @@ public class wangqitiaozhan extends Activity{
     List<String> group_list;
     List<List<String>> item_list;
     List<List<String>> item_list2;
+    LinearLayout imageView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -132,13 +133,13 @@ public class wangqitiaozhan extends Activity{
             return convertView;*/
             View view = (View) getLayoutInflater().from(context).inflate(
                     R.layout.wangqitiaozhan_item2, null);
-            LinearLayout imageView = (LinearLayout)view.findViewById(R.id.wqtzitem2);
+             imageView = (LinearLayout)view.findViewById(R.id.wqtzitem2);
             TextView textView = (TextView)view.findViewById(R.id.text_item);
             textView.setText(item_list.get(groupPosition).get(
                     childPosition));
             if(isLastChild)
             {
-                imageView.setBackground(getDrawable(R.drawable.android_184));
+                imageView.setBackgroundDrawable(getDrawable(R.drawable.android_184));
             }
             return view;
         }

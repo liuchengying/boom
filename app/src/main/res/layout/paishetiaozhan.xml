@@ -53,7 +53,7 @@
         <VideoView
                 android:layout_width="fill_parent"
                 android:layout_height="260dp"
-                android:id="@+id/on_surface_covered_view"/>
+            />
 
             <SurfaceView
                 android:id="@+id/syncRecord_monitor"
@@ -85,7 +85,7 @@
 
             />
         </LinearLayout>
-        <FrameLayout
+        <RelativeLayout
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:layout_gravity="center"
@@ -98,7 +98,8 @@
                 android:text="开始"
                 android:textSize="25dp"
                 android:textColor="#FFFFFF"
-                android:layout_gravity="center" />
+                android:layout_gravity="center"
+                android:layout_centerInParent="true" />
             <Button
 
                 android:layout_width="wrap_content"
@@ -108,14 +109,16 @@
                 android:text="放弃"
                 android:textSize="25dp"
                 android:textColor="#FFFFFF"
-                android:layout_marginLeft="70dp"
                 android:id="@+id/fangqipaishe"
-                android:visibility="invisible" />
+                android:visibility="invisible"
+                android:layout_centerInParent="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="50dp" />
 
             <!--开始录制视频按钮-->
 
 
-            </FrameLayout>
+            </RelativeLayout>
 
         </LinearLayout>
 

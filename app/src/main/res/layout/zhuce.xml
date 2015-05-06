@@ -16,16 +16,16 @@
         android:gravity="center"
         >
         <LinearLayout
-            android:layout_weight="1"
+            android:layout_weight="0.43"
             android:layout_width="wrap_content"
-            android:layout_height="50dp"
+            android:layout_height="fill_parent"
             android:gravity="center_vertical"
             android:id="@+id/zhucufanhui"
             >
             <Button
 
-                android:layout_width="18dp"
-                android:layout_height="23dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:background="@drawable/android_20"
                 android:gravity="center_horizontal"
                 android:layout_marginLeft="10dp"/>
@@ -36,6 +36,7 @@
             android:layout_height="50dp"
             android:gravity="center_vertical">
             <TextView
+                android:layout_marginLeft="60dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="账户注册"

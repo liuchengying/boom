@@ -12,7 +12,7 @@
         android:orientation="horizontal"
         android:gravity="center">
         <LinearLayout
-            android:layout_weight="1"
+            android:layout_weight="0.39"
             android:layout_width="wrap_content"
             android:layout_height="50dp"
             android:gravity="center_vertical"
@@ -20,8 +20,8 @@
             <Button
 
                 android:id="@+id/tingzhipaishefanhui"
-                android:layout_width="18dp"
-                android:layout_height="23dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:background="@drawable/android_20"
                 android:gravity="center_horizontal"
                 android:layout_marginLeft="10dp"/>
@@ -34,6 +34,7 @@
             android:layout_height="50dp"
             android:gravity="center_vertical">
             <TextView
+                android:layout_marginLeft="60dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="拍摄挑战"

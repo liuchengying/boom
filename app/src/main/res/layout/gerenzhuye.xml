@@ -20,15 +20,15 @@
         >
         <LinearLayout
             android:id="@+id/gerenzhuyefanhui"
-            android:layout_weight="1"
+            android:layout_weight="0.53"
             android:layout_width="wrap_content"
             android:layout_height="50dp"
             android:gravity="center_vertical"
             >
             <Button
                 android:id="@+id/zhucufanhui"
-                android:layout_width="18dp"
-                android:layout_height="23dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:background="@drawable/android_20"
                 android:gravity="center_horizontal"
                 android:layout_marginLeft="10dp"/>
@@ -39,6 +39,7 @@
             android:layout_height="50dp"
             android:gravity="center_vertical">
             <TextView
+                android:layout_marginLeft="45dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="个人主页"
