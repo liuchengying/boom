@@ -52,7 +52,8 @@
 
         <VideoView
                 android:layout_width="fill_parent"
-                android:layout_height="260dp" />
+                android:layout_height="260dp"
+                android:id="@+id/on_surface_covered_view"/>
 
             <SurfaceView
                 android:id="@+id/syncRecord_monitor"
