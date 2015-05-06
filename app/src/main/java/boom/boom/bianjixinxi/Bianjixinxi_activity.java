@@ -26,6 +26,7 @@ import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.ByteArrayOutputStream;
@@ -62,6 +63,7 @@ public class Bianjixinxi_activity  extends Activity {
     private View popupWindowView;
 
     private Uri uritempFile;
+    private TextView text1;
 
 
 
@@ -100,11 +102,12 @@ public class Bianjixinxi_activity  extends Activity {
         FontManager.changeFonts(FontManager.getContentView(this), this);//字体
         LinearLayout fanhui = (LinearLayout) findViewById(R.id.bianjixinxi_fh);
 
+
         list.add("男");
         list.add("女");
         mySpinner = (Spinner) findViewById(R.id.spinner);
-        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, list);
-        adapter.setDropDownViewResource(android.R.layout.select_dialog_item);
+        adapter = new ArrayAdapter<String>(this,R.layout.shezhi_spinner_style1, list);
+        adapter.setDropDownViewResource(R.layout.shezhi_spinner_style);
         mySpinner.setAdapter(adapter);
         MySpinner1 = (Spinner) findViewById(R.id.spinner1);
         iv_image = (ImageView) findViewById(R.id.bianjiziliao_touxiang);
@@ -122,8 +125,9 @@ public class Bianjixinxi_activity  extends Activity {
         list1.add("天枰座");
         list1.add("天蝎座");
         list1.add("射手座");
-        adapter1 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, list1);
-        adapter1.setDropDownViewResource(android.R.layout.select_dialog_item);
+
+        adapter1 = new ArrayAdapter<String>(this, R.layout.shezhi_spinner_style1, list1);
+        adapter1.setDropDownViewResource(R.layout.shezhi_spinner_style);
         MySpinner1.setAdapter(adapter1);
 
         fanhui.setOnClickListener(new View.OnClickListener() {
