@@ -22,6 +22,7 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.VideoView;
 
 import java.io.File;
 import java.io.IOException;
@@ -46,16 +47,18 @@ public class Paishetiaozhan_activity extends Activity implements SurfaceHolder.C
     private boolean previewRunning;
     private File StoreFile;
     private MediaRecorder mediaRecorder;
-    private final String tmpFilename = "tmpvideo";
-    private final int maxDurationInMs = 20000;
-    private final long maxFileSizeInBytes = 500000000;
-    private final int videoFramesPerSecond = 20;
+//    private final String tmpFilename = "tmpvideo";
+//    private final int maxDurationInMs = 20000;
+//    private final long maxFileSizeInBytes = 500000000;
+//    private final int videoFramesPerSecond = 20;
+    private String video_path = null;
     private ProgressBar mprogress;
     private int a = 0;
     private boolean onThreadStartStop = false;
     private String cl_id;
     private String cl_name;
     private boolean onStartStopState = false;
+    private VideoView vw;
 
     //private Handler myMessageHandler;
     /*Handler myMessageHandler = new Handler(){
@@ -111,6 +114,10 @@ public class Paishetiaozhan_activity extends Activity implements SurfaceHolder.C
                             else{
                                 onStartStopState = false;
                                 onStopRecording();
+                                Log.e("Record", "Record was stopped.");
+                                Message m = new Message();
+                                m.what = 10000;
+                                Paishetiaozhan_activity.this.on_thread_start_stop.sendMessage(m);
                             }
                         break;
                     case 2:
@@ -120,9 +127,32 @@ public class Paishetiaozhan_activity extends Activity implements SurfaceHolder.C
                                 startRecording();
                             }
                         break;
+                    case 10000:
+                        sv.setVisibility(View.INVISIBLE);
+                        vw.setVisibility(View.VISIBLE);
+                        while (video_path == null);
+                        vw.setVideoPath(video_path);
+                        vw.start();
+                        new Thread(new Runnable() {
+                            int buffer, currentPosition, duration;
+                            @Override
+                            public void run() {
+                                while (true) {
+                                    if (vw.getCurrentPosition() == vw.getDuration()) {
+                                        Message m = new Message();
+                                        m.what = 20000;
+                                        Paishetiaozhan_activity.this.on_thread_start_stop.sendMessage(m);
+                                    }
+                                }
+                            }
+                        }).start();
+                    case 20000:
+                        vw.stopPlayback();
+                        vw.start();
                 }
             }
     };
+
     private TextView sss;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -138,6 +168,8 @@ public class Paishetiaozhan_activity extends Activity implements SurfaceHolder.C
         paishefanhui = (Button) findViewById(R.id.paishefanhui);
         kaishipaishe = (Button) findViewById(R.id.kaishipaishe);
         fangqipaishe = (Button) findViewById(R.id.fangqipaishe);
+        vw = (VideoView)findViewById(R.id.on_surface_covered_view);
+        vw.setVisibility(View.INVISIBLE);
         sv = (SurfaceView) findViewById(R.id.syncRecord_monitor);
         mprogress = (ProgressBar) findViewById(R.id.mprogress);
         sss= (TextView) findViewById(R.id.ssss);
@@ -165,6 +197,7 @@ public class Paishetiaozhan_activity extends Activity implements SurfaceHolder.C
                                 Message m = new Message();
                                 m.what = 1;
                                 Paishetiaozhan_activity.this.on_thread_start_stop.sendMessage(m);
+                                Log.e("Record", "20s was ended.");
                             } catch (InterruptedException e) {
                                 e.printStackTrace();
                             }
@@ -175,6 +208,9 @@ public class Paishetiaozhan_activity extends Activity implements SurfaceHolder.C
                     Message m = new Message();
                     m.what = 1;
                     Paishetiaozhan_activity.this.on_thread_progress.sendMessage(m);
+                    Message mm = new Message();
+                    mm.what = 10000;
+                    Paishetiaozhan_activity.this.on_thread_start_stop.sendMessage(mm);
                 }else if (kaishipaishe.getText().equals("上传")){
                     Intent intent = new Intent();
                     intent.putExtra("file_path", StoreFile.getAbsolutePath());
@@ -308,6 +344,7 @@ public class Paishetiaozhan_activity extends Activity implements SurfaceHolder.C
             Log.d("CAMERA", "Store path: ==> " + dirStorage.getAbsolutePath());
             String random_name = Utils.getRandomName("mp4");
             Log.d("CAMERA", "Store file path ==> "+ dirStorage + "/" + random_name);
+            this.video_path = dirStorage + "/" + random_name;
             StoreFile = new File(dirStorage, random_name);
             if (StoreFile.exists() == false){
                 StoreFile.createNewFile();
