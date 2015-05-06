@@ -12,20 +12,22 @@
         android:background="#ffe14723"
         android:weightSum="1">
 
-        <Button
-            android:layout_width="18dp"
-            android:layout_height="23dp"
-            android:background="@drawable/android_20"
-            android:gravity="center_horizontal"
-            android:layout_marginLeft="10dp"
-            android:layout_gravity="center_vertical"
-            android:id="@+id/shangchuandengdaifanhui" />
+
 
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_weight="0.47"></LinearLayout>
+            android:layout_weight="0.33">
+            <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/android_20"
+            android:gravity="center_horizontal"
+            android:layout_marginLeft="10dp"
+            android:layout_gravity="center_vertical"
+            android:id="@+id/shangchuandengdaifanhui" />
+        </LinearLayout>
 
         <LinearLayout
             android:layout_weight="1"
@@ -33,6 +35,7 @@
             android:layout_height="fill_parent"
             android:gravity="center_vertical">
             <TextView
+                android:layout_marginLeft="45dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="上传等待"

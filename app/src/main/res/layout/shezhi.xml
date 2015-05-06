@@ -20,15 +20,15 @@
         android:orientation="horizontal"
         android:gravity="center">
         <LinearLayout
-            android:layout_weight="1"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="98dp"
+            android:layout_height="fill_parent"
             android:id="@+id/shezhifanhui"
+            android:gravity="center_vertical"
             >
             <Button
 
-                android:layout_width="25dp"
-                android:layout_height="30dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:background="@drawable/android_51"
                 android:layout_marginLeft="15dp"
                 />
@@ -38,11 +38,13 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content">
             <TextView
+                android:layout_marginLeft="45dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="系统设置"
                 android:textSize="23dp"
-                android:gravity="center"/>
+                android:gravity="center"
+                android:textColor="#ffffff"/>
 
         </LinearLayout>
         <LinearLayout

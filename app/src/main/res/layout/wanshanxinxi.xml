@@ -16,7 +16,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="完善信息"
-            android:textSize="27sp"/>
+            android:textSize="27sp"
+            android:textColor="#ffffff"/>
 
     </LinearLayout>
     <LinearLayout

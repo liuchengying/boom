@@ -69,11 +69,7 @@
                         android:gravity="right"
                         android:layout_marginRight="10dp"
                         >
-                        <Button
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:background="@drawable/android_10"
-                            android:layout_gravity="center_vertical"/>
+
                     </LinearLayout>
                 </LinearLayout>
                 <LinearLayout

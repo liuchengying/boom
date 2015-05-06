@@ -19,15 +19,15 @@
         >
         <LinearLayout
             android:id="@+id/mmzh_emill_fh"
-            android:layout_weight="1"
+            android:layout_weight="0.67"
             android:layout_width="wrap_content"
             android:layout_height="50dp"
             android:gravity="center_vertical"
             >
             <Button
                 android:id="@+id/zhucufanhui"
-                android:layout_width="18dp"
-                android:layout_height="23dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:background="@drawable/android_20"
                 android:gravity="center_horizontal"
                 android:layout_marginLeft="10dp"/>
@@ -38,6 +38,7 @@
             android:layout_height="50dp"
             android:gravity="center_vertical">
             <TextView
+                android:layout_marginLeft="15dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="邮箱找回密码"
