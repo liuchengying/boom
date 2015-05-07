@@ -3,14 +3,12 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-
     android:id="@+id/sfl">
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical"
     android:background="#ffdadada"
-
     android:gravity="center_horizontal">
     <LinearLayout
         android:layout_width="fill_parent"
@@ -20,32 +18,33 @@
         android:gravity="center"
         >
         <LinearLayout
-            android:id="@+id/bangzhuyufankui_fh"
+            android:id="@+id/liuyan_fh"
             android:onClick="dianjicehua"
-            android:layout_weight="1"
+            android:layout_weight="1.13"
             android:layout_width="wrap_content"
             android:layout_height="50dp"
             android:gravity="center_vertical"
             >
-            <Button
+            <TextView
                 android:onClick="dianjicehua"
                 android:id="@+id/cehuaanniu"
-
+                android:textSize="20sp"
+                android:textColor="#ffffff"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/android_20"
+                android:text="取消"
                 android:gravity="center_horizontal"
                 android:layout_marginLeft="10dp"/>
         </LinearLayout>
         <LinearLayout
-            android:layout_weight="1"
+            android:layout_weight="1.98"
             android:layout_width="wrap_content"
             android:layout_height="50dp"
             android:gravity="center">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="帮助与反馈"
+                android:text="留言"
                 android:textSize="25sp"
                 android:textColor="#ffffff"
 
@@ -53,16 +52,17 @@
         </LinearLayout>
         <LinearLayout
 
-            android:layout_weight="1"
+            android:layout_weight="0.75"
             android:layout_width="wrap_content"
             android:layout_height="50dp"
             android:gravity="right"
-            android:layout_marginRight="10dp"
+
             android:id="@+id/mimaxiugai_qd">
             <TextView
+                android:layout_marginRight="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text=""
+                android:text="发送"
                 android:textSize="20sp"
                 android:textColor="#ffffff"
                 android:layout_gravity="center_vertical"/>
@@ -74,26 +74,27 @@
         android:layout_height="300dp"
         android:background="@drawable/android_160"
         android:layout_marginTop="20dp" >
-        <EditText
-            android:gravity="top|left"
-            android:singleLine="false" android:lines="10"
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="12dip"
-            android:layout_marginRight="12dip"
-            android:layout_gravity="center_horizontal"
-            android:layout_width="330dp"
-            android:layout_height="wrap_content"
-            android:background="#ffffff"
+    <EditText
+        android:gravity="top|left"
+        android:singleLine="false" android:lines="10"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="12dip"
+        android:layout_marginRight="12dip"
+        android:layout_gravity="center_horizontal"
+        android:layout_width="330dp"
+        android:layout_height="wrap_content"
+        android:background="#ffffff"
 
-            />
+       />
     </LinearLayout>
     <Button
+        android:layout_gravity="bottom|center_horizontal"
         android:gravity="center"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/android_161"
         android:layout_marginTop="120dp"
-        android:text="提交反馈"
+        android:text="提交留言"
         android:textColor="#ffffff"
         android:textSize="20sp"/>
 
