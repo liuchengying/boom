@@ -1,16 +1,17 @@
 package boom.boom.bianjixinxi;
 
 import android.app.Activity;
-import android.app.AlertDialog;
+
 import android.content.ContentResolver;
 import android.content.Context;
+
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
-import android.hardware.Camera;
+
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -18,16 +19,18 @@ import android.provider.MediaStore;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
-import android.widget.RelativeLayout;
+
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -38,11 +41,17 @@ import java.util.List;
 
 import boom.boom.FontManager.FontManager;
 import boom.boom.R;
+
 import boom.boom.api.SysApplication;
 import boom.boom.myview.ImageTools;
 import boom.boom.myview.SildingFinishLayout;
-import boom.boom.shezhi.Shezhi_activity;
-import boom.boom.zhujiemian.Main_activity;
+import boom.boom.wheelcity.AddressData;
+import boom.boom.wheelcity.OnWheelChangedListener;
+import boom.boom.wheelcity.WheelView;
+import boom.boom.wheelcity.adapters.AbstractWheelTextAdapter;
+import boom.boom.wheelcity.adapters.ArrayWheelAdapter;
+import boom.boom.widget1.MyAlertDialog;
+
 
 /**
  * Created by 刘成英 on 2015/3/19.
@@ -61,9 +70,12 @@ public class Bianjixinxi_activity  extends Activity {
     private Button cancleButton;
     private PopupWindow popupWindow;
     private View popupWindowView;
+    private PopupWindow popupWindow1;
+    private View popupWindowView1;
 
     private Uri uritempFile;
     private TextView text1;
+    private LinearLayout suozaidi;
 
 
 
@@ -76,6 +88,13 @@ public class Bianjixinxi_activity  extends Activity {
     private ImageView iv_image = null;
 
     private static final int PHOTO_REQUEST_GALLERY = 2;// 从相册中选择
+
+
+    private TextView bjxx_szd;
+
+
+
+
 
 
 
@@ -101,6 +120,12 @@ public class Bianjixinxi_activity  extends Activity {
         SysApplication.getInstance().addActivity(this);
         FontManager.changeFonts(FontManager.getContentView(this), this);//字体
         LinearLayout fanhui = (LinearLayout) findViewById(R.id.bianjixinxi_fh);
+        suozaidi = (LinearLayout) findViewById(R.id.suozaidi);
+        bjxx_szd = (TextView) findViewById(R.id.bjxx_szd);
+
+
+
+
 
 
         list.add("男");
@@ -163,10 +188,45 @@ public class Bianjixinxi_activity  extends Activity {
                 cancleButton.setOnClickListener(Itemclick);
                 button.setOnClickListener(Itemclick);
 
+
             }
         });
-    }
 
+     LinearLayout suozaidi = (LinearLayout) findViewById(R.id.suozaidi);
+        suozaidi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                View view = dialogm();
+                final MyAlertDialog dialog1 = new MyAlertDialog(Bianjixinxi_activity.this)
+                        .builder()
+                        .setTitle("请选择地区：")
+                                // .setMsg("再连续登陆15天，就可变身为QQ达人。退出QQ可能会使你现有记录归零，确定退出？")
+                                // .setEditText("1111111111111")
+                        .setView(view)
+                        .setNegativeButton("取消", new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+
+                            }
+                        });
+                dialog1.setPositiveButton("保存", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Toast.makeText(getApplicationContext(), cityTxt,Toast.LENGTH_SHORT).show();
+                        bjxx_szd.setText(cityTxt);
+                    }
+                });
+                dialog1.show();
+            }
+        });
+
+
+
+
+
+
+
+}
     public void onBackPressed() {
         super.onBackPressed();
         overridePendingTransition(0, R.anim.base_slide_right_out);
@@ -364,4 +424,139 @@ public class Bianjixinxi_activity  extends Activity {
         intent.putExtra("outputFormat", Bitmap.CompressFormat.JPEG.toString());
         startActivityForResult(intent, requestCode);
     }
+
+
+
+
+
+
+
+
+
+
+
+    //添加选地址内容
+    private String cityTxt;
+    private View dialogm() {
+        View contentView = LayoutInflater.from(this).inflate(
+                R.layout.wheelcity_cities_layout, null);
+        final WheelView country = (WheelView) contentView
+                .findViewById(R.id.wheelcity_country);
+        country.setVisibleItems(3);
+        country.setViewAdapter(new CountryAdapter(this));
+
+        final String cities[][] = AddressData.CITIES;
+        final String ccities[][][] = AddressData.COUNTIES;
+        final WheelView city = (WheelView) contentView
+                .findViewById(R.id.wheelcity_city);
+        city.setVisibleItems(0);
+
+        // 地区选择
+        final WheelView ccity = (WheelView) contentView
+                .findViewById(R.id.wheelcity_ccity);
+        ccity.setVisibleItems(0);// 不限城市
+
+        country.addChangingListener(new OnWheelChangedListener() {
+            public void onChanged(WheelView wheel, int oldValue, int newValue) {
+                updateCities(city, cities, newValue);
+
+
+
+                cityTxt = AddressData.PROVINCES[country.getCurrentItem()]
+                        + " | "
+                        + AddressData.CITIES[country.getCurrentItem()][city
+                        .getCurrentItem()]
+                        + " | "
+                        + AddressData.COUNTIES[country.getCurrentItem()][city
+                        .getCurrentItem()][ccity.getCurrentItem()];
+            }
+        });
+
+        city.addChangingListener(new OnWheelChangedListener() {
+            public void onChanged(WheelView wheel, int oldValue, int newValue) {
+                updatecCities(ccity, ccities, country.getCurrentItem(),
+                        newValue);
+                cityTxt = AddressData.PROVINCES[country.getCurrentItem()]
+                        + " | "
+                        + AddressData.CITIES[country.getCurrentItem()][city
+                        .getCurrentItem()]
+                        + " | "
+                        + AddressData.COUNTIES[country.getCurrentItem()][city
+                        .getCurrentItem()][ccity.getCurrentItem()];
+            }
+        });
+
+        ccity.addChangingListener(new OnWheelChangedListener() {
+            public void onChanged(WheelView wheel, int oldValue, int newValue) {
+                cityTxt = AddressData.PROVINCES[country.getCurrentItem()]
+                        + " | "
+                        + AddressData.CITIES[country.getCurrentItem()][city
+                        .getCurrentItem()]
+                        + " | "
+                        + AddressData.COUNTIES[country.getCurrentItem()][city
+                        .getCurrentItem()][ccity.getCurrentItem()];
+            }
+        });
+
+        country.setCurrentItem(1);// 设置北京
+        city.setCurrentItem(1);
+        ccity.setCurrentItem(1);
+        return contentView;
+    }
+
+    /**
+     * Updates the city wheel
+     */
+    private void updateCities(WheelView city, String cities[][], int index) {
+        ArrayWheelAdapter<String> adapter = new ArrayWheelAdapter<String>(this,
+                cities[index]);
+        adapter.setTextSize(18);
+        city.setViewAdapter(adapter);
+        city.setCurrentItem(0);
+    }
+
+    /**
+     * Updates the ccity wheel
+     */
+    private void updatecCities(WheelView city, String ccities[][][], int index,
+                               int index2) {
+        ArrayWheelAdapter<String> adapter = new ArrayWheelAdapter<String>(this,
+                ccities[index][index2]);
+        adapter.setTextSize(18);
+        city.setViewAdapter(adapter);
+        city.setCurrentItem(0);
+    }
+
+    /**
+     * Adapter for countries
+     */
+    private class CountryAdapter extends AbstractWheelTextAdapter {
+        // Countries names
+        private String countries[] = AddressData.PROVINCES;
+
+        /**
+         * Constructor
+         */
+        protected CountryAdapter(Context context) {
+            super(context, R.layout.wheelcity_country_layout, NO_RESOURCE);
+            setItemTextResource(R.id.wheelcity_country_name);
+        }
+
+        @Override
+        public View getItem(int index, View cachedView, ViewGroup parent) {
+            View view = super.getItem(index, cachedView, parent);
+            return view;
+        }
+
+        @Override
+        public int getItemsCount() {
+            return countries.length;
+        }
+
+        @Override
+        protected CharSequence getItemText(int index) {
+            return countries[index];
+        }
+    }
 }
+

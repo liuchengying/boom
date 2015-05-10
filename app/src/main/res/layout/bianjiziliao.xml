@@ -299,6 +299,7 @@
             android:gravity="center_vertical"
             android:background="@drawable/android_147">
             <LinearLayout
+
                 android:layout_weight="9"
                 android:layout_width="wrap_content"
                 android:layout_height="fill_parent"
@@ -340,11 +341,13 @@
 
         </LinearLayout>
         <LinearLayout
+            android:id="@+id/suozaidi"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
             android:gravity="center_vertical"
         android:background="@drawable/android_147">
             <LinearLayout
+
                 android:layout_weight="9"
                 android:layout_width="wrap_content"
                 android:layout_height="fill_parent"
@@ -356,19 +359,23 @@
                     android:text="所在地 "
                     android:textSize="20sp"
                     android:textColor="#ffdadada"/>
-                <EditText
+
+                <TextView
+
+                    android:focusable="false"
                     android:background="#ffffff"
 
                     android:layout_marginLeft="5dp"
-                    android:layout_width="wrap_content"
+                    android:layout_width="fill_parent"
                     android:layout_height="40dp"
                     android:gravity="center_vertical"
                     android:text="辽宁大连"
-                    android:textSize="20sp"
+                    android:textSize="18sp"
                     android:textColor="#ffdadada"
-                    android:layout_weight="0.5"
+                    android:layout_weight="0.60"
                     android:id="@+id/bjxx_szd"
                     android:singleLine="true" />
+
             </LinearLayout>
             <LinearLayout
                 android:layout_weight="1"

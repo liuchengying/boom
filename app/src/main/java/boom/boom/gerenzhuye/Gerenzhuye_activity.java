@@ -58,6 +58,9 @@ public class Gerenzhuye_activity extends FragmentActivity
     public static JSONObject obj;
     private Button liuyan;
 
+    private float grzy_Y;
+
+
 
     private ImageView mTabline;
     private int mScreen1_3;
@@ -250,15 +253,8 @@ public class Gerenzhuye_activity extends FragmentActivity
         super.onBackPressed();
         overridePendingTransition(0, R.anim.base_slide_right_out);
     }
-    @Override
-    public boolean onTouchEvent(MotionEvent ev) {
-        switch (ev.getAction()){
-            case MotionEvent.ACTION_DOWN:
-                LinearLayout yincang = (LinearLayout) findViewById(R.id.gerenzhuye_yincang);
-                yincang.setVisibility(View.INVISIBLE);
-        }
-        return super.onTouchEvent(ev);
-    }
+//    LinearLayout yincang = (LinearLayout) findViewById(R.id.gerenzhuye_yincang);
+
    /* private void liuyan(){
         if( == 1){
             Toast.makeText(this,"这是第",Toast.LENGTH_SHORT).show();
