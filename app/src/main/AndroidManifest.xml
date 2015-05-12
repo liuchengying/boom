@@ -92,6 +92,8 @@
             android:theme="@android:style/Theme.Black.NoTitleBar"></activity>
         <activity android:name= "boom.boom.liuyan.Liuyan_activity"
         android:theme="@android:style/Theme.Translucent"></activity>
+        <activity android:name= "boom.boom.wangqitiaozhan.wangqitiaozhan"
+            android:theme="@android:style/Theme.Translucent"></activity>
 
 
 
