@@ -48,6 +48,8 @@ public class Bangzhuyufankui_activity extends Activity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        overridePendingTransition(0, R.anim.base_slide_right_out);
+        overridePendingTransition(0, R.anim.liuyan_out);
     }
+
+
 }
