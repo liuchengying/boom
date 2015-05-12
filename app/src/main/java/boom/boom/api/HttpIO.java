@@ -28,7 +28,7 @@ import java.util.TimerTask;
  * Created by 1eekai on 2015/1/16.
  */
 public class HttpIO {
-    private static int CONNECTION_TIMED_OUT = 5744643;
+    public final static int CONNECTION_TIMED_OUT = 5744643;
     private String URLstr;
     private boolean sessionState;
     public String SessionID;
