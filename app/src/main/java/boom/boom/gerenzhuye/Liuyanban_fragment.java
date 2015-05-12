@@ -149,7 +149,7 @@ public class Liuyanban_fragment extends Fragment implements XListView.IXListView
         get.addItem("action", "getrank");
         HttpIO io = new HttpIO(get.toString());
         Gerenzhuye_activity.obj = null;
-
+        io.SessionID=Static.session_id;
         int round = 0;
         io.GETToHTTPServer();
         try {
