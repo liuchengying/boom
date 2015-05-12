@@ -51,10 +51,9 @@
             android:layout_height="wrap_content">
 
         <VideoView
-            android:id="@+id/on_surface_covered_view"
                 android:layout_width="fill_parent"
                 android:layout_height="260dp"
-
+            android:id="@+id/on_surface_covered_view"
             />
 
             <SurfaceView
