@@ -14,6 +14,9 @@ import java.net.URL;
 
 public class uploadFile{
     public static String uploadFile(ProgressListener listener, String URL, String fileFullPath, String fileName){
+        return uploadFile(listener, URL, fileFullPath, fileName, "video/mp4");
+    }
+    public static String uploadFile(ProgressListener listener, String URL, String fileFullPath, String fileName, String mimetype){
         int timeout = 5000;
         String requestURL = URL;
 
@@ -49,7 +52,7 @@ public class uploadFile{
             DataOutputStream dos = new DataOutputStream(conn.getOutputStream());
 
             dos.writeBytes(twoHyphens + boundary + end);
-            dos.writeBytes("Content-Disposition: form-data; name=\"file\"; filename=" + fileName + "" + end + "Content-Type: video/mp4" + end);
+            dos.writeBytes("Content-Disposition: form-data; name=\"file\"; filename=" + fileName + "" + end + "Content-Type: "+ mimetype + end);
             dos.writeBytes(end);
 
             fis = new FileInputStream(fileFullPath);
