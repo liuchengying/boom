@@ -222,7 +222,8 @@
                         android:layout_weight="0.5"
                         android:id="@+id/bjxx_nl"
                         android:singleLine="true"
-                        android:numeric="integer|decimal" />
+                        android:numeric="integer|decimal"
+                        android:maxLength="2" />
                 </LinearLayout>
                 <LinearLayout
                     android:layout_weight="1"
