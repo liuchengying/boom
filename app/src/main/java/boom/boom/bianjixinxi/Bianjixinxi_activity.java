@@ -104,6 +104,8 @@ public class Bianjixinxi_activity  extends Activity {
     EditText company;
     EditText email;
 
+    Bitmap avatar;
+
     LinearLayout save;
     android.os.Handler myMessageHandler = new android.os.Handler(){
         @Override
@@ -269,6 +271,7 @@ public class Bianjixinxi_activity  extends Activity {
                 editInformation.school=school.getText().toString();
                 editInformation.company=company.getText().toString();
                 editInformation.email=email.getText().toString();
+                editInformation.avatarImage=avatar;
 
                 dialog.show();
                 dialog.setCancelable(false);
@@ -401,6 +404,7 @@ public class Bianjixinxi_activity  extends Activity {
                             photo.compress(Bitmap.CompressFormat.JPEG, 100, stream);
                         }
                     }
+                    avatar=photo;
                     iv_image.setImageBitmap(photo);
                     break;
                 default:

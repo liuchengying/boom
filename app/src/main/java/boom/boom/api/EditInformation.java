@@ -1,5 +1,8 @@
 package boom.boom.api;
 
+import android.graphics.Bitmap;
+import android.os.Message;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -24,11 +27,14 @@ public class EditInformation implements Serializable {
     public String email;
     public String uniquesign;
     public String avatar;
+    public Bitmap avatarImage;
     //http://172.24.10.118/api/userdata.php?action=alter&method=email&value=yangxue@net.cn
     private static final String GETINFOMATION_SERVER=Utils.serveraddr+"/api/userdata.php";
     public int GetInformation()
             throws JSONException
     {
+
+
         Utils.GetBuilder get = new Utils.GetBuilder(GETINFOMATION_SERVER);
         get.addItem("action", "get");
         String url_request = get.toString();
@@ -78,8 +84,32 @@ public class EditInformation implements Serializable {
 
     public int save()
     {
+        Utils.GetBuilder getImageUrl = new Utils.GetBuilder(Utils.serveraddr + Utils.put_file_api);
+        getImageUrl.addItem("s_id", Static.session_id);
+        getImageUrl.addItem("type", "image");
+        String tmp = uploadFile.uploadFile(new ProgressListener() {
+            @Override
+            public void transferred(int transferedBytes) {
+                Message m = new Message();
+                if (transferedBytes >= 99)  m.what = 99;
+                else    m.what = transferedBytes;
+                //EditInformation.this.myMessageHandler.sendMessage(m);
+            }
+
+            public void transferred(long transfetedBytes){
+
+            }
+        }, getImageUrl.toString(), "/storage/sdcard0/small.jpg", "hehe.jpg","image/jpeg");
+
+
         String str;
         try {
+            JSONObject obj=new JSONObject(tmp);
+            String state = obj.getString("state");
+            if(state.equals("SUCCESS"))
+            {
+                avatar = obj.getString("fileToken");
+            }
             Utils.GetBuilder get = new Utils.GetBuilder(GETINFOMATION_SERVER);
             get.addItem("action", "alter_json");
 
