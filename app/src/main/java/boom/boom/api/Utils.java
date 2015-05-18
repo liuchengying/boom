@@ -106,36 +106,36 @@ public class Utils {
 
     public static String GetXingzuo(int id){
         switch (id){
-            case 1: return "白羊座";
-            case 2: return "金牛座";
-            case 3: return "双子座";
-            case 4: return "巨蟹座";
-            case 5: return "狮子座";
-            case 6: return "处女座";
-            case 7: return "天秤座";
-            case 8: return "天蝎座";
-            case 9: return "射手座";
-            case 10:    return "摩羯座";
-            case 11:    return "水瓶座";
-            case 12:    return "双鱼座";
+            case 0: return "白羊座";
+            case 1: return "金牛座";
+            case 2: return "双子座";
+            case 3: return "巨蟹座";
+            case 4: return "狮子座";
+            case 5: return "处女座";
+            case 6: return "天秤座";
+            case 7: return "天蝎座";
+            case 8: return "射手座";
+            case 9:    return "摩羯座";
+            case 10:    return "水瓶座";
+            case 11:    return "双鱼座";
         }
         return "你是肉做的";
     }
 
     public static String GetXingzuo(String id){
         switch (Integer.valueOf(id)){
-            case 1: return "白羊座";
-            case 2: return "金牛座";
-            case 3: return "双子座";
-            case 4: return "巨蟹座";
-            case 5: return "狮子座";
-            case 6: return "处女座";
-            case 7: return "天秤座";
-            case 8: return "天蝎座";
-            case 9: return "射手座";
-            case 10:    return "摩羯座";
-            case 11:    return "水瓶座";
-            case 12:    return "双鱼座";
+            case 0: return "白羊座";
+            case 1: return "金牛座";
+            case 2: return "双子座";
+            case 3: return "巨蟹座";
+            case 4: return "狮子座";
+            case 5: return "处女座";
+            case 6: return "天秤座";
+            case 7: return "天蝎座";
+            case 8: return "射手座";
+            case 9:    return "摩羯座";
+            case 10:    return "水瓶座";
+            case 11:    return "双鱼座";
         }
         return "你是肉做的";
     }

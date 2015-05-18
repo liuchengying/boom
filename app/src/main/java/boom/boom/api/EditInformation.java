@@ -28,6 +28,7 @@ public class EditInformation implements Serializable {
     public String uniquesign;
     public String avatar;
     public Bitmap avatarImage;
+    public int coins;
     //http://172.24.10.118/api/userdata.php?action=alter&method=email&value=yangxue@net.cn
     private static final String GETINFOMATION_SERVER=Utils.serveraddr+"/api/userdata.php";
     public int GetInformation()
@@ -65,6 +66,7 @@ public class EditInformation implements Serializable {
                     email = data.getString("email");
                     uniquesign = data.getString("uniquesign");
                     avatar = data.getString("avatar");
+                    coins = data.getInt("coins");
                 }
             }
             catch(Exception e)
@@ -82,37 +84,40 @@ public class EditInformation implements Serializable {
         return 1;
     }
 
-    public int save()
-    {
-        Utils.GetBuilder getImageUrl = new Utils.GetBuilder(Utils.serveraddr + Utils.put_file_api);
-        getImageUrl.addItem("s_id", Static.session_id);
-        getImageUrl.addItem("type", "image");
-        String tmp = uploadFile.uploadFile(new ProgressListener() {
-            @Override
-            public void transferred(int transferedBytes) {
-                Message m = new Message();
-                if (transferedBytes >= 99)  m.what = 99;
-                else    m.what = transferedBytes;
-                //EditInformation.this.myMessageHandler.sendMessage(m);
+    public int save(boolean avatarChanged) {
+        if (avatarChanged) {
+            Utils.GetBuilder getImageUrl = new Utils.GetBuilder(Utils.serveraddr + Utils.put_file_api);
+            getImageUrl.addItem("s_id", Static.session_id);
+            getImageUrl.addItem("type", "image");
+            String tmp = uploadFile.uploadFile(new ProgressListener() {
+                @Override
+                public void transferred(int transferedBytes) {
+                    Message m = new Message();
+                    if (transferedBytes >= 99) m.what = 99;
+                    else m.what = transferedBytes;
+                    //EditInformation.this.myMessageHandler.sendMessage(m);
+                }
+
+                public void transferred(long transfetedBytes) {
+
+                }
+            }, getImageUrl.toString(), "/storage/sdcard0/small.jpg", "hehe.jpg", "image/jpeg");
+
+
+            String str;
+            try {
+                JSONObject obj = new JSONObject(tmp);
+                String state = obj.getString("state");
+                if (state.equals("SUCCESS")) {
+                    avatar = obj.getString("fileToken");
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-
-            public void transferred(long transfetedBytes){
-
-            }
-        }, getImageUrl.toString(), "/storage/sdcard0/small.jpg", "hehe.jpg","image/jpeg");
-
-
-        String str;
-        try {
-            JSONObject obj=new JSONObject(tmp);
-            String state = obj.getString("state");
-            if(state.equals("SUCCESS"))
-            {
-                avatar = obj.getString("fileToken");
-            }
+        }
             Utils.GetBuilder get = new Utils.GetBuilder(GETINFOMATION_SERVER);
             get.addItem("action", "alter_json");
-
+            try{
             JSONObject json = new JSONObject();
             json.put("nickname", nickname);
             json.put("name", name);
@@ -126,20 +131,19 @@ public class EditInformation implements Serializable {
             json.put("email", email);
             json.put("uniquesign", uniquesign);
             json.put("avatar", avatar);
-            get.addItem("data",json.toString());
+            get.addItem("data", json.toString());
             String url_request = new String(get.toString().getBytes("UTF-8"));
             HttpIO io = new HttpIO(url_request);
-            io.SessionID=Static.session_id;
-            JSONObject result = new JSONObject(io.GetJson());
+            io.SessionID = Static.session_id;
+            JSONObject result = new JSONObject(io.getJson());
             String status = result.getString("state");
-            if (status.equalsIgnoreCase("FAILED"))
-            {
-                ServerErr="保存失败，请重试！";
+            if (status.equalsIgnoreCase("FAILED")) {
+                ServerErr = "保存失败，请重试！";
                 return 0;
             }
             if (status.equalsIgnoreCase("SUCCESS")) return 1;
         }
-        catch (Exception e)
+        catch(Exception e)
         {
             ServerErr = "保存失败，请重试！";
             return 0;

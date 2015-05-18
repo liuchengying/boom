@@ -63,6 +63,7 @@ public class Shezhi_activity extends Activity{
     private ImageView sz_img3;
     private LoadingDialog dialog;
     public EditInformation editInformation;
+
     android.os.Handler myMessageHandler = new android.os.Handler(){
         @Override
         public void handleMessage(Message msg) {

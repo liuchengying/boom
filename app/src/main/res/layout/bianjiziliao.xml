@@ -69,6 +69,11 @@
                  />
         </LinearLayout>
     </LinearLayout>
+
+
+   <ScrollView
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content">
     <LinearLayout
         android:layout_marginTop="15dp"
         android:layout_width="fill_parent"
@@ -242,7 +247,7 @@
             <LinearLayout
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/android_149"
+                android:background="@drawable/android_147"
                 android:gravity="center_vertical">
                 <LinearLayout
                     android:layout_weight="9"
@@ -271,6 +276,52 @@
                         android:layout_weight="0.5"
                         android:id="@+id/star" />
                 </LinearLayout>
+
+                <LinearLayout
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:gravity="center_vertical"
+                    >
+                    <ImageView
+                        android:layout_marginLeft="10dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/android_145"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/android_149"
+                android:gravity="center_vertical">
+                <LinearLayout
+                    android:layout_weight="9"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:gravity="center_vertical">
+                    <TextView
+                        android:layout_marginLeft="10dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="个性签名 "
+                        android:textSize="20sp"
+                        android:textColor="#ffdadada"/>
+                    <EditText
+                        android:background="#ffffff"
+                        android:layout_marginLeft="5dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:gravity="center_vertical"
+                        android:text=""
+                        android:textSize="20sp"
+                        android:textColor="#ffdadada"
+                        android:layout_weight="0.73"
+                        android:id="@+id/gexingqianming"
+                        android:singleLine="true" />
+
                 <LinearLayout
 
                     android:layout_width="wrap_content"
@@ -287,7 +338,8 @@
 
             </LinearLayout>
 
-            </LinearLayout>
+
+        </LinearLayout>
         </LinearLayout>
     <LinearLayout
         android:layout_marginTop="15dp"
@@ -496,6 +548,7 @@
     </LinearLayout>
 
 
-
+</LinearLayout>
+   </ScrollView>
 </LinearLayout>
 </boom.boom.myview.SildingFinishLayout>

@@ -5,7 +5,10 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.os.Message;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
@@ -14,6 +17,11 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.net.ConnectException;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -21,6 +29,7 @@ import boom.boom.FontManager.FontManager;
 import boom.boom.R;
 import boom.boom.api.Static;
 import boom.boom.api.SysApplication;
+import boom.boom.api.myImageView;
 import boom.boom.faqitianzhan.Faqitianzhan_activity;
 import boom.boom.gerenzhuye.Gerenzhuye_activity;
 import boom.boom.guizejieshao.Guizejieshao_activity;
@@ -44,22 +53,33 @@ public class Tiaozhan_activity extends Activity {
     private TextView nickname;
     private TextView coins;
     private Button qiandao;
-    private CircleImageView cehuatouxiang;
+    private myImageView cehuatouxiang;
     private Button faqitianzhan;
     private Button tz_grzy;
     private LinearLayout ch_haoyouliebiao;
-    @Override
+
+    public android.os.Handler myMessageHandler = new android.os.Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            nickname.setText(Static.nickname);
+            coins.setText("" + Static.coins);
+            cehuatouxiang.setImageBitmap(Static.avatarImage);
+        }
+    };
+
+            @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.tiaozhan);
         SysApplication.getInstance().addActivity(this);
         FontManager.changeFonts(FontManager.getContentView(this), this);//字体
-
+        Static.tiaozhan_handler=this.myMessageHandler;
         Intent intent = getIntent();
         String user_name = Static.username;
         String user_nickname = Static.nickname;
         int user_coins = Static.coins;
-        cehuatouxiang = (CircleImageView) findViewById(R.id.cehuatouxiang);
+        cehuatouxiang = (myImageView) findViewById(R.id.cehuatouxiang);
         cahuaanniu = (Button) findViewById(R.id.cehuaanniu);
         mLeftMenu = (SlidingMenu) findViewById(R.id.cehuacaidan);
         danrentiaozhan = (Button) findViewById(R.id.danrentiaozhan);
@@ -200,6 +220,9 @@ public class Tiaozhan_activity extends Activity {
                 overridePendingTransition(R.anim.base_slide_right_in, R.anim.base_slide_remain);
             }
         });
+        if(Static.avatarImage!=null) {
+            cehuatouxiang.setImageBitmap(Static.avatarImage);
+        }
         ch_haoyouliebiao = (LinearLayout) findViewById(R.id.ch_haoyouliebiao);
         ch_haoyouliebiao.setOnClickListener(new View.OnClickListener() {
             @Override

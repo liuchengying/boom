@@ -151,11 +151,13 @@ public class Liuyanban_fragment extends Fragment implements XListView.IXListView
         Gerenzhuye_activity.obj = null;
         io.SessionID=Static.session_id;
         int round = 0;
-        io.GETToHTTPServer();
+        io.getJson();
         try {
-            Gerenzhuye_activity.obj = new JSONObject(io.getResultData());
-            JSONObject tmp = Utils.GetSubJSONObject(Gerenzhuye_activity.obj, "response");
-            round = Integer.parseInt(tmp.getString("limit"));
+            if(io.getResultData()!=null) {
+                Gerenzhuye_activity.obj = new JSONObject(io.getResultData());
+                JSONObject tmp = Utils.GetSubJSONObject(Gerenzhuye_activity.obj, "response");
+                round = Integer.parseInt(tmp.getString("limit"));
+            }
 
         } catch (JSONException e) {
             e.printStackTrace();

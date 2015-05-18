@@ -1,5 +1,11 @@
 package boom.boom.api;
 
+import android.annotation.SuppressLint;
+import android.annotation.TargetApi;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.os.Build;
+import android.os.StrictMode;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -15,6 +21,7 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.ConnectException;
 import java.net.HttpURLConnection;
@@ -145,6 +152,7 @@ public class HttpIO {
          */
         //final Boolean bFinished;
 
+
         String result = null;
         BufferedReader reader = null;
         bFinished=false;
@@ -205,17 +213,25 @@ public class HttpIO {
                 try {
                     reader.close();
                     reader = null;
-                } catch (IOException e) {
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
         }
         this.ResultBuffer = result;
         return result;
-    }
 
-    public String GetJson()
+    }
+    @TargetApi(Build.VERSION_CODES.GINGERBREAD)
+
+    @SuppressLint("NewApi")
+    public String getJson()
     {
+        StrictMode.ThreadPolicy policy=new StrictMode.ThreadPolicy.Builder().permitAll().build();
+
+        StrictMode.setThreadPolicy(policy);
+        //严格策略
+
         String resultData = "";
         InputStreamReader in = null;
         HttpURLConnection urlConn = null;
@@ -245,9 +261,48 @@ public class HttpIO {
         {
             e.printStackTrace();
         }
+        this.ResultBuffer = resultData;
             return resultData;
     }
 
+    public Bitmap getImage()
+    {
+        Bitmap bitmap=null;
+        String resultData = "";
+        InputStream in = null;
+        HttpURLConnection urlConn = null;
+        BufferedReader buffer = null;
 
+        try {
+            URL url = new URL(GetURL());
+            if (url != null) {
+                urlConn = (HttpURLConnection) url.openConnection();
+                urlConn.setConnectTimeout(5000);// 设置超时时间
+                urlConn.setRequestProperty("Cookie","PHPSESSID=" + this.SessionID);
+                try {
+                   in = urlConn.getInputStream();
+                } catch (ConnectException e) {
+                    e.printStackTrace();
+                    return null;
+                }
+            }
+
+
+            //解析得到图片
+            bitmap = BitmapFactory.decodeStream(in);
+            //关闭数据流
+            in.close();
+
+
+
+            urlConn.disconnect();
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+        this.ResultBuffer = resultData;
+        return bitmap;
+    }
 }
 

@@ -35,10 +35,15 @@ import android.widget.Toast;
 
 import org.json.JSONException;
 
+import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
+import java.net.ConnectException;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -83,7 +88,7 @@ public class Bianjixinxi_activity  extends Activity {
     LoadingDialog dialog;
     private Uri uritempFile;
     private TextView text1;
-
+    private boolean avatarChanged;
     private EditInformation editInformation;
 
     private static final int TAKE_PICTURE = 4;
@@ -103,7 +108,7 @@ public class Bianjixinxi_activity  extends Activity {
     EditText school;
     EditText company;
     EditText email;
-
+    EditText sign;
     Bitmap avatar;
 
     LinearLayout save;
@@ -120,6 +125,22 @@ public class Bianjixinxi_activity  extends Activity {
                 Toast.makeText(Bianjixinxi_activity.this,"保存失败，请重试！",Toast.LENGTH_SHORT).show();
             }
         }};
+
+    private void Synch(){
+        try{
+                        editInformation.GetInformation();
+                        Static.nickname=editInformation.nickname;
+                        Static.coins=editInformation.coins;
+                        Static.avatar=editInformation.avatar;
+                        Static.uniqueSign=editInformation.uniquesign;
+                        if(avatarChanged)
+                            Static.avatarImage=avatar;
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -165,18 +186,18 @@ public class Bianjixinxi_activity  extends Activity {
             }
         });
 
-        starlist.add("摩羯座");
-        starlist.add("水瓶座");
-        starlist.add("双鱼座");
         starlist.add("白羊座");
         starlist.add("金牛座");
         starlist.add("双子座");
         starlist.add("巨蟹座");
         starlist.add("狮子座");
         starlist.add("处女座");
-        starlist.add("天枰座");
+        starlist.add("天秤座");
         starlist.add("天蝎座");
         starlist.add("射手座");
+        starlist.add("摩羯座");
+        starlist.add("水瓶座");
+        starlist.add("双鱼座");
 
         adapter1 = new ArrayAdapter<String>(this, R.layout.shezhi_spinner_style1, starlist);
         adapter1.setDropDownViewResource(R.layout.shezhi_spinner_style);
@@ -244,6 +265,8 @@ public class Bianjixinxi_activity  extends Activity {
         dialog = new LoadingDialog(Bianjixinxi_activity.this);
         sex.setSelection(editInformation.sex,false);
         star.setSelection(editInformation.star,false);
+        sign=(EditText)findViewById(R.id.gexingqianming);
+        sign.setText(editInformation.uniquesign);
         nickname=(EditText)findViewById(R.id.bjxx_nc);
         nickname.setText(editInformation.nickname);
         age=(EditText)findViewById(R.id.bjxx_nl);
@@ -258,6 +281,7 @@ public class Bianjixinxi_activity  extends Activity {
         company.setText(editInformation.company);
         email=(EditText)findViewById(R.id.bjxx_yx);
         email.setText(editInformation.email);
+        iv_image.setImageBitmap(Static.avatarImage);
         save=(LinearLayout)findViewById(R.id.bianjixinxi_bc);
         save.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -272,7 +296,7 @@ public class Bianjixinxi_activity  extends Activity {
                 editInformation.company=company.getText().toString();
                 editInformation.email=email.getText().toString();
                 editInformation.avatarImage=avatar;
-
+                editInformation.uniquesign=sign.getText().toString();
                 dialog.show();
                 dialog.setCancelable(false);
                 new Thread(new Runnable() {
@@ -281,8 +305,12 @@ public class Bianjixinxi_activity  extends Activity {
 
                         try {
                             Message m = new Message();
-                            m.what=editInformation.save();
+                            m.what=editInformation.save(avatarChanged);
                             Bianjixinxi_activity.this.myMessageHandler.sendMessage(m);
+                            Synch();
+                            Message mm = new Message();
+                            mm.what=avatarChanged?1:0;
+                            Static.tiaozhan_handler.sendMessage(mm);
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
@@ -405,6 +433,7 @@ public class Bianjixinxi_activity  extends Activity {
                         }
                     }
                     avatar=photo;
+                    avatarChanged=true;
                     iv_image.setImageBitmap(photo);
                     break;
                 default:
