@@ -374,18 +374,17 @@
                     android:text="学生"
                     android:textSize="20sp"
                     android:textColor="#ffdadada"
-                    android:layout_weight="0.5"
+                    android:layout_weight="0.16"
                     android:id="@+id/bjxx_zy"
                     android:singleLine="true" />
             </LinearLayout>
             <LinearLayout
-                android:layout_weight="1"
                 android:layout_width="wrap_content"
                 android:layout_height="fill_parent"
                 android:gravity="center_vertical"
-                >
+                android:layout_weight="0.86">
                 <ImageView
-                    android:layout_marginLeft="45dp"
+                    android:layout_marginLeft="20dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/android_145"/>
@@ -431,13 +430,12 @@
 
             </LinearLayout>
             <LinearLayout
-                android:layout_weight="1"
                 android:layout_width="wrap_content"
                 android:layout_height="fill_parent"
                 android:gravity="center_vertical"
-                >
+                android:layout_weight="1.04">
                 <ImageView
-                    android:layout_marginLeft="45dp"
+                    android:layout_marginLeft="20dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/android_145"/>

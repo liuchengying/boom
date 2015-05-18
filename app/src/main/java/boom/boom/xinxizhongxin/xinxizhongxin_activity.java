@@ -18,8 +18,11 @@ import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.Toast;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 import boom.boom.FontManager.FontManager;
@@ -28,13 +31,15 @@ import boom.boom.api.Msg;
 import boom.boom.api.SysApplication;
 import boom.boom.ExpandableTextView.ExpandableTextView;
 import boom.boom.myview.SildingFinishLayout;
+import boom.boom.myview.XListView;
 
 /**
  * Created by Lyp on 2015/1/22
  */
 
-public class xinxizhongxin_activity extends Activity {
-    private ListView list;
+public class xinxizhongxin_activity extends Activity implements XListView.IXListViewListener{
+    private XListView list;
+    private final static String DATE_FORMAT_STR = "yyyy-MM-dd HH:mm";
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,9 +59,14 @@ public class xinxizhongxin_activity extends Activity {
         SysApplication.getInstance().addActivity(this);
         FontManager.changeFonts(FontManager.getContentView(this), this);//字体
         LinearLayout fh = (LinearLayout) findViewById(R.id.xxzx_fanhui);
+
+
 //        Button rightSideButton;
         final ArrayList<Map<String, Object>> listItem = new ArrayList<>();
-        list = (ListView) findViewById(R.id.challenge_list);
+        list = (XListView) findViewById(R.id.challenge_list);
+        list.setPullLoadEnable(true);
+        list.setPullRefreshEnable(true);
+        list.setXListViewListener(this);
         while (true) {
             Msg msg = new Msg();
             Map<String, Object> map = new HashMap<String, Object>();
@@ -107,6 +117,20 @@ public class xinxizhongxin_activity extends Activity {
     public void onBackPressed() {
         super.onBackPressed();
         overridePendingTransition(0, R.anim.base_slide_right_out);
+    }
+    private void onLoad() {
+        list.stopRefresh();
+        list.stopLoadMore();
+        list.setRefreshTime(new SimpleDateFormat(DATE_FORMAT_STR, Locale.CHINA).format(new Date()));
+    }
+    @Override
+    public void onRefresh() {
+
+    }
+
+    @Override
+    public void onLoadMore() {
+
     }
 }
     class ExpandableAdapter extends BaseAdapter {

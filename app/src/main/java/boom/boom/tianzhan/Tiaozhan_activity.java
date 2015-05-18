@@ -34,6 +34,7 @@ import boom.boom.faqitianzhan.Faqitianzhan_activity;
 import boom.boom.gerenzhuye.Gerenzhuye_activity;
 import boom.boom.guizejieshao.Guizejieshao_activity;
 import boom.boom.haoyouliebiao.Haoyouliebiao_activity;
+import boom.boom.myview.BadgeView;
 import boom.boom.myview.CircleImageView;
 import boom.boom.paihangbang.Paihangbang_activity;
 import boom.boom.qiandao.Qiandao_activity;
@@ -57,6 +58,8 @@ public class Tiaozhan_activity extends Activity {
     private Button faqitianzhan;
     private Button tz_grzy;
     private LinearLayout ch_haoyouliebiao;
+    private LinearLayout xiaoxizhongxin_jiaobiao;
+    private BadgeView mBadgeView;
 
     public android.os.Handler myMessageHandler = new android.os.Handler() {
         @Override
@@ -94,7 +97,20 @@ public class Tiaozhan_activity extends Activity {
                 overridePendingTransition(R.anim.base_slide_right_in, R.anim.base_slide_remain);
             }
         });
-        tz_grzy = (Button) findViewById(R.id.tz_grzy);
+                // *** 消息提示红色角标 ***
+                xiaoxizhongxin_jiaobiao = (LinearLayout) findViewById(R.id.xinxizhongxin_jiaobiao);
+
+                if (mBadgeView != null)
+                {
+                    xiaoxizhongxin_jiaobiao.removeView(mBadgeView);
+                }
+                mBadgeView = new BadgeView(Tiaozhan_activity.this);
+                mBadgeView.setBackgroundResource(R.drawable.android_202);
+                mBadgeView.setBadgeCount(2);
+                mBadgeView.setTextSize(12);
+                xiaoxizhongxin_jiaobiao.addView(mBadgeView);
+
+                tz_grzy = (Button) findViewById(R.id.tz_grzy);
         tz_grzy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -176,6 +192,7 @@ public class Tiaozhan_activity extends Activity {
                 Intent intent=new Intent();
                 intent.setClass(Tiaozhan_activity.this, xinxizhongxin_activity.class);
                 startActivity(intent);
+                mBadgeView.setVisibility(View.INVISIBLE);
                 Timer timer=new Timer();
                 TimerTask timerTask=new TimerTask() {
                     @Override
