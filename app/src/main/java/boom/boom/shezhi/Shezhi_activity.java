@@ -14,6 +14,7 @@ import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.os.Message;
 import android.os.Vibrator;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
@@ -25,17 +26,25 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.ToggleButton;
 import android.os.Vibrator;
 
+import org.json.JSONException;
+
 import boom.boom.FontManager.FontManager;
 import boom.boom.R;
+import boom.boom.api.EditInformation;
+import boom.boom.api.LoadingDialog;
+import boom.boom.api.Static;
 import boom.boom.api.SysApplication;
+import boom.boom.api.UserData;
 import boom.boom.bangzhuyufankui.Bangzhuyufankui_activity;
 import boom.boom.bianjixinxi.Bianjixinxi_activity;
 import boom.boom.guanyuwomen.Guanyuwomen_activity;
 import boom.boom.mimaxiugai.Mimaxiugai_activity;
 import boom.boom.myview.SildingFinishLayout;
+import boom.boom.tianzhan.Tiaozhan_activity;
 import boom.boom.zhujiemian.Main_activity;
 
 /**
@@ -52,8 +61,28 @@ public class Shezhi_activity extends Activity{
     private ImageView sz_img1;
     private ImageView sz_img2;
     private ImageView sz_img3;
+    private LoadingDialog dialog;
+    public EditInformation editInformation;
 
+    android.os.Handler myMessageHandler = new android.os.Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            if(msg.what==1){
+                Intent intent = new Intent();
+                Bundle bundle=new Bundle();
+                bundle.putSerializable("info",editInformation);
+                intent.putExtras(bundle);
+                intent.setClass(Shezhi_activity.this, Bianjixinxi_activity.class);
+                startActivity(intent);
+                dialog.dismiss();
+            }
+            else {
+                dialog.dismiss();
+                Toast.makeText(Shezhi_activity.this,editInformation.ServerErr,Toast.LENGTH_SHORT).show();
+            }
 
+        }};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,7 +100,7 @@ public class Shezhi_activity extends Activity{
 
         mSildingFinishLayout.setTouchView(mSildingFinishLayout);
 
-
+        editInformation = new EditInformation();
         SysApplication.getInstance().addActivity(this);
         FontManager.changeFonts(FontManager.getContentView(this), this);//字体
         vibrator = (Vibrator) this.getSystemService(VIBRATOR_SERVICE);
@@ -93,24 +122,32 @@ public class Shezhi_activity extends Activity{
                 startActivity(intent);
             }
         });
-        TextView xggezl1 = (TextView)findViewById(R.id.sz_xggrzl1);
-        xggezl1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent();
-                intent.setClass(Shezhi_activity.this, Bianjixinxi_activity.class);
-                startActivity(intent);
-            }
-        });
         LinearLayout xggezl = (LinearLayout)findViewById(R.id.sz_xggrzl);
         xggezl.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent();
-                intent.setClass(Shezhi_activity.this, Bianjixinxi_activity.class);
-                startActivity(intent);
+                dialog = new LoadingDialog(Shezhi_activity.this);
+                dialog.show();
+                dialog.setCancelable(false);
+
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+
+                        try {
+                            Message m = new Message();
+                            m.what=editInformation.GetInformation();
+                            Shezhi_activity.this.myMessageHandler.sendMessage(m);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }).start();
+
+
             }
         });
+
         LinearLayout sz_bzyfk = (LinearLayout) findViewById(R.id.sz_bbyfk);
         sz_bzyfk.setOnClickListener(new View.OnClickListener() {
             @Override

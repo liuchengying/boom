@@ -5,6 +5,8 @@ package boom.boom.zhujiemian;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
@@ -17,16 +19,23 @@ import android.widget.Toast;
 
 import org.json.JSONException;
 
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.net.ConnectException;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.Timer;
 import java.util.TimerTask;
 
 import boom.boom.FontManager.FontManager;
 import boom.boom.R;
+import boom.boom.api.HttpIO;
 import boom.boom.api.LoadingDialog;
 import boom.boom.api.Static;
 import boom.boom.api.SysApplication;
 import boom.boom.api.User;
 import boom.boom.api.UserData;
+import boom.boom.api.myImageView;
 import boom.boom.denglu.dengluzhuce_activity;
 import boom.boom.mimazhaohui.Mimazhaohui_activity;
 import boom.boom.tianzhan.Tiaozhan_activity;
@@ -55,10 +64,51 @@ public class Main_activity extends Activity {
 //                    intent.putExtra("nickname", data.QueryData("nickname"));
 //                    intent.putExtra("uniquesign", data.QueryData("uniquesign"));
 //                    intent.putExtra("coins", data.QueryData("coins"));
+
                 Static.session_id = userlogin.getSessionId();
                 Static.username = data.QueryData("name");
                 Static.nickname = data.QueryData("nickname");
                 Static.uniqueSign = data.QueryData("uniquesign");
+                Static.avatar = data.QueryData("avatar");
+                /*HttpIO io = new HttpIO("http://172.24.10.118/api/getimage.php?token=" + Static.avatar);
+                io.SessionID=Static.session_id;
+                Static.avatarImage = io.getImage();*/
+
+                Thread thread = new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Bitmap bitmap=null;
+                        String resultData = "";
+                        InputStream in = null;
+                        HttpURLConnection urlConn = null;
+                        BufferedReader buffer = null;
+                        try {
+                            URL url = new URL("http://172.24.10.118/api/getimage.php?token=" + Static.avatar);
+                            if (url != null) {
+                                urlConn = (HttpURLConnection) url.openConnection();
+                                urlConn.setConnectTimeout(5000);// 设置超时时间
+                                urlConn.setRequestProperty("Cookie","PHPSESSID=" + Static.session_id);
+                                try {
+                                    in = urlConn.getInputStream();
+                                } catch (ConnectException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                            //解析得到图片
+                            bitmap = BitmapFactory.decodeStream(in);
+                            //关闭数据流
+                            in.close();
+                            urlConn.disconnect();
+                        }
+                        catch (Exception e)
+                        {
+                            e.printStackTrace();
+                        }
+                        Static.avatarImage=bitmap;
+                    }
+                });
+                thread.start();
+
                 if (String.valueOf(data.QueryData("coins")) == "null"){
                     Static.coins = 0;
                 }else {

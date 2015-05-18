@@ -62,7 +62,7 @@
         android:gravity="center_horizontal"
         >
         <boom.boom.myview.CircleImageView
-            android:id="@+id/gerenzhuye_touxiang"
+            android:id="@+id/tjhy_touxiang"
             android:layout_marginTop="40dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

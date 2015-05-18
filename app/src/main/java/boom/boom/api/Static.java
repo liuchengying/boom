@@ -1,12 +1,17 @@
 package boom.boom.api;
 
+import android.graphics.Bitmap;
+
 import org.json.JSONObject;
+
+import java.util.logging.Handler;
 
 /**
  * Created by laoli on 2015/2/19.
  */
 
 public class Static {
+    public static Bitmap avatarImage;
     public static String session_id = null;
     public static String username = null;
     public static String nickname = null;
@@ -17,4 +22,5 @@ public class Static {
     public static String reg_date = null;
     public static JSONObject object = null;
     public static String tempStr = null;
+    public static android.os.Handler tiaozhan_handler;
 }

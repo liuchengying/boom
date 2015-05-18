@@ -1,17 +1,27 @@
 package boom.boom.tianzhan;
 
 import android.app.Activity;
-
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.os.Message;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
-
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.net.ConnectException;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -19,11 +29,11 @@ import boom.boom.FontManager.FontManager;
 import boom.boom.R;
 import boom.boom.api.Static;
 import boom.boom.api.SysApplication;
+import boom.boom.api.myImageView;
 import boom.boom.faqitianzhan.Faqitianzhan_activity;
 import boom.boom.gerenzhuye.Gerenzhuye_activity;
 import boom.boom.guizejieshao.Guizejieshao_activity;
 import boom.boom.haoyouliebiao.Haoyouliebiao_activity;
-import boom.boom.myview.BadgeView;
 import boom.boom.myview.CircleImageView;
 import boom.boom.paihangbang.Paihangbang_activity;
 import boom.boom.qiandao.Qiandao_activity;
@@ -43,45 +53,34 @@ public class Tiaozhan_activity extends Activity {
     private TextView nickname;
     private TextView coins;
     private Button qiandao;
-    private CircleImageView cehuatouxiang;
+    private myImageView cehuatouxiang;
     private Button faqitianzhan;
     private Button tz_grzy;
     private LinearLayout ch_haoyouliebiao;
-    private BadgeView mBadgeView;
-    private LinearLayout xiaoxizhongxin_jiaobiao;
 
-    @Override
+    public android.os.Handler myMessageHandler = new android.os.Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            nickname.setText(Static.nickname);
+            coins.setText("" + Static.coins);
+            cehuatouxiang.setImageBitmap(Static.avatarImage);
+        }
+    };
+
+            @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.tiaozhan);
         SysApplication.getInstance().addActivity(this);
         FontManager.changeFonts(FontManager.getContentView(this), this);//字体
-
+        Static.tiaozhan_handler=this.myMessageHandler;
         Intent intent = getIntent();
         String user_name = Static.username;
         String user_nickname = Static.nickname;
         int user_coins = Static.coins;
-        cehuatouxiang = (CircleImageView) findViewById(R.id.cehuatouxiang);
+        cehuatouxiang = (myImageView) findViewById(R.id.cehuatouxiang);
         cahuaanniu = (Button) findViewById(R.id.cehuaanniu);
-
-
-        // *** 消息提示红色角标 ***
-        xiaoxizhongxin_jiaobiao = (LinearLayout) findViewById(R.id.xinxizhongxin_jiaobiao);
-
-        if (mBadgeView != null)
-        {
-            xiaoxizhongxin_jiaobiao.removeView(mBadgeView);
-        }
-        mBadgeView = new BadgeView(Tiaozhan_activity.this);
-        mBadgeView.setBackgroundResource(R.drawable.android_202);
-        mBadgeView.setBadgeCount(2);
-        mBadgeView.setTextSize(12);
-        xiaoxizhongxin_jiaobiao.addView(mBadgeView);
-
-
-
-
-
         mLeftMenu = (SlidingMenu) findViewById(R.id.cehuacaidan);
         danrentiaozhan = (Button) findViewById(R.id.danrentiaozhan);
         shezhi = (Button) findViewById(R.id.shezhi);
@@ -185,7 +184,6 @@ public class Tiaozhan_activity extends Activity {
                     }
                 };
                 timer.schedule(timerTask, 1000);
-                mBadgeView.setVisibility(View.INVISIBLE);
             }
         });
         LinearLayout phg=(LinearLayout)findViewById(R.id.ch_paihangbang);
@@ -208,7 +206,6 @@ public class Tiaozhan_activity extends Activity {
         cehuatouxiang.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View v) {
-
                 Intent intent = new Intent();
                 intent.setClass(Tiaozhan_activity.this, Gerenzhuye_activity.class);
                 startActivity(intent);
@@ -223,6 +220,9 @@ public class Tiaozhan_activity extends Activity {
                 overridePendingTransition(R.anim.base_slide_right_in, R.anim.base_slide_remain);
             }
         });
+        if(Static.avatarImage!=null) {
+            cehuatouxiang.setImageBitmap(Static.avatarImage);
+        }
         ch_haoyouliebiao = (LinearLayout) findViewById(R.id.ch_haoyouliebiao);
         ch_haoyouliebiao.setOnClickListener(new View.OnClickListener() {
             @Override
