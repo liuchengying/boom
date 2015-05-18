@@ -1,15 +1,13 @@
 package boom.boom.tianzhan;
 
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.content.Context;
-import android.content.DialogInterface;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
+
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -25,6 +23,7 @@ import boom.boom.faqitianzhan.Faqitianzhan_activity;
 import boom.boom.gerenzhuye.Gerenzhuye_activity;
 import boom.boom.guizejieshao.Guizejieshao_activity;
 import boom.boom.haoyouliebiao.Haoyouliebiao_activity;
+import boom.boom.myview.BadgeView;
 import boom.boom.myview.CircleImageView;
 import boom.boom.paihangbang.Paihangbang_activity;
 import boom.boom.qiandao.Qiandao_activity;
@@ -48,6 +47,9 @@ public class Tiaozhan_activity extends Activity {
     private Button faqitianzhan;
     private Button tz_grzy;
     private LinearLayout ch_haoyouliebiao;
+    private BadgeView mBadgeView;
+    private LinearLayout xiaoxizhongxin_jiaobiao;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,6 +63,25 @@ public class Tiaozhan_activity extends Activity {
         int user_coins = Static.coins;
         cehuatouxiang = (CircleImageView) findViewById(R.id.cehuatouxiang);
         cahuaanniu = (Button) findViewById(R.id.cehuaanniu);
+
+
+        // *** 消息提示红色角标 ***
+        xiaoxizhongxin_jiaobiao = (LinearLayout) findViewById(R.id.xinxizhongxin_jiaobiao);
+
+        if (mBadgeView != null)
+        {
+            xiaoxizhongxin_jiaobiao.removeView(mBadgeView);
+        }
+        mBadgeView = new BadgeView(Tiaozhan_activity.this);
+        mBadgeView.setBackgroundResource(R.drawable.android_202);
+        mBadgeView.setBadgeCount(2);
+        mBadgeView.setTextSize(12);
+        xiaoxizhongxin_jiaobiao.addView(mBadgeView);
+
+
+
+
+
         mLeftMenu = (SlidingMenu) findViewById(R.id.cehuacaidan);
         danrentiaozhan = (Button) findViewById(R.id.danrentiaozhan);
         shezhi = (Button) findViewById(R.id.shezhi);
@@ -164,6 +185,7 @@ public class Tiaozhan_activity extends Activity {
                     }
                 };
                 timer.schedule(timerTask, 1000);
+                mBadgeView.setVisibility(View.INVISIBLE);
             }
         });
         LinearLayout phg=(LinearLayout)findViewById(R.id.ch_paihangbang);
@@ -186,6 +208,7 @@ public class Tiaozhan_activity extends Activity {
         cehuatouxiang.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View v) {
+
                 Intent intent = new Intent();
                 intent.setClass(Tiaozhan_activity.this, Gerenzhuye_activity.class);
                 startActivity(intent);

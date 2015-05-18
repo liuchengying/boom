@@ -90,8 +90,8 @@ public class Bianjixinxi_activity  extends Activity {
     private static final int PHOTO_REQUEST_GALLERY = 2;// 从相册中选择
 
 
-    private TextView bjxx_szd;
 
+    private TextView bjxx_szd;
 
 
 
