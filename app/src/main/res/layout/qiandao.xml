@@ -33,7 +33,7 @@
         android:layout_gravity="center"
         >
         <TextView
-            android:id="@+id/yonghuming"
+            android:id="@+id/qiandao_checked"
             android:layout_width="wrap_content"
             android:layout_height="40dp"
             android:background="@drawable/android_2"
@@ -44,7 +44,7 @@
 
             />
         <TextView
-            android:id="@+id/mima"
+            android:id="@+id/qiandao_remain"
             android:layout_width="wrap_content"
             android:layout_height="40dp"
             android:background="@drawable/android_2"
