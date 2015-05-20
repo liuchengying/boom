@@ -59,7 +59,7 @@ public class Gerenzhuye_activity extends FragmentActivity
     public static JSONObject obj;
     private Button liuyan;
 
-    private float grzy_Y;
+
     private TextView username;
     private TextView sign;
 

@@ -75,6 +75,7 @@
         android:background="@drawable/android_160"
         android:layout_marginTop="20dp" >
         <EditText
+            android:id="@+id/bangzhuyufankui_edit"
             android:gravity="top|left"
             android:singleLine="false" android:lines="10"
             android:layout_marginTop="10dp"
@@ -88,6 +89,7 @@
             />
     </LinearLayout>
     <Button
+        android:id="@+id/tijiaofankui"
         android:gravity="center"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
