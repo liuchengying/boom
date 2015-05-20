@@ -30,6 +30,7 @@ import java.util.List;
 
 import boom.boom.FontManager.FontManager;
 import boom.boom.R;
+import boom.boom.api.Static;
 import boom.boom.api.SysApplication;
 import boom.boom.bangzhuyufankui.Bangzhuyufankui_activity;
 import boom.boom.liuyan.Liuyan_activity;
@@ -59,7 +60,8 @@ public class Gerenzhuye_activity extends FragmentActivity
     private Button liuyan;
 
     private float grzy_Y;
-
+    private TextView username;
+    private TextView sign;
 
 
     private ImageView mTabline;
@@ -106,7 +108,12 @@ public class Gerenzhuye_activity extends FragmentActivity
             }
         });
 
+        username=(TextView)findViewById(R.id.gerenzhuye_yonghuming);
+        username.setText(Static.nickname);
+        sign=(TextView)findViewById(R.id.gerenzhuye_qianming);
+        sign.setText(Static.uniqueSign);
        gerenzhuye_touxing = (CircleImageView) findViewById(R.id.gerenzhuye_touxiang);
+        gerenzhuye_touxing.setImageBitmap(Static.avatarImage);
         gerenzhuyefanhui = (LinearLayout)findViewById(R.id.gerenzhuyefanhui);
         gerenzhuyefanhui.setOnClickListener(new View.OnClickListener() {
             @Override

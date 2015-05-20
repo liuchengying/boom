@@ -60,6 +60,46 @@ public class Main_activity extends Activity {
                 Static.nickname = data.QueryData("nickname");
                 Static.uniqueSign = data.QueryData("uniquesign");
                 Static.identifyDigit = data.QueryData("identifyDigit");
+                Static.avatar = data.QueryData("avatar");
+                /*HttpIO io = new HttpIO("http://172.24.10.118/api/getimage.php?token=" + Static.avatar);
+                io.SessionID=Static.session_id;
+                Static.avatarImage = io.getImage();*/
+
+                Thread thread = new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Bitmap bitmap=null;
+                        String resultData = "";
+                        InputStream in = null;
+                        HttpURLConnection urlConn = null;
+                        BufferedReader buffer = null;
+                        try {
+                            URL url = new URL("http://172.24.10.118/api/getimage.php?token=" + Static.avatar);
+                            if (url != null) {
+                                urlConn = (HttpURLConnection) url.openConnection();
+                                urlConn.setConnectTimeout(5000);// 设置超时时间
+                                urlConn.setRequestProperty("Cookie","PHPSESSID=" + Static.session_id);
+                                try {
+                                    in = urlConn.getInputStream();
+                                } catch (ConnectException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                            //解析得到图片
+                            bitmap = BitmapFactory.decodeStream(in);
+                            //关闭数据流
+                            in.close();
+                            urlConn.disconnect();
+                        }
+                        catch (Exception e)
+                        {
+                            e.printStackTrace();
+                        }
+                        Static.avatarImage=bitmap;
+                    }
+                });
+                thread.start();
+
                 if (String.valueOf(data.QueryData("coins")) == "null"){
                     Static.coins = 0;
                 }else {

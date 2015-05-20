@@ -17,5 +17,4 @@ public class Static {
     public static String reg_date = null;
     public static JSONObject object = null;
     public static String tempStr = null;
-    public static String identifyDigit = null;
 }

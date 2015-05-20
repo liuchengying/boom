@@ -34,15 +34,15 @@
             android:layout_marginLeft="10dp">
             <TextView
                 android:id="@+id/nickname"
-                android:layout_width="wrap_content"
+                android:layout_width="250dp"
                 android:layout_height="wrap_content"
                 android:text="XXX"
                 android:textSize="25sp"
                 android:textColor="#FF4444"/>
             <TextView
-                android:id="@+id/text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:id="@+id/lyb_text"
+                android:layout_width="250dp"
+                android:layout_height="38dp"
                 android:text="今天试了一下斜立易拉罐"/>
 
             </LinearLayout>
@@ -58,7 +58,8 @@
            android:layout_width="wrap_content"
            android:layout_height="wrap_content"
            android:text="2014.5.8"
-           android:layout_marginRight="15dp"/>
+           android:layout_marginRight="15dp"
+           android:singleLine="true" />
        </LinearLayout>
     <LinearLayout
 
@@ -96,7 +97,7 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/android_133"/>
+                android:src="@drawable/android_131"/>
             <TextView
                 android:id="@+id/comment"
                 android:layout_width="wrap_content"

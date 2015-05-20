@@ -33,25 +33,26 @@
         android:layout_gravity="center"
         >
         <TextView
-            android:id="@+id/yonghuming"
+            android:id="@+id/qiandao_checked"
             android:layout_width="wrap_content"
             android:layout_height="40dp"
             android:background="@drawable/android_2"
-            android:hint="已累计到第 X 天"
+            android:text="已累计到第 X 天"
             android:textSize="16sp"
             android:gravity="center"
             android:textColor="#eeeeee"
+
             />
         <TextView
-            android:id="@+id/mima"
+            android:id="@+id/qiandao_remain"
             android:layout_width="wrap_content"
             android:layout_height="40dp"
             android:background="@drawable/android_2"
-            android:hint="距离获得积分还有 X 天"
+           android:text="距离获得积分还有 X 天"
             android:textSize="16sp"
             android:gravity="center"
             android:layout_marginTop="13dp"
-            android:password="true"
+
             android:textColor="#eeeeee"
             />
         <Button

@@ -32,20 +32,19 @@ import boom.boom.zinitiaozhan.Zinitianzhan_activity;
 /**
  * Created by 刘成英 on 2015/3/12.
  */
-public class Shipintianzhan_fragment extends Fragment implements XListView.IXListViewListener
-{
+public class Shipintianzhan_fragment extends Fragment implements XListView.IXListViewListener {
 
     private XListView lv;
     private android.os.Handler mHandler;
     private final static String DATE_FORMAT_STR = "yyyy-MM-dd HH:mm";
     private SimpleAdapter mSimpleAdapter;
     private String resultdata = null;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState)
-    {
-        View v=inflater.inflate(R.layout.gerenzhuye1, container, false);
-         lv= (XListView) v.findViewById(R.id.listView2);
+                             Bundle savedInstanceState) {
+        View v = inflater.inflate(R.layout.gerenzhuye1, container, false);
+        lv = (XListView) v.findViewById(R.id.listView2);
         lv.setPullLoadEnable(true);
         mHandler = new android.os.Handler();
         onSyncDataFromServer();
@@ -59,8 +58,7 @@ public class Shipintianzhan_fragment extends Fragment implements XListView.IXLis
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(getActivity(),"adsfadsfasdfasdfasdfasdf!",Toast.LENGTH_SHORT).show();
-                Intent localIntent=new Intent(getActivity(),Shipintianzhan_pinglun.class);
+                Intent localIntent = new Intent(getActivity(), Shipintianzhan_pinglun.class);
                 startActivity(localIntent);
 
             }
@@ -79,7 +77,7 @@ public class Shipintianzhan_fragment extends Fragment implements XListView.IXLis
         mHandler.postDelayed(new Runnable() {
             @Override
             public void run() {
-
+                onSyncDataFromServer();
                 onLoad();
             }
         }, 2000);
@@ -108,8 +106,8 @@ public class Shipintianzhan_fragment extends Fragment implements XListView.IXLis
     };
 */
 
-    public void onSyncDataFromServer(){
-        ArrayList<HashMap<String, Object>> listItem = new ArrayList<HashMap<String,     Object>>();/*在数组中存放数据*/
+    public void onSyncDataFromServer() {
+        ArrayList<HashMap<String, Object>> listItem = new ArrayList<HashMap<String, Object>>();/*在数组中存放数据*/
         Gerenzhuye_activity.obj = null;
         int round = 0;
         new Thread(new Runnable() {
@@ -129,7 +127,7 @@ public class Shipintianzhan_fragment extends Fragment implements XListView.IXLis
 //                Shipintianzhan_fragment.this.http_receiver.sendMessage(m);
             }
         }).start();
-        while (resultdata == null);
+        while (resultdata == null) ;
         try {
             Gerenzhuye_activity.obj = new JSONObject(this.resultdata);
             JSONObject tmp = Utils.GetSubJSONObject(Gerenzhuye_activity.obj, "response");
@@ -137,10 +135,10 @@ public class Shipintianzhan_fragment extends Fragment implements XListView.IXLis
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        for(int i=0;i<round;i++){
+        for (int i = 0; i < round; i++) {
             String title = null, text = null, location = null, assign_time = null, elapsed = null;
             if (Gerenzhuye_activity.obj != null) try {
-                JSONObject tmp = Utils.GetSubJSONObject(Gerenzhuye_activity.obj, "line"+i);
+                JSONObject tmp = Utils.GetSubJSONObject(Gerenzhuye_activity.obj, "line" + i);
                 title = tmp.getString("frontname");
                 text = "观看次数" + tmp.getString("play_time") + "次";
                 location = tmp.getString("location_intent");
@@ -150,18 +148,23 @@ public class Shipintianzhan_fragment extends Fragment implements XListView.IXLis
                 e.printStackTrace();
             }
             HashMap<String, Object> map = new HashMap<String, Object>();
-            map.put("title",title);
+            map.put("title", title);
             map.put("count", text);
             map.put("location", location);
             map.put("assign_time", assign_time);
             map.put("elapsed", elapsed);
             listItem.add(map);
         }
-        mSimpleAdapter = new SimpleAdapter(getActivity(),listItem,//需要绑定的数据
-                R.layout.shipintiaozhan_item,//每一行的布局//动态数组中的数据源的键对应到定义布局的View中
-                new String[] {
-                        "title", "count" , "location", "assign_time", "elapsed"},
-                new int[] {R.id.title,R.id.count,R.id.location,R.id.assign_time,R.id.elapsed}
-        );
+        try {
+            mSimpleAdapter = new SimpleAdapter(getActivity(), listItem,//需要绑定的数据
+                    R.layout.shipintiaozhan_item,//每一行的布局//动态数组中的数据源的键对应到定义布局的View中
+                    new String[]{
+                            "title", "count", "location", "assign_time", "elapsed"},
+                    new int[]{R.id.title, R.id.count, R.id.location, R.id.assign_time, R.id.elapsed}
+            );
+        } catch (Exception e) {
+
+            e.printStackTrace();
         }
+    }
 }

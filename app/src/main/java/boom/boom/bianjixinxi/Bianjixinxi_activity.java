@@ -1,67 +1,82 @@
 package boom.boom.bianjixinxi;
 
 import android.app.Activity;
-
+import android.app.AlertDialog;
 import android.content.ContentResolver;
 import android.content.Context;
-
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
-
+import android.hardware.Camera;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Message;
 import android.provider.MediaStore;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
-
+import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.json.JSONException;
 
+import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
+import java.net.ConnectException;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.microedition.khronos.egl.EGLDisplay;
+
 import boom.boom.FontManager.FontManager;
 import boom.boom.R;
-
+import boom.boom.api.EditInformation;
+import boom.boom.api.LoadingDialog;
+import boom.boom.api.Static;
 import boom.boom.api.SysApplication;
+import boom.boom.api.UserData;
 import boom.boom.myview.ImageTools;
 import boom.boom.myview.SildingFinishLayout;
+import boom.boom.shezhi.Shezhi_activity;
+import boom.boom.tianzhan.Tiaozhan_activity;
 import boom.boom.wheelcity.AddressData;
 import boom.boom.wheelcity.OnWheelChangedListener;
 import boom.boom.wheelcity.WheelView;
 import boom.boom.wheelcity.adapters.AbstractWheelTextAdapter;
 import boom.boom.wheelcity.adapters.ArrayWheelAdapter;
 import boom.boom.widget1.MyAlertDialog;
-
+import boom.boom.zhujiemian.Main_activity;
 
 /**
  * Created by 刘成英 on 2015/3/19.
  */
 public class Bianjixinxi_activity  extends Activity {
-    private List<String> list1 = new ArrayList<String>();
-    private List<String> list = new ArrayList<String>();
+    private List<String> starlist = new ArrayList<String>();
+    private List<String> sexlist = new ArrayList<String>();
 
-    private Spinner mySpinner;
-    private Spinner MySpinner1;
+    private Spinner sex;
+    private Spinner star;
     private ArrayAdapter<String> adapter;
     private ArrayAdapter<String> adapter1;
     private LinearLayout sz_touxiang;
@@ -70,14 +85,11 @@ public class Bianjixinxi_activity  extends Activity {
     private Button cancleButton;
     private PopupWindow popupWindow;
     private View popupWindowView;
-    private PopupWindow popupWindow1;
-    private View popupWindowView1;
-
+    LoadingDialog dialog;
     private Uri uritempFile;
     private TextView text1;
-    private LinearLayout suozaidi;
-
-
+    private boolean avatarChanged;
+    private EditInformation editInformation;
 
     private static final int TAKE_PICTURE = 4;
     private static final int CHOOSE_PICTURE = 1;
@@ -89,17 +101,46 @@ public class Bianjixinxi_activity  extends Activity {
 
     private static final int PHOTO_REQUEST_GALLERY = 2;// 从相册中选择
 
+    EditText nickname;
+    EditText age;
+    EditText job;
+    TextView location;
+    EditText school;
+    EditText company;
+    EditText email;
+    EditText sign;
+    Bitmap avatar;
 
-    private TextView bjxx_szd;
+    LinearLayout save;
+    android.os.Handler myMessageHandler = new android.os.Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            if(msg.what==1){
+                Toast.makeText(Bianjixinxi_activity.this,"保存成功！",Toast.LENGTH_SHORT).show();
+                finish();
+            }
+            else{
+                dialog.dismiss();
+                Toast.makeText(Bianjixinxi_activity.this,"保存失败，请重试！",Toast.LENGTH_SHORT).show();
+            }
+        }};
 
-
-
-
-
-
-
-
-
+    private void Synch(){
+        try{
+                        editInformation.GetInformation();
+                        Static.nickname=editInformation.nickname;
+                        Static.coins=editInformation.coins;
+                        Static.avatar=editInformation.avatar;
+                        Static.uniqueSign=editInformation.uniquesign;
+                        if(avatarChanged)
+                            Static.avatarImage=avatar;
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -120,40 +161,47 @@ public class Bianjixinxi_activity  extends Activity {
         SysApplication.getInstance().addActivity(this);
         FontManager.changeFonts(FontManager.getContentView(this), this);//字体
         LinearLayout fanhui = (LinearLayout) findViewById(R.id.bianjixinxi_fh);
-        suozaidi = (LinearLayout) findViewById(R.id.suozaidi);
-        bjxx_szd = (TextView) findViewById(R.id.bjxx_szd);
+
+        editInformation=(EditInformation)getIntent().getExtras().getSerializable("info");
 
 
-
-
-
-
-        list.add("男");
-        list.add("女");
-        mySpinner = (Spinner) findViewById(R.id.spinner);
-        adapter = new ArrayAdapter<String>(this,R.layout.shezhi_spinner_style1, list);
+        sexlist.add("男");
+        sexlist.add("女");
+        sex = (Spinner) findViewById(R.id.sex);
+        adapter = new ArrayAdapter<String>(this,R.layout.shezhi_spinner_style1, sexlist);
         adapter.setDropDownViewResource(R.layout.shezhi_spinner_style);
-        mySpinner.setAdapter(adapter);
-        MySpinner1 = (Spinner) findViewById(R.id.spinner1);
+        sex.setAdapter(adapter);
+        star = (Spinner) findViewById(R.id.star);
         iv_image = (ImageView) findViewById(R.id.bianjiziliao_touxiang);
+        sex.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String str=parent.getItemAtPosition(position).toString();
 
+            }
 
-        list1.add("摩羯座");
-        list1.add("水瓶座");
-        list1.add("双鱼座");
-        list1.add("白羊座");
-        list1.add("金牛座");
-        list1.add("双子座");
-        list1.add("巨蟹座");
-        list1.add("狮子座");
-        list1.add("处女座");
-        list1.add("天枰座");
-        list1.add("天蝎座");
-        list1.add("射手座");
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
 
-        adapter1 = new ArrayAdapter<String>(this, R.layout.shezhi_spinner_style1, list1);
+            }
+        });
+
+        starlist.add("白羊座");
+        starlist.add("金牛座");
+        starlist.add("双子座");
+        starlist.add("巨蟹座");
+        starlist.add("狮子座");
+        starlist.add("处女座");
+        starlist.add("天秤座");
+        starlist.add("天蝎座");
+        starlist.add("射手座");
+        starlist.add("摩羯座");
+        starlist.add("水瓶座");
+        starlist.add("双鱼座");
+
+        adapter1 = new ArrayAdapter<String>(this, R.layout.shezhi_spinner_style1, starlist);
         adapter1.setDropDownViewResource(R.layout.shezhi_spinner_style);
-        MySpinner1.setAdapter(adapter1);
+        star.setAdapter(adapter1);
 
         fanhui.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -162,6 +210,8 @@ public class Bianjixinxi_activity  extends Activity {
                 overridePendingTransition(0, R.anim.base_slide_right_out);
             }
         });
+
+
 
 
         LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
@@ -174,9 +224,6 @@ public class Bianjixinxi_activity  extends Activity {
         sz_touxiang.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-
-
                 //设置PopupWindow的弹出和消失效果
                 popupWindow.setAnimationStyle(R.style.popupAnimation);
                 confirmButton = (Button) popupWindowView.findViewById(R.id.sz_touxiang_paishe);
@@ -188,11 +235,9 @@ public class Bianjixinxi_activity  extends Activity {
                 cancleButton.setOnClickListener(Itemclick);
                 button.setOnClickListener(Itemclick);
 
-
             }
         });
-
-     LinearLayout suozaidi = (LinearLayout) findViewById(R.id.suozaidi);
+        LinearLayout suozaidi = (LinearLayout) findViewById(R.id.suozaidi);
         suozaidi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -200,8 +245,6 @@ public class Bianjixinxi_activity  extends Activity {
                 final MyAlertDialog dialog1 = new MyAlertDialog(Bianjixinxi_activity.this)
                         .builder()
                         .setTitle("请选择地区：")
-                                // .setMsg("再连续登陆15天，就可变身为QQ达人。退出QQ可能会使你现有记录归零，确定退出？")
-                                // .setEditText("1111111111111")
                         .setView(view)
                         .setNegativeButton("取消", new View.OnClickListener() {
                             @Override
@@ -213,20 +256,72 @@ public class Bianjixinxi_activity  extends Activity {
                     @Override
                     public void onClick(View v) {
                         Toast.makeText(getApplicationContext(), cityTxt,Toast.LENGTH_SHORT).show();
-                        bjxx_szd.setText(cityTxt);
+                        location.setText(cityTxt);
                     }
                 });
                 dialog1.show();
             }
         });
+        dialog = new LoadingDialog(Bianjixinxi_activity.this);
+        sex.setSelection(editInformation.sex,false);
+        star.setSelection(editInformation.star,false);
+        sign=(EditText)findViewById(R.id.gexingqianming);
+        sign.setText(editInformation.uniquesign);
+        nickname=(EditText)findViewById(R.id.bjxx_nc);
+        nickname.setText(editInformation.nickname);
+        age=(EditText)findViewById(R.id.bjxx_nl);
+        age.setText(""+editInformation.age);
+        job=(EditText)findViewById(R.id.bjxx_zy);
+        job.setText(editInformation.job);
+        location=(TextView)findViewById(R.id.bjxx_szd);
+        location.setText(editInformation.address);
+        school=(EditText)findViewById(R.id.bjxx_xx);
+        school.setText(editInformation.school);
+        company=(EditText)findViewById(R.id.bjxx_gs);
+        company.setText(editInformation.company);
+        email=(EditText)findViewById(R.id.bjxx_yx);
+        email.setText(editInformation.email);
+        iv_image.setImageBitmap(Static.avatarImage);
+        save=(LinearLayout)findViewById(R.id.bianjixinxi_bc);
+        save.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                editInformation.nickname=nickname.getText().toString();
+                editInformation.sex=sex.getSelectedItemPosition();
+                editInformation.age=Integer.parseInt(age.getText().toString());
+                editInformation.star=star.getSelectedItemPosition();
+                editInformation.job=job.getText().toString();
+                editInformation.address=location.getText().toString();
+                editInformation.school=school.getText().toString();
+                editInformation.company=company.getText().toString();
+                editInformation.email=email.getText().toString();
+                editInformation.avatarImage=avatar;
+                editInformation.uniquesign=sign.getText().toString();
+                dialog.show();
+                dialog.setCancelable(false);
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
 
+                        try {
+                            Message m = new Message();
+                            m.what=editInformation.save(avatarChanged);
+                            Bianjixinxi_activity.this.myMessageHandler.sendMessage(m);
+                            Synch();
+                            Message mm = new Message();
+                            mm.what=avatarChanged?1:0;
+                            Static.tiaozhan_handler.sendMessage(mm);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }).start();
 
+            }
+        });
 
+    }//oncreate
 
-
-
-
-}
     public void onBackPressed() {
         super.onBackPressed();
         overridePendingTransition(0, R.anim.base_slide_right_out);
@@ -240,20 +335,20 @@ public class Bianjixinxi_activity  extends Activity {
                 popupWindow.dismiss();
 
 
-            switch (v.getId()) {
-                case R.id.sz_touxiang_paishe:
-                    which =TAKE_PICTURE;
-                    showPicturePicker(Bianjixinxi_activity.this,true);
-                    break;
-                case R.id.sz_touxiang_bendi:
-                    which =CHOOSE_PICTURE ;
-                    showPicturePicker(Bianjixinxi_activity.this,true);
+                switch (v.getId()) {
+                    case R.id.sz_touxiang_paishe:
+                        which =TAKE_PICTURE;
+                        showPicturePicker(Bianjixinxi_activity.this,true);
+                        break;
+                    case R.id.sz_touxiang_bendi:
+                        which =CHOOSE_PICTURE ;
+                        showPicturePicker(Bianjixinxi_activity.this,true);
 
 
-                    break;
-                default:
-                    break;
-            }
+                        break;
+                    default:
+                        break;
+                }
             }
 
 
@@ -321,12 +416,12 @@ public class Bianjixinxi_activity  extends Activity {
                     Bitmap photo = null;
                     /*Uri photoUri = data.getData();
                     if (photoUri != null) {*/
-                        try {
-                            photo = BitmapFactory.decodeStream(getContentResolver().openInputStream(uritempFile));
-                        } catch (FileNotFoundException e) {
-                            e.printStackTrace();
-                        }
-                        //photo = BitmapFactory.decodeFile(photoUri.getPath());
+                    try {
+                        photo = BitmapFactory.decodeStream(getContentResolver().openInputStream(uritempFile));
+                    } catch (FileNotFoundException e) {
+                        e.printStackTrace();
+                    }
+                    //photo = BitmapFactory.decodeFile(photoUri.getPath());
                     //
                     // }
                     if (photo == null) {
@@ -337,6 +432,8 @@ public class Bianjixinxi_activity  extends Activity {
                             photo.compress(Bitmap.CompressFormat.JPEG, 100, stream);
                         }
                     }
+                    avatar=photo;
+                    avatarChanged=true;
                     iv_image.setImageBitmap(photo);
                     break;
                 default:
@@ -346,61 +443,61 @@ public class Bianjixinxi_activity  extends Activity {
     }
 
 
- int which;
+    int which;
 
 
     public void showPicturePicker(Context context,boolean isCrop){
         final boolean crop = isCrop;
 
-            //类型码
-            int REQUEST_CODE;
+        //类型码
+        int REQUEST_CODE;
 
 
-                switch (which) {
-                    case TAKE_PICTURE:
-                        Uri imageUri = null;
-                        String fileName = null;
-                        Intent openCameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        switch (which) {
+            case TAKE_PICTURE:
+                Uri imageUri = null;
+                String fileName = null;
+                Intent openCameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
 
 
-                        if (crop) {
-                            REQUEST_CODE = CROP;
-                            //删除上一次截图的临时文件
-                            SharedPreferences sharedPreferences = getSharedPreferences("temp",Context.MODE_WORLD_WRITEABLE);
-                            ImageTools.deletePhotoAtPathAndName(Environment.getExternalStorageDirectory().getAbsolutePath(), sharedPreferences.getString("tempName", ""));
+                if (crop) {
+                    REQUEST_CODE = CROP;
+                    //删除上一次截图的临时文件
+                    SharedPreferences sharedPreferences = getSharedPreferences("temp",Context.MODE_WORLD_WRITEABLE);
+                    ImageTools.deletePhotoAtPathAndName(Environment.getExternalStorageDirectory().getAbsolutePath(), sharedPreferences.getString("tempName", ""));
 
-                            //保存本次截图临时文件名字
-                            fileName = String.valueOf(System.currentTimeMillis()) + ".jpg";
-                            SharedPreferences.Editor editor = sharedPreferences.edit();
-                            editor.putString("tempName", fileName);
-                            editor.commit();
-                        }else {
-                            REQUEST_CODE = TAKE_PICTURE;
-                            fileName = "image.jpg";
-                        }
-                        imageUri = Uri.fromFile(new File(Environment.getExternalStorageDirectory(),fileName));
-                        //指定照片保存路径（SD卡），image.jpg为一个临时文件，每次拍照后这个图片都会被替换
-                        openCameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
-
-
-                        startActivityForResult(openCameraIntent, REQUEST_CODE);
-                        break;
-
-                    case CHOOSE_PICTURE:
-                        Intent openAlbumIntent = new Intent(Intent.ACTION_GET_CONTENT);
-                        if (crop) {
-                            REQUEST_CODE = CROP;
-                        }else {
-                            REQUEST_CODE = CHOOSE_PICTURE;
-                        }
-                        openAlbumIntent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "image/*");
-                        startActivityForResult(openAlbumIntent, REQUEST_CODE);
-                        break;
-
-                    default:
-                        break;
+                    //保存本次截图临时文件名字
+                    fileName = String.valueOf(System.currentTimeMillis()) + ".jpg";
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.putString("tempName", fileName);
+                    editor.commit();
+                }else {
+                    REQUEST_CODE = TAKE_PICTURE;
+                    fileName = "image.jpg";
                 }
-            }
+                imageUri = Uri.fromFile(new File(Environment.getExternalStorageDirectory(),fileName));
+                //指定照片保存路径（SD卡），image.jpg为一个临时文件，每次拍照后这个图片都会被替换
+                openCameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
+
+
+                startActivityForResult(openCameraIntent, REQUEST_CODE);
+                break;
+
+            case CHOOSE_PICTURE:
+                Intent openAlbumIntent = new Intent(Intent.ACTION_GET_CONTENT);
+                if (crop) {
+                    REQUEST_CODE = CROP;
+                }else {
+                    REQUEST_CODE = CHOOSE_PICTURE;
+                }
+                openAlbumIntent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "image/*");
+                startActivityForResult(openAlbumIntent, REQUEST_CODE);
+                break;
+
+            default:
+                break;
+        }
+    }
 
 
 
@@ -408,7 +505,7 @@ public class Bianjixinxi_activity  extends Activity {
 
     public void cropImage(Uri uri, int outputX, int outputY, int requestCode){
         Intent intent = new Intent("com.android.camera.action.CROP");
-       // intent.setDataAndType(uri,"tempName");
+        // intent.setDataAndType(uri,"tempName");
         intent.setDataAndType(uri, "image/*");
         intent.putExtra("crop", "true");
         intent.putExtra("aspectX", 1);
@@ -424,18 +521,7 @@ public class Bianjixinxi_activity  extends Activity {
         intent.putExtra("outputFormat", Bitmap.CompressFormat.JPEG.toString());
         startActivityForResult(intent, requestCode);
     }
-
-
-
-
-
-
-
-
-
-
-
-    //添加选地址内容
+    //选地区部分代码
     private String cityTxt;
     private View dialogm() {
         View contentView = LayoutInflater.from(this).inflate(
@@ -443,7 +529,7 @@ public class Bianjixinxi_activity  extends Activity {
         final WheelView country = (WheelView) contentView
                 .findViewById(R.id.wheelcity_country);
         country.setVisibleItems(3);
-        country.setViewAdapter(new CountryAdapter(this));
+        country.setViewAdapter((boom.boom.wheelcity.adapters.WheelViewAdapter) new CountryAdapter(this));
 
         final String cities[][] = AddressData.CITIES;
         final String ccities[][][] = AddressData.COUNTIES;
@@ -559,4 +645,3 @@ public class Bianjixinxi_activity  extends Activity {
         }
     }
 }
-
