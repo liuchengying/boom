@@ -16,7 +16,7 @@ import android.widget.ImageView;
 import java.lang.ref.WeakReference;
 
 /**
- * Created by Mostafa Gazar on 11/2/13.
+ * Created by M0xkLurk3r on 2015/3/3
  */
 public abstract class BaseImageView extends ImageView {
     private static final String TAG = BaseImageView.class.getSimpleName();

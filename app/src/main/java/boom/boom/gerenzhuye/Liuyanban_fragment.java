@@ -63,14 +63,9 @@ public class Liuyanban_fragment extends Fragment implements XListView.IXListView
         lv.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-//                Toast toast = Toast.makeText(getActivity(), "adfadsfasdfasdfadfadsf",
-//                        Toast.LENGTH_LONG);
-//                toast.show();
                 popupWindow = new PopupWindow(popupWindowView);
                 popupWindow.setWidth(LinearLayout.LayoutParams.FILL_PARENT);
                 popupWindow.setHeight(LinearLayout.LayoutParams.FILL_PARENT);
-                // popupWindowView = inflater.inflate(R.layout.shezhi_touxiang, null);
-//        popupWindow = new PopupWindow(popupWindowView, LinearLayout.LayoutParams.FILL_PARENT, LinearLayout.LayoutParams.FILL_PARENT, true);
                 popupWindow.setBackgroundDrawable(new BitmapDrawable());
                 popupWindow.setOutsideTouchable(true);
                 popupWindow.setFocusable(true);
@@ -145,18 +140,17 @@ public class Liuyanban_fragment extends Fragment implements XListView.IXListView
     public void onSyncDataFromServer(){
         String challenge_name = null, challenge_nickname = null;
         ArrayList<HashMap<String, Object>> listItem = new ArrayList<HashMap<String,     Object>>();//*在数组中存放数据*//*
-        Utils.GetBuilder get = new Utils.GetBuilder(Utils.serveraddr + "/api/rank.php");
-        get.addItem("action", "getrank");
+        Utils.GetBuilder get = new Utils.GetBuilder(Utils.serveraddr + "/api/comment.php");
+        get.addItem("action", "query");
+        get.addItem("type", "1");
         HttpIO io = new HttpIO(get.toString());
         Gerenzhuye_activity.obj = null;
-
         int round = 0;
         io.GETToHTTPServer();
         try {
             Gerenzhuye_activity.obj = new JSONObject(io.getResultData());
             JSONObject tmp = Utils.GetSubJSONObject(Gerenzhuye_activity.obj, "response");
             round = Integer.parseInt(tmp.getString("limit"));
-
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -165,8 +159,8 @@ public class Liuyanban_fragment extends Fragment implements XListView.IXListView
             String title = null, text = null, like = null, comment = null;
             if (Gerenzhuye_activity.obj != null) try {
                 JSONObject tmp = Utils.GetSubJSONObject(Gerenzhuye_activity.obj, "line"+i);
-                title = tmp.getString("frontname");
-//                text = tmp.getString()
+//                title = tmp.getString("frontname");
+                text = tmp.getString("text_value");
             } catch (JSONException e) {
                 e.printStackTrace();
             }

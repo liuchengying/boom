@@ -59,6 +59,7 @@ public class Main_activity extends Activity {
                 Static.username = data.QueryData("name");
                 Static.nickname = data.QueryData("nickname");
                 Static.uniqueSign = data.QueryData("uniquesign");
+                Static.identifyDigit = data.QueryData("identifyDigit");
                 if (String.valueOf(data.QueryData("coins")) == "null"){
                     Static.coins = 0;
                 }else {

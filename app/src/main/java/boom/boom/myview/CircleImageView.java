@@ -9,7 +9,7 @@ import android.graphics.RectF;
 import android.util.AttributeSet;
 
 /**
- * Created by Mostafa Gazar on 11/2/13.
+ * Created by M0xkLurk3r on 2015/3/3
  */
 public class CircleImageView extends BaseImageView {
 
@@ -26,13 +26,11 @@ public class CircleImageView extends BaseImageView {
     }
 
     public static Bitmap getBitmap(int width, int height) {
-        Bitmap bitmap = Bitmap.createBitmap(width, height,
-                Bitmap.Config.ARGB_8888);
+        Bitmap bitmap = Bitmap.createBitmap(width, height,Bitmap.Config.ARGB_8888);
         Canvas canvas = new Canvas(bitmap);
         Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
         paint.setColor(Color.BLACK);
         canvas.drawOval(new RectF(0.0f, 0.0f, width, height), paint);
-
         return bitmap;
     }
 

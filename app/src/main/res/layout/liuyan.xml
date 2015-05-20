@@ -85,7 +85,7 @@
         android:layout_height="wrap_content"
         android:background="#ffffff"
 
-       />
+        android:id="@+id/commentText" />
     </LinearLayout>
     <Button
         android:layout_gravity="bottom|center_horizontal"
@@ -96,7 +96,8 @@
         android:layout_marginTop="120dp"
         android:text="提交留言"
         android:textColor="#ffffff"
-        android:textSize="20sp"/>
+        android:textSize="20sp"
+        android:id="@+id/submit_liuyan" />
 
 
 </LinearLayout>
