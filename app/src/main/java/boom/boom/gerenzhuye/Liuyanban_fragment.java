@@ -58,7 +58,7 @@ public class Liuyanban_fragment extends Fragment implements XListView.IXListView
         lv.setAdapter(mSimpleAdapter);
 
 
-        popupWindowView = inflater.inflate(R.layout.shezhi_touxiang, null);
+        popupWindowView = inflater.inflate(R.layout.shanchuliuyan_item, null);
 
         lv.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
@@ -66,6 +66,7 @@ public class Liuyanban_fragment extends Fragment implements XListView.IXListView
 //                Toast toast = Toast.makeText(getActivity(), "adfadsfasdfasdfadfadsf",
 //                        Toast.LENGTH_LONG);
 //                toast.show();
+
                 popupWindow = new PopupWindow(popupWindowView);
                 popupWindow.setWidth(LinearLayout.LayoutParams.FILL_PARENT);
                 popupWindow.setHeight(LinearLayout.LayoutParams.FILL_PARENT);
@@ -80,11 +81,11 @@ public class Liuyanban_fragment extends Fragment implements XListView.IXListView
 
 
                 cancleButton = (Button) popupWindowView.findViewById(R.id.liuyanban_cencle);
-                button = (Button) popupWindowView.findViewById(R.id.shanchuliuyan);
+                confirmButton = (Button) popupWindowView.findViewById(R.id.shanchuliuyan);
                 popupWindow.showAtLocation(confirmButton, Gravity.CENTER, 0, 0);
                 confirmButton.setOnClickListener(Itemclick);
 
-                button.setOnClickListener(Itemclick);
+                cancleButton.setOnClickListener(Itemclick);
                 return true;
             }
         });
@@ -145,45 +146,61 @@ public class Liuyanban_fragment extends Fragment implements XListView.IXListView
     public void onSyncDataFromServer(){
         String challenge_name = null, challenge_nickname = null;
         ArrayList<HashMap<String, Object>> listItem = new ArrayList<HashMap<String,     Object>>();//*在数组中存放数据*//*
-        Utils.GetBuilder get = new Utils.GetBuilder(Utils.serveraddr + "/api/rank.php");
-        get.addItem("action", "getrank");
+        Utils.GetBuilder get = new Utils.GetBuilder(Utils.serveraddr + "/api/comment.php");
+        get.addItem("action", "query");
+        get.addItem("type",""+1);
         HttpIO io = new HttpIO(get.toString());
-        Gerenzhuye_activity.obj = null;
+
         io.SessionID=Static.session_id;
         int round = 0;
+        JSONObject obj=null;
         io.getJson();
         try {
             if(io.getResultData()!=null) {
-                Gerenzhuye_activity.obj = new JSONObject(io.getResultData());
-                JSONObject tmp = Utils.GetSubJSONObject(Gerenzhuye_activity.obj, "response");
-                round = Integer.parseInt(tmp.getString("limit"));
+               obj= new JSONObject(io.getResultData());
+               round=obj.getInt("limit");
+                JSONObject tmp;
+                int i=0;
+                while((tmp=Utils.GetSubJSONObject(obj, "line"+i))!=null)
+                {
+                    String title = null, text = null,time=null;
+                    int like = 0, comment = 0;
+                    if (obj != null) try {
+
+                        title = tmp.getString("nickname");
+                        text = tmp.getString("text_value");
+                        like = tmp.getInt("heart_like");
+                        comment = tmp.getInt("refer_sum");
+                        time = tmp.getString("assign_date");
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                    HashMap<String, Object> map = new HashMap<String, Object>();
+                    map.put("title", title);//加入图片            map.put("ItemTitle", "第"+i+"行");
+                    map.put("text", text);
+                    map.put("like", like);
+                    map.put("comment", comment);
+                    map.put("time",time);
+                    listItem.add(map);
+                    i++;
+                }
+
             }
 
         } catch (JSONException e) {
             e.printStackTrace();
         }
+        try {
 //        JSONObject obj_new = Challenge.getChallengeByIdentify()
-        for(int i=0;i<round;i++){
-            String title = null, text = null, like = null, comment = null;
-            if (Gerenzhuye_activity.obj != null) try {
-                JSONObject tmp = Utils.GetSubJSONObject(Gerenzhuye_activity.obj, "line"+i);
-                title = tmp.getString("frontname");
-//                text = tmp.getString()
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-            HashMap<String, Object> map = new HashMap<String, Object>();
-            map.put("title", Static.nickname);//加入图片            map.put("ItemTitle", "第"+i+"行");
-            map.put("text", text);
-            map.put("like", like);
-            map.put("comment", comment);
-            listItem.add(map);
+            mSimpleAdapter = new SimpleAdapter(getActivity(), listItem,//需要绑定的数据
+                    R.layout.liuyanban_item,//每一行的布局//动态数组中的数据源的键对应到定义布局的View中
+                    new String[]{
+                            "title", "text", "like", "comment", "time"},
+                    new int[]{R.id.nickname, R.id.lyb_text, R.id.like, R.id.comment, R.id.date}
+            );
+        }catch (Exception e)
+        {
+            e.printStackTrace();
         }
-        mSimpleAdapter = new SimpleAdapter(getActivity(),listItem,//需要绑定的数据
-                R.layout.liuyanban_item,//每一行的布局//动态数组中的数据源的键对应到定义布局的View中
-                new String[] {
-                        "title", "count"},
-                new int[] {R.id.title,R.id.count}
-        );
     }
 }

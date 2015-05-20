@@ -4,10 +4,11 @@
     android:layout_height="wrap_content"
     android:layout_gravity="center_horizontal"
     android:gravity="center_horizontal"
+    android:descendantFocusability="blocksDescendants"
+
     >
     <LinearLayout
-        android:descendantFocusability="blocksDescendants"
-        android:clickable="true"
+
         android:layout_marginTop="10dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -78,10 +79,11 @@
             <LinearLayout
                 android:focusable="false"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="20dp"
                 android:orientation="horizontal"
                 android:gravity="center_vertical"
-                android:layout_marginTop="10dp">
+                android:layout_marginTop="10dp"
+                android:weightSum="1">
                 <ImageView
                     android:focusable="false"
                     android:layout_width="wrap_content"
@@ -90,25 +92,27 @@
                 <TextView
                     android:focusable="false"
                     android:id="@+id/location"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="辽宁大连"
+                    android:layout_width="67dp"
+                    android:layout_height="20dp"
+                    android:text=""
                     android:textSize="13sp"
-                    android:textColor="#ff6a6a6a"/>
+                    android:textColor="#ff6a6a6a"
+                    android:singleLine="true" />
                 <ImageView
                     android:focusable="false"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/android_126"
-                    android:layout_marginLeft="10dp"/>
+                    android:layout_marginLeft="0dp"/>
                 <TextView
                     android:focusable="false"
                     android:id="@+id/assign_time"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="12.23 19:00"
+                    android:layout_width="80dp"
+                    android:layout_height="20dp"
+                    android:text=""
                     android:textSize="13sp"
-                    android:textColor="#ff6a6a6a"/>
+                    android:textColor="#ff6a6a6a"
+                    android:singleLine="true" />
 
                 </LinearLayout>
 
