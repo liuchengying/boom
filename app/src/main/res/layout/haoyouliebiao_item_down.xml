@@ -11,13 +11,13 @@
         android:orientation="horizontal"
         android:gravity="center_vertical"
         >
-        <ImageView
-            android:layout_gravity="center_vertical"
+        <boom.boom.myview.RoundedImageView
             android:id="@+id/haoyouliebiao_touxiang"
             android:layout_width="45dp"
             android:layout_height="45dp"
-            android:src="@drawable/android_181"
-            android:layout_marginLeft="30dp"/>
+            android:src="@drawable/png"
+            android:layout_marginLeft="30dp"
+            />
         <TextView
             android:id="@+id/haoyouliebiao_nicheng"
             android:layout_width="wrap_content"

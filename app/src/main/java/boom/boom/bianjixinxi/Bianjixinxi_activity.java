@@ -57,6 +57,7 @@ import boom.boom.api.Static;
 import boom.boom.api.SysApplication;
 import boom.boom.api.UserData;
 import boom.boom.myview.ImageTools;
+import boom.boom.myview.RoundedImageView;
 import boom.boom.myview.SildingFinishLayout;
 import boom.boom.shezhi.Shezhi_activity;
 import boom.boom.tianzhan.Tiaozhan_activity;
@@ -97,7 +98,7 @@ public class Bianjixinxi_activity  extends Activity {
     private static final int CROP_PICTURE = 3;
 
     private static final int SCALE = 5;//照片缩小比例
-    private ImageView iv_image = null;
+    private RoundedImageView iv_image = null;
 
     private static final int PHOTO_REQUEST_GALLERY = 2;// 从相册中选择
 
@@ -172,7 +173,7 @@ public class Bianjixinxi_activity  extends Activity {
         adapter.setDropDownViewResource(R.layout.shezhi_spinner_style);
         sex.setAdapter(adapter);
         star = (Spinner) findViewById(R.id.star);
-        iv_image = (ImageView) findViewById(R.id.bianjiziliao_touxiang);
+        iv_image = (RoundedImageView) findViewById(R.id.bianjiziliao_touxiang);
         sex.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
