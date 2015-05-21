@@ -22,12 +22,7 @@ public class Xiangxiziliao_fragment_tjhy extends Fragment
         View v= inflater.inflate(R.layout.tianjiahaoyou3, container, false);
        final Button tianjiahaoyou_button = (Button) v.findViewById(R.id.tianjiahaoyou_button);
 
-        tianjiahaoyou_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                tianjiahaoyou_button.setText("等待通过");
-            }
-        });
+
         return v;
     }
 }

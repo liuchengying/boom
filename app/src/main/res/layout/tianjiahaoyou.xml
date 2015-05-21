@@ -146,8 +146,19 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         android:id="@+id/id_viewpager"
-        />
 
+        />
+    <Button
+
+        android:id="@+id/tianjiahaoyou_button"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/android_195"
+        android:layout_gravity="bottom"
+        android:text="添加好友"
+        android:textSize="20sp"
+        android:textColor="#ffffff"
+        android:alpha="0.5" />
 
 
 

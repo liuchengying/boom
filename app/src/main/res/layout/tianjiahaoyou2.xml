@@ -16,15 +16,6 @@
         android:listSelector="@android:color/transparent"
         android:dividerHeight="10dp"
         android:divider="#ffdadada" />
-        <Button
-            android:id="@+id/tianjiahaoyou_button1"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/android_195"
-            android:layout_gravity="bottom"
-            android:text="添加好友"
-            android:textSize="20sp"
-            android:textColor="#ffffff"
-            />
+
     </FrameLayout>
 </LinearLayout>

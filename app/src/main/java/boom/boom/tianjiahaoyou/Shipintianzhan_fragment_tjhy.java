@@ -42,14 +42,7 @@ public class Shipintianzhan_fragment_tjhy extends Fragment implements XListView.
     {
         View v=inflater.inflate(R.layout.tianjiahaoyou1, container, false);
          lv= (XListView) v.findViewById(R.id.listView4);
-        tianjiahaoyou_button = (Button) v.findViewById(R.id.tianjiahaoyou_button);
 
-        tianjiahaoyou_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                tianjiahaoyou_button.setText("等待通过");
-            }
-        });
         lv.setPullLoadEnable(true);
         mHandler = new android.os.Handler();
         onSyncDataFromServer();
@@ -90,7 +83,7 @@ public class Shipintianzhan_fragment_tjhy extends Fragment implements XListView.
     }
 
     public void onSyncDataFromServer(){
-        ArrayList<HashMap<String, Object>> listItem = new ArrayList<HashMap<String,     Object>>();/*在数组中存放数据*/
+/*        ArrayList<HashMap<String, Object>> listItem = new ArrayList<HashMap<String,     Object>>();*//*在数组中存放数据*//*
         Utils.GetBuilder get = new Utils.GetBuilder(Utils.serveraddr + "/api/rank.php");
         get.addItem("action", "getrank");
         HttpIO io = new HttpIO(get.toString());
@@ -130,6 +123,6 @@ public class Shipintianzhan_fragment_tjhy extends Fragment implements XListView.
                 new String[] {
                         "title", "count" , "location", "assign_time", "elapsed"},
                 new int[] {R.id.title,R.id.count,R.id.location,R.id.assign_time,R.id.elapsed}
-        );
+        );*/
         }
 }
