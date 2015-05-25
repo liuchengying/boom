@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
