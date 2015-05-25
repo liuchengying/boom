@@ -1,7 +1,7 @@
 package boom.boom.api;
 
 
-
+import android.util.Log;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -23,6 +23,33 @@ public class User {
         ServerErr = null;
         session_id = null;
 
+    }
+
+    public User(final String session){
+        session_id = session;
+        Utils.GetBuilder get = new Utils.GetBuilder(Utils.serveraddr + Utils.userdata_api);
+        get.addItem("action", "getState");
+        Log.e("URI", get.toString());
+        HttpIO io = new HttpIO(get.toString());
+        io.SetCustomSessionID(session_id);
+        io.GETToHTTPServer();
+        JSONObject obj = null;
+        try {
+                    if (io.LastError == 0) {
+                        String result = io.getResultData();
+                        Log.e("Result", "Result ==> " + result);
+                        obj = new JSONObject(result);
+                        if (obj.getString("state").equals("SUCCESS")) {
+                            ifUserLoggedIn = true;
+                        } else {
+                            ifUserLoggedIn = false;
+                        }
+                    }else{
+                        ifUserLoggedIn = false;
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
     }
 
     public String getServerErr() {
