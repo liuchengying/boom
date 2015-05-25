@@ -50,14 +50,7 @@ public class Liuyanban_fragment_tjhy extends Fragment implements XListView.IXLis
     {
         View v=inflater.inflate(R.layout.tianjiahaoyou2, container, false);
         lv= (XListView) v.findViewById(R.id.listView5);
-        final  Button tianjiahaoyou_button = (Button) v.findViewById(R.id.tianjiahaoyou_button1);
 
-        tianjiahaoyou_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                tianjiahaoyou_button.setText("等待通过");
-            }
-        });
         lv.setPullLoadEnable(true);
         mHandler = new Handler();
         this.onSyncDataFromServer();
@@ -156,8 +149,8 @@ public class Liuyanban_fragment_tjhy extends Fragment implements XListView.IXLis
 
 
     public void onSyncDataFromServer(){
-        String challenge_name = null, challenge_nickname = null;
-        ArrayList<HashMap<String, Object>> listItem = new ArrayList<HashMap<String,     Object>>();//*在数组中存放数据*//*
+        /*String challenge_name = null, challenge_nickname = null;
+        ArrayList<HashMap<String, Object>> listItem = new ArrayList<HashMap<String,     Object>>();/*//*在数组中存放数据*//**//*
         Utils.GetBuilder get = new Utils.GetBuilder(Utils.serveraddr + "/api/rank.php");
         get.addItem("action", "getrank");
         HttpIO io = new HttpIO(get.toString());
@@ -195,6 +188,6 @@ public class Liuyanban_fragment_tjhy extends Fragment implements XListView.IXLis
                 new String[] {
                         "title", "count"},
                 new int[] {R.id.title,R.id.count}
-        );
+        );*/
     }
 }

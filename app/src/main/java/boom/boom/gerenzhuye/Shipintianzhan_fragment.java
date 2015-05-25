@@ -38,7 +38,7 @@ public class Shipintianzhan_fragment extends Fragment implements XListView.IXLis
     private android.os.Handler mHandler;
     private final static String DATE_FORMAT_STR = "yyyy-MM-dd HH:mm";
     private SimpleAdapter mSimpleAdapter;
-    private String resultdata = null;
+    private String resultdata ;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

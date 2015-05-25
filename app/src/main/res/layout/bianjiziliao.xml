@@ -182,7 +182,7 @@
                 android:background="@drawable/android_148"
                 android:gravity="center"
                 android:id="@+id/sz_touxiang">
-                <ImageView
+                <boom.boom.myview.RoundedImageView
                     android:id="@+id/bianjiziliao_touxiang"
                     android:layout_width="90dp"
                     android:layout_height="90dp"

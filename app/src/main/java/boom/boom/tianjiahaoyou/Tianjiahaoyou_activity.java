@@ -35,7 +35,7 @@ import boom.boom.myview.SildingFinishLayout;
 /**
  * Created by 刘成英 on 2015/3/12.
  */
-public class Tianjiahaoyou_activity extends FragmentActivity
+public class  Tianjiahaoyou_activity extends FragmentActivity
 {
     private ViewPager mViewPager;
     private FragmentPagerAdapter mAdapter;
