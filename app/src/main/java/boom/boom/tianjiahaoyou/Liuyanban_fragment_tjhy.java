@@ -1,9 +1,10 @@
 package boom.boom.tianjiahaoyou;
 
+import android.support.v4.app.Fragment;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.v4.app.Fragment;
+
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -28,6 +29,7 @@ import boom.boom.api.HttpIO;
 import boom.boom.api.Static;
 import boom.boom.api.Utils;
 import boom.boom.gerenzhuye.Gerenzhuye_activity;
+import boom.boom.myview.CircleImageView;
 import boom.boom.myview.XListView;
 
 /**
@@ -39,6 +41,8 @@ public class Liuyanban_fragment_tjhy extends Fragment implements XListView.IXLis
     private Handler mHandler;
     private final static String DATE_FORMAT_STR = "yyyy-MM-dd HH:mm";
     private SimpleAdapter mSimpleAdapter;
+    private String guestID;
+    private CircleImageView gerenzhuye_touxing;
 //    private Button button;
 //    private Button confirmButton;
 //    private Button cancleButton;
@@ -50,6 +54,7 @@ public class Liuyanban_fragment_tjhy extends Fragment implements XListView.IXLis
     {
         View v=inflater.inflate(R.layout.tianjiahaoyou2, container, false);
         lv= (XListView) v.findViewById(R.id.listView5);
+        guestID = getFragmentManager().findFragmentByTag("179521").getArguments().getString("guestID");
 
         lv.setPullLoadEnable(true);
         mHandler = new Handler();
@@ -58,7 +63,6 @@ public class Liuyanban_fragment_tjhy extends Fragment implements XListView.IXLis
 		lv.setPullRefreshEnable(true);
         lv.setXListViewListener(this);
         lv.setAdapter(mSimpleAdapter);
-
 
 //        popupWindowView = inflater.inflate(R.layout.shezhi_touxiang, null);
 
@@ -149,45 +153,65 @@ public class Liuyanban_fragment_tjhy extends Fragment implements XListView.IXLis
 
 
     public void onSyncDataFromServer(){
-        /*String challenge_name = null, challenge_nickname = null;
-        ArrayList<HashMap<String, Object>> listItem = new ArrayList<HashMap<String,     Object>>();/*//*在数组中存放数据*//**//*
-        Utils.GetBuilder get = new Utils.GetBuilder(Utils.serveraddr + "/api/rank.php");
-        get.addItem("action", "getrank");
+        String challenge_name = null, challenge_nickname = null;
+        ArrayList<HashMap<String, Object>> listItem = new ArrayList<HashMap<String,     Object>>();//*在数组中存放数据*//*
+        //http://172.24.10.118/api/comment.php?action=queryFriends&guest_id=10000
+        Utils.GetBuilder get = new Utils.GetBuilder(Utils.serveraddr + "/api/comment.php");
+        get.addItem("action", "queryFriends");
+        get.addItem("type","1");
+        get.addItem("guest_id",guestID);
         HttpIO io = new HttpIO(get.toString());
-        Gerenzhuye_activity.obj = null;
 
+        io.SessionID=Static.session_id;
         int round = 0;
-        io.GETToHTTPServer();
+        JSONObject obj=null;
+        io.getJson();
         try {
-            Gerenzhuye_activity.obj = new JSONObject(io.getResultData());
-            JSONObject tmp = Utils.GetSubJSONObject(Gerenzhuye_activity.obj, "response");
-            round = Integer.parseInt(tmp.getString("limit"));
+            if(io.getResultData()!=null) {
+                obj= new JSONObject(io.getResultData());
+                round=obj.getInt("limit");
+                JSONObject tmp;
+                int i=0;
+                while((tmp=Utils.GetSubJSONObject(obj, "line"+i))!=null)
+                {
+                    String title = null, text = null,time=null;
+                    int like = 0, comment = 0;
+                    if (obj != null) try {
+
+                        title = tmp.getString("nickname");
+                        text = tmp.getString("text_value");
+                        like = tmp.getInt("heart_like");
+                        comment = tmp.getInt("refer_sum");
+                        time = tmp.getString("assign_date");
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                    HashMap<String, Object> map = new HashMap<String, Object>();
+                    map.put("title", title);//加入图片            map.put("ItemTitle", "第"+i+"行");
+                    map.put("text", text);
+                    map.put("like", like);
+                    map.put("comment", comment);
+                    map.put("time",time);
+                    listItem.add(map);
+                    i++;
+                }
+
+            }
 
         } catch (JSONException e) {
             e.printStackTrace();
         }
+        try {
 //        JSONObject obj_new = Challenge.getChallengeByIdentify()
-        for(int i=0;i<round;i++){
-            String title = null, text = null, like = null, comment = null;
-            if (Gerenzhuye_activity.obj != null) try {
-                JSONObject tmp = Utils.GetSubJSONObject(Gerenzhuye_activity.obj, "line"+i);
-                title = tmp.getString("frontname");
-//                text = tmp.getString()
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-            HashMap<String, Object> map = new HashMap<String, Object>();
-            map.put("title", Static.nickname);//加入图片            map.put("ItemTitle", "第"+i+"行");
-            map.put("text", text);
-            map.put("like", like);
-            map.put("comment", comment);
-            listItem.add(map);
+            mSimpleAdapter = new SimpleAdapter(getActivity(), listItem,//需要绑定的数据
+                    R.layout.liuyanban_item,//每一行的布局//动态数组中的数据源的键对应到定义布局的View中
+                    new String[]{
+                            "title", "text", "like", "comment", "time"},
+                    new int[]{R.id.nickname, R.id.lyb_text, R.id.like, R.id.comment, R.id.date}
+            );
+        }catch (Exception e)
+        {
+            e.printStackTrace();
         }
-        mSimpleAdapter = new SimpleAdapter(getActivity(),listItem,//需要绑定的数据
-                R.layout.liuyanban_item,//每一行的布局//动态数组中的数据源的键对应到定义布局的View中
-                new String[] {
-                        "title", "count"},
-                new int[] {R.id.title,R.id.count}
-        );*/
     }
 }

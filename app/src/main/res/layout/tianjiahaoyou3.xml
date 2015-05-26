@@ -83,7 +83,7 @@
                     android:text="男"
                     android:textColor="#ffb7b7b7"
                     android:textSize="18sp"
-                    />
+                    android:id="@+id/tjhy_sex" />
                 <TextView
                     android:layout_marginLeft="5dp"
                     android:layout_marginTop="5dp"
@@ -92,7 +92,7 @@
                     android:text="15岁"
                     android:textColor="#ffb7b7b7"
                     android:textSize="18sp"
-                    />
+                    android:id="@+id/tjhy_age" />
                 <TextView
                     android:layout_marginLeft="5dp"
                     android:layout_marginTop="5dp"
@@ -101,7 +101,7 @@
                     android:text="双鱼座"
                     android:textColor="#ffb7b7b7"
                     android:textSize="18sp"
-                    />
+                    android:id="@+id/tjhy_star" />
 
             </LinearLayout>
         </LinearLayout>
@@ -179,7 +179,7 @@
                     android:text="大连东软信息学院"
                     android:textColor="#ffb7b7b7"
                     android:textSize="18sp"
-                    />
+                    android:id="@+id/tjhy_school" />
                 <TextView
                     android:layout_marginLeft="5dp"
                     android:layout_marginTop="5dp"
@@ -188,7 +188,7 @@
                     android:text="辽宁 大连"
                     android:textColor="#ffb7b7b7"
                     android:textSize="18sp"
-                    />
+                    android:id="@+id/tjhy_addr" />
 
 
             </LinearLayout>
