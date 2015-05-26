@@ -263,64 +263,68 @@ public class Bianjixinxi_activity  extends Activity {
                 dialog1.show();
             }
         });
-        dialog = new LoadingDialog(Bianjixinxi_activity.this,"正在加载...");
-        sex.setSelection(editInformation.sex,false);
-        star.setSelection(editInformation.star,false);
-        sign=(EditText)findViewById(R.id.gexingqianming);
-        sign.setText(editInformation.uniquesign);
-        nickname=(EditText)findViewById(R.id.bjxx_nc);
-        nickname.setText(editInformation.nickname);
-        age=(EditText)findViewById(R.id.bjxx_nl);
-        age.setText(""+editInformation.age);
-        job=(EditText)findViewById(R.id.bjxx_zy);
-        job.setText(editInformation.job);
-        location=(TextView)findViewById(R.id.bjxx_szd);
-        location.setText(editInformation.address);
-        school=(EditText)findViewById(R.id.bjxx_xx);
-        school.setText(editInformation.school);
-        company=(EditText)findViewById(R.id.bjxx_gs);
-        company.setText(editInformation.company);
-        email=(EditText)findViewById(R.id.bjxx_yx);
-        email.setText(editInformation.email);
-        iv_image.setImageBitmap(Static.avatarImage);
-        save=(LinearLayout)findViewById(R.id.bianjixinxi_bc);
-        save.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                editInformation.nickname=nickname.getText().toString();
-                editInformation.sex=sex.getSelectedItemPosition();
-                editInformation.age=Integer.parseInt(age.getText().toString());
-                editInformation.star=star.getSelectedItemPosition();
-                editInformation.job=job.getText().toString();
-                editInformation.address=location.getText().toString();
-                editInformation.school=school.getText().toString();
-                editInformation.company=company.getText().toString();
-                editInformation.email=email.getText().toString();
-                editInformation.avatarImage=avatar;
-                editInformation.uniquesign=sign.getText().toString();
-                dialog.show();
-                dialog.setCancelable(false);
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
+        try {
+            dialog = new LoadingDialog(Bianjixinxi_activity.this, "正在加载...");
+            sex.setSelection(editInformation.sex, false);
+            star.setSelection(editInformation.star, false);
+            sign = (EditText) findViewById(R.id.gexingqianming);
+            sign.setText(editInformation.uniquesign);
+            nickname = (EditText) findViewById(R.id.bjxx_nc);
+            nickname.setText(editInformation.nickname);
+            age = (EditText) findViewById(R.id.bjxx_nl);
+            age.setText("" + editInformation.age);
+            job = (EditText) findViewById(R.id.bjxx_zy);
+            job.setText(editInformation.job);
+            location = (TextView) findViewById(R.id.bjxx_szd);
+            location.setText(editInformation.address);
+            school = (EditText) findViewById(R.id.bjxx_xx);
+            school.setText(editInformation.school);
+            company = (EditText) findViewById(R.id.bjxx_gs);
+            company.setText(editInformation.company);
+            email = (EditText) findViewById(R.id.bjxx_yx);
+            email.setText(editInformation.email);
+            iv_image.setImageBitmap(Static.avatarImage);
+            save = (LinearLayout) findViewById(R.id.bianjixinxi_bc);
+            save.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    editInformation.nickname = nickname.getText().toString();
+                    editInformation.sex = sex.getSelectedItemPosition();
+                    editInformation.age = Integer.parseInt(age.getText().toString());
+                    editInformation.star = star.getSelectedItemPosition();
+                    editInformation.job = job.getText().toString();
+                    editInformation.address = location.getText().toString();
+                    editInformation.school = school.getText().toString();
+                    editInformation.company = company.getText().toString();
+                    editInformation.email = email.getText().toString();
+                    editInformation.avatarImage = avatar;
+                    editInformation.uniquesign = sign.getText().toString();
+                    dialog.show();
+                    dialog.setCancelable(false);
+                    new Thread(new Runnable() {
+                        @Override
+                        public void run() {
 
-                        try {
-                            Message m = new Message();
-                            m.what=editInformation.save(avatarChanged);
-                            Bianjixinxi_activity.this.myMessageHandler.sendMessage(m);
-                            Synch();
-                            Message mm = new Message();
-                            mm.what=avatarChanged?1:0;
-                            Static.tiaozhan_handler.sendMessage(mm);
-                        } catch (Exception e) {
-                            e.printStackTrace();
+                            try {
+                                Message m = new Message();
+                                m.what = editInformation.save(avatarChanged);
+                                Bianjixinxi_activity.this.myMessageHandler.sendMessage(m);
+                                Synch();
+                                Message mm = new Message();
+                                mm.what = avatarChanged ? 1 : 0;
+                                Static.tiaozhan_handler.sendMessage(mm);
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
                         }
-                    }
-                }).start();
+                    }).start();
 
-            }
-        });
-
+                }
+            });
+        }catch (Exception e)
+        {
+            e.printStackTrace();
+        }
     }//oncreate
 
     public void onBackPressed() {
