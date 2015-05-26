@@ -1,14 +1,15 @@
 package boom.boom.api;
 
-import org.json.JSONObject;
 import android.graphics.Bitmap;
+
+import org.json.JSONObject;
 
 /**
  * Created by laoli on 2015/2/19.
  */
 
 public class Static {
-    public static Bitmap avatarImage;
+    public static Bitmap avatarImage = null;
     public static String session_id = null;
     public static String username = null;
     public static String nickname = null;
