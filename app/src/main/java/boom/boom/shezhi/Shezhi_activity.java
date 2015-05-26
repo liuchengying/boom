@@ -3,49 +3,33 @@ package boom.boom.shezhi;
 
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
-import android.content.res.Resources;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
-import android.graphics.Rect;
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Message;
 import android.os.Vibrator;
-import android.util.AttributeSet;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RadioGroup;
-import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
-import android.os.Vibrator;
 
 import org.json.JSONException;
+
+import java.io.File;
 
 import boom.boom.FontManager.FontManager;
 import boom.boom.R;
 import boom.boom.api.EditInformation;
 import boom.boom.api.LoadingDialog;
-import boom.boom.api.Static;
 import boom.boom.api.SysApplication;
-import boom.boom.api.UserData;
 import boom.boom.bangzhuyufankui.Bangzhuyufankui_activity;
 import boom.boom.bianjixinxi.Bianjixinxi_activity;
 import boom.boom.guanyuwomen.Guanyuwomen_activity;
 import boom.boom.mimaxiugai.Mimaxiugai_activity;
 import boom.boom.myview.SildingFinishLayout;
-import boom.boom.tianzhan.Tiaozhan_activity;
-import boom.boom.zhujiemian.Main_activity;
 
 /**
  * Created by 刘成英 on 2015/1/15.
@@ -177,6 +161,8 @@ public class Shezhi_activity extends Activity{
         tuichuzhanghu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                File file = new File(getCacheDir(), "loginToken.dat");
+                if (file.exists())  file.delete();
                 SysApplication.getInstance().exit();
 
             }

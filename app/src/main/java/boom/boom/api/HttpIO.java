@@ -6,20 +6,18 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Build;
 import android.os.StrictMode;
-import android.util.Log;
-import android.widget.Toast;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
-import org.apache.http.client.HttpClient;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.cookie.Cookie;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -222,6 +220,16 @@ public class HttpIO {
         return result;
 
     }
+
+    public JSONObject getJSONObject(){
+        try {
+            return new JSONObject(getJson());
+        } catch (JSONException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
     @TargetApi(Build.VERSION_CODES.GINGERBREAD)
 
     @SuppressLint("NewApi")

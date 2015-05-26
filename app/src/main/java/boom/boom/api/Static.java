@@ -1,8 +1,7 @@
 package boom.boom.api;
 
-import android.graphics.Bitmap;
-
 import org.json.JSONObject;
+import android.graphics.Bitmap;
 
 /**
  * Created by laoli on 2015/2/19.
@@ -22,6 +21,5 @@ public class Static {
     public static String tempStr = null;
     public static android.os.Handler tiaozhan_handler;
     public static String identifyDigit = null;
-
-
+    
 }

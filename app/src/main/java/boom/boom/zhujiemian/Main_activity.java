@@ -1,7 +1,6 @@
 package boom.boom.zhujiemian;
 
 
-
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -20,6 +19,10 @@ import android.widget.Toast;
 import org.json.JSONException;
 
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.net.ConnectException;
 import java.net.HttpURLConnection;
@@ -34,6 +37,7 @@ import boom.boom.api.Static;
 import boom.boom.api.SysApplication;
 import boom.boom.api.User;
 import boom.boom.api.UserData;
+import boom.boom.api.Utils;
 import boom.boom.denglu.dengluzhuce_activity;
 import boom.boom.mimazhaohui.Mimazhaohui_activity;
 import boom.boom.tianzhan.Tiaozhan_activity;
@@ -55,6 +59,32 @@ public class Main_activity extends Activity {
             super.handleMessage(msg);
 
             if (userlogin.ifLoggedIn()) {
+                File file = new File(getCacheDir(), "loginToken.dat");
+                if (!file.exists()) {
+                    try {
+                        file.createNewFile();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }else{
+                    file.delete();
+                    try {
+                        file.createNewFile();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+                    try {
+                        FileOutputStream out = new FileOutputStream(file);
+                        try {
+                            out.write(userlogin.getSessionId().getBytes());
+                            out.close();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    } catch (FileNotFoundException e) {
+                        e.printStackTrace();
+                    }
                 UserData data = new UserData(userlogin.getSessionId());
                 Intent intent = new Intent();
 //                    intent.putExtra("session_id", userlogin.getSessionId());
@@ -81,7 +111,9 @@ public class Main_activity extends Activity {
                         HttpURLConnection urlConn = null;
                         BufferedReader buffer = null;
                         try {
-                            URL url = new URL("http://172.24.10.118/api/getimage.php?token=" + Static.avatar);
+                            Utils.GetBuilder get = new Utils.GetBuilder(Utils.serveraddr + "/api/getimage.php");
+                            get.addItem("token", Static.avatar);
+                            URL url = new URL(get.toString());
                             if (url != null) {
                                 urlConn = (HttpURLConnection) url.openConnection();
                                 urlConn.setConnectTimeout(5000);// 设置超时时间
@@ -126,18 +158,17 @@ public class Main_activity extends Activity {
         setContentView(R.layout.zhujiemian);
         SysApplication.getInstance().addActivity(this);
         FontManager.changeFonts(FontManager.getContentView(this),this);//字体
-        if (isNetworkAvailable(Main_activity.this))
-        {
-            Toast.makeText(getApplicationContext(), "当前有可用网络！", Toast.LENGTH_LONG).show();
-        }
-        else
-        {
+        if (!isNetworkAvailable(Main_activity.this)){
             Toast.makeText(getApplicationContext(), "当前没有可用网络！", Toast.LENGTH_LONG).show();
-
-
-
         }
-
+        Intent intent = getIntent();
+        int state = intent.getIntExtra("State", 3);
+        switch (state){
+            case 2:
+                Toast.makeText(getApplicationContext(), "您上次的登陆信息已过期，请重新登陆。",Toast.LENGTH_SHORT);
+                break;
+            default:
+        }
         denglu = (Button) findViewById(R.id.denglu);
         zhucezhanghao =(TextView) findViewById(R.id.zhucezhanghao);
         user = (EditText)findViewById(R.id.yonghuming);
@@ -166,7 +197,6 @@ public class Main_activity extends Activity {
                 dialog.setCancelable(false);
 
                 userlogin= new User(user_Str, pass_Str);
-
             /*    try {
                     userlogin.AttemptLogin();
                 } catch (JSONException e) {
