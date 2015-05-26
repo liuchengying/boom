@@ -192,7 +192,7 @@ public class Main_activity extends Activity {
             public void onClick(View v) {
                 final String user_Str = user.getText().toString();
                 final String pass_Str = pass.getText().toString();
-                dialog = new LoadingDialog(Main_activity.this);
+                dialog = new LoadingDialog(Main_activity.this, "正在登陆...");
                 dialog.show();
                 dialog.setCancelable(false);
 

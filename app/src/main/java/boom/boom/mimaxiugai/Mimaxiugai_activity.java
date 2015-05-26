@@ -107,7 +107,7 @@ public class Mimaxiugai_activity extends Activity{
                 }
                 if(sNew.equals(sConfirm))
                 {
-                    dialog = new LoadingDialog(Mimaxiugai_activity.this);
+                    dialog = new LoadingDialog(Mimaxiugai_activity.this,"正在加载..");
                     dialog.show();
                     new Thread(new Runnable() {
                         @Override

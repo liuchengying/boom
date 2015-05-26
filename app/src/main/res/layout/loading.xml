@@ -43,7 +43,8 @@
                 android:layout_gravity="center"
                 android:text="正在登陆..."
                 android:textColor="#ffffff"
-                android:textSize="15sp"/>
+                android:textSize="15sp"
+                android:id="@+id/dialog_text" />
 
         </LinearLayout>
      </LinearLayout>

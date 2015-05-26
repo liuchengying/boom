@@ -263,7 +263,7 @@ public class Bianjixinxi_activity  extends Activity {
                 dialog1.show();
             }
         });
-        dialog = new LoadingDialog(Bianjixinxi_activity.this);
+        dialog = new LoadingDialog(Bianjixinxi_activity.this,"正在加载...");
         sex.setSelection(editInformation.sex,false);
         star.setSelection(editInformation.star,false);
         sign=(EditText)findViewById(R.id.gexingqianming);
