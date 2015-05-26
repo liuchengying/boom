@@ -49,6 +49,7 @@ public class FriendList {
                         map.put("avatar", avatar);
                         map.put("nickname",nickname);
                         map.put("guestID",guestID);
+
                         listItem.add(map);
                     }
                     return listItem;
