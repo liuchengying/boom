@@ -32,7 +32,7 @@ public class Haoyouliebiao_activity extends Activity {
     ListView lv;
     LinearLayout haoyouliebiao_fh;
     SimpleAdapter mSimpleAdapter;
-
+    ArrayList<HashMap<String, Object>> listItem;
     android.os.Handler myMessageHandler = new android.os.Handler() {
         @Override
         public void handleMessage(Message msg) {
@@ -62,7 +62,7 @@ public class Haoyouliebiao_activity extends Activity {
             FriendList friendList = new FriendList();
 
 
-            ArrayList<HashMap<String, Object>> listItem = friendList.GetFriendList();
+            listItem = friendList.GetFriendList();
        /* ArrayList<HashMap<String, Object>> listItem = new ArrayList<HashMap<String, Object>>();/*//*在数组中存放数据*//**//*
         for (int i = 0; i < 10; i++) {
             HashMap<String, Object> map = new HashMap<String, Object>();
@@ -108,7 +108,9 @@ public class Haoyouliebiao_activity extends Activity {
             lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    String guestID =(String) ((HashMap<String, Object>)listItem.get(position)).get("guestID");
                     Intent intent = new Intent();
+                    intent.putExtra("guestID",guestID);
                     intent.setClass(Haoyouliebiao_activity.this, Tianjiahaoyou_activity.class);
                     startActivity(intent);
                 }

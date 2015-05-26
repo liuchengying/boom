@@ -36,13 +36,14 @@ public class Shipintianzhan_fragment_tjhy extends Fragment implements XListView.
     private final static String DATE_FORMAT_STR = "yyyy-MM-dd HH:mm";
     private SimpleAdapter mSimpleAdapter;
     private Button tianjiahaoyou_button;
+    private String guestID;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState)
     {
         View v=inflater.inflate(R.layout.tianjiahaoyou1, container, false);
          lv= (XListView) v.findViewById(R.id.listView4);
-
+        guestID = getFragmentManager().findFragmentByTag("179521").getArguments().getString("guestID");
         lv.setPullLoadEnable(true);
         mHandler = new android.os.Handler();
         onSyncDataFromServer();
@@ -83,9 +84,11 @@ public class Shipintianzhan_fragment_tjhy extends Fragment implements XListView.
     }
 
     public void onSyncDataFromServer(){
-/*        ArrayList<HashMap<String, Object>> listItem = new ArrayList<HashMap<String,     Object>>();*//*在数组中存放数据*//*
+        ArrayList<HashMap<String, Object>> listItem = new ArrayList<HashMap<String,     Object>>();
+        //http://172.24.10.118/api/rank.php?action=getFriendsrank&guest_id=10000
         Utils.GetBuilder get = new Utils.GetBuilder(Utils.serveraddr + "/api/rank.php");
-        get.addItem("action", "getrank");
+        get.addItem("action", "getFriendsrank");
+        get.addItem("guest_id",guestID);
         HttpIO io = new HttpIO(get.toString());
         io.SetCustomSessionID(Static.session_id);
         Gerenzhuye_activity.obj = null;
@@ -95,7 +98,7 @@ public class Shipintianzhan_fragment_tjhy extends Fragment implements XListView.
             Gerenzhuye_activity.obj = new JSONObject(io.getResultData());
             JSONObject tmp = Utils.GetSubJSONObject(Gerenzhuye_activity.obj, "response");
             round = Integer.parseInt(tmp.getString("limit"));
-        } catch (JSONException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         for(int i=0;i<round;i++){
@@ -123,6 +126,6 @@ public class Shipintianzhan_fragment_tjhy extends Fragment implements XListView.
                 new String[] {
                         "title", "count" , "location", "assign_time", "elapsed"},
                 new int[] {R.id.title,R.id.count,R.id.location,R.id.assign_time,R.id.elapsed}
-        );*/
+        );
         }
 }

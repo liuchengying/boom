@@ -15,7 +15,7 @@
             android:id="@+id/haoyouliebiao_touxiang"
             android:layout_width="45dp"
             android:layout_height="45dp"
-            android:src="@drawable/png"
+            android:src="@drawable/android_181"
             android:layout_marginLeft="30dp"
             />
         <TextView

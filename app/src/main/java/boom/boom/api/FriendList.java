@@ -43,10 +43,12 @@ public class FriendList {
                         JSONObject tmp = Utils.GetSubJSONObject(obj,""+i);
                         String nickname = tmp.getString("guest_nickname");
                         String avatar = tmp.getString("guest_avatar");
+                        String guestID = tmp.getString("guest_id");
                         HashMap<String, Object> map = new HashMap<String, Object>();
                         //map.put("avatar",avatar);
                         map.put("avatar", avatar);
                         map.put("nickname",nickname);
+                        map.put("guestID",guestID);
                         listItem.add(map);
                     }
                     return listItem;
