@@ -51,16 +51,42 @@ public class Zinitianzhan_activity extends Activity {
     int zhuangtai = 0;
     int a = 0;
     int percent = 0;
-    Handler myMessageHandler = new Handler() {
+
+    Handler handler_onUploadMonitor = new Handler(){
+        @Override
+        public void handleMessage(Message msg){
+            super.handleMessage(msg);
+                    if (a == 9) {
+                        mprogress2.setProgress(percent);
+                        zn_dianjishangchuan.setText("上传成功");
+                        znsc_scchenggong.setVisibility(View.VISIBLE);
+                    }
+        }
+    };
+
+    Handler handler_onUploadFailure = new Handler(){
+        @Override
+        public void handleMessage(Message msg){
+            super.handleMessage(msg);
+            Toast.makeText(Zinitianzhan_activity.this, "对不起，上传失败。", Toast.LENGTH_SHORT).show();
+            zn_dianjishangchuan.setText("录制完毕，等待上传");
+        }
+    };
+
+    Handler handler_onUploadSuccess = new Handler() {
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
-            if (a == 9) {
-                mprogress2.setProgress(percent);
-                zn_dianjishangchuan.setText("上传成功");
-                znsc_scchenggong.setVisibility(View.VISIBLE);
-
-            }
+            Intent intent = new Intent();
+            intent.setClass(Zinitianzhan_activity.this, Tiaozhan_activity.class);
+            startActivity(intent);
+            Toast.makeText(Zinitianzhan_activity.this.getApplicationContext(), "发布成功。", Toast.LENGTH_SHORT).show();
+            new Timer().schedule(new TimerTask() {
+                @Override
+                public void run() {
+                    Zinitianzhan_activity.this.finish();
+                }
+            }, 1000);
         }
     };
 
@@ -154,8 +180,9 @@ public class Zinitianzhan_activity extends Activity {
                                 @Override
                                 public void transferred(int transferedBytes) {
                                     Message m = new Message();
-                                    m.what = 1;
+                                    m.what = 3;
                                     percent = transferedBytes;
+                                    Zinitianzhan_activity.this.handler_onUploadMonitor.sendMessage(m);
                                 }
 
                                 public void transferred(long transferedBytes) {
@@ -166,34 +193,31 @@ public class Zinitianzhan_activity extends Activity {
                                 JSONObject obj = new JSONObject(result);
                                 String tmp = obj.getString("state");
                                 if (tmp.equals("FAILED")) {
-                                    Toast.makeText(getApplicationContext(), "对不起，上传失败。", Toast.LENGTH_SHORT);
-                                    zn_dianjishangchuan.setText("录制完毕，等待上传");
+                                    Message mm = new Message();
+                                    mm.what = 1;
+                                    Zinitianzhan_activity.this.handler_onUploadFailure.sendMessage(mm);
                                 } else {
                                     String token = obj.getString("fileToken");
                                     Utils.GetBuilder get1 = new Utils.GetBuilder(Utils.serveraddr + Utils.newCl_api);
+                                    get1.addItem("action", "newcl");
                                     get1.addItem("frontname", title.getText().toString());
                                     get1.addItem("dvtoken", token);
                                     get1.addItem("shortintro", description.getText().toString());
-                                    HttpIO io = new HttpIO(get.toString());
+                                    HttpIO io = new HttpIO(get1.toString());
                                     io.SetCustomSessionID(Static.session_id);
                                     io.GETToHTTPServer();
                                     if (io.LastError == 0) {
-                                        if (new JSONObject(io.getResultData()).getString("state").equals("SUCCESS")) {
-                                            Intent intent = new Intent();
-                                            intent.setClass(Zinitianzhan_activity.this, Tiaozhan_activity.class);
-                                            startActivity(intent);
-                                            Toast.makeText(getApplicationContext(), "发布成功。", Toast.LENGTH_SHORT).show();
-                                            new Timer().schedule(new TimerTask() {
-
-                                                @Override
-                                                public void run() {
-                                                    Zinitianzhan_activity.this.finish();
-                                                }
-
-                                            }, 1000);
+                                        String result1 = io.getResultData();
+                                        JSONObject obj1 = new JSONObject(result1);
+                                        String state = obj1.getString("state");
+                                        if (state.equals("SUCCESS")) {
+                                            Message mmm = new Message();
+                                            mmm.what = 2;
+                                            Zinitianzhan_activity.this.handler_onUploadSuccess.sendMessage(mmm);
                                         } else {
-                                            Toast.makeText(getApplicationContext(), "对不起，上传失败。", Toast.LENGTH_SHORT);
-                                            zn_dianjishangchuan.setText("录制完毕，等待上传");
+                                            Message m = new Message();
+                                            m.what = 1;
+                                            Zinitianzhan_activity.this.handler_onUploadFailure.sendMessage(m);
                                         }
                                     }
                                 }
