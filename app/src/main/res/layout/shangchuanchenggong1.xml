@@ -111,7 +111,8 @@
            android:background="@drawable/android_59"
            android:text="完成"
            android:textSize="30dp"
-           android:textColor="#eeeeee"/>
+           android:textColor="#eeeeee"
+           android:id="@+id/onRecordFinished" />
        </LinearLayout>
 
     </LinearLayout>

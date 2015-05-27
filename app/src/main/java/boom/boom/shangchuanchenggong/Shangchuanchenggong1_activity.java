@@ -5,12 +5,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
+import android.widget.Button;
 import android.widget.LinearLayout;
 
 import boom.boom.FontManager.FontManager;
 import boom.boom.R;
 import boom.boom.api.SysApplication;
-import boom.boom.myview.SildingFinishLayout;
+import boom.boom.tianzhan.Tiaozhan_activity;
 import boom.boom.tongxunlu.tongxunlu_activity;
 
 /**
@@ -18,12 +19,13 @@ import boom.boom.tongxunlu.tongxunlu_activity;
  */
 public class Shangchuanchenggong1_activity extends Activity {
     private LinearLayout yaoqinghaoyoutianzhan;
+    private Button onRecordFinished;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.shangchuanchenggong1);
-
+        onRecordFinished = (Button) findViewById(R.id.onRecordFinished);
 
         SysApplication.getInstance().addActivity(this);
         FontManager.changeFonts(FontManager.getContentView(this), this);//字体
@@ -36,7 +38,14 @@ public class Shangchuanchenggong1_activity extends Activity {
                 startActivity(intent);
             }
         });
-
+        onRecordFinished.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setClass(Shangchuanchenggong1_activity.this, Tiaozhan_activity.class);
+                startActivity(intent);
+                Shangchuanchenggong1_activity.this.finish();
+            }
+        });
     }
-
 }

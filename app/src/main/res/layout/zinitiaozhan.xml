@@ -86,7 +86,8 @@
                 android:layout_height="fill_parent"
                 android:text="挑战名称"
                 android:gravity="center_vertical"
-                android:textSize="20sp"/>
+                android:textSize="20sp"
+                android:id="@+id/zn_title" />
             <EditText
                 android:layout_marginLeft="10dp"
                 android:layout_width="fill_parent"
@@ -106,7 +107,8 @@
                 android:layout_height="fill_parent"
                 android:text="规则细节"
                 android:textSize="20sp"
-                android:layout_marginLeft="20dp"/>
+                android:layout_marginLeft="20dp"
+                android:id="@+id/short_describes" />
             <EditText
                 android:layout_marginLeft="10dp"
                 android:layout_width="fill_parent"

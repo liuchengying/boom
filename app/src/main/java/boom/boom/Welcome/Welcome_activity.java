@@ -36,42 +36,6 @@ import boom.boom.zhujiemian.Main_activity;
 public class Welcome_activity extends Activity {
     public String session;
     public boolean msg_delivered = false;
-//    Handler handler = new Handler(){
-//        @Override
-//        public void handleMessage(Message msg){
-//            final int msg_what = msg.what;
-//            switch (msg.what){
-//                case 1:
-//                    UserData data  = new UserData(session);
-//                    Static.session_id = session;
-//                    Static.username = data.QueryData("name");
-//                    Static.nickname = data.QueryData("nickname");
-//                    Static.uniqueSign = data.QueryData("uniquesign");
-//                    Static.identifyDigit = data.QueryData("identifyDigit");
-//                    Static.avatar = data.QueryData("avatar");
-//                    Intent intent = new Intent();
-//                    intent.setClass(Welcome_activity.this, Tiaozhan_activity.class);
-//                    startActivity(intent);
-//                    break;
-//                case 2:
-//                case 3:
-//                Timer timer = new Timer();
-//                TimerTask task = new TimerTask(){
-//                    @Override
-//                    public void run() {
-//                        Intent intent = new Intent(Welcome_activity.this,Main_activity.class);
-//                        intent.putExtra("State", msg_what);
-//                        startActivity(intent);
-//                        msg_delivered = true;
-//                        Welcome_activity.this.finish();
-//                    }
-//                };
-//                timer.schedule(task, 1000);
-//            }
-//            msg_delivered = true;
-//            Welcome_activity.this.finish();
-//        }
-//    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

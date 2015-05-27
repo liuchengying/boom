@@ -24,6 +24,7 @@ public class Utils {
     public static final String take_cl_api = "api/take_challenge.php";
     public static final String userdata_api = "/api/userdata.php";
     public static final String comment_api = "api/comment.php";
+    public static final String newCl_api = "api/bring_challenge.php";
 
     public static class GetBuilder {
         private String str;

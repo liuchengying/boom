@@ -59,6 +59,7 @@ public class Paishetiaozhan_activity extends Activity implements SurfaceHolder.C
     private String cl_name;
     private boolean onStartStopState = false;
     private VideoView vw;
+    private boolean workingState;
 
     //private Handler myMessageHandler;
     /*Handler myMessageHandler = new Handler(){
@@ -158,9 +159,11 @@ public class Paishetiaozhan_activity extends Activity implements SurfaceHolder.C
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         final Intent intent = getIntent();
-        int position = intent.getIntExtra("challenge_number", 1);
-        cl_name = intent.getStringExtra("challenge_name");
-        cl_id = intent.getStringExtra("challenge_id");
+        if ((workingState = intent.getBooleanExtra("IfReturn", false)) == false) {
+            int position = intent.getIntExtra("challenge_number", 1);
+            cl_name = intent.getStringExtra("challenge_name");
+            cl_id = intent.getStringExtra("challenge_id");
+        }
         getWindow().setFormat(PixelFormat.TRANSLUCENT);
         setContentView(R.layout.paishetiaozhan);
         SysApplication.getInstance().addActivity(this);
@@ -215,10 +218,16 @@ public class Paishetiaozhan_activity extends Activity implements SurfaceHolder.C
                     Intent intent = new Intent();
                     intent.putExtra("file_path", StoreFile.getAbsolutePath());
                     intent.putExtra("elapsed", a);
-                    intent.putExtra("challenge_name", cl_name);
-                    intent.putExtra("challenge_id", cl_id);
-                    intent.setClass(Paishetiaozhan_activity.this,Shangchuandengdai_activity.class);
-                    startActivity(intent);
+                    if (!workingState) {
+                        intent.putExtra("challenge_name", cl_name);
+                        intent.putExtra("challenge_id", cl_id);
+                        intent.setClass(Paishetiaozhan_activity.this, Shangchuandengdai_activity.class);
+                        startActivity(intent);
+                        Paishetiaozhan_activity.this.finish();
+                    }else{
+                        setResult(RESULT_OK, intent);
+                        Paishetiaozhan_activity.this.finish();
+                    }
                 }
             }
         });
