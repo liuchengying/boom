@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="334dp"
+    android:layout_height="wrap_content"
+    android:background="@drawable/android_206"
+    android:layout_gravity="center_horizontal"
+    android:orientation="horizontal">
+    <boom.boom.myview.RoundedImageView
+        android:id="@+id/shipinpinglun_Item_touxiang"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:src="@drawable/android_181"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"/>
+    <LinearLayout
+        android:layout_marginLeft="10dp"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/shipinpinglun_nickname"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:text="XXX"
+            android:textSize="18sp"
+            android:textColor="#FF0000"
+            android:layout_marginTop="8dp"/>
+        <TextView
+            android:id="@+id/shipinpinglun_neirong"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="回复评论的内容回复评论的内容回复评论的内容回复评论的内容回复评论的内容回复评论的内容回复评论的内容回复评论的内容"
+            android:textSize="15sp"/>
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="bottom"
+
+            >
+            <ImageView
+                android:layout_marginLeft="150dp"
+                android:layout_marginBottom="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/android_126"/>
+            <TextView
+                android:layout_marginLeft="4dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2015.2.5"
+                android:layout_marginBottom="3.5dp"/>
+            </LinearLayout>
+
+
+    </LinearLayout>
+
+</LinearLayout>

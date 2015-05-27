@@ -1,5 +1,6 @@
 package boom.boom.gerenzhuye;
 
+import android.content.Intent;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.os.Handler;
@@ -27,7 +28,9 @@ import boom.boom.R;
 import boom.boom.api.HttpIO;
 import boom.boom.api.Static;
 import boom.boom.api.Utils;
+import boom.boom.liuyanbanpinglun.Liuyanban_pinglun;
 import boom.boom.myview.XListView;
+import boom.boom.shipintianzhanpinglun.Shipintianzhan_pinglun;
 
 /**
  * Created by 刘成英 on 2015/3/12.
@@ -56,6 +59,15 @@ public class Liuyanban_fragment extends Fragment implements XListView.IXListView
 		lv.setPullRefreshEnable(true);
         lv.setXListViewListener(this);
         lv.setAdapter(mSimpleAdapter);
+        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent localIntent = new Intent(getActivity(), Liuyanban_pinglun.class);
+                startActivity(localIntent);
+
+            }
+        });
+
 
 
         popupWindowView = inflater.inflate(R.layout.shanchuliuyan_item, null);
