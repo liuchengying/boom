@@ -123,6 +123,7 @@ public class Zinitianzhan_activity extends Activity {
                 }
             }
         });
+
         zntz_tijiaoshenhe.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
