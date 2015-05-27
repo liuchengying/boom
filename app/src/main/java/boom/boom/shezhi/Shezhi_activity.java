@@ -110,7 +110,7 @@ public class Shezhi_activity extends Activity{
         xggezl.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                dialog = new LoadingDialog(Shezhi_activity.this);
+                dialog = new LoadingDialog(Shezhi_activity.this,"正在加载...");
                 dialog.show();
                 dialog.setCancelable(false);
 

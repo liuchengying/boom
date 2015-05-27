@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
+
 import boom.boom.R;
 
 /**
@@ -13,10 +15,11 @@ import boom.boom.R;
  */
 public class LoadingDialog extends Dialog {
     private TextView tv;
-
-    public LoadingDialog(Context context) {
+    private String text;
+    public LoadingDialog(Context context , String showText) {
         super(context, R.style.loadingDialogStyle);
         this.setCanceledOnTouchOutside(false);
+        text = showText;
     }
 
     @Override
@@ -26,6 +29,8 @@ public class LoadingDialog extends Dialog {
         //tv = (TextView)findViewById(R.id.tv);
         //tv.setText("正在上传.....");
         LinearLayout linearLayout = (LinearLayout)this.findViewById(R.id.LinearLayout);
+        TextView showing = (TextView)findViewById(R.id.dialog_text);
+        showing.setText(text);
         //linearLayout.getBackground().setAlpha(210);
     }
 }
