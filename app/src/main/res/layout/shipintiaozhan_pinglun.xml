@@ -176,7 +176,7 @@
            android:layout_gravity="center_horizontal"
            android:layout_width="360dp"
            android:layout_height="190dp"
-           android:layout_marginTop="10dp"
+
            android:gravity="center"
            android:orientation="vertical"
            >
@@ -212,14 +212,38 @@
 
        </FrameLayout>
 
-       <LinearLayout
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:background="@drawable/android_197"
-    android:layout_marginTop="10dp"
-    >
+       <HorizontalScrollView
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_centerHorizontal="true"
 
-    </LinearLayout>
+           android:scrollbars="none"
+           android:background="@drawable/android_204"
+           android:layout_gravity="center"
+
+           >
+
+           </HorizontalScrollView>
+       <LinearLayout
+           android:layout_marginTop="5dp"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:background="@drawable/android_203"
+           android:gravity="center_vertical">
+           <ImageView
+               android:layout_marginLeft="15dp"
+               android:layout_width="25dp"
+               android:layout_height="25dp"
+               android:src="@drawable/android_205"/>
+           </LinearLayout>
+       <ListView
+
+           android:layout_width="332dp"
+           android:layout_height="fill_parent"
+           android:id="@+id/shipinpinglun_listview"
+           >
+
+       </ListView>
 
        </LinearLayout>
 

@@ -75,45 +75,55 @@
         android:gravity="center_horizontal"
         android:layout_gravity="center_horizontal">
         <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+
+            android:layout_width="336dp"
+            android:layout_height="50dp"
             android:background="@drawable/android_153"
             android:orientation="horizontal"
-            android:gravity="center_vertical">
-            <TextView
-                android:layout_marginLeft="20sp"
-                android:layout_width="wrap_content"
-                android:layout_height="fill_parent"
-                android:text="挑战名称"
-                android:gravity="center_vertical"
-                android:textSize="20sp"
-                android:id="@+id/zn_title" />
+            android:gravity="center">
+
             <EditText
-                android:layout_marginLeft="10dp"
-                android:layout_width="fill_parent"
-                android:layout_height="50dp"
+
+                android:hint="挑战名称"
+                android:singleLine="false"
+                android:lines="1"
+                android:layout_marginTop="8dp"
+
+                android:layout_gravity="center_horizontal"
+                android:layout_width="320dp"
+                android:layout_height="46dp"
                 android:background="#ffffff"
+                android:textSize="18sp"
+                android:id="@+id/zn_title"
+
                 />
 
             </LinearLayout>
         <LinearLayout
             android:layout_marginTop="10dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="336dp"
+            android:layout_height="160dp"
             android:background="@drawable/android_154"
-            android:orientation="horizontal">
-            <TextView
+            android:orientation="horizontal"
+            android:gravity="center">
+
+            <ScrollView
                 android:layout_width="wrap_content"
-                android:layout_height="fill_parent"
-                android:text="规则细节"
-                android:textSize="20sp"
-                android:layout_marginLeft="20dp"
-                android:id="@+id/short_describes" />
-            <EditText
-                android:layout_marginLeft="10dp"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:background="#ffffff"/>
+                android:layout_height="wrap_content">
+                <EditText
+                    android:id="@+id/short_describes"
+                    android:gravity="top|left"
+                    android:singleLine="false" android:lines="6"
+                   android:hint="规则细节"
+
+                    android:layout_gravity="center_horizontal"
+                    android:layout_width="320dp"
+                    android:layout_height="150dp"
+                    android:background="#ffffff"
+                    android:textSize="18sp"
+
+                    />
+        </ScrollView>
 
             </LinearLayout>
         </LinearLayout>

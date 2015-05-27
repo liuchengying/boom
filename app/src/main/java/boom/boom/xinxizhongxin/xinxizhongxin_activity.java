@@ -145,7 +145,7 @@ public class xinxizhongxin_activity extends Activity implements XListView.IXList
         sampleStrings=new String[20];
         for(int i=0;i<20;i++)
         {
-            sampleStrings[i]="haskdjhaskdhfaskdfhksadhfklasdhkasdhfksjhdfksahdkfhasflksahfk\nkajhkajhsdkahsdkasdjaksdhak\najsdlajsdljasl\n\n\nawsdjhaskd";
+            sampleStrings[i]="活动期间 战可双哈哈哈哈哈";
         }
         //sampleStrings = mContext.getResources().getStringArray(R.array.sampleStrings);
     }
