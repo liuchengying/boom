@@ -3,11 +3,15 @@ package boom.boom.api;
 import android.graphics.Bitmap;
 import android.os.Message;
 
+import org.apache.http.NameValuePair;
+import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -116,9 +120,9 @@ public class EditInformation implements Serializable {
             }
         }
             Utils.GetBuilder get = new Utils.GetBuilder(GETINFOMATION_SERVER);
-            get.addItem("action", "alter_json");
+            get.addItem("action", "alter_post");
             try{
-            JSONObject json = new JSONObject();
+            /*JSONObject json = new JSONObject();
             json.put("nickname", nickname);
             json.put("name", name);
             json.put("sex", sex);
@@ -134,8 +138,24 @@ public class EditInformation implements Serializable {
             get.addItem("data", json.toString());
             String url_request = new String(get.toString().getBytes("UTF-8"));
             HttpIO io = new HttpIO(url_request);
-            io.SessionID = Static.session_id;
-            JSONObject result = new JSONObject(io.getJson());
+            io.SessionID = Static.session_id;*/
+            HttpIO io = new HttpIO(get.toString());   // 初始化一个连接（此时客户端并未访问服务器）
+            List<NameValuePair> post = new ArrayList<NameValuePair>();
+                post.add(new BasicNameValuePair("nickname", Utils.UTF8str(nickname))); // 增加POST表单数据
+                post.add(new BasicNameValuePair("name", Utils.UTF8str(name)));
+                post.add(new BasicNameValuePair("sex", Utils.UTF8str(""+sex)));
+                post.add(new BasicNameValuePair("age", Utils.UTF8str(""+age)));
+                post.add(new BasicNameValuePair("constellation", Utils.UTF8str(""+star)));
+                post.add(new BasicNameValuePair("job", Utils.UTF8str(job)));
+                post.add(new BasicNameValuePair("location", Utils.UTF8str(address)));
+                post.add(new BasicNameValuePair("school", Utils.UTF8str(school)));
+                post.add(new BasicNameValuePair("company", Utils.UTF8str(company)));
+                post.add(new BasicNameValuePair("email", Utils.UTF8str(email)));
+                post.add(new BasicNameValuePair("uniquesign", Utils.UTF8str(uniquesign)));
+                post.add(new BasicNameValuePair("avatar", Utils.UTF8str(avatar)));
+                io.SessionID = Static.session_id;
+            io.POSTToHTTPServer(post); // 发送访问请求和POST数据
+            JSONObject result = new JSONObject(io.getResultData());
             String status = result.getString("state");
             if (status.equalsIgnoreCase("FAILED")) {
                 ServerErr = "保存失败，请重试！";

@@ -85,23 +85,31 @@ public class Main_activity extends Activity {
                     } catch (FileNotFoundException e) {
                         e.printStackTrace();
                     }
-                UserData data = new UserData(userlogin.getSessionId());
-                Intent intent = new Intent();
+
+                    UserData data = new UserData(userlogin.getSessionId());
+                    Intent intent = new Intent();
 //                    intent.putExtra("session_id", userlogin.getSessionId());
 //                    intent.putExtra("name", data.QueryData("name"));
 //                    intent.putExtra("nickname", data.QueryData("nickname"));
 //                    intent.putExtra("uniquesign", data.QueryData("uniquesign"));
 //                    intent.putExtra("coins", data.QueryData("coins"));
-                Static.session_id = userlogin.getSessionId();
-                Static.username = data.QueryData("name");
-                Static.nickname = data.QueryData("nickname");
-                Static.uniqueSign = data.QueryData("uniquesign");
-                Static.identifyDigit = data.QueryData("identifyDigit");
-                Static.avatar = data.QueryData("avatar");
+                    try {
+                    Static.session_id = userlogin.getSessionId();
+                    Static.province = Utils.GetSubJSONObject(data.toJSONObject(), "location").getString("province");
+                    Static.city = Utils.GetSubJSONObject(data.toJSONObject(), "location").getString("city");
+                    Static.area = Utils.GetSubJSONObject(data.toJSONObject(), "location").getString("area");
+                    Static.username = data.QueryData("name");
+                    Static.nickname = data.QueryData("nickname");
+                    Static.uniqueSign = data.QueryData("uniquesign");
+                    Static.identifyDigit = data.QueryData("identifyDigit");
+                    Static.avatar = data.QueryData("avatar");
                 /*HttpIO io = new HttpIO("http://172.24.10.118/api/getimage.php?token=" + Static.avatar);
                 io.SessionID=Static.session_id;
                 Static.avatarImage = io.getImage();*/
-
+                }catch (Exception e)
+                {
+                    e.printStackTrace();
+                }
                 Thread thread = new Thread(new Runnable() {
                     @Override
                     public void run() {

@@ -22,5 +22,7 @@ public class Static {
     public static String tempStr = null;
     public static android.os.Handler tiaozhan_handler;
     public static String identifyDigit = null;
-    
+    public static String province=null;
+    public static String city= null;
+    public static String area = null;
 }

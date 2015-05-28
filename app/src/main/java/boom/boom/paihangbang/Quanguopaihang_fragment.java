@@ -44,13 +44,7 @@ public class Quanguopaihang_fragment extends Fragment implements XListView.IXLis
         lv.setPullLoadEnable(true);
         mHandler = new Handler();
 
-        /*for(int i=0;i<10;i++)
-        {
-            HashMap<String, Object> map = new HashMap<String, Object>();
-            map.put("title","XXX");//加入图片            map.put("ItemTitle", "第"+i+"行");
-            map.put("count", "这是第"+i+"行");
-            listItem.add(map);
-        }*/
+
         onRefresh();
         return v;
     }

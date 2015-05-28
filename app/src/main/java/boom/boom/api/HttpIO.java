@@ -109,7 +109,7 @@ public class HttpIO {
             }
             request.setURI(new URI(this.GetURL()));
             UrlEncodedFormEntity formEntity = new UrlEncodedFormEntity(
-                    postParameters);
+                    postParameters, "UTF-8");
             request.setEntity(formEntity);
             HttpResponse response = client.execute(request);
             if (this.sessionState) {

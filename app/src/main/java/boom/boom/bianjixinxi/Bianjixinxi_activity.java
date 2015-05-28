@@ -574,6 +574,11 @@ public class Bianjixinxi_activity  extends Activity {
                         + " | "
                         + AddressData.COUNTIES[country.getCurrentItem()][city
                         .getCurrentItem()][ccity.getCurrentItem()];
+                Static.province = AddressData.PROVINCES[country.getCurrentItem()];
+                Static.city = AddressData.CITIES[country.getCurrentItem()][city
+                        .getCurrentItem()];
+                Static.area = AddressData.COUNTIES[country.getCurrentItem()][city
+                        .getCurrentItem()][ccity.getCurrentItem()];
             }
         });
 
@@ -585,6 +590,11 @@ public class Bianjixinxi_activity  extends Activity {
                         .getCurrentItem()]
                         + " | "
                         + AddressData.COUNTIES[country.getCurrentItem()][city
+                        .getCurrentItem()][ccity.getCurrentItem()];
+                Static.province = AddressData.PROVINCES[country.getCurrentItem()];
+                Static.city = AddressData.CITIES[country.getCurrentItem()][city
+                        .getCurrentItem()];
+                Static.area = AddressData.COUNTIES[country.getCurrentItem()][city
                         .getCurrentItem()][ccity.getCurrentItem()];
             }
         });
