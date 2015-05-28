@@ -3,6 +3,7 @@ package boom.boom.tianjiahaoyou;
 import android.app.Activity;
 
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Handler;
 import android.os.Message;
@@ -25,6 +26,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -44,6 +46,7 @@ import boom.boom.api.Utils;
 import boom.boom.gerenzhuye.Liuyanban_fragment;
 import boom.boom.gerenzhuye.Shipintianzhan_fragment;
 import boom.boom.gerenzhuye.Xiangxiziliao_fragment;
+import boom.boom.liuyan.Liuyan_activity;
 import boom.boom.myview.CircleImageView;
 import boom.boom.myview.SildingFinishLayout;
 import boom.boom.tianzhan.Tiaozhan_activity;
@@ -74,6 +77,8 @@ public class  Tianjiahaoyou_activity extends FragmentActivity
     private String data;
     private int mCurrentPageIndex;
     private String guestID;
+
+    private Button liuyan;
     android.os.Handler myMessageHandler = new android.os.Handler() {
         @Override
         public void handleMessage(Message msg) {
@@ -166,8 +171,19 @@ public class  Tianjiahaoyou_activity extends FragmentActivity
         {
             e.printStackTrace();
         }
-
+         liuyan = (Button) findViewById(R.id.tianjiahaoyou_liuyan_button);
+        liuyan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setClass(Tianjiahaoyou_activity.this, Liuyan_activity.class);
+                startActivity(intent);
+                overridePendingTransition(R.anim.liuyan_in,0);
+            }
+        });
     }
+
+
     private void jiantingqiehuan(){
         l1 = (TextView)findViewById(R.id.grzy_1);
         l2 = (TextView)findViewById(R.id.grzy_2);
@@ -278,18 +294,22 @@ public class  Tianjiahaoyou_activity extends FragmentActivity
 
                 if (mCurrentPageIndex == 0 && position == 0)// 0->1
                 {
+                    liuyan.setVisibility(View.INVISIBLE);
                     lp.leftMargin = (int) (positionOffset * mScreen1_3 + mCurrentPageIndex
                             * mScreen1_3);
                 } else if (mCurrentPageIndex == 1 && position == 0)// 1->0
                 {
+                    liuyan.setVisibility(View.VISIBLE);
                     lp.leftMargin = (int) (mCurrentPageIndex * mScreen1_3 + (positionOffset - 1)
                             * mScreen1_3);
                 } else if (mCurrentPageIndex == 1 && position == 1) // 1->2
                 {
+                    liuyan.setVisibility(View.VISIBLE);
                     lp.leftMargin = (int) (mCurrentPageIndex * mScreen1_3 + positionOffset
                             * mScreen1_3);
                 } else if (mCurrentPageIndex == 2 && position == 1) // 2->1
                 {
+                    liuyan.setVisibility(View.INVISIBLE);
                     lp.leftMargin = (int) (mCurrentPageIndex * mScreen1_3 + ( positionOffset-1)
                             * mScreen1_3);
                 }
