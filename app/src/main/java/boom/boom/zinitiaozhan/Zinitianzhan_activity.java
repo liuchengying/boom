@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
@@ -44,8 +45,8 @@ public class Zinitianzhan_activity extends Activity {
     private TextView zn_dianjishangchuan;
     private ImageView znsc_scchenggong;
     private Button zntz_tijiaoshenhe;
-    private TextView title;
-    private TextView description;
+    private EditText title;
+    private EditText description;
     private String file_path = null;
     private boolean forRecordState = false;
     int zhuangtai = 0;
@@ -121,8 +122,8 @@ public class Zinitianzhan_activity extends Activity {
         zntz_shangchuan = (LinearLayout) findViewById(R.id.zntz_shangchuan);
         zn_dianjishangchuan = (TextView) findViewById(R.id.zn_shangchuanshipin);
         znsc_scchenggong = (ImageView) findViewById(R.id.zntz_scchonggong);
-        title = (TextView) findViewById(R.id.zn_title);
-        description = (TextView) findViewById(R.id.short_describes);
+        title = (EditText) findViewById(R.id.zn_title);
+        description = (EditText) findViewById(R.id.short_describes);
         zn_dianjishangchuan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -200,9 +201,9 @@ public class Zinitianzhan_activity extends Activity {
                                     String token = obj.getString("fileToken");
                                     Utils.GetBuilder get1 = new Utils.GetBuilder(Utils.serveraddr + Utils.newCl_api);
                                     get1.addItem("action", "newcl");
-                                    get1.addItem("frontname", title.getText().toString());
+                                    get1.addItem("frontname", Utils.UTF8str(title.getText().toString()));
                                     get1.addItem("dvtoken", token);
-                                    get1.addItem("shortintro", description.getText().toString());
+                                    get1.addItem("shortintro", Utils.UTF8str(description.getText().toString()));
                                     HttpIO io = new HttpIO(get1.toString());
                                     io.SetCustomSessionID(Static.session_id);
                                     io.GETToHTTPServer();
