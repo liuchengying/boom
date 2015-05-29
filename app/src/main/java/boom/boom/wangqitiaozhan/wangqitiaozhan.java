@@ -15,23 +15,36 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import boom.boom.ExpandableTextView.ExpandableTextView;
 import boom.boom.FontManager.FontManager;
 import boom.boom.R;
+import boom.boom.api.HttpIO;
 import boom.boom.api.SysApplication;
+import boom.boom.api.Utils;
 
 /**
  * Created by 刘成英 on 2015/1/16.
  */
 public class wangqitiaozhan extends Activity{
     ExpandableListView expandableListView;
-    List<String> group_list;
-    List<List<String>> item_list;
-    List<List<String>> item_list2;
+    List<itemData> group_list;
+    List<List<itemData>> item_list;
     LinearLayout imageView;
+    String str = null;
+    private class itemData{
+        String frontname;
+        String identifyDigit;
+        itemData(String name, String digit)
+        {
+            frontname = name;
+            identifyDigit = digit;
+        }
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,15 +52,50 @@ public class wangqitiaozhan extends Activity{
         setContentView(R.layout.wangqitianzhan);
         SysApplication.getInstance().addActivity(this);
         FontManager.changeFonts(FontManager.getContentView(this), this);//字体
-        group_list = new ArrayList<String>();
-        group_list.add("A");
-        group_list.add("B");
-        group_list.add("C");
+        group_list = new ArrayList<itemData>();
+        Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
 
-        item_list = new ArrayList<List<String>>();
-        item_list.add(group_list);
-        item_list.add(group_list);
-        item_list.add(group_list);
+                    HttpIO io = new HttpIO(Utils.serveraddr + "api/getChallenge.php?action=gethistoryBySeries");
+                    io.GETToHTTPServer();
+                    str = io.getResultData();
+
+            }
+        });
+        thread.start();
+        while(str == null);
+        try{
+        JSONObject obj = new JSONObject(str);
+        item_list = new ArrayList<List<itemData>>();
+        if(obj.getString("state").equals("SUCCESS"))
+        {
+            int round = obj.getInt("limit");
+            for(int i=1;i<round+1;i++) {
+                JSONObject tmp = Utils.GetSubJSONObject(obj,""+i);
+                group_list.add(new itemData(tmp.getString("nickname"),tmp.getString("identifyDigit")));
+
+                JSONObject perSeries = Utils.GetSubJSONObject(tmp,"data");
+                int limit = perSeries.getInt("limit");
+                ArrayList<itemData> strItem = new ArrayList<>();
+                for(int m=1;m<limit+1;m++){
+                    try {
+                        JSONObject item = Utils.GetSubJSONObject(perSeries, "" + m);
+                        strItem.add(new itemData(item.getString("frontname"),item.getString("identifyDigit")));
+                    }catch (Exception e)
+                    {
+                        e.printStackTrace();
+                    }
+                }
+                item_list.add(strItem);
+            }
+        }
+    }catch (Exception e)
+    {
+        e.printStackTrace();
+    }
+
+
         expandableListView=(ExpandableListView)findViewById(R.id.expand);
         expandableListView.setAdapter(new MyExpandableListViewAdapter(this));
     }
@@ -66,7 +114,14 @@ public class wangqitiaozhan extends Activity{
 
         @Override
         public int getChildrenCount(int groupPosition) {
-            return item_list.get(groupPosition).size();
+            int tmp =0;
+            try {
+                tmp = item_list.get(groupPosition).size();
+            }catch (Exception e)
+            {
+                e.printStackTrace();
+            }
+            return tmp;
         }
 
         @Override
@@ -109,7 +164,7 @@ public class wangqitiaozhan extends Activity{
             } else {
                 groupHolder = (GroupHolder) convertView.getTag();
             }
-            groupHolder.txt.setText(group_list.get(groupPosition));
+            groupHolder.txt.setText(group_list.get(groupPosition).frontname);
             return convertView;
         }
 
@@ -138,7 +193,7 @@ public class wangqitiaozhan extends Activity{
              imageView = (LinearLayout)view.findViewById(R.id.wqtzitem2);
             TextView textView = (TextView)view.findViewById(R.id.text_item);
             textView.setText(item_list.get(groupPosition).get(
-                    childPosition));
+                    childPosition).frontname);
             if(isLastChild)
             {
                 imageView.setBackgroundDrawable(getDrawable(R.drawable.android_184));
