@@ -9,6 +9,7 @@ import android.view.MotionEvent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -29,6 +30,7 @@ import boom.boom.R;
 import boom.boom.api.Challenge;
 import boom.boom.api.SysApplication;
 import boom.boom.api.Utils;
+import boom.boom.liuyanhuifu.Liuyanhuifu_activity;
 import boom.boom.myview.SildingFinishLayout;
 
 
@@ -45,6 +47,7 @@ public class Shipintianzhan_pinglun extends Activity {
     private int PlayerState = 0;
 
     private ListView lv;
+    private Button liuyan;
 
     private LinearLayout shipinpinglun_fh;
 
@@ -166,6 +169,25 @@ public class Shipintianzhan_pinglun extends Activity {
          * 向ListView设置Adapter。
          */
         lv.setAdapter(mSimpleAdapter);
+        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent();
+                intent.setClass(Shipintianzhan_pinglun.this, Liuyanhuifu_activity.class);
+                startActivity(intent);
+                overridePendingTransition(0,R.anim.liuyan_in);
+            }
+        });
+        liuyan = (Button) findViewById(R.id.pinglun_liuyan);
+        liuyan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setClass(Shipintianzhan_pinglun.this,Liuyanhuifu_activity.class);
+                startActivity(intent);
+                overridePendingTransition(0, R.anim.liuyan_in);
+            }
+        });
        shipinpinglun_fh = (LinearLayout) findViewById(R.id.shipinpinglun_fh);
         shipinpinglun_fh.setOnClickListener(new View.OnClickListener() {
             @Override

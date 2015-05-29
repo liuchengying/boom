@@ -97,6 +97,9 @@
             android:theme="@android:style/Theme.Translucent"></activity>
         <activity android:name= "boom.boom.liuyanbanpinglun.Liuyanban_pinglun"
             android:theme="@android:style/Theme.Translucent"></activity>
+        <activity android:name= "boom.boom.liuyanhuifu.Liuyanhuifu_activity"
+            android:theme="@android:style/Theme.Translucent"></activity>
+
 
 
 

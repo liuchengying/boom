@@ -1,12 +1,17 @@
 package boom.boom.liuyanbanpinglun;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
+import android.widget.AdapterView;
+import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.ToggleButton;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -16,6 +21,7 @@ import java.util.Map;
 import boom.boom.FontManager.FontManager;
 import boom.boom.R;
 import boom.boom.api.SysApplication;
+import boom.boom.liuyanhuifu.Liuyanhuifu_activity;
 import boom.boom.myview.SildingFinishLayout;
 
 /**
@@ -25,6 +31,7 @@ public class Liuyanban_pinglun extends Activity {
 
     private ListView lv;
     private LinearLayout liuyanban_fh;
+    private Button liuyan;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -76,6 +83,25 @@ public class Liuyanban_pinglun extends Activity {
          * 向ListView设置Adapter。
          */
         lv.setAdapter(mSimpleAdapter);
+        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent();
+                intent.setClass(Liuyanban_pinglun.this, Liuyanhuifu_activity.class);
+                startActivity(intent);
+                overridePendingTransition(0, R.anim.liuyan_in);
+            }
+        });
+        liuyan = (Button) findViewById(R.id.pinglun_liuyan);
+        liuyan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setClass(Liuyanban_pinglun.this,Liuyanhuifu_activity.class);
+                startActivity(intent);
+                overridePendingTransition(0, R.anim.liuyan_in);
+            }
+        });
         liuyanban_fh = (LinearLayout) findViewById(R.id.liuyanban_fh);
         liuyanban_fh.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -84,6 +110,24 @@ public class Liuyanban_pinglun extends Activity {
                 overridePendingTransition(0,R.anim.base_slide_right_out);
             }
         });
+        final ToggleButton mTogBtn = (ToggleButton) findViewById(R.id.liuyanpinglun_toggle);
+
+
+        mTogBtn.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView,boolean isChecked) {
+                // TODO Auto-generated method stub
+                if (isChecked) {
+
+                    //togglebutton ture 的状态
+                }else{
+                    //togglebutton false 的状态
+
+                }
+            }
+        });
+
     }
     @Override
     public void onBackPressed() {
