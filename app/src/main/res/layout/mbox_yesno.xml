@@ -16,8 +16,9 @@
         android:layout_gravity="center_horizontal">
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="29dp"
+            android:gravity="center_horizontal"
+            android:layout_width="300dp"
+            android:layout_height="75dp"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="确定放弃本次挑战视频吗？"
             android:id="@+id/yn_text"
@@ -51,7 +52,7 @@
             android:id="@+id/yn_title"
             android:layout_gravity="center_horizontal|top"
             android:textColor="#ffe8694c"
-            android:textSize="30dp"
-            android:layout_marginTop="20dp" />
+            android:textSize="25dp"
+            android:layout_marginTop="10dp" />
     </FrameLayout>
 </LinearLayout>

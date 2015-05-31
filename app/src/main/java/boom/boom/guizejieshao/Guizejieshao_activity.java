@@ -41,6 +41,7 @@ public class Guizejieshao_activity extends Activity{
         Log.e("Video", "Video frame entry here.");
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
+
         setContentView(R.layout.guizejieshao);
 
         SysApplication.getInstance().addActivity(this);
@@ -130,7 +131,7 @@ public class Guizejieshao_activity extends Activity{
                 }
                 intent.setClass(Guizejieshao_activity.this, Paishetiaozhan_activity.class);
                        startActivity(intent);
-                Guizejieshao_activity.this.finish();
+                //Guizejieshao_activity.this.finish();
                 }
         });
         fanhuitianzhan.setOnClickListener(new View.OnClickListener() {
@@ -141,5 +142,6 @@ public class Guizejieshao_activity extends Activity{
         });
 
         }
+
 
 }

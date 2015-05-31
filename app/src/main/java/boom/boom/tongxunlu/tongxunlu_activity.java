@@ -1,7 +1,10 @@
 package boom.boom.tongxunlu;
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.os.Message;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,13 +22,20 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Objects;
 
 import boom.boom.FontManager.FontManager;
 import boom.boom.R;
+import boom.boom.api.AsyncLoadAvatar;
+import boom.boom.api.FriendList;
+import boom.boom.api.HttpIO;
 import boom.boom.api.SysApplication;
 
 
+import boom.boom.api.Utils;
+import boom.boom.haoyouliebiao.Haoyouliebiao_activity;
 import boom.boom.mimaxiugai.Mimaxiugai_activity;
+import boom.boom.myview.RoundedImageView;
 import boom.boom.myview.SildingFinishLayout;
 
 import static android.app.PendingIntent.getActivity;
@@ -35,8 +45,16 @@ import static android.app.PendingIntent.getActivity;
  */
 public class tongxunlu_activity extends Activity{
     LinearLayout horizon;
-
-
+    String result = null;
+    ArrayList<HashMap<String,Object>> listItem;
+    MyAdapter mSimpleAdapter;
+    android.os.Handler myMessageHandler = new android.os.Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            mSimpleAdapter.notifyDataSetChanged();
+        }
+    };
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,20 +75,17 @@ public class tongxunlu_activity extends Activity{
         ListView lv = (ListView) findViewById(R.id.tongxunlu_listview);
 
         horizon=(LinearLayout)findViewById(R.id.horizon);
+        Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                FriendList friendList = new FriendList();
+                listItem = friendList.GetFriendList();
+            }
+        });
+        thread.start();
+        while(listItem==null);
 
-
-        ArrayList<String> listItem = new ArrayList<>();
-        for(int i=0;i<30;i++)
-        {
-            listItem.add("老"+i);
-        }
-        final MyAdapter mSimpleAdapter=new MyAdapter(listItem,this);
-       /* SimpleAdapter mSimpleAdapter = new SimpleAdapter(this,listItem,//需要绑定的数据
-                R.layout.tongxunlu_listview_item,//每一行的布局//动态数组中的数据源的键对应到定义布局的View中
-                new String[] {
-                        "picther", "nicheng"},
-                new int[] {R.id.tongxunlu_touxiang,R.id.tongxunlu_nicheng}
-        );*/
+        mSimpleAdapter=new MyAdapter(listItem,this);
         lv.setAdapter(mSimpleAdapter);
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -88,7 +103,18 @@ public class tongxunlu_activity extends Activity{
             }
         });
 
-
+        LinearLayout txl_finish = (LinearLayout)findViewById(R.id.txl_finish);
+        txl_finish.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                for(int i=0;i<mSimpleAdapter.getIsSelected().size();i++)
+                {
+                    if(mSimpleAdapter.getIsSelected().get(i)) {
+                        listItem.get(i).get("guestID");
+                    }
+                }
+            }
+        });
     }
 
     @Override
@@ -100,9 +126,9 @@ public class tongxunlu_activity extends Activity{
 
     public class MyAdapter extends BaseAdapter {
         // 填充数据的list
-        private ArrayList<String> list;
+        private ArrayList<HashMap<String,Object>> list;
         // 用来控制CheckBox的选中状况
-        private HashMap<Integer,Boolean> isSelected;
+        public HashMap<Integer,Boolean> isSelected;
 
         // 上下文
         private Context context;
@@ -110,7 +136,7 @@ public class tongxunlu_activity extends Activity{
         private LayoutInflater inflater = null;
 
         // 构造器
-        public MyAdapter(ArrayList<String> list, Context context) {
+        public MyAdapter(ArrayList<HashMap<String,Object>> list, Context context) {
             this.context = context;
             this.list = list;
             inflater = LayoutInflater.from(context);
@@ -147,10 +173,33 @@ public class tongxunlu_activity extends Activity{
             for(int i=0;i<getIsSelected().size();i++)
             {
                 if(getIsSelected().get(i)){
-                    ImageView imageView=new ImageView(tongxunlu_activity.this);
+                    RoundedImageView imageView=new RoundedImageView(tongxunlu_activity.this);
                     imageView.setImageResource(R.drawable.android_181);
-                    imageView.setPadding(10,0,0,0);
+                    imageView.setPadding(10, 0, 0, 0);
+                    imageView.setId(i);
                     horizon.addView(imageView);
+                    Bitmap avatar;
+                    final Object data = list.get(i).get("avatar");
+                    if ((avatar = AsyncLoadAvatar.GetLocalImage((String) data)) == null)           //获取存在本地的Bitmap
+                    {
+                        Thread thread = new Thread(new Runnable() {
+                            @Override
+                            public void run() {
+                                if (AsyncLoadAvatar.SaveBitmapToLocal(AsyncLoadAvatar.DownloadBitmap((String) data), (String) data));  //returned Bitmap   把Bitmap保存到本地
+                                {
+                                    Message msg = new Message();
+                                    tongxunlu_activity.this.myMessageHandler.sendMessage(msg);
+                                }
+                            }
+                        });
+                        thread.start();
+                        imageView.setImageResource(R.drawable.android_181);
+                    } else {
+                        avatar = Utils.zoomImage(avatar,85,85);
+
+                        imageView.setImageBitmap(avatar);
+                    }
+
                 }
             }
         }
@@ -164,6 +213,7 @@ public class tongxunlu_activity extends Activity{
                 convertView = inflater.inflate(R.layout.tongxunlu_listview_item, null);
                 holder.tv = (TextView) convertView.findViewById(R.id.tongxunlu_nicheng);
                 holder.cb = (CheckBox) convertView.findViewById(R.id.tongxunlu_check);
+                holder.iv = (RoundedImageView) convertView.findViewById(R.id.tongxunlu_touxiang);
                 // 为view设置标签
                 convertView.setTag(holder);
             } else {
@@ -171,9 +221,29 @@ public class tongxunlu_activity extends Activity{
                 holder = (ViewHolder) convertView.getTag();
             }
             // 设置list中TextView的显示
-            holder.tv.setText(list.get(position));
+            holder.tv.setText((String)list.get(position).get("nickname"));
             // 根据isSelected来设置checkbox的选中状况
             holder.cb.setChecked(getIsSelected().get(position));
+            Bitmap avatar;
+            final Object data = list.get(position).get("avatar");
+            if ((avatar = AsyncLoadAvatar.GetLocalImage((String) data)) == null)           //获取存在本地的Bitmap
+            {
+                Thread thread = new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (AsyncLoadAvatar.SaveBitmapToLocal(AsyncLoadAvatar.DownloadBitmap((String) data), (String) data));  //returned Bitmap   把Bitmap保存到本地
+                        {
+                            Message msg = new Message();
+                            tongxunlu_activity.this.myMessageHandler.sendMessage(msg);
+                        }
+                    }
+                });
+                thread.start();
+                holder.iv.setImageResource(R.drawable.android_181);
+
+            } else {
+                holder.iv.setImageBitmap(avatar);
+            }
             return convertView;
         }
 
@@ -190,6 +260,8 @@ class ViewHolder
 {
             TextView tv;
             CheckBox cb;
+            RoundedImageView iv;
+            Bitmap bp;
 }
     }//MyAdapter
 }//tongxunlu_activity

@@ -17,14 +17,18 @@ import android.widget.Toast;
 import android.widget.ToggleButton;
 
 import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.File;
 
 import boom.boom.FontManager.FontManager;
 import boom.boom.R;
 import boom.boom.api.EditInformation;
+import boom.boom.api.HttpIO;
 import boom.boom.api.LoadingDialog;
+import boom.boom.api.Static;
 import boom.boom.api.SysApplication;
+import boom.boom.api.Utils;
 import boom.boom.bangzhuyufankui.Bangzhuyufankui_activity;
 import boom.boom.bianjixinxi.Bianjixinxi_activity;
 import boom.boom.guanyuwomen.Guanyuwomen_activity;
@@ -215,25 +219,34 @@ public class Shezhi_activity extends Activity{
         sz_jinzijikejian.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                sz_img1.setVisibility(View.VISIBLE);
-                sz_img2.setVisibility(View.INVISIBLE);
-                sz_img3.setVisibility(View.INVISIBLE);
+              if (sz_img1.getVisibility() != View.VISIBLE){
+                    sz_img1.setVisibility(View.VISIBLE);
+                    sz_img2.setVisibility(View.INVISIBLE);
+                    sz_img3.setVisibility(View.INVISIBLE);
+                    friendvisiblity(7);
+                }
             }
         });
         sz_jinhaoyoukejian.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                sz_img2.setVisibility(View.VISIBLE);
-                sz_img1.setVisibility(View.INVISIBLE);
-                sz_img3.setVisibility(View.INVISIBLE);
+                if(sz_img2.getVisibility()!=View.VISIBLE) {
+                    sz_img2.setVisibility(View.VISIBLE);
+                    sz_img1.setVisibility(View.INVISIBLE);
+                    sz_img3.setVisibility(View.INVISIBLE);
+                    friendvisiblity(5);
+                }
             }
         });
         sz_suoyourenkejian.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                sz_img3.setVisibility(View.VISIBLE);
-                sz_img2.setVisibility(View.INVISIBLE);
-                sz_img1.setVisibility(View.INVISIBLE);
+                if(sz_img3.getVisibility()!=View.VISIBLE) {
+                    sz_img3.setVisibility(View.VISIBLE);
+                    sz_img2.setVisibility(View.INVISIBLE);
+                    sz_img1.setVisibility(View.INVISIBLE);
+                    friendvisiblity(3);
+                }
             }
         });
     }
@@ -241,5 +254,23 @@ public class Shezhi_activity extends Activity{
     public void onBackPressed() {
         super.onBackPressed();
         overridePendingTransition(0, R.anim.base_slide_right_out);
+    }
+    private  void friendvisiblity(final int opt){
+       Thread thread = new Thread(new Runnable() {
+           @Override
+           public void run() {
+               HttpIO io = new HttpIO(Utils.serveraddr+"/api/userdata.php?action=set_pri&type="+opt);
+               io.SessionID = Static.session_id;
+               io.GETToHTTPServer();
+               try{
+                   JSONObject obj = new JSONObject(io.getResultData());
+                   String state = obj.getString("state");
+               }catch (Exception e)
+               {
+                   e.printStackTrace();
+               }
+           }
+       });
+        thread.start();
     }
 }

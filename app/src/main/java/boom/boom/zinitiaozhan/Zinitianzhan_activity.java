@@ -129,7 +129,7 @@ public class Zinitianzhan_activity extends Activity {
             public void onClick(View v) {
                 if (file_path != null) {
                     Log.e("Paishetiaozhan", "Last time already recorded.");
-                    new AlertDialog.Builder(Zinitianzhan_activity.this).
+                    /*new AlertDialog.Builder(Zinitianzhan_activity.this).
                             setTitle("提示").
                             setMessage("您已录制过一次视频，你想要放弃之前录制的视频吗？").
                             setPositiveButton("确定", new DialogInterface.OnClickListener() {
@@ -141,7 +141,34 @@ public class Zinitianzhan_activity extends Activity {
                                     startActivityForResult(intent, 0);
                                 }
                             }).
-                            setNegativeButton("取消", null).show();
+                            setNegativeButton("取消", null).show();*/
+                    final AlertDialog alertDialog=new AlertDialog.Builder(Zinitianzhan_activity.this).create();
+                    alertDialog.show();
+                    alertDialog.setCancelable(false);
+                    Window window=alertDialog.getWindow();
+                    window.setContentView(R.layout.mbox_yesno);
+                    TextView ok_title=(TextView)window.findViewById(R.id.yn_title);
+                    TextView ok_text=(TextView)window.findViewById(R.id.yn_text);
+                    ok_title.setText("提示");
+                    ok_text.setText("您已录制过一次视频，你想要放弃之前录制的视频吗？");
+                    Button yes=(Button)window.findViewById(R.id.button_ok_yn);
+                    yes.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent intent = new Intent();
+                            intent.setClass(Zinitianzhan_activity.this, Paishetiaozhan_activity.class);
+                            intent.putExtra("IfReturn", true);
+                            startActivityForResult(intent, 0);
+                            alertDialog.cancel();
+                        }
+                    });
+                    Button no = (Button)window.findViewById(R.id.button_cancel_yn);
+                    no.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            alertDialog.cancel();
+                        }
+                    });
                 }else{
                     Intent intent = new Intent();
                     intent.setClass(Zinitianzhan_activity.this, Paishetiaozhan_activity.class);

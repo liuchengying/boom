@@ -196,7 +196,7 @@ public class wangqitiaozhan extends Activity{
                     childPosition).frontname);
             if(isLastChild)
             {
-                imageView.setBackgroundDrawable(getDrawable(R.drawable.android_184));
+                imageView.setBackgroundResource(R.drawable.android_184);
             }
             return view;
         }

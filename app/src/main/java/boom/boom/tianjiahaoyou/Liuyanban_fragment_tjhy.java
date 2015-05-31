@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.SimpleAdapter;
+import android.widget.Toast;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -29,6 +30,7 @@ import boom.boom.api.HttpIO;
 import boom.boom.api.Static;
 import boom.boom.api.Utils;
 import boom.boom.gerenzhuye.Gerenzhuye_activity;
+import boom.boom.gerenzhuye.Liuyanban_fragment;
 import boom.boom.myview.CircleImageView;
 import boom.boom.myview.XListView;
 
@@ -169,33 +171,37 @@ public class Liuyanban_fragment_tjhy extends Fragment implements XListView.IXLis
         try {
             if(io.getResultData()!=null) {
                 obj= new JSONObject(io.getResultData());
-                round=obj.getInt("limit");
-                JSONObject tmp;
-                int i=0;
-                while((tmp=Utils.GetSubJSONObject(obj, "line"+i))!=null)
-                {
-                    String title = null, text = null,time=null;
-                    int like = 0, comment = 0;
-                    if (obj != null) try {
+                if(obj.getString("state").equals("SUCCESS")) {
+                    round = obj.getInt("limit");
+                    JSONObject tmp;
+                    int i = 0;
+                    while ((tmp = Utils.GetSubJSONObject(obj, "line" + i)) != null) {
+                        String title = null, text = null, time = null;
+                        int like = 0, comment = 0;
+                        if (obj != null) try {
 
-                        title = tmp.getString("nickname");
-                        text = tmp.getString("text_value");
-                        like = tmp.getInt("heart_like");
-                        comment = tmp.getInt("refer_sum");
-                        time = tmp.getString("assign_date");
-                    } catch (JSONException e) {
-                        e.printStackTrace();
+                            title = tmp.getString("nickname");
+                            text = tmp.getString("text_value");
+                            like = tmp.getInt("heart_like");
+                            comment = tmp.getInt("refer_sum");
+                            time = tmp.getString("assign_date");
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                        HashMap<String, Object> map = new HashMap<String, Object>();
+                        map.put("title", title);//加入图片            map.put("ItemTitle", "第"+i+"行");
+                        map.put("text", text);
+                        map.put("like", like);
+                        map.put("comment", comment);
+                        map.put("time", time);
+                        listItem.add(map);
+                        i++;
                     }
-                    HashMap<String, Object> map = new HashMap<String, Object>();
-                    map.put("title", title);//加入图片            map.put("ItemTitle", "第"+i+"行");
-                    map.put("text", text);
-                    map.put("like", like);
-                    map.put("comment", comment);
-                    map.put("time",time);
-                    listItem.add(map);
-                    i++;
+                }else {
+                    if(obj.getString("reason").equals("USER_NOT_PERMITTED")){
+                        Toast.makeText(getActivity(),"您没有权限访问",Toast.LENGTH_SHORT).show();
+                    }
                 }
-
             }
 
         } catch (JSONException e) {

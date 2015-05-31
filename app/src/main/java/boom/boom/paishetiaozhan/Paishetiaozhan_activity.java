@@ -1,6 +1,7 @@
 package boom.boom.paishetiaozhan;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.graphics.PixelFormat;
 import android.hardware.Camera;
@@ -13,11 +14,13 @@ import android.util.Log;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
+import android.view.Window;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.AnimationSet;
 import android.view.animation.TranslateAnimation;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -38,7 +41,7 @@ import boom.boom.shangchuandengdai.Shangchuandengdai_activity;
  * Created by 刘成英 on 2015/1/20.
  */
 public class Paishetiaozhan_activity extends Activity implements SurfaceHolder.Callback{
-    private Button paishefanhui;
+    private LinearLayout paishefanhui;
     private Button kaishipaishe;
     private Button fangqipaishe;
     private SurfaceView sv;
@@ -60,6 +63,7 @@ public class Paishetiaozhan_activity extends Activity implements SurfaceHolder.C
     private boolean onStartStopState = false;
     private VideoView vw;
     private boolean workingState;
+    int paishexuanze=0;
 
     //private Handler myMessageHandler;
     /*Handler myMessageHandler = new Handler(){
@@ -139,10 +143,15 @@ public class Paishetiaozhan_activity extends Activity implements SurfaceHolder.C
                             @Override
                             public void run() {
                                 while (true) {
-                                    if (vw.getCurrentPosition() == vw.getDuration()) {
-                                        Message m = new Message();
-                                        m.what = 20000;
-                                        Paishetiaozhan_activity.this.on_thread_start_stop.sendMessage(m);
+                                    try {
+                                        if (vw.getCurrentPosition() == vw.getDuration()) {
+                                            Message m = new Message();
+                                            m.what = 20000;
+                                            Paishetiaozhan_activity.this.on_thread_start_stop.sendMessage(m);
+                                        }
+                                    }catch (Exception e)
+                                    {
+                                        e.printStackTrace();
                                     }
                                 }
                             }
@@ -168,9 +177,15 @@ public class Paishetiaozhan_activity extends Activity implements SurfaceHolder.C
         setContentView(R.layout.paishetiaozhan);
         SysApplication.getInstance().addActivity(this);
         FontManager.changeFonts(FontManager.getContentView(this), this);//字体
-        paishefanhui = (Button) findViewById(R.id.paishefanhui);
+        paishefanhui = (LinearLayout) findViewById(R.id.paishefanhui);
         kaishipaishe = (Button) findViewById(R.id.kaishipaishe);
         fangqipaishe = (Button) findViewById(R.id.fangqipaishe);
+        fangqipaishe.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                msgbox();
+            }
+        });
         vw = (VideoView)findViewById(R.id.on_surface_covered_view);
         vw.setVisibility(View.INVISIBLE);
         sv = (SurfaceView) findViewById(R.id.syncRecord_monitor);
@@ -178,11 +193,13 @@ public class Paishetiaozhan_activity extends Activity implements SurfaceHolder.C
         sss= (TextView) findViewById(R.id.ssss);
         surfaceHolder = sv.getHolder();
         surfaceHolder.addCallback(this);
+
         surfaceHolder.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);
         kaishipaishe.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
+                    paishexuanze = 1;
 
                 if (kaishipaishe.getText().equals("开始")) {
                     Message m = new Message();
@@ -235,9 +252,12 @@ public class Paishetiaozhan_activity extends Activity implements SurfaceHolder.C
         paishefanhui.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent();
-                intent.setClass(Paishetiaozhan_activity.this,Guizejieshao_activity.class);
-                startActivity(intent);
+
+                if(paishexuanze ==1){
+                    msgbox();
+                }else {
+                    finish();
+                }
             }
         });
 
@@ -389,5 +409,32 @@ public class Paishetiaozhan_activity extends Activity implements SurfaceHolder.C
         camera.setPreviewCallback(null);
         camera.lock();
     }
+     private void msgbox(){
+         final AlertDialog alertDialog=new AlertDialog.Builder(Paishetiaozhan_activity.this).create();
+         alertDialog.show();
+         alertDialog.setCancelable(false);
+         Window window=alertDialog.getWindow();
+         window.setContentView(R.layout.mbox_yesno);
+         TextView ok_title=(TextView)window.findViewById(R.id.yn_title);
+         TextView ok_text=(TextView)window.findViewById(R.id.yn_text);
+         ok_title.setText("确定放弃");
+         ok_text.setText("确定放弃本次挑战视频吗？");
+         Button yes=(Button)window.findViewById(R.id.button_ok_yn);
+         yes.setOnClickListener(new View.OnClickListener() {
+             @Override
+             public void onClick(View v) {
+                 Paishetiaozhan_activity.this.finish();
+                 alertDialog.cancel();
+             }
+         });
+         Button no = (Button)window.findViewById(R.id.button_cancel_yn);
+         no.setOnClickListener(new View.OnClickListener() {
+             @Override
+             public void onClick(View v) {
+                 alertDialog.cancel();
+             }
+         });
+     }
+     }
 
-}
+
