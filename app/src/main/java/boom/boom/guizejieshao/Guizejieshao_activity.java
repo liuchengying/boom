@@ -48,13 +48,15 @@ public class Guizejieshao_activity extends Activity{
         FontManager.changeFonts(FontManager.getContentView(this), this);//字体
         Intent intent = getIntent();
         final int position = intent.getIntExtra("challenge_number", 1);
+        final int ifFaqi = intent.getIntExtra("ifFaqi",0);
         try {
-            challenge_data = new JSONObject(Challenge.getChallengeByNumber(position));
+            challenge_data = new JSONObject(Challenge.getChallengeByIdentify(position));
         } catch (JSONException e) {
             e.printStackTrace();
         }
         fanhuitianzhan = (LinearLayout) findViewById(R.id.fanhuitiaozhan);
         woyaotianzhan = (Button) findViewById(R.id.woyaotiaozhan);
+        if(ifFaqi == 1) woyaotianzhan.setText("发起挑战");
         shipinbofang = (Button)findViewById(R.id.shipinbofang);
         frame_frontvideo = (VideoView) findViewById(R.id.videoView_front);
         challenge_title = (TextView) findViewById(R.id.challenge_title);

@@ -5,15 +5,18 @@ package boom.boom.wangqitiaozhan;
  */
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.widget.AdapterView;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.ExpandableListView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.json.JSONObject;
 
@@ -24,8 +27,10 @@ import boom.boom.ExpandableTextView.ExpandableTextView;
 import boom.boom.FontManager.FontManager;
 import boom.boom.R;
 import boom.boom.api.HttpIO;
+import boom.boom.api.Static;
 import boom.boom.api.SysApplication;
 import boom.boom.api.Utils;
+import boom.boom.guizejieshao.Guizejieshao_activity;
 
 /**
  * Created by 刘成英 on 2015/1/16.
@@ -38,8 +43,8 @@ public class wangqitiaozhan extends Activity{
     String str = null;
     private class itemData{
         String frontname;
-        String identifyDigit;
-        itemData(String name, String digit)
+        int identifyDigit;
+        itemData(String name, int digit)
         {
             frontname = name;
             identifyDigit = digit;
@@ -58,6 +63,7 @@ public class wangqitiaozhan extends Activity{
             public void run() {
 
                     HttpIO io = new HttpIO(Utils.serveraddr + "api/getChallenge.php?action=gethistoryBySeries");
+                    io.SessionID = Static.session_id;
                     io.GETToHTTPServer();
                     str = io.getResultData();
 
@@ -73,7 +79,7 @@ public class wangqitiaozhan extends Activity{
             int round = obj.getInt("limit");
             for(int i=1;i<round+1;i++) {
                 JSONObject tmp = Utils.GetSubJSONObject(obj,""+i);
-                group_list.add(new itemData(tmp.getString("nickname"),tmp.getString("identifyDigit")));
+                group_list.add(new itemData(tmp.getString("nickname"),tmp.getInt("identifyDigit")));
 
                 JSONObject perSeries = Utils.GetSubJSONObject(tmp,"data");
                 int limit = perSeries.getInt("limit");
@@ -81,7 +87,7 @@ public class wangqitiaozhan extends Activity{
                 for(int m=1;m<limit+1;m++){
                     try {
                         JSONObject item = Utils.GetSubJSONObject(perSeries, "" + m);
-                        strItem.add(new itemData(item.getString("frontname"),item.getString("identifyDigit")));
+                        strItem.add(new itemData(item.getString("frontname"),item.getInt("identifyDigit")));
                     }catch (Exception e)
                     {
                         e.printStackTrace();
@@ -98,6 +104,19 @@ public class wangqitiaozhan extends Activity{
 
         expandableListView=(ExpandableListView)findViewById(R.id.expand);
         expandableListView.setAdapter(new MyExpandableListViewAdapter(this));
+
+        expandableListView.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
+            @Override
+            public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
+                itemData item = item_list.get(groupPosition).get(childPosition);
+                Intent intent = new Intent();
+                intent.putExtra("challenge_number",item.identifyDigit);
+                intent.putExtra("ifFaqi",1);
+                intent.setClass(wangqitiaozhan.this, Guizejieshao_activity.class);
+                startActivity(intent);
+                return false;
+            }
+        });
     }
     class MyExpandableListViewAdapter extends BaseExpandableListAdapter {
 
