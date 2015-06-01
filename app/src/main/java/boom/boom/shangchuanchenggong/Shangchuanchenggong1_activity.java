@@ -34,6 +34,7 @@ public class Shangchuanchenggong1_activity extends Activity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent();
+                intent.putExtra("challenge_id",getIntent().getSerializableExtra("challenge_id"));
                 intent.setClass(Shangchuanchenggong1_activity.this, tongxunlu_activity.class);
                 startActivity(intent);
             }

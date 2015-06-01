@@ -19,9 +19,15 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import org.apache.http.NameValuePair;
+import org.apache.http.message.BasicNameValuePair;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Objects;
 
 import boom.boom.FontManager.FontManager;
@@ -29,6 +35,7 @@ import boom.boom.R;
 import boom.boom.api.AsyncLoadAvatar;
 import boom.boom.api.FriendList;
 import boom.boom.api.HttpIO;
+import boom.boom.api.Static;
 import boom.boom.api.SysApplication;
 
 
@@ -48,6 +55,7 @@ public class tongxunlu_activity extends Activity{
     String result = null;
     ArrayList<HashMap<String,Object>> listItem;
     MyAdapter mSimpleAdapter;
+    String cl_id;
     android.os.Handler myMessageHandler = new android.os.Handler() {
         @Override
         public void handleMessage(Message msg) {
@@ -84,7 +92,7 @@ public class tongxunlu_activity extends Activity{
         });
         thread.start();
         while(listItem==null);
-
+        cl_id = (String)getIntent().getSerializableExtra("challenge_id");
         mSimpleAdapter=new MyAdapter(listItem,this);
         lv.setAdapter(mSimpleAdapter);
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -107,11 +115,41 @@ public class tongxunlu_activity extends Activity{
         txl_finish.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                for(int i=0;i<mSimpleAdapter.getIsSelected().size();i++)
-                {
-                    if(mSimpleAdapter.getIsSelected().get(i)) {
-                        listItem.get(i).get("guestID");
+                final HttpIO io = new HttpIO(Utils.serveraddr + "/api/getChallenge.php?action=invite_post&cl_id="+cl_id);
+                Thread thread1 = new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        int sum = 0;
+                           // 初始化一个连接（此时客户端并未访问服务器）
+                        List<NameValuePair> post = new ArrayList<NameValuePair>();
+                        for(int i=0;i<mSimpleAdapter.getIsSelected().size();i++)
+                        {
+                            if(mSimpleAdapter.getIsSelected().get(i)) {
+
+                                post.add(new BasicNameValuePair("fri"+sum, (String)listItem.get(i).get("guestID"))); // 增加POST表单数据
+                                sum++;
+                            }
+                        }
+                        io.SessionID = Static.session_id;
+                        io.POSTToHTTPServer(post); // 发送访问请求和POST数据
+                        result = io.getResultData();
                     }
+                });
+                thread1.start();
+                while(result==null);
+                try{
+                    JSONObject obj = new JSONObject(result);
+                    if(obj.getString("state").equals("SUCCESS"))
+                    {
+                        Toast.makeText(tongxunlu_activity.this,"挑战邀请发送成功！",Toast.LENGTH_SHORT).show();
+                        finish();
+                    }
+                    else {
+                        Toast.makeText(tongxunlu_activity.this,"挑战邀请失败！",Toast.LENGTH_SHORT).show();
+                    }
+                }catch (Exception e)
+                {
+                    e.printStackTrace();
                 }
             }
         });

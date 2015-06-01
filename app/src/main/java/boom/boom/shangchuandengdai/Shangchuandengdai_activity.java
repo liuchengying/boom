@@ -112,6 +112,7 @@ public class Shangchuandengdai_activity extends Activity {
                     Log.e("UPLOAD", "URL send to server ==>" + get1.toString());
                     Log.e("UPLOAD", "Server reply string ==>" + io.getResultData());
                     Intent intent = new Intent();
+                    intent.putExtra("challenge_id",cl_id);
                     intent.setClass(Shangchuandengdai_activity.this, Shangchuanchenggong1_activity.class);
                     startActivity(intent);
                     Shangchuandengdai_activity.this.finish();
