@@ -1,25 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<boom.boom.myview.SildingFinishLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:id="@+id/sildingFinishLayout">
-<RelativeLayout
-    android:layout_width="match_parent" android:layout_height="match_parent">
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
 <LinearLayout
-    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:gravity="center_horizontal"
     android:orientation="vertical"
     android:background="#ffdadada"
     android:scrollbarAlwaysDrawVerticalTrack="true">
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="60dp"
         android:background="#ffe14723"
         android:orientation="horizontal"
-        android:gravity="center">
-        <LinearLayout
+        >
+        <RelativeLayout
             android:layout_width="98dp"
             android:layout_height="fill_parent"
             android:id="@+id/shezhifanhui"
@@ -32,13 +30,11 @@
                 android:background="@drawable/android_51"
                 android:layout_marginLeft="15dp"
                 />
-            </LinearLayout>
-        <LinearLayout
-            android:layout_weight="1"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:gravity="center_vertical">
+    </RelativeLayout>
+
             <TextView
+                android:layout_centerVertical="true"
+                android:paddingLeft="95dp"
                 android:layout_marginLeft="45dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -47,18 +43,9 @@
                 android:gravity="center"
                 android:textColor="#ffffff"/>
 
-        </LinearLayout>
-        <LinearLayout
-            android:layout_weight="1"
-            android:layout_width="60dp"
-            android:layout_height="wrap_content"
-            >
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content" />
 
-        </LinearLayout>
-        </LinearLayout>
+
+        </RelativeLayout>
     <ScrollView
         android:layout_width="fill_parent"
         android:layout_height="fill_parent">
@@ -71,7 +58,7 @@
         android:orientation="vertical"
         android:gravity="center_horizontal">
 
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/sz_xggrzl"
         android:layout_width="fill_parent"
         android:layout_height="45dp"
@@ -87,13 +74,16 @@
             android:layout_marginLeft="30dp"
             android:textSize="17sp"/>
         <Button
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="45dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/android_52"
             android:layout_marginLeft="200dp"/>
 
-        </LinearLayout>
-    <LinearLayout
+        </RelativeLayout>
+    <RelativeLayout
         android:id="@+id/sz_mmxg"
         android:layout_width="fill_parent"
         android:layout_height="45dp"
@@ -109,13 +99,17 @@
             android:layout_marginLeft="30dp"
             android:textSize="17sp"/>
         <Button
+            android:layout_centerVertical="true"
+            android:layout_marginRight="45dp"
+            android:layout_alignParentRight="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/android_52"
             android:layout_marginLeft="233dp"/>
 
-    </LinearLayout>
-    <LinearLayout
+    </RelativeLayout>
+    <RelativeLayout
+        android:gravity="center_vertical"
         android:layout_width="fill_parent"
         android:layout_height="45dp"
         android:orientation="horizontal"
@@ -132,20 +126,29 @@
             android:id="@+id/sz_toggle1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="180dp"
-            android:layout_gravity="center_vertical"
+            android:layout_marginRight="40dp"
+            android:layout_alignParentRight="true"
+
+            android:layout_centerVertical="true"
             android:textOff=""
             android:textOn=""
             android:checked="true"
             android:background="@drawable/toggle_btn"
             />
 
-    </LinearLayout>
-    <LinearLayout
+    </RelativeLayout>
+    <RelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="45dp"
         android:orientation="horizontal"
         android:background="@drawable/android_57">
+        <!--<TextView
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:text="通知声音"
+            android:gravity="center_vertical"
+            android:layout_marginLeft="30dp"
+            android:textSize="17sp"/>-->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
@@ -153,20 +156,25 @@
             android:gravity="center_vertical"
             android:layout_marginLeft="30dp"
             android:textSize="17sp"/>
+
         <ToggleButton
+
             android:id="@+id/sz_toggle2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="180dp"
-            android:layout_gravity="center_vertical"
+            android:layout_marginRight="40dp"
+            android:layout_alignParentRight="true"
+
+            android:layout_centerVertical="true"
             android:textOff=""
             android:textOn=""
             android:checked="true"
             android:background="@drawable/toggle_btn"
             />
 
-    </LinearLayout>
-    <LinearLayout
+    </RelativeLayout>
+    <RelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="45dp"
         android:orientation="horizontal"
@@ -186,21 +194,25 @@
             android:text="仅wifi模式播放"
             android:gravity="center_vertical"
             android:textSize="11sp"
+            android:paddingLeft="120dp"
             />
         <ToggleButton
             android:id="@+id/sz_toggle3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="90dp"
-            android:layout_gravity="center_vertical"
+            android:layout_marginRight="40dp"
+            android:layout_alignParentRight="true"
+
+            android:layout_centerVertical="true"
             android:textOff=""
             android:textOn=""
             android:checked="true"
             android:background="@drawable/toggle_btn"
             />
 
-    </LinearLayout>
-    <LinearLayout
+    </RelativeLayout>
+    <RelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="45dp"
         android:orientation="horizontal"
@@ -215,8 +227,8 @@
             android:textSize="17sp"
              />
 
-    </LinearLayout>
-    <LinearLayout
+    </RelativeLayout>
+    <RelativeLayout
         android:id="@+id/sz_jinzijikejian"
 
         android:layout_width="fill_parent"
@@ -233,6 +245,10 @@
             android:textSize="17sp"
             />
         <ImageView
+            android:layout_marginRight="60dp"
+            android:layout_alignParentRight="true"
+
+            android:layout_centerVertical="true"
             android:id="@+id/sz_img1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -242,8 +258,8 @@
 
 
 
-    </LinearLayout>
-    <LinearLayout
+    </RelativeLayout>
+    <RelativeLayout
         android:id="@+id/sz_jinhaoyoukejian"
         android:layout_width="fill_parent"
         android:layout_height="45dp"
@@ -259,6 +275,10 @@
             android:textSize="17sp"
            />
         <ImageView
+            android:layout_marginRight="60dp"
+            android:layout_alignParentRight="true"
+
+            android:layout_centerVertical="true"
             android:id="@+id/sz_img2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -266,8 +286,8 @@
             android:layout_marginLeft="180dp"
             android:visibility="invisible"/>
 
-    </LinearLayout>
-    <LinearLayout
+    </RelativeLayout>
+    <RelativeLayout
         android:id="@+id/sz_suoyourenkejian"
         android:layout_width="fill_parent"
         android:layout_height="45dp"
@@ -283,6 +303,10 @@
             android:textSize="17sp"
             />
         <ImageView
+            android:layout_marginRight="60dp"
+            android:layout_alignParentRight="true"
+
+            android:layout_centerVertical="true"
             android:id="@+id/sz_img3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -290,8 +314,8 @@
             android:layout_marginLeft="180dp"
             android:visibility="invisible"/>
 
-    </LinearLayout>
-    <LinearLayout
+    </RelativeLayout>
+    <RelativeLayout
         android:id="@+id/sz_bbyfk"
         android:layout_marginTop="10dp"
         android:layout_width="fill_parent"
@@ -307,8 +331,8 @@
             android:textSize="17sp"
             />
 
-    </LinearLayout>
-    <LinearLayout
+    </RelativeLayout>
+    <RelativeLayout
         android:id="@+id/sz_gywm"
         android:layout_width="fill_parent"
         android:layout_height="45dp"
@@ -323,12 +347,10 @@
             android:textSize="17sp"
             />
 
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        >
+    </RelativeLayout>
+
         <Button
+
             android:id="@+id/tuichuzhanghu"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -337,7 +359,7 @@
             android:text="退出账户"
             android:textSize="20sp"
             android:textColor="#dddddd"/>
-        </LinearLayout>
+
     </LinearLayout>
     </RelativeLayout>
     </ScrollView>
@@ -350,4 +372,4 @@
 </LinearLayout>
 </RelativeLayout>
 
-</boom.boom.myview.SildingFinishLayout>
+

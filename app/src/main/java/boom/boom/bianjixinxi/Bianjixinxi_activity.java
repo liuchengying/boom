@@ -112,7 +112,7 @@ public class Bianjixinxi_activity  extends Activity {
     EditText sign;
     Bitmap avatar;
 
-    LinearLayout save;
+    RelativeLayout save;
     android.os.Handler myMessageHandler = new android.os.Handler(){
         @Override
         public void handleMessage(Message msg) {
@@ -148,20 +148,10 @@ public class Bianjixinxi_activity  extends Activity {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.bianjiziliao);
-        SildingFinishLayout mSildingFinishLayout = (SildingFinishLayout) findViewById(R.id.sildingFinishLayout);
-        mSildingFinishLayout
-                .setOnSildingFinishListener(new SildingFinishLayout.OnSildingFinishListener() {
 
-                    @Override
-                    public void onSildingFinish() {
-                        Bianjixinxi_activity.this.finish();
-                    }
-                });
-
-        mSildingFinishLayout.setTouchView(mSildingFinishLayout);
         SysApplication.getInstance().addActivity(this);
         FontManager.changeFonts(FontManager.getContentView(this), this);//字体
-        LinearLayout fanhui = (LinearLayout) findViewById(R.id.bianjixinxi_fh);
+        RelativeLayout fanhui = (RelativeLayout) findViewById(R.id.bianjixinxi_fh);
 
         editInformation=(EditInformation)getIntent().getExtras().getSerializable("info");
 
@@ -284,7 +274,7 @@ public class Bianjixinxi_activity  extends Activity {
             email = (EditText) findViewById(R.id.bjxx_yx);
             email.setText(editInformation.email);
             iv_image.setImageBitmap(Static.avatarImage);
-            save = (LinearLayout) findViewById(R.id.bianjixinxi_bc);
+            save = (RelativeLayout) findViewById(R.id.bianjixinxi_bc);
             save.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

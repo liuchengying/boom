@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
@@ -33,6 +34,7 @@ import boom.boom.bangzhuyufankui.Bangzhuyufankui_activity;
 import boom.boom.bianjixinxi.Bianjixinxi_activity;
 import boom.boom.guanyuwomen.Guanyuwomen_activity;
 import boom.boom.mimaxiugai.Mimaxiugai_activity;
+import boom.boom.myview.RoundedImageView;
 import boom.boom.myview.SildingFinishLayout;
 
 /**
@@ -40,12 +42,12 @@ import boom.boom.myview.SildingFinishLayout;
  */
 
 public class Shezhi_activity extends Activity{
-    private LinearLayout shezhifanhui;
+    private RelativeLayout shezhifanhui;
     private Button tuichuzhanghu;
     private Vibrator vibrator;
-    private LinearLayout sz_jinzijikejian;
-    private LinearLayout sz_jinhaoyoukejian;
-    private LinearLayout sz_suoyourenkejian;
+    private RelativeLayout sz_jinzijikejian;
+    private RelativeLayout sz_jinhaoyoukejian;
+    private RelativeLayout sz_suoyourenkejian;
     private ImageView sz_img1;
     private ImageView sz_img2;
     private ImageView sz_img3;
@@ -76,7 +78,7 @@ public class Shezhi_activity extends Activity{
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.shezhi);
-        SildingFinishLayout mSildingFinishLayout = (SildingFinishLayout) findViewById(R.id.sildingFinishLayout);
+        /*SildingFinishLayout mSildingFinishLayout = (SildingFinishLayout) findViewById(R.id.sildingFinishLayout);
         mSildingFinishLayout
                 .setOnSildingFinishListener(new SildingFinishLayout.OnSildingFinishListener() {
 
@@ -86,22 +88,22 @@ public class Shezhi_activity extends Activity{
                     }
                 });
 
-        mSildingFinishLayout.setTouchView(mSildingFinishLayout);
+        mSildingFinishLayout.setTouchView(mSildingFinishLayout);*/
 
         editInformation = new EditInformation();
         SysApplication.getInstance().addActivity(this);
         FontManager.changeFonts(FontManager.getContentView(this), this);//字体
         vibrator = (Vibrator) this.getSystemService(VIBRATOR_SERVICE);
-        shezhifanhui = (LinearLayout) findViewById(R.id.shezhifanhui);
-        sz_jinzijikejian = (LinearLayout) findViewById(R.id.sz_jinzijikejian);
-        sz_jinhaoyoukejian = (LinearLayout) findViewById(R.id.sz_jinhaoyoukejian);
-        sz_suoyourenkejian = (LinearLayout) findViewById(R.id.sz_suoyourenkejian);
+        shezhifanhui = (RelativeLayout) findViewById(R.id.shezhifanhui);
+        sz_jinzijikejian = (RelativeLayout) findViewById(R.id.sz_jinzijikejian);
+        sz_jinhaoyoukejian = (RelativeLayout) findViewById(R.id.sz_jinhaoyoukejian);
+        sz_suoyourenkejian = (RelativeLayout) findViewById(R.id.sz_suoyourenkejian);
         sz_img1 = (ImageView) findViewById(R.id.sz_img1);
         sz_img2 = (ImageView) findViewById(R.id.sz_img2);
         sz_img3 = (ImageView) findViewById(R.id.sz_img3);
         sz_img();
 
-        LinearLayout mmxg = (LinearLayout)findViewById(R.id.sz_mmxg);
+        RelativeLayout mmxg = (RelativeLayout)findViewById(R.id.sz_mmxg);
         mmxg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -110,7 +112,7 @@ public class Shezhi_activity extends Activity{
                 startActivity(intent);
             }
         });
-        LinearLayout xggezl = (LinearLayout)findViewById(R.id.sz_xggrzl);
+        RelativeLayout xggezl = (RelativeLayout)findViewById(R.id.sz_xggrzl);
         xggezl.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -136,7 +138,7 @@ public class Shezhi_activity extends Activity{
             }
         });
 
-        LinearLayout sz_bzyfk = (LinearLayout) findViewById(R.id.sz_bbyfk);
+        RelativeLayout sz_bzyfk = (RelativeLayout) findViewById(R.id.sz_bbyfk);
         sz_bzyfk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -145,7 +147,7 @@ public class Shezhi_activity extends Activity{
                 startActivity(intent);
             }
         });
-        LinearLayout sz_gywm = (LinearLayout) findViewById(R.id.sz_gywm);
+        RelativeLayout sz_gywm = (RelativeLayout) findViewById(R.id.sz_gywm);
         sz_gywm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
