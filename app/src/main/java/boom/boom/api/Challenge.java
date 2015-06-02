@@ -12,8 +12,8 @@ import java.util.Map;
 public class Challenge {
     public static final String challenge_api = "/api/getChallenge.php";
     public static final String take_cl_api = "/api/takeChallenge.php";
-    private String RawDataStore;
-    private JSONObject json_data;
+    public String RawDataStore;
+    public JSONObject json_data;
     private int counter = 0;
     public Challenge(){
         HttpIO io = new HttpIO(Utils.serveraddr + challenge_api + "?action=get_short_intro");
@@ -22,6 +22,7 @@ public class Challenge {
         RawDataStore = io.getResultData();
         try {
             json_data = new JSONObject(RawDataStore);
+            json_data = json_data.getJSONObject("1");
         } catch (JSONException e) {
             e.printStackTrace();
         }

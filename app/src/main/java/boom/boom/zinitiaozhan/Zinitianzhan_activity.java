@@ -113,8 +113,34 @@ public class Zinitianzhan_activity extends Activity {
         zntz_fh.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
-                overridePendingTransition(0, R.anim.base_slide_right_out);
+                if(file_path!=null) {
+                    final AlertDialog alertDialog=new AlertDialog.Builder(Zinitianzhan_activity.this).create();
+                    alertDialog.show();
+                    alertDialog.setCancelable(false);
+                    Window window=alertDialog.getWindow();
+                    window.setContentView(R.layout.mbox_yesno);
+                    TextView ok_title=(TextView)window.findViewById(R.id.yn_title);
+                    TextView ok_text=(TextView)window.findViewById(R.id.yn_text);
+                    ok_title.setText("提示");
+                    ok_text.setText("您已录制过一次视频，你想要放弃之前录制的视频吗？");
+                    Button yes=(Button)window.findViewById(R.id.button_ok_yn);
+                    yes.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            finish();
+                            overridePendingTransition(0, R.anim.base_slide_right_out);
+                        }
+                    });
+                    Button no = (Button)window.findViewById(R.id.button_cancel_yn);
+                    no.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            alertDialog.cancel();
+                        }
+                    });
+                }else {
+                    finish();
+                }
             }
         });
         FontManager.changeFonts(FontManager.getContentView(this), this);//字体

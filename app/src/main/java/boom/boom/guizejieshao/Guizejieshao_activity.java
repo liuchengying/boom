@@ -49,10 +49,21 @@ public class Guizejieshao_activity extends Activity{
         Intent intent = getIntent();
         final int position = intent.getIntExtra("challenge_number", 1);
         final int ifFaqi = intent.getIntExtra("ifFaqi",0);
-        try {
-            challenge_data = new JSONObject(Challenge.getChallengeByIdentify(position));
-        } catch (JSONException e) {
-            e.printStackTrace();
+        if(ifFaqi == 1) {
+            try {
+                challenge_data = new JSONObject(Challenge.getChallengeByIdentify(position));
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }else if(ifFaqi == 0)
+        {
+            try {
+                Challenge challenge = new Challenge();
+
+                challenge_data = challenge.json_data;
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
         fanhuitianzhan = (LinearLayout) findViewById(R.id.fanhuitiaozhan);
         woyaotianzhan = (Button) findViewById(R.id.woyaotiaozhan);
