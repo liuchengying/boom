@@ -78,22 +78,19 @@
             android:layout_height="wrap_content"
             android:src="@drawable/andriod_84"
             android:layout_gravity="center"/>
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/android_85"
-            android:layout_gravity="center_vertical"
-            android:paddingLeft="35dp"/>
+
         <EditText
 
             android:hint="请输入好友昵称/ID"
-            android:layout_width="260dp"
+            android:layout_width="300dp"
             android:layout_height="42dp"
             android:layout_gravity="center"
-            android:layout_marginLeft="20dp"
+            android:layout_marginLeft="0dp"
             android:background="#ffffff"
             android:textSize="20sp"
-            android:singleLine="true" />
+            android:singleLine="true"
+            android:id="@+id/txl_search"
+            android:drawableLeft="@drawable/android_85"/>
         </FrameLayout>
     <RelativeLayout
         android:layout_width="match_parent"

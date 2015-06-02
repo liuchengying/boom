@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Message;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +16,9 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CheckedTextView;
+import android.widget.EditText;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -29,6 +34,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Objects;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import boom.boom.FontManager.FontManager;
 import boom.boom.R;
@@ -56,6 +63,8 @@ public class tongxunlu_activity extends Activity{
     ArrayList<HashMap<String,Object>> listItem;
     MyAdapter mSimpleAdapter;
     String cl_id;
+    EditText search;
+    ListView lv;
     android.os.Handler myMessageHandler = new android.os.Handler() {
         @Override
         public void handleMessage(Message msg) {
@@ -80,7 +89,7 @@ public class tongxunlu_activity extends Activity{
         mSildingFinishLayout.setTouchView(mSildingFinishLayout);
         SysApplication.getInstance().addActivity(this);
         FontManager.changeFonts(FontManager.getContentView(this), this);//字体
-        ListView lv = (ListView) findViewById(R.id.tongxunlu_listview);
+        lv = (ListView) findViewById(R.id.tongxunlu_listview);
 
         horizon=(LinearLayout)findViewById(R.id.horizon);
         Thread thread = new Thread(new Runnable() {
@@ -98,10 +107,48 @@ public class tongxunlu_activity extends Activity{
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                mSimpleAdapter.select(position);
+                int pos = (int)((MyAdapter)lv.getAdapter()).list.get(position).get("position");
+                mSimpleAdapter.select((int) pos);
+                MyAdapter.ViewHolder holder = (MyAdapter.ViewHolder)view.getTag();
+                holder.cb.setChecked(((MyAdapter)lv.getAdapter()).getIsSelected().get(((MyAdapter)lv.getAdapter()).list.get(position).get("position")));
             }
         });
+        search = (EditText)findViewById(R.id.txl_search);
+        search.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                String text = s.toString().toUpperCase();
+                if(text.equals(""))
+                {
+                    lv.setAdapter(mSimpleAdapter);
+                }
+                else {
+                    ArrayList<HashMap<String,Object>> filtered = new ArrayList<HashMap<String, Object>>();
+                    Pattern p = Pattern.compile(text);
+                    //int pos=0;
+                    for(int i=0;i<mSimpleAdapter.list.size();i++){
+                        HashMap<String,Object> map = mSimpleAdapter.list.get(i);
+                        Matcher matcher = p.matcher(((String)map.get("nickname")).toUpperCase());
+                        if(matcher.find()){
+                            //map.put("position",i);
+                            filtered.add(map);
+                        }
+                    }
+                    MyAdapter newfiltered = new MyAdapter(filtered,tongxunlu_activity.this);
+                    lv.setAdapter(newfiltered);
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
         LinearLayout fanhui= (LinearLayout) findViewById(R.id.txl_fh);
         fanhui.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -162,12 +209,13 @@ public class tongxunlu_activity extends Activity{
     }
 
 
-    public class MyAdapter extends BaseAdapter {
+    public class MyAdapter extends BaseAdapter //implements Filterable
+    {
         // 填充数据的list
         private ArrayList<HashMap<String,Object>> list;
         // 用来控制CheckBox的选中状况
         public HashMap<Integer,Boolean> isSelected;
-
+       // private PersonFilter filter;
         // 上下文
         private Context context;
         // 用来导入布局
@@ -187,7 +235,7 @@ public class tongxunlu_activity extends Activity{
         // 初始化isSelected的数据
         private void initDate(){
             for(int i=0; i<list.size();i++) {
-                getIsSelected().put(i,false);
+                isSelected.put(i,false);
             }
         }
 
@@ -254,6 +302,7 @@ public class tongxunlu_activity extends Activity{
                 holder.iv = (RoundedImageView) convertView.findViewById(R.id.tongxunlu_touxiang);
                 // 为view设置标签
                 convertView.setTag(holder);
+                convertView.setId(position);
             } else {
                 // 取出holder
                 holder = (ViewHolder) convertView.getTag();
@@ -261,7 +310,7 @@ public class tongxunlu_activity extends Activity{
             // 设置list中TextView的显示
             holder.tv.setText((String)list.get(position).get("nickname"));
             // 根据isSelected来设置checkbox的选中状况
-            holder.cb.setChecked(getIsSelected().get(position));
+            holder.cb.setChecked(getIsSelected().get(list.get(position).get("position")));
             Bitmap avatar;
             final Object data = list.get(position).get("avatar");
             if ((avatar = AsyncLoadAvatar.GetLocalImage((String) data)) == null)           //获取存在本地的Bitmap
@@ -286,15 +335,26 @@ public class tongxunlu_activity extends Activity{
         }
 
         public HashMap<Integer,Boolean> getIsSelected() {
-            return isSelected;
+            return mSimpleAdapter.isSelected;
         }
 
         public void select(int position) {
             getIsSelected().put(position,!getIsSelected().get(position));
             notifyDataSetChanged();
+
             selectedChanged();
         }
-class ViewHolder
+
+        /*@Override
+        public Filter getFilter() {
+            if (filter == null) {
+                filter = new PersonFilter(list);
+            }
+            return filter;
+
+        }*/
+
+        public class ViewHolder
 {
             TextView tv;
             CheckBox cb;
@@ -302,4 +362,41 @@ class ViewHolder
             Bitmap bp;
 }
     }//MyAdapter
+  /*   private class PersonFilter extends Filter {
+
+        private ArrayList<HashMap<String,Object>> original;
+
+        public PersonFilter(ArrayList<HashMap<String,Object>> list) {
+            this.original = list;
+        }
+
+       @Override
+        protected FilterResults performFiltering(CharSequence constraint) {
+            FilterResults results = new FilterResults();
+            if (constraint == null || constraint.length() == 0) {
+                results.values = original;
+                results.count = original.size();
+            } else {
+                ArrayList<HashMap<String,Object>> mList = new ArrayList<HashMap<String,Object>>();
+                for (HashMap<String,Object> p: original) {
+                    if (((String)p.get("nickname")).regionMatches(constraint.toString().toUpperCase())
+                            || p.lastname.toUpperCase().startsWith(constraint.toString().toUpperCase())
+                            || new String(p.age + "").toUpperCase().startsWith(constraint.toString().toUpperCase())) {
+                        mList.add(p);
+                    }
+                }
+                results.values = mList;
+                results.count = mList.size();
+            }
+            return results;
+        }
+
+        @Override
+        protected void publishResults(CharSequence constraint,
+                                      FilterResults results) {
+            list = (List<Person>)results.values;
+            notifyDataSetChanged();
+        }*/
+
+   // }
 }//tongxunlu_activity
