@@ -165,6 +165,7 @@ public class Tiaozhan_activity extends Activity {
             public void onClick(View v) {
                 Intent intent = new Intent();
                 intent.setClass(Tiaozhan_activity.this, Guizejieshao_activity.class);
+
                 startActivity(intent);
 
             }
@@ -225,6 +226,7 @@ public class Tiaozhan_activity extends Activity {
             public void onClick(final View v) {
                 Intent intent = new Intent();
                 intent.setClass(Tiaozhan_activity.this, Gerenzhuye_activity.class);
+                intent.putExtra("guestID",Static.identifyDigit);
                 startActivity(intent);
                 Timer timer=new Timer();
                 TimerTask timerTask=new TimerTask() {

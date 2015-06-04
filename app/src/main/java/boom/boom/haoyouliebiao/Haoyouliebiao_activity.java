@@ -9,10 +9,12 @@ import android.os.Bundle;
 import android.os.Message;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -22,7 +24,9 @@ import boom.boom.R;
 import boom.boom.api.AsyncLoadAvatar;
 import boom.boom.api.FriendList;
 import boom.boom.api.SysApplication;
+import boom.boom.gerenzhuye.Gerenzhuye_activity;
 import boom.boom.myview.SildingFinishLayout;
+import boom.boom.search_friends.Search_friends_activity;
 import boom.boom.tianjiahaoyou.Tianjiahaoyou_activity;
 
 /**
@@ -32,6 +36,8 @@ public class Haoyouliebiao_activity extends Activity {
     ListView lv;
     LinearLayout haoyouliebiao_fh;
     SimpleAdapter mSimpleAdapter;
+    TextView hylb_search;
+
     ArrayList<HashMap<String, Object>> listItem;
     android.os.Handler myMessageHandler = new android.os.Handler() {
         @Override
@@ -108,10 +114,21 @@ public class Haoyouliebiao_activity extends Activity {
             lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    String guestID =(String) ((HashMap<String, Object>)listItem.get(position)).get("guestID");
+                    String guestID = (String) ((HashMap<String, Object>) listItem.get(position)).get("guestID");
                     Intent intent = new Intent();
-                    intent.putExtra("guestID",guestID);
-                    intent.setClass(Haoyouliebiao_activity.this, Tianjiahaoyou_activity.class);
+                    intent.putExtra("guestID", guestID);
+                    intent.setClass(Haoyouliebiao_activity.this, Gerenzhuye_activity.class);
+                    startActivity(intent);
+                }
+            });
+
+            hylb_search = (TextView) findViewById(R.id.hylb_search);
+            hylb_search.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    Intent intent = new Intent();
+                    intent.setClass(Haoyouliebiao_activity.this, Search_friends_activity.class);
                     startActivity(intent);
                 }
             });

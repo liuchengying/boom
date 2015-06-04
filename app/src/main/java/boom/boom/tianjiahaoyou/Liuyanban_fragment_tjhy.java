@@ -29,8 +29,7 @@ import boom.boom.R;
 import boom.boom.api.HttpIO;
 import boom.boom.api.Static;
 import boom.boom.api.Utils;
-import boom.boom.gerenzhuye.Gerenzhuye_activity;
-import boom.boom.gerenzhuye.Liuyanban_fragment;
+
 import boom.boom.myview.CircleImageView;
 import boom.boom.myview.XListView;
 

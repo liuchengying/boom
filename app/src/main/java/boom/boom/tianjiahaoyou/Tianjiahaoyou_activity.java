@@ -43,9 +43,7 @@ import boom.boom.api.HttpIO;
 import boom.boom.api.Static;
 import boom.boom.api.SysApplication;
 import boom.boom.api.Utils;
-import boom.boom.gerenzhuye.Liuyanban_fragment;
-import boom.boom.gerenzhuye.Shipintianzhan_fragment;
-import boom.boom.gerenzhuye.Xiangxiziliao_fragment;
+
 import boom.boom.liuyan.Liuyan_activity;
 import boom.boom.myview.CircleImageView;
 import boom.boom.myview.SildingFinishLayout;
