@@ -2,13 +2,22 @@ package boom.boom.api;
 
 
 
+import android.content.Context;
+import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.os.Handler;
+import android.os.Message;
 import android.widget.Toast;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+
+import boom.boom.R;
 
 /**
  * Created by laoli on 2015/2/19.
@@ -20,43 +29,114 @@ public class Msg {
     private String RawDataStore;
     private JSONObject json_data;
     private static int counter = 0;
+    android.os.Handler myMessageHandler = new android.os.Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            try{
+
+            }
+            catch (Exception e)
+            {
+                e.printStackTrace();
+            }
+        }
+    };
     public Msg(){
-        Thread thread = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                HttpIO io = new HttpIO(Utils.serveraddr + MSG_API_URL );
-                io.SetCustomSessionID(Static.session_id);
-                io.GETToHTTPServer();
-                if(io.LastError==0) {
-                    RawDataStore = io.getResultData();
-                    try {
-                        json_data = new JSONObject(RawDataStore);
-                    } catch (JSONException e) {
-                        e.printStackTrace();
+            Thread thread = new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    HttpIO io = new HttpIO(Utils.serveraddr + MSG_API_URL );
+                    io.SetCustomSessionID(Static.session_id);
+                    io.GETToHTTPServer();
+                    if(io.LastError==0) {
+                        RawDataStore = io.getResultData();
+                        try {
+                            json_data = new JSONObject(RawDataStore);
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                    else
+                    {
+                        LastError=DATAERROR;
                     }
                 }
-                else
-                {
-                    LastError=DATAERROR;
-                }
-            }
-        });
+            });
         thread.start();
+        while(json_data==null);
     }
-    public Map<String, Object> GetSimpleMap(boolean reset){
-        if (reset == true)  counter = 0;
-        try {
-            JSONObject tmp = Utils.GetSubJSONObject(json_data, "" + counter + "");
-            if (tmp.toString() == "") {
 
-                return null;
-            } else if (tmp == null) {
-                return null;
+
+    public ArrayList<HashMap<String, Object>> GetList(boolean reset,Context context){
+        if (reset == true)  counter = 0;
+        ArrayList<HashMap<String, Object>> list = new ArrayList<>();
+        try {
+            JSONObject response = Utils.GetSubJSONObject(json_data, "response");
+            if(response.getString("state").equals("SUCCESS")){
+                int round = response.getInt("limit");
+                for(int i=0;i<round;i++){
+                    HashMap<String,Object>  map = new HashMap<String,Object>();
+                    Resources res = context.getResources();
+                    JSONObject tmp = Utils.GetSubJSONObject(json_data,"line"+i);
+                    int type = tmp.getInt("type");
+                    String date = tmp.getString("date");
+                    Bitmap icon;
+                    map.put("type",type);
+                    map.put("date",date);
+                    JSONObject data = Utils.GetSubJSONObject(tmp,"data");
+                    switch (type) {
+                        case 1://1.挑战成功或者失败
+                            map.put("title",data.getString("challenge_frontname"));
+                            map.put("content","+"+data.getString("earn_coins")+"★ 于"+date+"完成 用时"+data.getString("elapsed_time")+"s");
+                            icon = BitmapFactory.decodeResource(res, R.drawable.android_217);
+                            map.put("icon",icon);
+                            break;
+                        case 2://2.自拟挑战审核状态
+                            map.put("title","发布的挑战已经通过审核!");
+                            map.put("content","挑战"+data.getString("frontname")+"已经通过审核!");
+                            icon = BitmapFactory.decodeResource(res,R.drawable.android_217);
+                            map.put("icon",icon);
+                            map.put("smallicon",BitmapFactory.decodeResource(res,R.drawable.android_213));
+                            map.put("identifyDigit",data.getString("identifyDigit"));
+                            break;
+                        case 3://3.往期挑战，官方的审核状态
+                            map.put("title","您的往期挑战已通过审核!");
+                            map.put("content","挑战已通过审核!");
+                            icon = BitmapFactory.decodeResource(res,R.drawable.android_217);
+                            map.put("icon",icon);
+                            break;
+                        case 4://4.官方推送的消息
+                            map.put("title","圣诞有礼，挑战积分双倍收！");
+                            map.put("content","asdkajsdlkjasldkjalskdjalsdjlkasd\noalksdjlaksjdlakd\nalskdjlaksjdlk\nalsksdjlaskjdlkjasldk");
+                            icon = BitmapFactory.decodeResource(res,R.drawable.android_212);
+                            map.put("icon",icon);
+                            break;
+                        case 5://5.用户好友添加
+                            map.put("title",data.getString("alias")+"添加您为好友!");
+                            map.put("content","点击查看TA的主页");
+                            icon = BitmapFactory.decodeResource(res,R.drawable.android_214);
+                            map.put("icon",icon);
+                            break;
+                        case 6://6.用户的自拟挑战别人挑战成功与否的消息
+                            map.put("title","你屌爆了！");
+                            map.put("content","XXX 刚刚挑战您失败");
+                            icon = BitmapFactory.decodeResource(res,R.drawable.android_218);
+                            map.put("icon",icon);
+                            break;
+                        case 7://7.评论回复
+                            map.put("title","收到评论回复！");
+                            map.put("content","李斯本： 斜立易拉罐太特么虐心了！");
+                            icon = BitmapFactory.decodeResource(res,R.drawable.android_216);
+                            map.put("icon",icon);
+                            break;
+                    }
+
+                    list.add(map);
+                }
+                return list;
             }
-            Map<String,Object>  map = new HashMap<String,Object>();
-            map.put("label", tmp.getString("title"));
-            map.put("text", tmp.getString("text"));
-            return map;
         } catch (JSONException e) {
             e.printStackTrace();
         } catch (Exception e)
@@ -65,7 +145,5 @@ public class Msg {
         }
         return null;
     }
-    public Map<String, Object>  GetSimpleMap(){
-        return this.GetSimpleMap(false);
-    }
+
 }

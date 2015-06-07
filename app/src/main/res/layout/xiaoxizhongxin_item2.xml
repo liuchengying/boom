@@ -1,48 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_horizontal"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
+    android:layout_width="335dp"
     android:layout_height="wrap_content"
     android:background="@drawable/android_94"
-    android:layout_gravity="center_horizontal"
+   android:layout_marginTop="18dp"
+
+
     android:orientation="horizontal">
     <FrameLayout
         android:layout_width="95dp"
         android:layout_height="95dp"
-        android:layout_marginLeft="10dp"
+        android:layout_marginLeft="0dp"
         android:layout_gravity="center_vertical">
         <ImageView
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:src="@drawable/android_214"
-            android:layout_gravity="center"/>
+            android:layout_gravity="center"
+            android:id="@+id/xxzx_item_icon" />
         <ImageView
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:src="@drawable/android_215"
-            android:layout_gravity="top|right"/>
+            android:layout_gravity="top|right"
+            android:id="@+id/xxzx_item_smallicon" />
 
         </FrameLayout>
     <RelativeLayout
-        android:layout_width="fill_parent"
+        android:layout_width="215dp"
         android:layout_height="fill_parent"
         >
         <TextView
-            android:layout_marginTop="15dp"
-            android:textSize="23sp"
+            android:layout_marginTop="10dp"
+            android:textSize="18sp"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:text="梁宇鹏拒绝添加您为好友!"
-            android:textColor="#ff0000"/>
+            android:textColor="#ff0000"
+            android:id="@+id/xxzx_item_title" />
         <TextView
-            android:layout_marginTop="45dp"
-            android:textSize="17sp"
+            android:layout_marginTop="36dp"
+            android:textSize="15sp"
             android:layout_width="fill_parent"
-            android:layout_height="40dp"
-            android:text="梁宇鹏已经拒绝您的好友添加申请!梁宇鹏已经拒绝您的好友添加申请!梁宇鹏已经拒绝您的好友添加申请!"/>
+            android:layout_height="50dp"
+            android:text="梁宇鹏已经拒绝您的好友添加申请!梁宇鹏已经拒绝您的好友添加申请!梁宇鹏已经拒绝您的好友添加申请!"
+            android:id="@+id/xxzx_item_text" />
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
+            android:layout_marginBottom="2dp"
             android:orientation="horizontal"
             android:layout_alignParentBottom="true"
             >
@@ -54,10 +68,13 @@
                 android:layout_marginLeft="5dp"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:text="2015.5.28"/>
+                android:text="2015.5.28"
+                android:id="@+id/xxzx_item_date" />
 
             </LinearLayout>
 
         </RelativeLayout>
+
+</LinearLayout>
 
 </LinearLayout>

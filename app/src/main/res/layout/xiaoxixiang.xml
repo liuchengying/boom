@@ -14,7 +14,7 @@
         expandableTextView:maxCollapsedLines="4"
         expandableTextView:animAlphaStart="1">
         <RelativeLayout
-            android:orientation="vertical" android:layout_width="match_parent"
+            android:orientation="vertical" android:layout_width="335dp"
             android:layout_height="wrap_content"
             android:weightSum="1"
             android:background="@drawable/android_94"

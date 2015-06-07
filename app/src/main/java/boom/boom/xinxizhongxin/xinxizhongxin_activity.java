@@ -4,7 +4,10 @@ package boom.boom.xinxizhongxin;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.SparseBooleanArray;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,9 +16,11 @@ import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
@@ -67,11 +72,11 @@ public class xinxizhongxin_activity extends Activity implements XListView.IXList
         list.setPullLoadEnable(true);
         list.setPullRefreshEnable(true);
         list.setXListViewListener(this);
-        while (true) {
+        /*while (true) {
             Msg msg = new Msg();
             Map<String, Object> map = new HashMap<String, Object>();
             if (msg.LastError == 0) {
-                map = msg.GetSimpleMap();
+                //map = msg.GetSimpleMap();
                 if (map == null) {
                     break;
                 }
@@ -88,14 +93,23 @@ public class xinxizhongxin_activity extends Activity implements XListView.IXList
                 R.layout.msgcenter_listitem,
                 new String[]{"label", "text"},
                 new int[]{R.id.msg_center_list_label, R.id.msg_center_list_text}
-        );
-        list.setAdapter(new ExpandableAdapter(this));
+        );*/
+        Msg msg = new Msg();
+        ArrayList<HashMap<String,Object>> arrayList = new ArrayList<>();
+        arrayList = msg.GetList(false,this);
+        final ExpandableAdapter adapter = new ExpandableAdapter(this,arrayList);
+        list.setAdapter(adapter);
         // ExpandableAdapter.setListViewHeightBasedOnChildren(list);
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    ExpandableTextView e=(ExpandableTextView)view.findViewById(R.id.expand_text_view);
+                int type = (int) adapter.list.get(position-1).get("type");
+                switch (type) {
+                    case 4:
+                    ExpandableTextView e = (ExpandableTextView) view.findViewById(R.id.expand_text_view);
                     e.onClick(view);
+                        break;
+                }
             }
         });
         list.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
@@ -137,22 +151,18 @@ public class xinxizhongxin_activity extends Activity implements XListView.IXList
 
     private final Context mContext;
     private final SparseBooleanArray mCollapsedStatus;
-    private final String[] sampleStrings;
-
-    public ExpandableAdapter(Context context) {
+    //private final String[] sampleStrings;
+    public ArrayList<HashMap<String,Object>> list;
+    public ExpandableAdapter(Context context,ArrayList<HashMap<String,Object>> arrlist) {
         mContext  = context;
         mCollapsedStatus = new SparseBooleanArray();
-        sampleStrings=new String[20];
-        for(int i=0;i<20;i++)
-        {
-            sampleStrings[i]="活动期间 战可双哈哈哈哈哈\n\nasdasd\nasdas\nasdasd\nasdasd\nasdasdasd\nasdqra\nasdasd\nfasd";
-        }
+        list = arrlist;
         //sampleStrings = mContext.getResources().getStringArray(R.array.sampleStrings);
     }
 
     @Override
     public int getCount() {
-        return sampleStrings.length;
+        return list.size();
     }
 
     @Override
@@ -167,24 +177,54 @@ public class xinxizhongxin_activity extends Activity implements XListView.IXList
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        final ViewHolder viewHolder;
-        if (convertView == null) {
-            convertView = LayoutInflater.from(mContext).inflate(R.layout.xiaoxixiang, parent, false);
-            viewHolder = new ViewHolder();
-            viewHolder.expandableTextView = (ExpandableTextView) convertView.findViewById(R.id.expand_text_view);
-            convertView.setTag(viewHolder);
-        } else {
-            viewHolder = (ViewHolder) convertView.getTag();
+        View view = null;
+        HashMap<String,Object> hashMap = list.get(position);
+        int type = (int) hashMap.get("type");
+        switch (type) {
+            case 4:
+                view = LayoutInflater.from(mContext).inflate(R.layout.xiaoxixiang, parent, false);
+                ExpandableTextView expandableTextView = (ExpandableTextView) view.findViewById(R.id.expand_text_view);
+                expandableTextView.setText(((String) hashMap.get("content")), mCollapsedStatus, position);
+                TextView title = (TextView) view.findViewById(R.id.xxx_title);
+                TextView date = (TextView) view.findViewById(R.id.xxx_time);
+                ImageView icon = (ImageView) view.findViewById(R.id.xxx_cursor);
+                title.setText((String) hashMap.get("title"));
+                date.setText((String) hashMap.get("date"));
+                icon.setImageBitmap((Bitmap) hashMap.get("icon"));
+                break;
+            case 1:
+            case 2:
+            case 3:
+            case 5:
+            case 6:
+            case 7:
+                view = LayoutInflater.from(mContext).inflate(R.layout.xiaoxizhongxin_item2,parent,false);
+                TextView title2 = (TextView) view.findViewById(R.id.xxzx_item_title);
+                TextView text2 = (TextView) view.findViewById(R.id.xxzx_item_text);
+                TextView date2 = (TextView) view.findViewById(R.id.xxzx_item_date);
+                ImageView icon2 = (ImageView) view.findViewById(R.id.xxzx_item_icon);
+                ImageView smallicon = (ImageView) view.findViewById(R.id.xxzx_item_smallicon);
+                title2.setText((String)hashMap.get("title"));
+                text2.setText((String)hashMap.get("content"));
+                date2.setText((String)hashMap.get("date"));
+                icon2.setImageBitmap((Bitmap) hashMap.get("icon"));
+                Bitmap bmSmallicon = (Bitmap) hashMap.get("smallicon");
+                if(bmSmallicon == null){
+                    smallicon.setVisibility(View.INVISIBLE);
+                }else
+                {
+                    smallicon.setImageBitmap(bmSmallicon);
+                }
         }
-
-        viewHolder.expandableTextView.setText(sampleStrings[position], mCollapsedStatus, position);
-
-        return convertView;
+        return view;
     }
 
 
     private static class ViewHolder{
         ExpandableTextView expandableTextView;
+        TextView title;
+        ImageView icon;
+        TextView date;
     }
 
 }

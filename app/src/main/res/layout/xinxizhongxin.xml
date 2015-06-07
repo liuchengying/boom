@@ -53,6 +53,7 @@
     </LinearLayout>
 
     <boom.boom.myview.XListView
+        android:layout_gravity="center_horizontal"
         android:id="@+id/challenge_list"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
