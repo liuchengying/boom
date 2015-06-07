@@ -86,7 +86,9 @@ public class ExpandableTextView extends LinearLayout implements View.OnClickList
         /*if (mButton.getVisibility() != View.VISIBLE) {
             return;
         }*/
-
+        if (mTv.getLineCount() <= mMaxCollapsedLines) {
+            return;
+        }
         mCollapsed = !mCollapsed;
         //mButton.setImageDrawable(mCollapsed ? mExpandDrawable : mCollapseDrawable);
 
@@ -154,7 +156,8 @@ public class ExpandableTextView extends LinearLayout implements View.OnClickList
 
         // Measure
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-
+        int m ;
+        m=mTv.getLineCount();
         // If the text fits in collapsed mode, we are done.
         if (mTv.getLineCount() <= mMaxCollapsedLines) {
             return;

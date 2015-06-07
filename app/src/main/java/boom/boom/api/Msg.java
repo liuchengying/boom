@@ -14,28 +14,34 @@ import java.util.Map;
  * Created by laoli on 2015/2/19.
  */
 public class Msg {
-    public static String MSG_API_URL = "/api/msg.php";
+    public static String MSG_API_URL = "/api/msgcenter.php";
     public int DATAERROR=65412;
     public int LastError = 0;
     private String RawDataStore;
     private JSONObject json_data;
     private static int counter = 0;
     public Msg(){
-        HttpIO io = new HttpIO(Utils.serveraddr + MSG_API_URL + "?action=query");
-        io.SetCustomSessionID(Static.session_id);
-        io.GETToHTTPServer();
-        if(io.LastError==0) {
-            RawDataStore = io.getResultData();
-            try {
-                json_data = new JSONObject(RawDataStore);
-            } catch (JSONException e) {
-                e.printStackTrace();
+        Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                HttpIO io = new HttpIO(Utils.serveraddr + MSG_API_URL );
+                io.SetCustomSessionID(Static.session_id);
+                io.GETToHTTPServer();
+                if(io.LastError==0) {
+                    RawDataStore = io.getResultData();
+                    try {
+                        json_data = new JSONObject(RawDataStore);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+                else
+                {
+                    LastError=DATAERROR;
+                }
             }
-        }
-        else
-        {
-            LastError=DATAERROR;
-        }
+        });
+        thread.start();
     }
     public Map<String, Object> GetSimpleMap(boolean reset){
         if (reset == true)  counter = 0;
