@@ -10,13 +10,13 @@
         android:id="@+id/expand_text_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
+        android:orientation="horizontal"
         expandableTextView:maxCollapsedLines="4"
         expandableTextView:animAlphaStart="1">
         <RelativeLayout
             android:orientation="vertical" android:layout_width="335dp"
             android:layout_height="wrap_content"
-            android:weightSum="1"
+
             android:background="@drawable/android_94"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
@@ -69,26 +69,23 @@
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:id="@+id/imageView9"
-                android:layout_gravity="center_horizontal|bottom"
                 android:background="@drawable/android_97"
-                android:layout_below="@+id/xxx_content"
-                android:layout_alignLeft="@+id/xxx_content"
-                android:layout_alignStart="@+id/xxx_content"
-                android:layout_alignParentTop="false"
-                android:layout_marginTop="6dp" />
+
+                android:layout_alignTop="@+id/xxx_time"
+                android:layout_toLeftOf="@+id/xxx_time"
+                android:layout_toStartOf="@+id/xxx_time" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="2014.12.31 21:56"
                 android:id="@+id/xxx_time"
-                android:layout_gravity="center_horizontal|bottom"
                 android:textColor="#ff020202"
-                android:layout_toRightOf="@+id/imageView9"
-                android:layout_toEndOf="@+id/imageView9"
-                android:layout_marginLeft="5dp"
-                android:layout_alignTop="@+id/imageView9"
-                android:layout_marginBottom="10dp" />
+
+
+                android:layout_below="@+id/xxx_content"
+                android:layout_alignRight="@+id/xxx_title"
+                android:layout_alignEnd="@+id/xxx_title" />
 
 
         </RelativeLayout>

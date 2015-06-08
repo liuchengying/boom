@@ -1,12 +1,22 @@
 package boom.boom.gerenzhuye;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationSet;
+import android.view.animation.TranslateAnimation;
+import android.widget.AbsListView;
+import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.SimpleAdapter;
+import android.widget.Toast;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -23,6 +33,7 @@ import boom.boom.api.Static;
 import boom.boom.api.Utils;
 
 import boom.boom.myview.XListView;
+import boom.boom.shipintianzhanpinglun.Shipintianzhan_pinglun;
 
 
 /**
@@ -37,6 +48,9 @@ public class Shipintianzhan_fragment extends Fragment implements XListView.IXLis
     private SimpleAdapter mSimpleAdapter;
     private Button tianjiahaoyou_button;
     private String guestID;
+    LinearLayout all;
+    boolean animating;
+    boolean upordown;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState)
@@ -51,6 +65,100 @@ public class Shipintianzhan_fragment extends Fragment implements XListView.IXLis
         lv.setPullRefreshEnable(true);
         lv.setXListViewListener(this);
         lv.setAdapter(mSimpleAdapter);
+        all = ((Gerenzhuye_activity)getActivity()).allLinear;
+        lv.setOnScrollListener(new AbsListView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(AbsListView view, int scrollState) {
+
+            }
+
+            @Override
+            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+                if(firstVisibleItem==2)
+                {
+                    if(!animating) {
+                        if(!upordown) {
+                            animating = true;
+                            AnimationSet animationSet = new AnimationSet(true);
+                            TranslateAnimation translateAnimation = new TranslateAnimation(0, 0, 0, -620);
+                            translateAnimation.setDuration(1000);
+                            translateAnimation.setAnimationListener(new Animation.AnimationListener() {
+                                @Override
+                                public void onAnimationStart(Animation animation) {
+                                    all.setVisibility(View.GONE);
+                                }
+
+                                @Override
+                                public void onAnimationEnd(Animation animation) {
+                                    LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                                            all.getLayoutParams());
+
+                                    params.setMargins(0, -620, 0, 0);
+
+                                    all.clearAnimation();
+                                    all.setLayoutParams(params);
+                                    all.setVisibility(View.VISIBLE);
+                                    upordown = true;
+                                    animating = false;
+                                }
+
+                                @Override
+                                public void onAnimationRepeat(Animation animation) {
+
+                                }
+                            });
+                            animationSet.addAnimation(translateAnimation);
+                            animationSet.setFillAfter(true);
+                            all.startAnimation(animationSet);
+                            Toast.makeText(getActivity(), "5", Toast.LENGTH_SHORT).show();
+                        }else {
+                            animating = true;
+                            AnimationSet animationSet = new AnimationSet(true);
+                            TranslateAnimation translateAnimation = new TranslateAnimation(0, 0, 0, 620);
+                            translateAnimation.setDuration(1000);
+                            translateAnimation.setAnimationListener(new Animation.AnimationListener() {
+                                @Override
+                                public void onAnimationStart(Animation animation) {
+                                    all.setVisibility(View.GONE);
+                                }
+
+                                @Override
+                                public void onAnimationEnd(Animation animation) {
+                                    LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                                            all.getLayoutParams());
+
+                                    params.setMargins(0, 0, 0, 0);
+
+                                    all.clearAnimation();
+                                    all.setLayoutParams(params);
+                                    all.setVisibility(View.VISIBLE);
+                                    upordown = false;
+                                    animating = false;
+                                }
+
+                                @Override
+                                public void onAnimationRepeat(Animation animation) {
+
+                                }
+                            });
+                            animationSet.addAnimation(translateAnimation);
+                            animationSet.setFillAfter(true);
+                            all.startAnimation(animationSet);
+                            Toast.makeText(getActivity(), "5", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                }
+            }
+        });
+        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent localIntent = new Intent(getActivity(), Shipintianzhan_pinglun.class);
+                startActivity(localIntent);
+
+            }
+        });
+
         return v;
     }
     private void onLoad() {

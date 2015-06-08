@@ -1,5 +1,6 @@
-package boom.boom.tianjiahaoyou;
+package boom.boom.gerenzhuye;
 
+import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
@@ -30,6 +31,7 @@ import boom.boom.api.HttpIO;
 import boom.boom.api.Static;
 import boom.boom.api.Utils;
 
+import boom.boom.liuyanbanpinglun.Liuyanban_pinglun;
 import boom.boom.myview.CircleImageView;
 import boom.boom.myview.XListView;
 
@@ -44,11 +46,12 @@ public class Liuyanban_fragment extends Fragment implements XListView.IXListView
     private SimpleAdapter mSimpleAdapter;
     private String guestID;
     private CircleImageView gerenzhuye_touxing;
-    //    private Button button;
-//    private Button confirmButton;
-//    private Button cancleButton;
-//    private PopupWindow popupWindow;
-//    private View popupWindowView;
+    private Button button;
+    private Button confirmButton;
+    private Button cancleButton;
+    private PopupWindow popupWindow;
+    private View popupWindowView;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState)
@@ -64,37 +67,42 @@ public class Liuyanban_fragment extends Fragment implements XListView.IXListView
         lv.setPullRefreshEnable(true);
         lv.setXListViewListener(this);
         lv.setAdapter(mSimpleAdapter);
+        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent localIntent = new Intent(getActivity(), Liuyanban_pinglun.class);
+                startActivity(localIntent);
 
-//        popupWindowView = inflater.inflate(R.layout.shezhi_touxiang, null);
+            }
+        });
 
-//        lv.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-//            @Override
-//            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-////                Toast toast = Toast.makeText(getActivity(), "adfadsfasdfasdfadfadsf",
-////                        Toast.LENGTH_LONG);
-////                toast.show();
-//                popupWindow = new PopupWindow(popupWindowView);
-//                popupWindow.setWidth(LinearLayout.LayoutParams.FILL_PARENT);
-//                popupWindow.setHeight(LinearLayout.LayoutParams.FILL_PARENT);
-//                // popupWindowView = inflater.inflate(R.layout.shezhi_touxiang, null);
-////        popupWindow = new PopupWindow(popupWindowView, LinearLayout.LayoutParams.FILL_PARENT, LinearLayout.LayoutParams.FILL_PARENT, true);
-//                popupWindow.setBackgroundDrawable(new BitmapDrawable());
-//                popupWindow.setOutsideTouchable(true);
-//                popupWindow.setFocusable(true);
-//
-//                //设置PopupWindow的弹出和消失效果
-//                popupWindow.setAnimationStyle(R.style.popupAnimation);
-//
-//
-//                cancleButton = (Button) popupWindowView.findViewById(R.id.liuyanban_cencle);
-//                button = (Button) popupWindowView.findViewById(R.id.shanchuliuyan);
-//                popupWindow.showAtLocation(confirmButton, Gravity.CENTER, 0, 0);
-//                confirmButton.setOnClickListener(Itemclick);
-//
-//                button.setOnClickListener(Itemclick);
-//                return true;
-//            }
-//        });
+        if(guestID == Static.identifyDigit){
+        popupWindowView = inflater.inflate(R.layout.shanchuliuyan_item, null);
+
+        lv.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                popupWindow = new PopupWindow(popupWindowView);
+                popupWindow.setWidth(LinearLayout.LayoutParams.FILL_PARENT);
+                popupWindow.setHeight(LinearLayout.LayoutParams.FILL_PARENT);
+                popupWindow.setBackgroundDrawable(new BitmapDrawable());
+                popupWindow.setOutsideTouchable(true);
+                popupWindow.setFocusable(true);
+
+                //设置PopupWindow的弹出和消失效果
+                popupWindow.setAnimationStyle(R.style.popupAnimation);
+
+
+                cancleButton = (Button) popupWindowView.findViewById(R.id.liuyanban_cencle);
+                confirmButton = (Button) popupWindowView.findViewById(R.id.shanchuliuyan);
+                popupWindow.showAtLocation(confirmButton, Gravity.CENTER, 0, 0);
+                confirmButton.setOnClickListener(Itemclick);
+
+                cancleButton.setOnClickListener(Itemclick);
+                return true;
+            }
+
+        });}
         return v;
     }
     private void onLoad() {
@@ -126,31 +134,27 @@ public class Liuyanban_fragment extends Fragment implements XListView.IXListView
         }, 2000);
 
     }
-//    private View.OnClickListener Itemclick = new View.OnClickListener() {
-//        @Override
-//        public void onClick( View v) {
-//            if(popupWindow.isShowing()){
-//                popupWindow.dismiss();
-//            }
-//
-//
-//
-//
-//            switch (v.getId()) {
-//                case R.id.shanchuliuyan:
-//
-//                    break;
-//                case R.id.liuyanban_cencle:
-//
-//                    break;
-//                default:
-//                    break;
-//            }
-//        }
-//
-//
-//
-//    };
+    private View.OnClickListener Itemclick = new View.OnClickListener() {
+        @Override
+        public void onClick( View v) {
+            if(popupWindow.isShowing()){
+                popupWindow.dismiss();
+            }
+            switch (v.getId()) {
+                case R.id.shanchuliuyan:
+
+                    break;
+                case R.id.liuyanban_cencle:
+
+                    break;
+                default:
+                    break;
+            }
+        }
+
+
+
+    };
 
 
     public void onSyncDataFromServer(){

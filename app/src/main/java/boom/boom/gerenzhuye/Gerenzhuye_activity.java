@@ -48,8 +48,7 @@ import boom.boom.api.Utils;
 import boom.boom.liuyan.Liuyan_activity;
 import boom.boom.myview.CircleImageView;
 import boom.boom.myview.SildingFinishLayout;
-import boom.boom.tianjiahaoyou.Liuyanban_fragment;
-import boom.boom.tianzhan.Tiaozhan_activity;
+
 
 
 /**
@@ -77,7 +76,7 @@ public class  Gerenzhuye_activity extends FragmentActivity
     private String data;
     private int mCurrentPageIndex;
     private String guestID;
-
+    public LinearLayout allLinear;
     private Button liuyan;
     android.os.Handler myMessageHandler = new android.os.Handler() {
         @Override
@@ -106,7 +105,7 @@ public class  Gerenzhuye_activity extends FragmentActivity
                 });
 
         mSildingFinishLayout.setTouchView(mSildingFinishLayout);
-
+        allLinear = (LinearLayout) findViewById(R.id.zhengge);
         new Thread(new Runnable() {
             @Override
             public void run() {

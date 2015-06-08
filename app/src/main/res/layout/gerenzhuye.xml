@@ -2,11 +2,12 @@
 <boom.boom.myview.SildingFinishLayout
     android:id="@+id/sildingFinishLayout1"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
+    android:layout_height="950dp"
     xmlns:android="http://schemas.android.com/apk/res/android" >
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:layout_height="950dp"
     android:background="#ffdadada"
     android:orientation="vertical">
     <LinearLayout
@@ -65,10 +66,16 @@
 
     </LinearLayout>
 
-
+<LinearLayout
+    android:id="@+id/zhengge"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    android:weightSum="1">
     <LinearLayout
+
         android:visibility="visible"
-        android:id="@+id/gerenzhuye_yincang"
+        android:id="@+id/shangbanbufen"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/android_113"
@@ -153,18 +160,18 @@
                 android:layout_height="wrap_content"
                 android:src="@drawable/android_116"/>
             </LinearLayout>
+
+
     </LinearLayout>
-
-
 
     <android.support.v4.view.ViewPager
         android:layout_width="wrap_content"
-        android:layout_height="0dp"
+        android:layout_height="441dp"
         android:id="@+id/id_viewpager"
-        android:layout_weight="1"
-        />
+        android:layout_weight="0.86" />
 
 </LinearLayout>
+    </LinearLayout>
 
 
 
