@@ -82,23 +82,44 @@ public class Msg {
                     JSONObject tmp = Utils.GetSubJSONObject(json_data,"line"+i);
                     int type = tmp.getInt("type");
                     String date = tmp.getString("date");
-                    Bitmap icon;
+                    Bitmap icon, smallicon;
                     map.put("type",type);
                     map.put("date",date);
+                    String title = null;
+                    String text = null;
                     JSONObject data = Utils.GetSubJSONObject(tmp,"data");
                     switch (type) {
                         case 1://1.挑战成功或者失败
-                            map.put("title",data.getString("challenge_frontname"));
-                            map.put("content","+"+data.getString("earn_coins")+"★ 于"+date+"完成 用时"+data.getString("elapsed_time")+"s");
+
+                            if(data.getString("pass").equals("CHALLENGE_SUCCESS"))
+                            {
+                                title = "挑战成功！";
+                                text = "+"+data.getString("earn_coins")+"★ "+data.getString("challenge_frontname")+"完成 用时"+data.getString("elapsed_time")+"s";
+                            }
+                            else {
+                                title = "挑战失败！";
+                                text = "您的"+data.getString("challenge_frontname")+"失败！";
+                            }
+                            map.put("title",title);
+                            map.put("content",text);
                             icon = BitmapFactory.decodeResource(res, R.drawable.android_217);
                             map.put("icon",icon);
                             break;
                         case 2://2.自拟挑战审核状态
-                            map.put("title","发布的挑战已经通过审核!");
-                            map.put("content","挑战"+data.getString("frontname")+"已经通过审核!");
+                            if(data.getString("state").equals("SUCCESS_VERIFY")){
+                                title = "发布的挑战已经通过审核！";
+                                text = "挑战 “"+data.getString("frontname")+"” 已经通过审核!";
+                                smallicon = BitmapFactory.decodeResource(res,R.drawable.android_213);
+                            }else {
+                                title = "发布的挑战未通过审核！";
+                                text = "挑战 “"+data.getString("frontname")+"” 未通过审核!";
+                                smallicon = BitmapFactory.decodeResource(res,R.drawable.android_215);
+                            }
+                            map.put("title",title);
+                            map.put("content",text);
                             icon = BitmapFactory.decodeResource(res,R.drawable.android_217);
                             map.put("icon",icon);
-                            map.put("smallicon",BitmapFactory.decodeResource(res,R.drawable.android_213));
+                            map.put("smallicon",smallicon);
                             map.put("identifyDigit",data.getString("identifyDigit"));
                             break;
                         case 3://3.往期挑战，官方的审核状态
@@ -108,8 +129,8 @@ public class Msg {
                             map.put("icon",icon);
                             break;
                         case 4://4.官方推送的消息
-                            map.put("title","圣诞有礼，挑战积分双倍收！");
-                            map.put("content","asdkajsdlkjasldkjalskdjalsdjlkasd\noalksdjlaksjdlakd\nalskdjlaksjdlk\nalsksdjlaskjdlkjasldk");
+                            map.put("title",data.getString("title"));
+                            map.put("content",data.getString("text"));
                             icon = BitmapFactory.decodeResource(res,R.drawable.android_212);
                             map.put("icon",icon);
                             break;
@@ -127,7 +148,7 @@ public class Msg {
                             break;
                         case 7://7.评论回复
                             map.put("title","收到评论回复！");
-                            map.put("content","李斯本： 斜立易拉罐太特么虐心了！");
+                            map.put("content",data.getString("text_value"));
                             icon = BitmapFactory.decodeResource(res,R.drawable.android_216);
                             map.put("icon",icon);
                             break;
