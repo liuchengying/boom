@@ -68,7 +68,7 @@ public class xinxizhongxin_activity extends Activity implements XListView.IXList
 
 
 //        Button rightSideButton;
-        final ArrayList<Map<String, Object>> listItem = new ArrayList<>();
+        final ArrayList<Map<String, Object>> listItem = new ArrayList<Map<String, Object>>();
         list = (XListView) findViewById(R.id.challenge_list);
         list.setPullLoadEnable(true);
         list.setPullRefreshEnable(true);
@@ -96,7 +96,7 @@ public class xinxizhongxin_activity extends Activity implements XListView.IXList
                 new int[]{R.id.msg_center_list_label, R.id.msg_center_list_text}
         );*/
         Msg msg = new Msg();
-        ArrayList<HashMap<String,Object>> arrayList = new ArrayList<>();
+        ArrayList<HashMap<String,Object>> arrayList = new ArrayList<HashMap<String, Object>>();
         arrayList = msg.GetList(false,this);
         final ExpandableAdapter adapter = new ExpandableAdapter(this,arrayList);
         list.setAdapter(adapter);

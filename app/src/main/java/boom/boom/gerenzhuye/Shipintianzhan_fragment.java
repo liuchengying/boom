@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
@@ -49,14 +50,18 @@ public class Shipintianzhan_fragment extends Fragment implements XListView.IXLis
     private Button tianjiahaoyou_button;
     private String guestID;
     LinearLayout all;
+    String result = null;
     boolean animating;
     boolean upordown;
+    int UP =0;
+    int DOWN = 0;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState)
     {
         View v=inflater.inflate(R.layout.tianjiahaoyou1, container, false);
         lv= (XListView) v.findViewById(R.id.listView4);
+        lv.mContext = getActivity();
         guestID = getFragmentManager().findFragmentByTag("179521").getArguments().getString("guestID");
         lv.setPullLoadEnable(true);
         mHandler = new android.os.Handler();
@@ -66,22 +71,137 @@ public class Shipintianzhan_fragment extends Fragment implements XListView.IXLis
         lv.setXListViewListener(this);
         lv.setAdapter(mSimpleAdapter);
         all = ((Gerenzhuye_activity)getActivity()).allLinear;
+
+        lv.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                switch (event.getAction()){
+                    case MotionEvent.ACTION_DOWN:
+
+
+                    case MotionEvent.ACTION_MOVE:
+
+                    case  MotionEvent.ACTION_UP:
+
+                }
+                return false;
+            }
+        });
         lv.setOnScrollListener(new AbsListView.OnScrollListener() {
             @Override
             public void onScrollStateChanged(AbsListView view, int scrollState) {
+                /*int lvIndext= 0;
+                switch (scrollState) {
 
+                    // 滚动之前,手还在屏幕上  记录滚动前的下标
+                    case AbsListView.OnScrollListener.SCROLL_STATE_TOUCH_SCROLL:
+                        //view.getLastVisiblePosition();
+                        //得到当前屏幕可见的第一个item在整个listview中的下标
+                        lvIndext = view.getFirstVisiblePosition();
+                        break;
+
+                    //滚动停止
+                    case AbsListView.OnScrollListener.SCROLL_STATE_IDLE:
+                        //记录滚动停止后 记录当前item的位置
+                        int scrolled = view.getFirstVisiblePosition();
+                        //滚动后下标大于滚动前 向下滚动了
+                        if (scrolled > lvIndext) {
+                            //scroll = false;
+                            if (scrolled > 2) {
+                                if (!animating) {
+                                    AnimationSet animationSet = new AnimationSet(true);
+                                    TranslateAnimation translateAnimation = new TranslateAnimation(0, 0, 0, -620);
+                                    translateAnimation.setDuration(100);
+                                    translateAnimation.setAnimationListener(new Animation.AnimationListener() {
+                                        @Override
+                                        public void onAnimationStart(Animation animation) {
+                                            all.setVisibility(View.GONE);
+                                        }
+
+                                        @Override
+                                        public void onAnimationEnd(Animation animation) {
+                                            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                                                    all.getLayoutParams());
+
+                                            params.setMargins(0, -620, 0, 0);
+                                            animating = false;
+                                            all.clearAnimation();
+                                            all.setLayoutParams(params);
+                                            all.setVisibility(View.VISIBLE);
+
+                                        }
+
+                                        @Override
+                                        public void onAnimationRepeat(Animation animation) {
+
+                                        }
+                                    });
+                                    animationSet.addAnimation(translateAnimation);
+                                    animationSet.setFillAfter(true);
+                                    all.startAnimation(animationSet);
+                                    animating = true;
+                                }
+
+                                //scroll = true;
+                            }
+                        }
+                        //向上滚动了
+                        else {
+                            if (scrolled < 2){
+                                {
+                                    animating = false;
+                                    if (!animating) {
+                                        AnimationSet animationSet = new AnimationSet(true);
+                                        TranslateAnimation translateAnimation = new TranslateAnimation(0, 0, 0, 620);
+                                        translateAnimation.setDuration(100);
+                                        translateAnimation.setAnimationListener(new Animation.AnimationListener() {
+                                            @Override
+                                            public void onAnimationStart(Animation animation) {
+                                                all.setVisibility(View.GONE);
+                                            }
+
+                                            @Override
+                                            public void onAnimationEnd(Animation animation) {
+                                                LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                                                        all.getLayoutParams());
+
+                                                params.setMargins(0, 0, 0, 0);
+                                                animating = false;
+                                                all.clearAnimation();
+                                                all.setLayoutParams(params);
+                                                all.setVisibility(View.VISIBLE);
+
+
+                                            }
+
+                                            @Override
+                                            public void onAnimationRepeat(Animation animation) {
+
+                                            }
+                                        });
+                                        animationSet.addAnimation(translateAnimation);
+                                        animationSet.setFillAfter(true);
+                                        all.startAnimation(animationSet);
+                                        Toast.makeText(getActivity(), "5", Toast.LENGTH_SHORT).show();
+                                        animating = true;
+                                    }
+
+                                }
+                            }
+                        }
+                        break;
+
+                }*/
             }
-
             @Override
             public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
-                if(firstVisibleItem==2)
-                {
-                    if(!animating) {
-                        if(!upordown) {
-                            animating = true;
+               /* if (firstVisibleItem == 2) {
+                    if (!upordown) {
+
+                        if (UP == 0 && DOWN == 0) {
                             AnimationSet animationSet = new AnimationSet(true);
                             TranslateAnimation translateAnimation = new TranslateAnimation(0, 0, 0, -620);
-                            translateAnimation.setDuration(1000);
+                            translateAnimation.setDuration(500);
                             translateAnimation.setAnimationListener(new Animation.AnimationListener() {
                                 @Override
                                 public void onAnimationStart(Animation animation) {
@@ -94,12 +214,12 @@ public class Shipintianzhan_fragment extends Fragment implements XListView.IXLis
                                             all.getLayoutParams());
 
                                     params.setMargins(0, -620, 0, 0);
-
+                                    UP = 1;
+                                    DOWN = 0;
                                     all.clearAnimation();
                                     all.setLayoutParams(params);
                                     all.setVisibility(View.VISIBLE);
-                                    upordown = true;
-                                    animating = false;
+
                                 }
 
                                 @Override
@@ -110,9 +230,9 @@ public class Shipintianzhan_fragment extends Fragment implements XListView.IXLis
                             animationSet.addAnimation(translateAnimation);
                             animationSet.setFillAfter(true);
                             all.startAnimation(animationSet);
-                            Toast.makeText(getActivity(), "5", Toast.LENGTH_SHORT).show();
-                        }else {
-                            animating = true;
+
+                        } else {
+
                             AnimationSet animationSet = new AnimationSet(true);
                             TranslateAnimation translateAnimation = new TranslateAnimation(0, 0, 0, 620);
                             translateAnimation.setDuration(1000);
@@ -132,8 +252,9 @@ public class Shipintianzhan_fragment extends Fragment implements XListView.IXLis
                                     all.clearAnimation();
                                     all.setLayoutParams(params);
                                     all.setVisibility(View.VISIBLE);
-                                    upordown = false;
-                                    animating = false;
+                                    UP = 0;
+                                    DOWN = 0;
+
                                 }
 
                                 @Override
@@ -145,9 +266,11 @@ public class Shipintianzhan_fragment extends Fragment implements XListView.IXLis
                             animationSet.setFillAfter(true);
                             all.startAnimation(animationSet);
                             Toast.makeText(getActivity(), "5", Toast.LENGTH_SHORT).show();
+                            upordown = false;
                         }
                     }
                 }
+            }*/
             }
         });
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -192,18 +315,28 @@ public class Shipintianzhan_fragment extends Fragment implements XListView.IXLis
     }
 
     public void onSyncDataFromServer(){
+        Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                result = null;
+
+                //http://172.24.10.118/api/rank.php?action=getFriendsrank&guest_id=10000
+                Utils.GetBuilder get = new Utils.GetBuilder(Utils.serveraddr + "/api/rank.php");
+                get.addItem("action", "getFriendsrank");
+                get.addItem("guest_id",guestID);
+                HttpIO io = new HttpIO(get.toString());
+                io.SetCustomSessionID(Static.session_id);
+                Gerenzhuye_activity.obj = null;
+                io.GETToHTTPServer();
+                result = io.getResultData();
+            }
+        });
+        thread.start();
         ArrayList<HashMap<String, Object>> listItem = new ArrayList<HashMap<String,     Object>>();
-        //http://172.24.10.118/api/rank.php?action=getFriendsrank&guest_id=10000
-        Utils.GetBuilder get = new Utils.GetBuilder(Utils.serveraddr + "/api/rank.php");
-        get.addItem("action", "getFriendsrank");
-        get.addItem("guest_id",guestID);
-        HttpIO io = new HttpIO(get.toString());
-        io.SetCustomSessionID(Static.session_id);
-        Gerenzhuye_activity.obj = null;
         int round = 0;
-        io.GETToHTTPServer();
+        while (result==null);
         try {
-            Gerenzhuye_activity.obj = new JSONObject(io.getResultData());
+            Gerenzhuye_activity.obj = new JSONObject(result);
             JSONObject tmp = Utils.GetSubJSONObject(Gerenzhuye_activity.obj, "response");
             round = Integer.parseInt(tmp.getString("limit"));
         } catch (Exception e) {

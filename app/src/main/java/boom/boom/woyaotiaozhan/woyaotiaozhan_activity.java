@@ -49,7 +49,7 @@ public class woyaotiaozhan_activity extends Activity {
         Button fh=(Button)findViewById(R.id.wytz_fanhui);
           SysApplication.getInstance().addActivity(this);
 //        Button rightSideButton;
-        final ArrayList<Map<String, Object>> listItem = new ArrayList<>();
+        final ArrayList<Map<String, Object>> listItem = new ArrayList<Map<String, Object>>();
         list = (ListView)findViewById(R.id.challenge1_list);
         while (true) {
             Challenge challenge = new Challenge();

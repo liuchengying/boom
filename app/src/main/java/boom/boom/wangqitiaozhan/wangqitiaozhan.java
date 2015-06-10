@@ -83,7 +83,7 @@ public class wangqitiaozhan extends Activity{
 
                 JSONObject perSeries = Utils.GetSubJSONObject(tmp,"data");
                 int limit = perSeries.getInt("limit");
-                ArrayList<itemData> strItem = new ArrayList<>();
+                ArrayList<itemData> strItem = new ArrayList<itemData>();
                 for(int m=1;m<limit+1;m++){
                     try {
                         JSONObject item = Utils.GetSubJSONObject(perSeries, "" + m);

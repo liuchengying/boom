@@ -7,19 +7,29 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewTreeObserver.OnGlobalLayoutListener;
+import android.view.animation.Animation;
+import android.view.animation.AnimationSet;
 import android.view.animation.DecelerateInterpolator;
+import android.view.animation.TranslateAnimation;
 import android.widget.AbsListView;
 import android.widget.AbsListView.OnScrollListener;
+import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.Scroller;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import boom.boom.R;
+import boom.boom.gerenzhuye.Gerenzhuye_activity;
 
 public class XListView extends ListView implements OnScrollListener {
-
+    private float Y = 0;
+    private float z = 0;
+    private float F = 0;
+    LinearLayout all;
 	private float mLastY = -1; // save event y
 	private Scroller mScroller; // used for scroll back
 	private OnScrollListener mScrollListener; // user's scroll listener
@@ -56,14 +66,15 @@ public class XListView extends ListView implements OnScrollListener {
 														// at bottom, trigger
 														// load more.
 	private final static float OFFSET_RADIO = 1.8f; // support iOS like pull
-													// feature.
-
+				 									// feature.
+    public Context mContext;
 	/**
 	 * @param context
 	 */
 	public XListView(Context context) {
 		super(context);
 		initWithContext(context);
+
 	}
 
 	public XListView(Context context, AttributeSet attrs) {
@@ -257,18 +268,112 @@ public class XListView extends ListView implements OnScrollListener {
 			mListViewListener.onLoadMore();
 		}
 	}
-
+    boolean animating ;
+    static boolean ok;
 	@Override
 	public boolean onTouchEvent(MotionEvent ev) {
+
 		if (mLastY == -1) {
 			mLastY = ev.getRawY();
+            Y = ev.getRawY();
 		}
 
 		switch (ev.getAction()) {
 		case MotionEvent.ACTION_DOWN:
+            Y = ev.getRawY();
 			mLastY = ev.getRawY();
 			break;
 		case MotionEvent.ACTION_MOVE:
+            z = ev.getRawY();
+            F = z - Y;
+            all = ((Gerenzhuye_activity)mContext).allLinear;
+            if(all != null) {
+                if (F < -5) {
+                    //手指向上滑动
+                    if (getFirstVisiblePosition() > 0) {
+
+                        if (!animating) {
+                            if (!ok) {
+                                AnimationSet animationSet = new AnimationSet(true);
+                                TranslateAnimation translateAnimation = new TranslateAnimation(0, 0, 0, -500);
+                                translateAnimation.setDuration(500);
+                                translateAnimation.setAnimationListener(new Animation.AnimationListener() {
+                                    @Override
+                                    public void onAnimationStart(Animation animation) {
+                                        all.setVisibility(View.GONE);
+                                    }
+
+                                    @Override
+                                    public void onAnimationEnd(Animation animation) {
+                                        RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(
+                                                all.getLayoutParams());
+
+                                        params.setMargins(0, -380, 0, 0);
+                                        animating = false;
+                                        all.clearAnimation();
+                                        all.setLayoutParams(params);
+                                        all.setVisibility(View.VISIBLE);
+
+                                    }
+
+                                    @Override
+                                    public void onAnimationRepeat(Animation animation) {
+
+                                    }
+                                });
+                                animationSet.addAnimation(translateAnimation);
+                                animationSet.setFillAfter(true);
+                                all.startAnimation(animationSet);
+                                animating = true;
+                                ok = true;
+                            }
+                        }
+                    }
+                }
+                if (F > 5) {
+
+                    //手指向下滑动
+                    if (getFirstVisiblePosition() <= 5 && getFirstVisiblePosition() >= 0) {
+                        if (!animating) {
+                            if (ok) {
+                                AnimationSet animationSet = new AnimationSet(true);
+                                TranslateAnimation translateAnimation = new TranslateAnimation(0, 0, 0, 500);
+                                translateAnimation.setDuration(500);
+                                translateAnimation.setAnimationListener(new Animation.AnimationListener() {
+                                    @Override
+                                    public void onAnimationStart(Animation animation) {
+                                        all.setVisibility(View.GONE);
+                                    }
+
+                                    @Override
+                                    public void onAnimationEnd(Animation animation) {
+                                        RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(
+                                                all.getLayoutParams());
+
+                                        params.setMargins(0, 120, 0, 0);
+                                        animating = false;
+                                        all.clearAnimation();
+                                        all.setLayoutParams(params);
+                                        all.setVisibility(View.VISIBLE);
+
+                                    }
+
+                                    @Override
+                                    public void onAnimationRepeat(Animation animation) {
+
+                                    }
+                                });
+                                animationSet.addAnimation(translateAnimation);
+                                animationSet.setFillAfter(true);
+                                all.startAnimation(animationSet);
+                                animating = true;
+                                ok = false;
+                            }
+                        }
+                    }
+                }
+            }
+
 			final float deltaY = ev.getRawY() - mLastY;
 			mLastY = ev.getRawY();
 			if (getFirstVisiblePosition() == 0
@@ -281,7 +386,13 @@ public class XListView extends ListView implements OnScrollListener {
 				// last item, already pulled up or want to pull up.
 				updateFooterHeight(-deltaY / OFFSET_RADIO);
 			}
+
 			break;
+            case MotionEvent.ACTION_UP:
+
+
+
+
 		default:
 			mLastY = -1; // reset
 			if (getFirstVisiblePosition() == 0) {

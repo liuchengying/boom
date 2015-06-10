@@ -30,6 +30,7 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import org.json.JSONObject;
@@ -65,7 +66,7 @@ public class  Gerenzhuye_activity extends FragmentActivity
     private TextView mFriendTextView;
     private TextView mContactTextView;
     private LinearLayout mChatLinearLayout;
-    private LinearLayout gerenzhuyefanhui;
+    private RelativeLayout gerenzhuyefanhui;
     private TextView l1,l2,l3;
     private CircleImageView gerenzhuye_touxing;
     public static JSONObject obj;
@@ -106,6 +107,7 @@ public class  Gerenzhuye_activity extends FragmentActivity
 
         mSildingFinishLayout.setTouchView(mSildingFinishLayout);
         allLinear = (LinearLayout) findViewById(R.id.zhengge);
+
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -154,7 +156,7 @@ public class  Gerenzhuye_activity extends FragmentActivity
             } else {
                 gerenzhuye_touxing.setImageBitmap(avatar);
             }
-            gerenzhuyefanhui = (LinearLayout) findViewById(R.id.gerenzhuyefanhui);
+            gerenzhuyefanhui = (RelativeLayout) findViewById(R.id.gerenzhuyefanhui);
             gerenzhuyefanhui.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

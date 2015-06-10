@@ -10,66 +10,15 @@
     android:layout_height="950dp"
     android:background="#ffdadada"
     android:orientation="vertical">
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="60dp"
-        android:background="#ffe14723"
-        android:orientation="horizontal"
-        android:gravity="center"
-
-
-        >
-        <LinearLayout
-            android:id="@+id/gerenzhuyefanhui"
-            android:layout_weight="0.53"
-            android:layout_width="wrap_content"
-            android:layout_height="50dp"
-            android:gravity="center_vertical"
-            >
-            <Button
-                android:id="@+id/zhucufanhui"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/android_20"
-                android:gravity="center_horizontal"
-                android:layout_marginLeft="10dp"/>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_weight="1"
-            android:layout_width="wrap_content"
-            android:layout_height="50dp"
-            android:gravity="center_vertical">
-            <TextView
-                android:layout_weight="1"
-                android:layout_marginLeft="70dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="个人主页"
-                android:textSize="25sp"
-                android:textColor="#eeeeee"
-
-
-                />
-            <Button
-                android:id="@+id/liuyan_button"
-
-                android:layout_weight="1"
-                android:layout_width="50dp"
-                android:layout_height="fill_parent"
-                android:background="#ffe14723"
-                android:text="留言"
-                android:textSize="20sp"
-                android:textColor="#ffffff"
-                />
-
-        </LinearLayout>
-
-    </LinearLayout>
+ <RelativeLayout
+     android:layout_width="fill_parent"
+     android:layout_height="fill_parent">
 
 <LinearLayout
+    android:layout_marginTop="60dp"
     android:id="@+id/zhengge"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
+    android:layout_height="837dp"
     android:orientation="vertical"
     android:weightSum="1">
     <LinearLayout
@@ -166,12 +115,59 @@
 
     <android.support.v4.view.ViewPager
         android:layout_width="wrap_content"
-        android:layout_height="441dp"
-        android:id="@+id/id_viewpager"
-        android:layout_weight="0.86" />
+        android:layout_height="match_parent"
+        android:id="@+id/id_viewpager" />
 
 </LinearLayout>
-    </LinearLayout>
+     <RelativeLayout
+         android:layout_width="fill_parent"
+         android:layout_height="60dp"
+         android:background="#ffe14723"
+         android:orientation="horizontal"
+         android:gravity="center"
+
+
+         >
+         <RelativeLayout
+             android:id="@+id/gerenzhuyefanhui"
+             android:layout_weight="0.53"
+             android:layout_width="80dp"
+             android:layout_height="fill_parent"
+             android:gravity="center_vertical"
+             android:layout_alignParentLeft="true"
+             >
+             <Button
+                 android:layout_centerVertical="true"
+                 android:id="@+id/zhucufanhui"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:background="@drawable/android_20"
+
+                 android:layout_marginLeft="10dp"/>
+         </RelativeLayout>
+         <TextView
+             android:layout_centerInParent="true"
+             android:layout_marginLeft="70dp"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:text="个人主页"
+             android:textSize="25sp"
+             android:textColor="#eeeeee"
+             />
+         <Button
+             android:id="@+id/liuyan_button"
+             android:layout_alignParentRight="true"
+             android:layout_width="80dp"
+             android:layout_height="fill_parent"
+             android:background="#ffe14723"
+             android:text="留言"
+             android:textSize="20sp"
+             android:textColor="#ffffff"
+             />
+     </RelativeLayout>
+
+ </RelativeLayout>
+</LinearLayout>
 
 
 

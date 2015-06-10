@@ -67,6 +67,7 @@ public class Liuyanban_fragment extends Fragment implements XListView.IXListView
         lv.setPullRefreshEnable(true);
         lv.setXListViewListener(this);
         lv.setAdapter(mSimpleAdapter);
+        lv.mContext = getActivity();
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
