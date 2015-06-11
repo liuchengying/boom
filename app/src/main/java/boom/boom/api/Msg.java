@@ -48,7 +48,7 @@ public class Msg {
                 public void run() {
                     HttpIO io = new HttpIO(Utils.serveraddr + MSG_API_URL );
                     io.SetCustomSessionID(Static.session_id);
-                    io.GETToHTTPServer();
+                    io.getJson();
                     if(io.LastError==0) {
                         RawDataStore = io.getResultData();
                         try {
@@ -135,9 +135,10 @@ public class Msg {
                             map.put("icon",icon);
                             break;
                         case 5://5.用户好友添加
-                            map.put("title",data.getString("alias")+"添加您为好友!");
+                            map.put("title",data.getString("nickname")+"添加您为好友!");
                             map.put("content","点击查看TA的主页");
                             icon = BitmapFactory.decodeResource(res,R.drawable.android_214);
+                            map.put("avatar",data.getString("avatar"));
                             map.put("icon",icon);
                             break;
                         case 6://6.用户的自拟挑战别人挑战成功与否的消息
@@ -148,7 +149,7 @@ public class Msg {
                             break;
                         case 7://7.评论回复
                             map.put("title","收到评论回复！");
-                            map.put("content",data.getString("text_value"));
+                            map.put("content",data.getString("nickname")+":"+data.getString("text_value"));
                             icon = BitmapFactory.decodeResource(res,R.drawable.android_216);
                             map.put("icon",icon);
                             break;
