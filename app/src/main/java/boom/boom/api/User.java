@@ -16,6 +16,8 @@ public class User {
     private String password;
     private boolean ifUserLoggedIn;
     private String ServerErr;
+    private String result;
+    private HttpIO io;
 
     public User(String user, String pass) {
         this.username = user;
@@ -26,17 +28,25 @@ public class User {
     }
 
     public User(final String session){
-        session_id = session;
-        Utils.GetBuilder get = new Utils.GetBuilder(Utils.serveraddr + Utils.userdata_api);
-        get.addItem("action", "getState");
-        Log.e("URI", get.toString());
-        HttpIO io = new HttpIO(get.toString());
-        io.SetCustomSessionID(session_id);
-        io.GETToHTTPServer();
+        Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                session_id = session;
+                Utils.GetBuilder get = new Utils.GetBuilder(Utils.serveraddr + Utils.userdata_api);
+                get.addItem("action", "getState");
+                Log.e("URI", get.toString());
+                io = new HttpIO(get.toString());
+                io.SetCustomSessionID(session_id);
+                io.GETToHTTPServer();
+                result = io.getResultData();
+            }
+        });
+        thread.start();
+        while(result==null);
         JSONObject obj = null;
         try {
                     if (io.LastError == 0) {
-                        String result = io.getResultData();
+
                         Log.e("Result", "Result ==> " + result);
                         obj = new JSONObject(result);
                         if (obj.getString("state").equals("SUCCESS")) {
