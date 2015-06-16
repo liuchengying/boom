@@ -18,7 +18,7 @@ public class UserData {
             public void run() {
                 HttpIO io = new HttpIO(USER_DATA_URL + "?action=query");
                 io.SetCustomSessionID(SessionID);
-                io.GETToHTTPServer();
+                io.getJson();
                 try {
                     userdata_str = io.getResultData();
                     Log.e("Uerdata", userdata_str);

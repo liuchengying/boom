@@ -286,7 +286,12 @@ public class XListView extends ListView implements OnScrollListener {
 		case MotionEvent.ACTION_MOVE:
             z = ev.getRawY();
             F = z - Y;
-            all = ((Gerenzhuye_activity)mContext).allLinear;
+            try {
+                all = ((Gerenzhuye_activity) mContext).allLinear;
+            }catch (Exception e)
+            {
+                e.printStackTrace();
+            }
             if(all != null) {
                 if (F < -5) {
                     //手指向上滑动
@@ -333,7 +338,7 @@ public class XListView extends ListView implements OnScrollListener {
                 if (F > 5) {
 
                     //手指向下滑动
-                    if (getFirstVisiblePosition() <= 5 && getFirstVisiblePosition() >= 0) {
+                    if (getFirstVisiblePosition() <= 1 && getFirstVisiblePosition() >= 0) {
                         if (!animating) {
                             if (ok) {
                                 AnimationSet animationSet = new AnimationSet(true);

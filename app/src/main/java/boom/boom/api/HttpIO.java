@@ -28,6 +28,7 @@ import java.net.URL;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.zip.GZIPInputStream;
 
 /**
  * Created by 1eekai on 2015/1/16.
@@ -249,14 +250,19 @@ public class HttpIO {
             if (url != null) {
                 urlConn = (HttpURLConnection) url.openConnection();
                 urlConn.setConnectTimeout(5000);// 设置超时时间
+                urlConn.setRequestProperty("Accept-Encoding", "gzip, deflate");
                 urlConn.setRequestProperty("Cookie","PHPSESSID=" + this.SessionID);
                 try {
-                    in = new InputStreamReader(urlConn.getInputStream());
+                    GZIPInputStream gin = new GZIPInputStream(urlConn.getInputStream());
+                    in = new InputStreamReader(gin);
+
                 } catch (ConnectException e) {
                     e.printStackTrace();
                     return resultData;
                 }
             }
+            String encoding = urlConn.getContentEncoding();
+
             buffer = new BufferedReader(in);
             String inputLine = null;
 
