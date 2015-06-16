@@ -112,11 +112,12 @@
 
 
     </LinearLayout>
-
+     
     <android.support.v4.view.ViewPager
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:id="@+id/id_viewpager" />
+
 
 </LinearLayout>
      <RelativeLayout
@@ -168,6 +169,59 @@
 
  </RelativeLayout>
 </LinearLayout>
+    <AbsoluteLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_x="0dp"
+            android:layout_y="570dp"
+            android:layout_alignParentBottom="true"
+            android:visibility="invisible"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="155dp"
+            android:background="@drawable/android_195"
+            android:gravity="center"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:text="添 加 好 友"
+                android:gravity="center_vertical"
+                android:textSize="18sp"
+                android:textColor="#ffffff"
+                />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_x="0dp"
+            android:layout_y="570dp"
+            android:layout_alignParentBottom="true"
+            android:visibility="invisible"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="155dp"
+            android:orientation="horizontal"
+            android:gravity="center"
+            >
+            <Button
+                android:textSize="18sp"
+                android:textColor="#ffffff"
+                android:text="同意添加"
+                android:layout_weight="1"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:background="@drawable/android_222" />
+            <Button
+                android:textSize="18sp"
+                android:textColor="#ffffff"
+                android:text="拒绝添加"
+                android:layout_weight="1"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:background="@drawable/android_221" />
+        </LinearLayout>
+
+    </AbsoluteLayout>
 
 
 
