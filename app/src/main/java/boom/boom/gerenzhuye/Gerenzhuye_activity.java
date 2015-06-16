@@ -140,7 +140,7 @@ public class  Gerenzhuye_activity extends FragmentActivity
                             tjhy_tv.setText("等 待 通 过");
                         }
                     });
-                }else if(response.equals("AWAITING_FRIENDSHIP_VERIFIED")) {
+                }else if(response.equals("AWAITING_FRIENDS_ACCEPTED")) {
                     tjhy_tv.setText("等 待 通 过");
                 }
 
