@@ -105,13 +105,21 @@ public class Search_friends_activity extends Activity{
                 //Toast.makeText(Search_friends_activity.this,"asdasd",Toast.LENGTH_SHORT).show();
                 HashMap<String,Object>pos = listItem.get(position);
                 String friendship = (String)pos.get("friendship");
-                if(friendship.equals("NOT_FRIEND_YET")){
+                if(friendship.equals("FRIENDSHIP_EXISTED")){
                     Intent intent = new Intent();
                     intent.putExtra("guestID",(String)pos.get("identifyDigit"));
-                    intent.setClass(Search_friends_activity.this, Tianjiahaoyou_activity.class);
+                    intent.putExtra("type",1);
+                    intent.setClass(Search_friends_activity.this, Gerenzhuye_activity.class);
                     startActivity(intent);
-                }else{
+                }else if(friendship.equals("FRIENDSHIP_NOT_EXISTED")){
                     Intent intent = new Intent();
+                    intent.putExtra("type",2);
+                    intent.putExtra("guestID",(String)pos.get("identifyDigit"));
+                    intent.setClass(Search_friends_activity.this, Gerenzhuye_activity.class);
+                    startActivity(intent);
+                }else if(friendship.equals("AWAITING_FRIENDS_ACCEPTED")){
+                    Intent intent = new Intent();
+                    intent.putExtra("type",3);
                     intent.putExtra("guestID",(String)pos.get("identifyDigit"));
                     intent.setClass(Search_friends_activity.this, Gerenzhuye_activity.class);
                     startActivity(intent);

@@ -116,6 +116,8 @@ public class Tiaozhan_activity extends Activity {
             public void onClick(View v) {
                 Intent intent = new Intent();
                 intent.setClass(Tiaozhan_activity.this, Gerenzhuye_activity.class);
+                intent.putExtra("type",1);
+                intent.putExtra("guestID",Static.identifyDigit);
                 startActivity(intent);
                 overridePendingTransition(R.anim.base_slide_right_in, R.anim.base_slide_remain);
             }
@@ -226,6 +228,7 @@ public class Tiaozhan_activity extends Activity {
             public void onClick(final View v) {
                 Intent intent = new Intent();
                 intent.setClass(Tiaozhan_activity.this, Gerenzhuye_activity.class);
+                intent.putExtra("type",1);
                 intent.putExtra("guestID",Static.identifyDigit);
                 startActivity(intent);
                 Timer timer=new Timer();

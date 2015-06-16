@@ -79,6 +79,12 @@ public class  Gerenzhuye_activity extends FragmentActivity
     private String guestID;
     public LinearLayout allLinear;
     private Button liuyan;
+    private LinearLayout tjhy_ll;
+    private TextView tjhy_tv;
+    private LinearLayout tyjj_ll;
+    private Button agree;
+    private Button disagree;
+    private int type;
     android.os.Handler myMessageHandler = new android.os.Handler() {
         @Override
         public void handleMessage(Message msg) {
@@ -94,7 +100,81 @@ public class  Gerenzhuye_activity extends FragmentActivity
         setContentView(R.layout.gerenzhuye);
         SysApplication.getInstance().addActivity(this);
         FontManager.changeFonts(FontManager.getContentView(this), this);//字体
+        tjhy_ll = (LinearLayout) findViewById(R.id.grzy_tjhy_ll);
+        tjhy_tv = (TextView) findViewById(R.id.grzy_tjhy_tv);
+        tyjj_ll = (LinearLayout) findViewById(R.id.grzy_tyjj_ll);
+        agree = (Button) findViewById(R.id.grzy_ty_bt);
+        disagree = (Button) findViewById(R.id.grzy_jj_bt);
         guestID = getIntent().getStringExtra("guestID");
+        type = getIntent().getIntExtra("type",1);
+        switch (type)
+        {
+            case 1://都不显示
+            {
+                tjhy_ll.setVisibility(View.INVISIBLE);
+                tyjj_ll.setVisibility(View.INVISIBLE);
+                break;
+            }
+            case 2://显示添加好友
+            {
+                tjhy_ll.setVisibility(View.VISIBLE);
+                HttpIO io = new HttpIO(Utils.serveraddr + "api/newfriend.php?action=verify&guest_id="+guestID);
+                io.SessionID = Static.session_id;
+                io.getJson();
+                String response = null;
+                try {
+                    JSONObject obj = new JSONObject(io.getResultData());
+                    response = obj.getString("status");
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+
+                if(response.equals("FRIENDSHIP_NOT_EXISTED")){
+                    tjhy_tv.setText("添 加 好 友");
+                    tjhy_ll.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            HttpIO io = new HttpIO(Utils.serveraddr + "api/newfriend.php?action=newfriend&guest="+guestID);
+                            io.SessionID = Static.session_id;
+                            io.getJson();
+                            tjhy_tv.setText("等 待 通 过");
+                        }
+                    });
+                }else if(response.equals("AWAITING_FRIENDSHIP_VERIFIED")) {
+                    tjhy_tv.setText("等 待 通 过");
+                }
+
+
+                tyjj_ll.setVisibility(View.INVISIBLE);
+                break;
+            }
+            case 3://显示等待通过
+            {
+                tjhy_ll.setVisibility(View.VISIBLE);
+                tjhy_tv.setText("等 待 通 过");
+                tyjj_ll.setVisibility(View.INVISIBLE);
+                break;
+            }
+            case 4://显示拒绝添加
+            {
+                tjhy_ll.setVisibility(View.INVISIBLE);
+                tyjj_ll.setVisibility(View.VISIBLE);
+                agree.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                    }
+                });
+                disagree.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                    }
+                });
+                break;
+            }
+        }
+
         SildingFinishLayout mSildingFinishLayout = (SildingFinishLayout) findViewById(R.id.sildingFinishLayout1);
         mSildingFinishLayout
                 .setOnSildingFinishListener(new SildingFinishLayout.OnSildingFinishListener() {

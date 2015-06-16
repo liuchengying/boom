@@ -117,6 +117,7 @@ public class Haoyouliebiao_activity extends Activity {
                     String guestID = (String) ((HashMap<String, Object>) listItem.get(position)).get("guestID");
                     Intent intent = new Intent();
                     intent.putExtra("guestID", guestID);
+                    intent.putExtra("type",1);
                     intent.setClass(Haoyouliebiao_activity.this, Gerenzhuye_activity.class);
                     startActivity(intent);
                 }
