@@ -43,9 +43,7 @@ public class Msg {
         }
     };
     public Msg(){
-            Thread thread = new Thread(new Runnable() {
-                @Override
-                public void run() {
+
                     HttpIO io = new HttpIO(Utils.serveraddr + MSG_API_URL );
                     io.SetCustomSessionID(Static.session_id);
                     io.getJson();
@@ -63,10 +61,9 @@ public class Msg {
                         LastError=DATAERROR;
                     }
                 }
-            });
-        thread.start();
-        while(json_data==null);
-    }
+
+
+
 
 
     public ArrayList<HashMap<String, Object>> GetList(boolean reset,Context context){
@@ -123,8 +120,20 @@ public class Msg {
                             map.put("identifyDigit",data.getString("identifyDigit"));
                             break;
                         case 3://3.往期挑战，官方的审核状态
-                            map.put("title","您的往期挑战已通过审核!");
-                            map.put("content","挑战已通过审核!");
+                            if(data.getString("pass").equals("CHALLENGE_SUCCESS"))
+                            {
+                                map.put("title", "发布的往期挑战已通过审核!");
+                                map.put("content","挑战“"+data.getString("challenge_frontname")+"”已通过审核！");
+                                smallicon = BitmapFactory.decodeResource(res,R.drawable.android_213);
+                                map.put("pass",true);
+                                map.put("challenge_id",data.getString("challenge_id"));
+                            }else {
+                                map.put("title","发布的往期挑战未通过审核!");
+                                map.put("content","挑战“"+data.getString("challenge_frontname")+"”未通过审核！");
+                                smallicon = BitmapFactory.decodeResource(res,R.drawable.android_215);
+                                map.put("pass",false);
+                            }
+                            map.put("smallicon",smallicon);
                             icon = BitmapFactory.decodeResource(res,R.drawable.android_217);
                             map.put("icon",icon);
                             break;
@@ -138,6 +147,7 @@ public class Msg {
                             map.put("title",data.getString("nickname")+"添加您为好友!");
                             map.put("content","点击查看TA的主页");
                             icon = BitmapFactory.decodeResource(res,R.drawable.android_214);
+                            map.put("host_id",data.getString("host_id"));
                             map.put("avatar",data.getString("avatar"));
                             map.put("icon",icon);
                             break;
@@ -153,6 +163,15 @@ public class Msg {
                             icon = BitmapFactory.decodeResource(res,R.drawable.android_216);
                             map.put("icon",icon);
                             break;
+                        case 8://点好友
+                            map.put("title","好友"+data.getString("host_nickname")+"对你发起挑战！");
+                            map.put("content","挑战成功 +2★  挑战失败 -2★");
+                            icon = BitmapFactory.decodeResource(res,R.drawable.android_209);
+                            smallicon = BitmapFactory.decodeResource(res,R.drawable.android_208);
+                            map.put("icon",icon);
+                            map.put("cl_id",data.getString("cl_id"));
+                            map.put("smallicon",smallicon);
+
                     }
 
                     list.add(map);
