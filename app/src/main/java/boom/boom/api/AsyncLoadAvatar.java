@@ -1,5 +1,6 @@
 package boom.boom.api;
 
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
@@ -12,6 +13,9 @@ import java.io.InputStream;
 import java.net.ConnectException;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ResourceBundle;
+
+import boom.boom.R;
 
 /**
  * Created by Administrator on 2015/5/21.
@@ -48,6 +52,7 @@ public class AsyncLoadAvatar {
 
     public static boolean SaveBitmapToLocal(Bitmap target , String avatarUID)
     {
+
         try {
             File f = new File(Utils.getImagePath() + avatarUID + ".png");
             f.createNewFile();

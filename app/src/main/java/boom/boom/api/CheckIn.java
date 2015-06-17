@@ -23,7 +23,7 @@ public class CheckIn {
 
             HttpIO io = new HttpIO(url_request);
             io.SetCustomSessionID(Static.session_id);
-            io.GETToHTTPServer();
+            io.getJson();
             if (io.LastError == 0) {
                 String httpResult = io.getResultData();
                 JSONObject obj = new JSONObject(httpResult);

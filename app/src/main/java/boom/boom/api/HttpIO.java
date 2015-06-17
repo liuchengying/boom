@@ -141,7 +141,9 @@ public class HttpIO {
         this.ResultBuffer = result;
         return result;
     }
+    @TargetApi(Build.VERSION_CODES.GINGERBREAD)
 
+    @SuppressLint("NewApi")
     public String GETToHTTPServer() {
         /*
          *  GetToHTTPServer() 用法：
@@ -150,7 +152,10 @@ public class HttpIO {
          *  io.GetToHTTPServer();
          */
         //final Boolean bFinished;
+        StrictMode.ThreadPolicy policy=new StrictMode.ThreadPolicy.Builder().permitAll().build();
 
+        StrictMode.setThreadPolicy(policy);
+        //严格策略
 
         String result = null;
         BufferedReader reader = null;
