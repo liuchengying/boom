@@ -12,14 +12,20 @@ import java.util.Map;
 public class Challenge {
     public static final String challenge_api = "/api/getChallenge.php";
     public static final String take_cl_api = "/api/takeChallenge.php";
-    public String RawDataStore;
+    public String RawDataStore = null;
     public JSONObject json_data;
     private int counter = 0;
     public Challenge(){
-        HttpIO io = new HttpIO(Utils.serveraddr + challenge_api + "?action=get_short_intro");
-        io.SetCustomSessionID(Static.session_id);
-        io.GETToHTTPServer();
-        RawDataStore = io.getResultData();
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                HttpIO io = new HttpIO(Utils.serveraddr + challenge_api + "?action=get_short_intro");
+                io.SetCustomSessionID(Static.session_id);
+                io.GETToHTTPServer();
+                RawDataStore = io.getResultData();
+            }
+        }).start();
+        while (RawDataStore == null);
         try {
             json_data = new JSONObject(RawDataStore);
             json_data = json_data.getJSONObject("1");

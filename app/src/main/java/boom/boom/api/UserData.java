@@ -11,7 +11,7 @@ import org.json.JSONObject;
 public class UserData {
     public static String USER_DATA_URL = Utils.serveraddr + "/api/userdata.php";
     private JSONObject userdata;
-    private String userdata_str;
+    private String userdata_str = null;
     public UserData(final String SessionID){
         Thread thread = new Thread(new Runnable() {
             @Override
@@ -25,13 +25,17 @@ public class UserData {
                     JSONObject json = new JSONObject(userdata_str);
                     userdata = json;
                 } catch (JSONException e) {
+                    userdata_str = "FUCK";
                     e.printStackTrace();
                 }
             }
         });
         thread.start();
-        while(userdata_str==null);
-
+        while (userdata_str == null);
+        if (userdata_str.equals("FUCK")){
+            Log.e("Status", "完蛋了，扑街了。");
+            while (true);
+        }
     }
     public String toString(){
         return this.userdata_str;

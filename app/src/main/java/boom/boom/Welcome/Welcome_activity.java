@@ -77,12 +77,15 @@ public class Welcome_activity extends Activity {
 //                this.session = buffer.toString();
                 this.session = new String(buffer, "UTF-8");
                 int counter;
+                Log.e("Test", "Test1");
                 for (counter = 0; buffer[counter] != '\u0000'; counter++);
+                Log.e("Test", "Test2");
                 this.session = this.session.substring(0, counter);
                 User user = new User(session);
                 if (user.ifLoggedIn()){
                     UserData data  = new UserData(session);
                     Static.session_id = session;
+                    Log.e("Test", "Test3");
                     try {
                         Static.username = data.QueryData("name");
                         Static.nickname = data.QueryData("nickname");

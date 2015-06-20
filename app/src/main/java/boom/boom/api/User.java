@@ -16,7 +16,7 @@ public class User {
     private String password;
     private boolean ifUserLoggedIn;
     private String ServerErr;
-    private String result;
+    private String result = null;
     private HttpIO io;
 
     public User(String user, String pass) {
@@ -42,7 +42,7 @@ public class User {
             }
         });
         thread.start();
-        while(result==null);
+        while(result == null);
         JSONObject obj = null;
         try {
                     if (io.LastError == 0) {

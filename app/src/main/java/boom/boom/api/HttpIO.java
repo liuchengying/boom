@@ -1,10 +1,7 @@
 package boom.boom.api;
 
-import android.annotation.SuppressLint;
-import android.annotation.TargetApi;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.os.Build;
 import android.os.StrictMode;
 
 import org.apache.http.HttpResponse;
@@ -26,8 +23,6 @@ import java.net.HttpURLConnection;
 import java.net.URI;
 import java.net.URL;
 import java.util.List;
-import java.util.Timer;
-import java.util.TimerTask;
 import java.util.zip.GZIPInputStream;
 
 /**
@@ -141,9 +136,8 @@ public class HttpIO {
         this.ResultBuffer = result;
         return result;
     }
-    @TargetApi(Build.VERSION_CODES.GINGERBREAD)
+ //   @TargetApi(Build.VERSION_CODES.GINGERBREAD)
 
-    @SuppressLint("NewApi")
     public String GETToHTTPServer() {
         /*
          *  GetToHTTPServer() 用法：
@@ -151,52 +145,17 @@ public class HttpIO {
          *  HttpIO io = new HttpIO("http://example.com/test.php?name=likai");
          *  io.GetToHTTPServer();
          */
-        //final Boolean bFinished;
-        StrictMode.ThreadPolicy policy=new StrictMode.ThreadPolicy.Builder().permitAll().build();
-
-        StrictMode.setThreadPolicy(policy);
-        //严格策略
-
         String result = null;
         BufferedReader reader = null;
-        bFinished=false;
         try {
-            final DefaultHttpClient client = new DefaultHttpClient();
-            final HttpGet request = new HttpGet();
+            DefaultHttpClient client = new DefaultHttpClient();
+            HttpGet request = new HttpGet();
             if (this.SessionID != null){
                 request.setHeader("Cookie", "PHPSESSID=" + this.SessionID);
             }
             request.setURI(new URI(
                     this.GetURL()));
-            Thread thread=new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    try {
-                        response = client.execute(request);
-                        bFinished = true;
-                    }
-                    catch (Exception e)
-                    {
-                        e.printStackTrace();
-                    }
-                }
-            });
-            thread.start();
-            TimerTask task=new TimerTask() {
-                @Override
-                public void run() {
-                    bFinished=true;
-                }
-            };
-            Timer timer=new Timer(true);
-            timer.schedule(task,5000);
-            while(!bFinished){}
-            if(response==null)
-            {
-                //Toast toast=new Toast(getApplicationContext(),"",Toast.LENGTH_SHORT);
-                LastError = CONNECTION_TIMED_OUT;
-                return null;
-            }
+            HttpResponse response = client.execute(request);
             if (this.sessionState){
                 cookiearray = client.getCookieStore().getCookies();
                 UpdateSessionID();
@@ -217,14 +176,13 @@ public class HttpIO {
                 try {
                     reader.close();
                     reader = null;
-                } catch (Exception e) {
+                } catch (IOException e) {
                     e.printStackTrace();
                 }
             }
         }
         this.ResultBuffer = result;
         return result;
-
     }
 
     public JSONObject getJSONObject(){
@@ -236,9 +194,9 @@ public class HttpIO {
         }
     }
 
-    @TargetApi(Build.VERSION_CODES.GINGERBREAD)
+ //   @TargetApi(Build.VERSION_CODES.GINGERBREAD)
 
-    @SuppressLint("NewApi")
+//    @SuppressLint("NewApi")
     public String getJson()
     {
         StrictMode.ThreadPolicy policy=new StrictMode.ThreadPolicy.Builder().permitAll().build();

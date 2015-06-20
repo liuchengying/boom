@@ -6,7 +6,6 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import android.widget.SimpleAdapter;
 
 import org.json.JSONObject;
@@ -16,7 +15,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Locale;
-import java.util.Objects;
 
 import boom.boom.R;
 import boom.boom.api.HttpIO;
@@ -34,6 +32,7 @@ public class Quanguopaihang_fragment extends Fragment implements XListView.IXLis
     private SimpleAdapter mSimpleAdapter;
     private ArrayList<HashMap<String, Object>> listItem;
     private int loadedline=0;
+    private String httpResult = null;
     private final static String DATE_FORMAT_STR = "yyyy-MM-dd HH:mm";
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -59,17 +58,24 @@ public class Quanguopaihang_fragment extends Fragment implements XListView.IXLis
             @Override
             public void run() {
                 //http://172.24.10.118/api/rank.php?action=board_hero
-                String httpResult;
                 Utils.GetBuilder getImageUrl = new Utils.GetBuilder(Utils.serveraddr +"api/rank.php");
                 getImageUrl.addItem("action", "board_hero");
                 getImageUrl.addItem("start", "1");
                 getImageUrl.addItem("line","5");
-                HttpIO io = new HttpIO(getImageUrl.toString());
-                io.SessionID=Static.session_id;
-                io.getJson();
-                if(io.LastError==0) {
-                    httpResult = io.getResultData();
-                    try{
+                final String url = getImageUrl.toString();
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        HttpIO io = new HttpIO(url);
+                        io.SessionID=Static.session_id;
+                        io.getJson();
+                        if(io.LastError==0) {
+                            httpResult = io.getResultData();
+                        }
+                    }
+                }).start();
+                while (httpResult == null);
+                try{
                         JSONObject obj= Utils.GetSubJSONObject(new JSONObject(httpResult),"response" );
                         listItem = new ArrayList<HashMap<String,     Object>>();//*在数组中存放数据*//*
                         if(obj.getString("state").equals("SUCCESS"))
@@ -95,10 +101,9 @@ public class Quanguopaihang_fragment extends Fragment implements XListView.IXLis
                             //mSimpleAdapter.notifyDataSetChanged();
                             loadedline=round;
                         }
-                    }catch (Exception e)
-                    {
-                        e.printStackTrace();
-                    }
+                }catch (Exception e)
+                {
+                    e.printStackTrace();
                 }
                 mSimpleAdapter = new SimpleAdapter(getActivity(),listItem,//需要绑定的数据
                         R.layout.quanguopaiming_item,//每一行的布局//动态数组中的数据源的键对应到定义布局的View中

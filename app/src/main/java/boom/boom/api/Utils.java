@@ -20,7 +20,7 @@ import java.util.Random;
  * Created by 1eekai on 2015/1/17.
  */
 public class Utils {
-    public static final String serveraddr = "http://studio307.leekai1995.com/";
+    public static final String serveraddr = "http://172.24.10.118/";
     public static final String video = "/api/getvideo.php";
     public static final String put_file_api = "api/upStream.php";
     public static final String take_cl_api = "api/take_challenge.php";
