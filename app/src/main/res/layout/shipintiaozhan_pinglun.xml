@@ -71,7 +71,8 @@
        android:layout_width="fill_parent"
        android:layout_height="fill_parent"
        android:orientation="vertical"
-       android:gravity="center_horizontal">
+       android:gravity="center_horizontal"
+       >
        <LinearLayout
            android:layout_marginTop="10dp"
            android:layout_width="wrap_content"
@@ -122,7 +123,7 @@
                        android:textSize="20sp"
                        android:textColor="#FF4444"
                        android:layout_marginTop="15dp"
-                       android:id="@+id/title" />
+                       android:id="@+id/nickname" />
                    <TextView
                        android:layout_width="wrap_content"
                        android:layout_height="wrap_content"
@@ -130,7 +131,7 @@
 
                        android:textColor="#ffb7b7b7"
                        android:layout_marginTop="12dp"
-                       android:id="@+id/count" />
+                       android:id="@+id/cl_name" />
                    <!--文本框内显示内容从服务器当中读取-->
                    <LinearLayout
                        android:layout_width="wrap_content"
@@ -145,7 +146,7 @@
                            android:src="@drawable/android_126"
                           />
                        <TextView
-                           android:id="@+id/assign_time"
+                           android:id="@+id/date"
                            android:layout_width="wrap_content"
                            android:layout_height="wrap_content"
                            android:text="12.23 19:00"
@@ -185,29 +186,32 @@
        </LinearLayout>
        <FrameLayout
            android:layout_gravity="center_horizontal"
-           android:layout_width="360dp"
-           android:layout_height="190dp"
-
+           android:layout_width="340dp"
+           android:layout_height="175dp"
+           android:layout_marginTop="10dp"
            android:gravity="center"
            android:orientation="vertical"
+           android:background="@drawable/android_223"
            >
 
            <VideoView
 
 
-               android:layout_width="350dp"
+               android:layout_width="330dp"
                android:layout_height="175dp"
                android:id="@+id/videoView_front1"
                android:layout_gravity="center"
                />
            <ImageView
-               android:layout_marginTop="6dp"
+               android:layout_marginLeft="-4dp"
+               android:layout_marginTop="-2dp"
                android:layout_width="wrap_content"
                android:layout_height="178dp"
                android:src="@drawable/android_174"/>
            <ImageView
+               android:layout_marginRight="-3dp"
                android:layout_gravity="right"
-               android:layout_marginTop="6dp"
+               android:layout_marginTop="-2dp"
                android:layout_width="wrap_content"
                android:layout_height="178dp"
                android:src="@drawable/android_173"/>
@@ -222,7 +226,6 @@
 
 
        </FrameLayout>
-
        <HorizontalScrollView
            android:layout_width="wrap_content"
            android:layout_height="wrap_content"

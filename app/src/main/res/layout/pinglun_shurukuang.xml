@@ -76,8 +76,7 @@
             android:layout_marginTop="20dp" >
 
             <EditText
-
-                android:hint="lcy回复lyp："
+                android:hint="回复XXX："
                 android:gravity="top|left"
                 android:singleLine="false" android:lines="10"
                 android:layout_marginTop="10dp"

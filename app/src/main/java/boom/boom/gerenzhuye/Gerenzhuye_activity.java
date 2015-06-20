@@ -85,6 +85,7 @@ public class  Gerenzhuye_activity extends FragmentActivity
     private Button agree;
     private Button disagree;
     private int type;
+    public String nickname;
     android.os.Handler myMessageHandler = new android.os.Handler() {
         @Override
         public void handleMessage(Message msg) {
@@ -213,7 +214,8 @@ public class  Gerenzhuye_activity extends FragmentActivity
             JSONObject obj = Utils.GetSubJSONObject(new JSONObject(result), "data");
 
             username = (TextView) findViewById(R.id.gerenzhuye_yonghuming);
-            username.setText(obj.getString("nickname"));
+            nickname = obj.getString("nickname");
+            username.setText(nickname);
             sign = (TextView) findViewById(R.id.gerenzhuye_qianming);
             sign.setText(obj.getString("uniquesign"));
             gerenzhuye_touxing = (CircleImageView) findViewById(R.id.gerenzhuye_touxiang);

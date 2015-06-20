@@ -55,6 +55,7 @@ public class Shipintianzhan_fragment extends Fragment implements XListView.IXLis
     boolean upordown;
     int UP =0;
     int DOWN = 0;
+    final ArrayList<HashMap<String, Object>> listItem= new ArrayList<HashMap<String,     Object>>();
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState)
@@ -62,6 +63,7 @@ public class Shipintianzhan_fragment extends Fragment implements XListView.IXLis
         View v=inflater.inflate(R.layout.tianjiahaoyou1, container, false);
         lv= (XListView) v.findViewById(R.id.listView4);
         lv.mContext = getActivity();
+
         guestID = getFragmentManager().findFragmentByTag("179521").getArguments().getString("guestID");
         lv.setPullLoadEnable(true);
         mHandler = new android.os.Handler();
@@ -277,6 +279,15 @@ public class Shipintianzhan_fragment extends Fragment implements XListView.IXLis
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent localIntent = new Intent(getActivity(), Shipintianzhan_pinglun.class);
+                int pos = position-1;
+                localIntent.putExtra("guestID",guestID);
+                localIntent.putExtra("ID",(String)listItem.get(pos).get("ID"));
+                localIntent.putExtra("cl_id",(String)listItem.get(pos).get("cl_id"));
+                localIntent.putExtra("count",(String)listItem.get(pos).get("count"));
+                localIntent.putExtra("date",(String)listItem.get(pos).get("assign_time"));
+                localIntent.putExtra("elapsed",(String)listItem.get(pos).get("elapsed"));
+                localIntent.putExtra("nickname",((Gerenzhuye_activity)getActivity()).nickname);
+                localIntent.putExtra("cl_name",(String)listItem.get(pos).get("title"));
                 startActivity(localIntent);
 
             }
@@ -315,6 +326,7 @@ public class Shipintianzhan_fragment extends Fragment implements XListView.IXLis
     }
 
     public void onSyncDataFromServer(){
+
         Thread thread = new Thread(new Runnable() {
             @Override
             public void run() {
@@ -332,7 +344,7 @@ public class Shipintianzhan_fragment extends Fragment implements XListView.IXLis
             }
         });
         thread.start();
-        ArrayList<HashMap<String, Object>> listItem = new ArrayList<HashMap<String,     Object>>();
+
         int round = 0;
         while (result==null);
         try {
@@ -343,7 +355,7 @@ public class Shipintianzhan_fragment extends Fragment implements XListView.IXLis
             e.printStackTrace();
         }
         for(int i=0;i<round;i++){
-            String title = null, text = null, location = null, assign_time = null, elapsed = null;
+            String title = null, text = null, location = null, assign_time = null, elapsed = null, cl_id = null,ID = null;
             if (Gerenzhuye_activity.obj != null) try {
                 JSONObject tmp = Utils.GetSubJSONObject(Gerenzhuye_activity.obj, "line"+i);
                 title = tmp.getString("frontname");
@@ -351,6 +363,8 @@ public class Shipintianzhan_fragment extends Fragment implements XListView.IXLis
                 location = tmp.getString("location_intent");
                 assign_time = tmp.getString("date");
                 elapsed = tmp.getString("elapsed_time");
+                cl_id = tmp.getString("challenge_id");
+                ID = tmp.getString("ID");
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -360,6 +374,9 @@ public class Shipintianzhan_fragment extends Fragment implements XListView.IXLis
             map.put("location", location);
             map.put("assign_time", assign_time);
             map.put("elapsed", elapsed);
+            map.put("cl_id",cl_id);
+            map.put("ID",ID);
+
             listItem.add(map);
         }
         mSimpleAdapter = new SimpleAdapter(getActivity(),listItem,//需要绑定的数据

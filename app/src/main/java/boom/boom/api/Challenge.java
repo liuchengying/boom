@@ -50,14 +50,14 @@ public class Challenge {
         return this.GetSimpleMap(false);
     }
 
-    public static String getChallengeByNumber(int number){
+    public static String getChallengeByNumber(String number){
         HttpIO io = new HttpIO(Utils.serveraddr + challenge_api + "?action=fetchByNumber&id=" + number);
         io.SetCustomSessionID(Static.session_id);
         io.GETToHTTPServer();
         return io.getResultData();
     }
 
-    public static String getChallengeByIdentify(int number){
+    public static String getChallengeByIdentify(String number){
         HttpIO io = new HttpIO(Utils.serveraddr + challenge_api + "?action=fetchbyIdentifyDigit&identify=" + number);
         io.SetCustomSessionID(Static.session_id);
         io.GETToHTTPServer();

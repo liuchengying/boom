@@ -47,7 +47,7 @@ public class Guizejieshao_activity extends Activity{
         SysApplication.getInstance().addActivity(this);
         FontManager.changeFonts(FontManager.getContentView(this), this);//字体
         Intent intent = getIntent();
-        final int position = intent.getIntExtra("challenge_number", 1);
+        final String position = intent.getStringExtra("challenge_number");
         final int ifFaqi = intent.getIntExtra("ifFaqi",0);
         if(ifFaqi == 1) {
             try {

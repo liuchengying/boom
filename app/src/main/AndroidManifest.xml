@@ -90,7 +90,7 @@
         <activity android:name= "boom.boom.tianjiahaoyou.Tianjiahaoyou_activity"
             android:theme="@android:style/Theme.Black.NoTitleBar"></activity>
         <activity android:name= "boom.boom.shipintianzhanpinglun.Shipintianzhan_pinglun"
-            android:theme="@android:style/Theme.Translucent"></activity>
+            android:theme="@android:style/Theme.NoTitleBar"></activity>
         <activity android:name= "boom.boom.liuyan.Liuyan_activity"
         android:theme="@android:style/Theme.Translucent"></activity>
         <activity android:name= "boom.boom.wangqitiaozhan.wangqitiaozhan"
