@@ -73,8 +73,8 @@ public class Guizejieshao_activity extends Activity{
         challenge_title = (TextView) findViewById(R.id.challenge_title);
         challenge_text = (TextView) findViewById(R.id.challenge_text);
         try {
-            challenge_text.setText(challenge_data.getString("frontname"));
-            challenge_title.setText(challenge_data.getString("shortintro"));
+            challenge_text.setText(challenge_data.getString("shortintro"));
+            challenge_title.setText(challenge_data.getString("frontname"));
             demoToken = challenge_data.getString("demovideo");
         } catch (JSONException e) {
             e.printStackTrace();

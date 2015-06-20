@@ -171,7 +171,19 @@ public class Msg {
                             map.put("icon",icon);
                             map.put("cl_id",data.getString("cl_id"));
                             map.put("smallicon",smallicon);
-
+                            break;
+                        case 9://
+                            map.put("title","type9");
+                            map.put("content","type9");
+                            icon = BitmapFactory.decodeResource(res,R.drawable.android_209);
+                            map.put("icon",icon);
+                            break;
+                        case 10://
+                            map.put("title","type10");
+                            map.put("content","type10");
+                            icon = BitmapFactory.decodeResource(res,R.drawable.android_209);
+                            map.put("icon",icon);
+                            break;
                     }
 
                     list.add(map);
