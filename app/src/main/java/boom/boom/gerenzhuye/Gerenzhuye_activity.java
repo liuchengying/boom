@@ -429,8 +429,12 @@ public class  Gerenzhuye_activity extends FragmentActivity
     public boolean onTouchEvent(MotionEvent ev) {
         switch (ev.getAction()){
             case MotionEvent.ACTION_DOWN:
-                LinearLayout yincang = (LinearLayout) findViewById(R.id.gerenzhuye_yincang);
-                yincang.setVisibility(View.GONE);
+                try {
+                    LinearLayout yincang = (LinearLayout) findViewById(R.id.gerenzhuye_yincang);
+                    yincang.setVisibility(View.GONE);
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
         }
         return super.onTouchEvent(ev);
     }
