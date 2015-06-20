@@ -89,11 +89,18 @@ public class Shipintianzhan_fragment_tjhy extends Fragment implements XListView.
         Utils.GetBuilder get = new Utils.GetBuilder(Utils.serveraddr + "/api/rank.php");
         get.addItem("action", "getFriendsrank");
         get.addItem("guest_id",guestID);
-        HttpIO io = new HttpIO(get.toString());
-        io.SetCustomSessionID(Static.session_id);
+        final HttpIO io = new HttpIO(get.toString());
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                io.SetCustomSessionID(Static.session_id);
+                io.GETToHTTPServer();
+            }
+        }).start();
+        while(io.getResultData() == null);
         Gerenzhuye_activity.obj = null;
         int round = 0;
-        io.GETToHTTPServer();
+
         try {
             Gerenzhuye_activity.obj = new JSONObject(io.getResultData());
             JSONObject tmp = Utils.GetSubJSONObject(Gerenzhuye_activity.obj, "response");

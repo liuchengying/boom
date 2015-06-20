@@ -21,9 +21,15 @@ public class Suggest {
            get.addItem("text", suggest);
            String url_request = get.toString();
            url_request=url_request.replace("\n","\\n");
-           HttpIO io = new HttpIO(url_request);
-           io.SetCustomSessionID(Static.session_id);
-           io.getJson();
+           final HttpIO io = new HttpIO(url_request);
+           new Thread(new Runnable() {
+               @Override
+               public void run() {
+                   io.SetCustomSessionID(Static.session_id);
+                   io.getJson();
+               }
+           }).start();
+           while(io.getResultData() == null);
            if (io.LastError == 0) {
                String httpResult = io.getResultData();
                JSONObject obj = new JSONObject(httpResult);

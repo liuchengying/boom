@@ -28,15 +28,22 @@ public class ChangePassword {
             get.addItem("new_pass", Utils.StrToMD5(newPassword));
             String url_request = get.toString();
 
-            HttpIO io = new HttpIO(url_request);
-            io.SetCustomSessionID(Static.session_id);
+            final HttpIO io = new HttpIO(url_request);
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    io.SetCustomSessionID(Static.session_id);
+                    io.GETToHTTPServer();
+                }
+            }).start();
+
         /*
         List<NameValuePair> post = new ArrayList<NameValuePair>();
         post.add(new BasicNameValuePair("name", this.username));
         post.add(new BasicNameValuePair("passhash", Utils.StrToMD5(this.password)));
         io.POSTToHTTPServer(post);
         */
-            io.GETToHTTPServer();
+            while(io.getResultData() == null);
             if (io.LastError == 0) {
                 String httpResult = io.getResultData();
                 JSONObject obj = new JSONObject(httpResult);

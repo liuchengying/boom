@@ -113,9 +113,15 @@ public class Diqupaihang_fragment extends Fragment implements XListView.IXListVi
                     getImageUrl.addItem("location", Static.city);
                     getImageUrl.addItem("start", "1");
                     getImageUrl.addItem("line", "5");
-                    HttpIO io = new HttpIO(getImageUrl.toString());
-                    io.SessionID = Static.session_id;
-                    io.getJson();
+                    final HttpIO io = new HttpIO(getImageUrl.toString());
+                    new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            io.SessionID = Static.session_id;
+                            io.getJson();
+                        }
+                    }).start();
+                    while(io.getResultData() == null);
                     if (io.LastError == 0) {
                         httpResult = io.getResultData();
                         try {
@@ -179,9 +185,15 @@ public class Diqupaihang_fragment extends Fragment implements XListView.IXListVi
                 getImageUrl.addItem("location",Static.city);
                 getImageUrl.addItem("start", "" + (loadedline + 1));
                 getImageUrl.addItem("line", "10");
-                HttpIO io = new HttpIO(getImageUrl.toString());
-                io.SessionID = Static.session_id;
-                io.getJson();
+                final HttpIO io = new HttpIO(getImageUrl.toString());
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        io.SessionID = Static.session_id;
+                        io.getJson();
+                    }
+                }).start();
+                while(io.getResultData() == null);
                 if (io.LastError == 0) {
                     httpResult = io.getResultData();
                     try {

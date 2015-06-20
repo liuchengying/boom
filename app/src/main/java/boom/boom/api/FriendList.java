@@ -22,9 +22,15 @@ public class FriendList {
             Utils.GetBuilder get = new Utils.GetBuilder(USER_LOGIN_URL);
             get.addItem("action", "query");
             String url_request = get.toString();
-            HttpIO io = new HttpIO(url_request);
-            io.SetCustomSessionID(Static.session_id);
-            io.GETToHTTPServer();
+            final HttpIO io = new HttpIO(url_request);
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    io.SetCustomSessionID(Static.session_id);
+                    io.GETToHTTPServer();
+                }
+            }).start();
+            while(io.getResultData() == null);
             if (io.LastError == 0) {
                 String httpResult = io.getResultData();
                 //JSONArray jsonArray = JSONArray.fromObject(str);

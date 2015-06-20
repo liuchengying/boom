@@ -119,9 +119,15 @@ public class  Gerenzhuye_activity extends FragmentActivity
             case 2://显示添加好友
             {
                 tjhy_ll.setVisibility(View.VISIBLE);
-                HttpIO io = new HttpIO(Utils.serveraddr + "api/newfriend.php?action=verify&guest_id="+guestID);
-                io.SessionID = Static.session_id;
-                io.getJson();
+                final HttpIO io = new HttpIO(Utils.serveraddr + "api/newfriend.php?action=verify&guest_id="+guestID);
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        io.SessionID = Static.session_id;
+                        io.getJson();
+                    }
+                }).start();
+                while(io.getResultData() == null);
                 String response = null;
                 try {
                     JSONObject obj = new JSONObject(io.getResultData());
@@ -135,9 +141,15 @@ public class  Gerenzhuye_activity extends FragmentActivity
                     tjhy_ll.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            HttpIO io = new HttpIO(Utils.serveraddr + "api/newfriend.php?action=newfriend&guest="+guestID);
-                            io.SessionID = Static.session_id;
-                            io.getJson();
+                            final HttpIO io = new HttpIO(Utils.serveraddr + "api/newfriend.php?action=newfriend&guest="+guestID);
+                            new Thread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    io.SessionID = Static.session_id;
+                                    io.getJson();
+                                }
+                            }).start();
+                            while(io.getResultData() == null);
                             tjhy_tv.setText("等 待 通 过");
                         }
                     });

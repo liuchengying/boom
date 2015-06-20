@@ -13,25 +13,26 @@ public class UserData {
     private JSONObject userdata;
     private String userdata_str = null;
     public UserData(final String SessionID){
+        final HttpIO io = new HttpIO(USER_DATA_URL + "?action=query");
         Thread thread = new Thread(new Runnable() {
             @Override
             public void run() {
-                HttpIO io = new HttpIO(USER_DATA_URL + "?action=query");
                 io.SetCustomSessionID(SessionID);
                 io.GETToHTTPServer();
-                try {
-                    userdata_str = io.getResultData();
-                    Log.e("Uerdata", userdata_str);
-                    JSONObject json = new JSONObject(userdata_str);
-                    userdata = json;
-                } catch (JSONException e) {
-                    userdata_str = "FUCK";
-                    e.printStackTrace();
-                }
+                userdata_str = io.getResultData();
             }
         });
         thread.start();
         while (userdata_str == null);
+        try {
+
+            Log.e("Uerdata", userdata_str);
+
+            userdata = new JSONObject(userdata_str);
+        } catch (JSONException e) {
+            userdata_str = "FUCK";
+            e.printStackTrace();
+        }
         if (userdata_str.equals("FUCK")){
             Log.e("Status", "完蛋了，扑街了。");
             while (true);
@@ -48,6 +49,11 @@ public class UserData {
             return this.userdata.getString(item);
         } catch (JSONException e) {
             e.printStackTrace();
+        } catch (Exception e)
+        {
+            e.printStackTrace();
+            Log.e("UserData",item);
+            Log.e("Error",userdata.toString());
         }
         return null;
     }

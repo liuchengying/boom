@@ -44,9 +44,15 @@ public class Msg {
     };
     public Msg(){
 
-                    HttpIO io = new HttpIO(Utils.serveraddr + MSG_API_URL );
-                    io.SetCustomSessionID(Static.session_id);
-                    io.getJson();
+                    final HttpIO io = new HttpIO(Utils.serveraddr + MSG_API_URL );
+                    new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            io.SetCustomSessionID(Static.session_id);
+                            io.GETToHTTPServer();
+                        }
+                    }).start();
+                    while(io.getResultData() == null);
                     if(io.LastError==0) {
                         RawDataStore = io.getResultData();
                         try {

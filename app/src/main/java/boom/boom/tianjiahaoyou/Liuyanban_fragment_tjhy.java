@@ -161,12 +161,17 @@ public class Liuyanban_fragment_tjhy extends Fragment implements XListView.IXLis
         get.addItem("action", "queryFriends");
         get.addItem("type","1");
         get.addItem("guest_id",guestID);
-        HttpIO io = new HttpIO(get.toString());
-
-        io.SessionID=Static.session_id;
+        final HttpIO io = new HttpIO(get.toString());
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                io.SessionID=Static.session_id;
+                io.getJson();
+            }
+        }).start();
+        while(io.getResultData() == null);
         int round = 0;
         JSONObject obj=null;
-        io.getJson();
         try {
             if(io.getResultData()!=null) {
                 obj= new JSONObject(io.getResultData());

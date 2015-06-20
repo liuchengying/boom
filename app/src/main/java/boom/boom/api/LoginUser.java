@@ -52,12 +52,18 @@ public class LoginUser {
           getMethod.addItem("action","newuser");
           getMethod.addItem("user",this.user);
           getMethod.addItem("passhash", Utils.StrToMD5(this.pass));
-          HttpIO io = new HttpIO(getMethod.toString());
+          final HttpIO io = new HttpIO(getMethod.toString());
 //        List<NameValuePair> post = new ArrayList<NameValuePair>();
 //        post.add(new BasicNameValuePair("user", this.user));
 //        post.add(new BasicNameValuePair("passhash", Utils.StrToMD5(this.pass)));
 //        io.POSTToHTTPServer(post);
-          io.GETToHTTPServer();
+          new Thread(new Runnable() {
+              @Override
+              public void run() {
+                  io.GETToHTTPServer();
+              }
+          }).start();
+        while(io.getResultData() == null);
         try {
             JSONObject obj = new JSONObject(io.getResultData());
             String state=obj.getString("state");

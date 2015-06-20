@@ -53,9 +53,15 @@ public class Liuyanhuifu_activity extends Activity {
             public void onClick(View v) {
                 String comment = commentText.getText().toString();
                 comment = comment.replace("\n","\\n");
-                HttpIO io = new HttpIO(Utils.serveraddr + "/api/comment.php?action=refer&type="+type+"&id="+ID+"&comment="+comment);
-                io.SessionID = Static.session_id;
-                io.getJson();
+                final HttpIO io = new HttpIO(Utils.serveraddr + "/api/comment.php?action=refer&type="+type+"&id="+ID+"&comment="+comment);
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        io.SessionID = Static.session_id;
+                        io.getJson();
+                    }
+                }).start();
+                while(io.getResultData() == null);
                 Toast.makeText(Liuyanhuifu_activity.this,"留言成功！",Toast.LENGTH_SHORT).show();
                 setResult(1);
                 finish();

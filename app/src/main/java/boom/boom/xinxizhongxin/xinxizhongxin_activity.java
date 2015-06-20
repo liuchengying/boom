@@ -204,6 +204,7 @@ public class xinxizhongxin_activity extends Activity implements XListView.IXList
                 case 6:
                 case 7:
                 case 8:
+                default:
                     view = LayoutInflater.from(mContext).inflate(R.layout.xiaoxizhongxin_item2, parent, false);
                     TextView title2 = (TextView) view.findViewById(R.id.xxzx_item_title);
                     TextView text2 = (TextView) view.findViewById(R.id.xxzx_item_text);

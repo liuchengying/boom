@@ -43,9 +43,15 @@ public class EditInformation implements Serializable {
         Utils.GetBuilder get = new Utils.GetBuilder(GETINFOMATION_SERVER);
         get.addItem("action", "get");
         String url_request = get.toString();
-        HttpIO io = new HttpIO(url_request);
-        io.SessionID=Static.session_id;
-        io.GETToHTTPServer();
+        final HttpIO io = new HttpIO(url_request);
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                io.SessionID=Static.session_id;
+                io.GETToHTTPServer();
+            }
+        }).start();
+       while(io.getResultData() == null);
         if(io.LastError==0) {
             String httpResult = io.getResultData();
             try {
@@ -139,8 +145,9 @@ public class EditInformation implements Serializable {
             String url_request = new String(get.toString().getBytes("UTF-8"));
             HttpIO io = new HttpIO(url_request);
             io.SessionID = Static.session_id;*/
-            HttpIO io = new HttpIO(get.toString());   // 初始化一个连接（此时客户端并未访问服务器）
-            List<NameValuePair> post = new ArrayList<NameValuePair>();
+            final HttpIO io = new HttpIO(get.toString());   // 初始化一个连接（此时客户端并未访问服务器）
+
+            final List<NameValuePair> post = new ArrayList<NameValuePair>();
                 post.add(new BasicNameValuePair("nickname", Utils.UTF8str(nickname))); // 增加POST表单数据
                 post.add(new BasicNameValuePair("name", Utils.UTF8str(name)));
                 post.add(new BasicNameValuePair("sex", Utils.UTF8str(""+sex)));
@@ -153,8 +160,14 @@ public class EditInformation implements Serializable {
                 post.add(new BasicNameValuePair("email", Utils.UTF8str(email)));
                 post.add(new BasicNameValuePair("uniquesign", Utils.UTF8str(uniquesign)));
                 post.add(new BasicNameValuePair("avatar", Utils.UTF8str(avatar)));
-                io.SessionID = Static.session_id;
-            io.POSTToHTTPServer(post); // 发送访问请求和POST数据
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        io.SessionID = Static.session_id;
+                        io.POSTToHTTPServer(post); // 发送访问请求和POST数据
+                    }
+                }).start();
+            while(io.getResultData() == null);
             JSONObject result = new JSONObject(io.getResultData());
             String status = result.getString("state");
             if (status.equalsIgnoreCase("FAILED")) {

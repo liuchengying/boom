@@ -79,9 +79,15 @@ public class Shipintianzhan_pinglun extends Activity {
     private void LoadData (){
         try {
             listItem.clear();
-            HttpIO io = new HttpIO(Utils.serveraddr + "/api/rank.php?action=getsingle&id=" + ID);
-            io.SessionID = Static.session_id;
-            io.GETToHTTPServer();
+            final HttpIO io = new HttpIO(Utils.serveraddr + "/api/rank.php?action=getsingle&id=" + ID);
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    io.SessionID = Static.session_id;
+                    io.GETToHTTPServer();
+                }
+            }).start();
+            while(io.getResultData() == null);
             String result = io.getResultData();
             JSONObject obj = new JSONObject(result);
             JSONObject refer_data = Utils.GetSubJSONObject(obj,"refer_data");

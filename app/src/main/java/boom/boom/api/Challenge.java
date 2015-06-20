@@ -57,23 +57,41 @@ public class Challenge {
     }
 
     public static String getChallengeByNumber(String number){
-        HttpIO io = new HttpIO(Utils.serveraddr + challenge_api + "?action=fetchByNumber&id=" + number);
-        io.SetCustomSessionID(Static.session_id);
-        io.GETToHTTPServer();
+        final HttpIO io = new HttpIO(Utils.serveraddr + challenge_api + "?action=fetchByNumber&id=" + number);
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                io.SetCustomSessionID(Static.session_id);
+                io.GETToHTTPServer();
+            }
+        }).start();
+        while (io.getResultData() == null);
         return io.getResultData();
     }
 
     public static String getChallengeByIdentify(String number){
-        HttpIO io = new HttpIO(Utils.serveraddr + challenge_api + "?action=fetchbyIdentifyDigit&identify=" + number);
-        io.SetCustomSessionID(Static.session_id);
-        io.GETToHTTPServer();
+        final HttpIO io = new HttpIO(Utils.serveraddr + challenge_api + "?action=fetchbyIdentifyDigit&identify=" + number);
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                io.SetCustomSessionID(Static.session_id);
+                io.GETToHTTPServer();
+            }
+        }).start();
+        while(io.getResultData() == null);
         return io.getResultData();
     }
 
     public static boolean subMitChallenge(String challenge, String Token){
-        HttpIO io = new HttpIO(Utils.serveraddr + take_cl_api + Utils.GetBuilder.Item("dvtoken", Token) + Utils.GetBuilder.Item("challenge", challenge));
-        io.SetCustomSessionID(Static.session_id);
-        io.GETToHTTPServer();
+        final HttpIO io = new HttpIO(Utils.serveraddr + take_cl_api + Utils.GetBuilder.Item("dvtoken", Token) + Utils.GetBuilder.Item("challenge", challenge));
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                io.SetCustomSessionID(Static.session_id);
+                io.GETToHTTPServer();
+            }
+        }).start();
+        while (io.getResultData() == null);
         try {
             String result = new JSONObject(io.getResultData()).getString("state");
             if (result == "FAILED") return false;

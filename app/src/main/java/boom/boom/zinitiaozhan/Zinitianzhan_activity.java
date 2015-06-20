@@ -257,9 +257,15 @@ public class Zinitianzhan_activity extends Activity {
                                     get1.addItem("frontname", Utils.UTF8str(title.getText().toString()));
                                     get1.addItem("dvtoken", token);
                                     get1.addItem("shortintro", Utils.UTF8str(description.getText().toString()));
-                                    HttpIO io = new HttpIO(get1.toString());
-                                    io.SetCustomSessionID(Static.session_id);
-                                    io.GETToHTTPServer();
+                                    final HttpIO io = new HttpIO(get1.toString());
+                                    new Thread(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            io.SetCustomSessionID(Static.session_id);
+                                            io.GETToHTTPServer();
+                                        }
+                                    }).start();
+                                    while(io.getResultData() == null);
                                     if (io.LastError == 0) {
                                         String result1 = io.getResultData();
                                         JSONObject obj1 = new JSONObject(result1);

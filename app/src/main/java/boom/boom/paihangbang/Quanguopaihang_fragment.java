@@ -129,9 +129,15 @@ public class Quanguopaihang_fragment extends Fragment implements XListView.IXLis
                 getImageUrl.addItem("action", "board_hero");
                 getImageUrl.addItem("start", ""+(loadedline+1));
                 getImageUrl.addItem("line", "10");
-                HttpIO io = new HttpIO(getImageUrl.toString());
-                io.SessionID = Static.session_id;
-                io.getJson();
+                final HttpIO io = new HttpIO(getImageUrl.toString());
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        io.SessionID = Static.session_id;
+                        io.getJson();
+                    }
+                }).start();
+                while(io.getResultData() == null);
                 if (io.LastError == 0) {
                     httpResult = io.getResultData();
                     try {
