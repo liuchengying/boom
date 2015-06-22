@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
- <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent">
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent">
+<ScrollView xmlns:android1="http://schemas.android.com/apk/res/android"
+    android1:layout_width="fill_parent"
+    android1:layout_height="fill_parent"
+    >
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
     android:background="#ffdadada"
     android:orientation="vertical"
     >
 
     <LinearLayout
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="30dp"
 
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="190dp"
         android:orientation="vertical"
 
         android:layout_gravity="center_horizontal"
@@ -24,6 +24,7 @@
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="45dp"
+            android:layout_marginTop="8dp"
             >
             <TextView
                 android:layout_width="fill_parent"
@@ -32,7 +33,7 @@
                 android:text="基本资料"
                 android:textSize="25sp"
                 android:gravity="center_vertical"
-                android:layout_marginLeft="20dp"/>
+                android:layout_marginLeft="23dp"/>
 
         </LinearLayout>
         <LinearLayout
@@ -70,6 +71,22 @@
                     android:textColor="#ffb7b7b7"
                     android:textSize="18sp"
                     />
+                <TextView
+                    android:layout_marginTop="5dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="毕业于:"
+                    android:textColor="#ffb7b7b7"
+                    android:textSize="18sp"
+                    />
+                <TextView
+                    android:layout_marginTop="5dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="所在地:"
+                    android:textColor="#ffb7b7b7"
+                    android:textSize="18sp"
+                    />
             </LinearLayout>
             <LinearLayout
                 android:layout_width="fill_parent"
@@ -102,73 +119,6 @@
                     android:textColor="#ffb7b7b7"
                     android:textSize="18sp"
                     android:id="@+id/xingzuo" />
-
-            </LinearLayout>
-        </LinearLayout>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:gravity="center"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent">
-    <LinearLayout
-        android:layout_marginTop="10dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-
-        android:layout_gravity="center_horizontal"
-        android:background="@drawable/android_134"
-        >
-        <LinearLayout
-            android:layout_width="fill_parent"
-            android:layout_height="45dp"
-            >
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:textColor="#ffffff"
-                android:text="详细资料"
-                android:textSize="25sp"
-                android:gravity="center_vertical"
-                android:layout_marginLeft="20dp"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:orientation="horizontal">
-            <LinearLayout
-                android:layout_marginLeft="20dp"
-                android:layout_width="wrap_content"
-                android:layout_height="fill_parent"
-                android:orientation="vertical"
-                android:gravity="center_horizontal">
-                <TextView
-                    android:layout_marginTop="5dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="毕业于:"
-                    android:textColor="#ffb7b7b7"
-                    android:textSize="18sp"
-                    />
-                <TextView
-                    android:layout_marginTop="5dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="所在地:"
-                    android:textColor="#ffb7b7b7"
-                    android:textSize="18sp"
-                    />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:orientation="vertical">
                 <TextView
                     android:layout_marginLeft="5dp"
                     android:layout_marginTop="5dp"
@@ -193,9 +143,12 @@
         </LinearLayout>
 
     </LinearLayout>
+<LinearLayout
+    android:layout_width="fill_parent"
+    android:layout_height="30dp">
+
+    </LinearLayout>
 
 </LinearLayout>
 
-</LinearLayout>
-</RelativeLayout>
 </ScrollView>

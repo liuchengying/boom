@@ -164,7 +164,7 @@ public class Liuyanban_fragment extends Fragment implements XListView.IXListView
         //http://172.24.10.118/api/comment.php?action=queryFriends&guest_id=10000
         Utils.GetBuilder get = new Utils.GetBuilder(Utils.serveraddr + "/api/comment.php");
         get.addItem("action", "queryFriends");
-        get.addItem("type","1");
+        get.addItem("type","3");
         get.addItem("guest_id",guestID);
         final HttpIO io = new HttpIO(get.toString());
         new Thread(new Runnable() {

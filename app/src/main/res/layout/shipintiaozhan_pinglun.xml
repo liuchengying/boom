@@ -4,7 +4,7 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:id="@+id/sildingFinishLayout">
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:orientation="vertical"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
@@ -12,62 +12,13 @@
         >
 
 
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="fill_parent"
-            android:layout_height="60dp"
-            android:background="#ffe14723"
-            android:weightSum="1">
-
-
-
-            <LinearLayout
-
-                android:orientation="horizontal"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="0.45"
-                android:id="@+id/shipinpinglun_fh">
-                <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/android_20"
-                    android:gravity="center_horizontal"
-                    android:layout_marginLeft="10dp"
-                    android:layout_gravity="center_vertical"
-                    />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_marginLeft="20dp"
-                android:layout_weight="0.42"
-                android:layout_width="wrap_content"
-                android:layout_height="fill_parent"
-                android:gravity="center_vertical">
-                <TextView
-                   android:layout_marginLeft="50dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="评论"
-                    android:textSize="28sp"
-                    android:textColor="#ffffffff" />
-            </LinearLayout>
-            <Button
-                android:id="@+id/pinglun_liuyan"
-
-                android:layout_width="73dp"
-                android:layout_height="fill_parent"
-                android:background="#ffe14723"
-                android:text="留言"
-                android:textSize="25sp"
-                android:textColor="#ffffff"
-                android:layout_weight="0.11" />
-        </LinearLayout>
 
 
 
 
    <LinearLayout
+       android:layout_marginTop="60dp"
+       android:id="@+id/list_all"
        android:layout_width="fill_parent"
        android:layout_height="fill_parent"
        android:orientation="vertical"
@@ -250,17 +201,68 @@
                android:layout_height="25dp"
                android:src="@drawable/android_205"/>
            </LinearLayout>
-       <ListView
+       <boom.boom.myview.Touchanimation
 
            android:layout_width="332dp"
            android:layout_height="fill_parent"
            android:id="@+id/shipinpinglun_listview"
            >
 
-       </ListView>
+       </boom.boom.myview.Touchanimation>
 
        </LinearLayout>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="60dp"
+            android:background="#ffe14723"
+            android:weightSum="1">
 
 
-    </LinearLayout>
+
+            <LinearLayout
+
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="0.45"
+                android:id="@+id/shipinpinglun_fh">
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/android_20"
+                    android:gravity="center_horizontal"
+                    android:layout_marginLeft="10dp"
+                    android:layout_gravity="center_vertical"
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_marginLeft="20dp"
+                android:layout_weight="0.42"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:gravity="center_vertical">
+                <TextView
+                    android:layout_marginLeft="50dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="评论"
+                    android:textSize="28sp"
+                    android:textColor="#ffffffff" />
+            </LinearLayout>
+            <Button
+                android:id="@+id/pinglun_liuyan"
+
+                android:layout_width="73dp"
+                android:layout_height="fill_parent"
+                android:background="#ffe14723"
+                android:text="留言"
+                android:textSize="25sp"
+                android:textColor="#ffffff"
+                android:layout_weight="0.11" />
+        </LinearLayout>
+
+
+    </RelativeLayout>
 </boom.boom.myview.SildingFinishLayout>
