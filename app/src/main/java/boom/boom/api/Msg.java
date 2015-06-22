@@ -178,9 +178,17 @@ public class Msg {
                             map.put("cl_id",data.getString("cl_id"));
                             map.put("smallicon",smallicon);
                             break;
-                        case 9://
-                            map.put("title","type9");
-                            map.put("content","type9");
+                        case 9://好友同意或拒绝
+                            boolean passed = false;
+                            if(data.getString("pass").equals("USER_AGREED")){
+                                passed = true;
+                            }else {
+                                passed = false;
+                            }
+                            map.put("title",data.getString("nickname") + (passed?"同意":"拒绝") + "添加您为好友!");
+                            map.put("content",data.getString("nickname") + "已经" + (passed?"同意":"拒绝") + "了您添加好友的请求。");
+                            smallicon = BitmapFactory.decodeResource(res,(passed)?R.drawable.android_213:R.drawable.android_215);
+                            map.put("smallicon",smallicon);
                             icon = BitmapFactory.decodeResource(res,R.drawable.android_209);
                             map.put("icon",icon);
                             break;

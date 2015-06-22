@@ -358,7 +358,7 @@ public class Paishetiaozhan_activity extends Activity implements SurfaceHolder.C
             mediaRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
             mediaRecorder.setVideoSource(MediaRecorder.VideoSource.CAMERA);
 //            mediaRecorder.setOutputFormat(MediaRecorder.OutputFormat.MPEG_4);
-
+            mediaRecorder.setOrientationHint(90);
             CamcorderProfile pro = CamcorderProfile.get(CamcorderProfile.QUALITY_480P);
             mediaRecorder.setProfile(pro);
 //            mediaRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AAC);
