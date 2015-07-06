@@ -1,6 +1,7 @@
 package boom.boom.myview;
 
 import android.content.Context;
+import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.Animation;
@@ -26,6 +27,15 @@ public class Touchanimation extends ListView implements AbsListView.OnScrollList
 
     public Touchanimation(Context context) {
         super(context);
+    }
+    public Touchanimation(Context context, AttributeSet attrs) {
+        super(context, attrs);
+
+    }
+
+    public Touchanimation(Context context, AttributeSet attrs, int defStyle) {
+        super(context, attrs, defStyle);
+
     }
 
     @Override
@@ -149,7 +159,7 @@ public class Touchanimation extends ListView implements AbsListView.OnScrollList
 
 
 
-        return false;
+        return super.onTouchEvent(ev);
 
     }
 }
