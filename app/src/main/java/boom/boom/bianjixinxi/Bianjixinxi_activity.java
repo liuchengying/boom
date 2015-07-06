@@ -80,7 +80,7 @@ public class Bianjixinxi_activity  extends Activity {
     private Spinner star;
     private ArrayAdapter<String> adapter;
     private ArrayAdapter<String> adapter1;
-    private LinearLayout sz_touxiang;
+    private RoundedImageView sz_touxiang;
     private Button button;
     private Button confirmButton;
     private Button cancleButton;
@@ -147,7 +147,7 @@ public class Bianjixinxi_activity  extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
-        setContentView(R.layout.bianjiziliao);
+        setContentView(R.layout.bianjiziliao_one);
 
         SysApplication.getInstance().addActivity(this);
         FontManager.changeFonts(FontManager.getContentView(this), this);//字体
@@ -163,7 +163,7 @@ public class Bianjixinxi_activity  extends Activity {
         adapter.setDropDownViewResource(R.layout.shezhi_spinner_style);
         sex.setAdapter(adapter);
         star = (Spinner) findViewById(R.id.star);
-        iv_image = (RoundedImageView) findViewById(R.id.bianjiziliao_touxiang);
+        //iv_image = (RoundedImageView) findViewById(R.id.bianjiziliao_touxiang);
         sex.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -211,7 +211,7 @@ public class Bianjixinxi_activity  extends Activity {
         popupWindow.setBackgroundDrawable(new BitmapDrawable());
         popupWindow.setOutsideTouchable(true);
         popupWindow.setFocusable(true);
-        sz_touxiang = (LinearLayout) findViewById(R.id.sz_touxiang);
+        sz_touxiang = (RoundedImageView) findViewById(R.id.bianjiziliao_touxiang);
         sz_touxiang.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -228,7 +228,7 @@ public class Bianjixinxi_activity  extends Activity {
 
             }
         });
-        LinearLayout suozaidi = (LinearLayout) findViewById(R.id.suozaidi);
+        TextView suozaidi = (TextView) findViewById(R.id.bjxx_szd);
         suozaidi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -273,8 +273,8 @@ public class Bianjixinxi_activity  extends Activity {
             company.setText(editInformation.company);
             email = (EditText) findViewById(R.id.bjxx_yx);
             email.setText(editInformation.email);
-            iv_image.setImageBitmap(Static.avatarImage);
-            save = (RelativeLayout) findViewById(R.id.bianjixinxi_bc);
+            sz_touxiang.setImageBitmap(Static.avatarImage);
+            save = (RelativeLayout) findViewById(R.id.bianjixinxi_baocun);
             save.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -367,7 +367,7 @@ public class Bianjixinxi_activity  extends Activity {
                     bitmap.recycle();
 
                     //将处理过的图片显示在界面上，并保存到本地
-                    iv_image.setImageBitmap(newBitmap);
+                    sz_touxiang.setImageBitmap(newBitmap);
                     ImageTools.savePhotoToSDCard(newBitmap, Environment.getExternalStorageDirectory().getAbsolutePath(), String.valueOf(System.currentTimeMillis()));
 
                     break;
@@ -385,7 +385,7 @@ public class Bianjixinxi_activity  extends Activity {
                             //释放原始图片占用的内存，防止out of memory异常发生
                             photo.recycle();
 
-                            iv_image.setImageBitmap(smallBitmap);
+                            sz_touxiang.setImageBitmap(smallBitmap);
                         }
                     } catch (FileNotFoundException e) {
                         e.printStackTrace();
@@ -429,7 +429,7 @@ public class Bianjixinxi_activity  extends Activity {
                     }
                     avatar=photo;
                     avatarChanged=true;
-                    iv_image.setImageBitmap(photo);
+                    sz_touxiang.setImageBitmap(photo);
                     break;
                 default:
                     break;
