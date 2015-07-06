@@ -64,7 +64,7 @@ public class FriendList {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return null;
+        return listItem;
     }
 
 }
