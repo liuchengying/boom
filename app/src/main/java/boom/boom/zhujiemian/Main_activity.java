@@ -95,9 +95,9 @@ public class Main_activity extends Activity {
 //                    intent.putExtra("coins", data.QueryData("coins"));
                     try {
                     Static.session_id = userlogin.getSessionId();
-                   /* Static.province = Utils.GetSubJSONObject(data.toJSONObject(), "location").getString("province");
+                    Static.province = Utils.GetSubJSONObject(data.toJSONObject(), "location").getString("province");
                     Static.city = Utils.GetSubJSONObject(data.toJSONObject(), "location").getString("city");
-                    Static.area = Utils.GetSubJSONObject(data.toJSONObject(), "location").getString("area");*/
+                    Static.area = Utils.GetSubJSONObject(data.toJSONObject(), "location").getString("area");
                     Static.username = data.QueryData("name");
                     Static.nickname = data.QueryData("nickname");
                     Static.uniqueSign = data.QueryData("uniquesign");
