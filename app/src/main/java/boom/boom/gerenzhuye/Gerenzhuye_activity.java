@@ -47,6 +47,7 @@ import boom.boom.api.SysApplication;
 import boom.boom.api.Utils;
 
 import boom.boom.liuyan.Liuyan_activity;
+import boom.boom.liuyanhuifu.Liuyanhuifu_activity;
 import boom.boom.myview.CircleImageView;
 import boom.boom.myview.SildingFinishLayout;
 
@@ -271,8 +272,11 @@ public class  Gerenzhuye_activity extends FragmentActivity
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent();
-                intent.setClass(Gerenzhuye_activity.this, Liuyan_activity.class);
-                startActivity(intent);
+                intent.setClass(Gerenzhuye_activity.this, Liuyanhuifu_activity.class);
+                intent.putExtra("nickname",nickname);
+                intent.putExtra("ID",guestID);
+                intent.putExtra("type", "3");
+                startActivityForResult(intent, 1);
                 overridePendingTransition(R.anim.liuyan_in,0);
             }
         });

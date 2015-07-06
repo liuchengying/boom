@@ -94,9 +94,10 @@
                 android:layout_height="wrap_content"
                 android:text="XXX"
                 android:textSize="20sp"
-                android:textColor="#ff0000"/>
+                android:textColor="#ff0000"
+                android:id="@+id/lypl_nickname" />
             <TextView
-                android:id="@+id/lyb_text"
+                android:id="@+id/lypl_text"
                 android:layout_width="250dp"
                 android:layout_height="38dp"
                 android:text="今天试了一下斜立易拉罐今天试了一下斜立易拉罐"/>
@@ -115,7 +116,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="2015.2.5"
-                    android:layout_marginBottom="3.5dp"/>
+                    android:layout_marginBottom="3.5dp"
+                    android:id="@+id/lypl_time" />
                 </LinearLayout>
             </LinearLayout>
 

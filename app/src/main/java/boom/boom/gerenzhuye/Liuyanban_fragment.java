@@ -51,7 +51,7 @@ public class Liuyanban_fragment extends Fragment implements XListView.IXListView
     private Button cancleButton;
     private PopupWindow popupWindow;
     private View popupWindowView;
-
+    ArrayList<HashMap<String, Object>> listItem = new ArrayList<HashMap<String,     Object>>();//*在数组中存放数据*//*
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState)
@@ -72,6 +72,10 @@ public class Liuyanban_fragment extends Fragment implements XListView.IXListView
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent localIntent = new Intent(getActivity(), Liuyanban_pinglun.class);
+                localIntent.putExtra("ID",(String)listItem.get(position-1).get("ID"));
+                localIntent.putExtra("nickname",(String)listItem.get(position-1).get("title"));
+                localIntent.putExtra("text",(String)listItem.get(position-1).get("text"));
+                localIntent.putExtra("time",(String)listItem.get(position-1).get("time"));
                 startActivity(localIntent);
 
             }
@@ -79,6 +83,7 @@ public class Liuyanban_fragment extends Fragment implements XListView.IXListView
 
         if(guestID == Static.identifyDigit){
         popupWindowView = inflater.inflate(R.layout.shanchuliuyan_item, null);
+
 
         lv.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
@@ -160,7 +165,7 @@ public class Liuyanban_fragment extends Fragment implements XListView.IXListView
 
     public void onSyncDataFromServer(){
         String challenge_name = null, challenge_nickname = null;
-        ArrayList<HashMap<String, Object>> listItem = new ArrayList<HashMap<String,     Object>>();//*在数组中存放数据*//*
+
         //http://172.24.10.118/api/comment.php?action=queryFriends&guest_id=10000
         Utils.GetBuilder get = new Utils.GetBuilder(Utils.serveraddr + "/api/comment.php");
         get.addItem("action", "queryFriends");
@@ -185,10 +190,10 @@ public class Liuyanban_fragment extends Fragment implements XListView.IXListView
                     JSONObject tmp;
                     int i = 0;
                     while ((tmp = Utils.GetSubJSONObject(obj, "line" + i)) != null) {
-                        String title = null, text = null, time = null;
+                        String title = null, text = null, time = null, ID = null;
                         int like = 0, comment = 0;
                         if (obj != null) try {
-
+                            ID = tmp.getString("ID");
                             title = tmp.getString("nickname");
                             text = tmp.getString("text_value");
                             like = tmp.getInt("heart_like");
@@ -203,6 +208,7 @@ public class Liuyanban_fragment extends Fragment implements XListView.IXListView
                         map.put("like", like);
                         map.put("comment", comment);
                         map.put("time", time);
+                        map.put("ID",ID);
                         listItem.add(map);
                         i++;
                     }
