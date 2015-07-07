@@ -55,6 +55,9 @@ public class Liuyanhuifu_activity extends Activity {
                 String comment = commentText.getText().toString();
                 comment = comment.replace("\n","\\n");
                 final HttpIO io = new HttpIO(Utils.serveraddr + "/api/comment.php?action=refer&type="+type+"&id="+ID+"&comment="+comment);
+                if(type.equals("3")){
+                    io.SetURL(Utils.serveraddr + "/api/comment.php?action=comment&type=3&comment="+comment+"&positionId="+ID);
+                }
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
