@@ -15,6 +15,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -41,7 +42,7 @@ import boom.boom.tianzhan.Tiaozhan_activity;
  */
 public class Zinitianzhan_activity extends Activity {
     private ProgressBar mprogress2;
-    private LinearLayout zntz_shangchuan;
+    private RelativeLayout zntz_shangchuan;
     private TextView zn_dianjishangchuan;
     private ImageView znsc_scchenggong;
     private Button zntz_tijiaoshenhe;
@@ -109,7 +110,7 @@ public class Zinitianzhan_activity extends Activity {
                 });
 
         mSildingFinishLayout.setTouchView(mSildingFinishLayout);
-        LinearLayout zntz_fh = (LinearLayout) findViewById(R.id.zntz_fh);
+        RelativeLayout zntz_fh = (RelativeLayout) findViewById(R.id.zntz_fh);
         zntz_fh.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -145,7 +146,7 @@ public class Zinitianzhan_activity extends Activity {
         });
         FontManager.changeFonts(FontManager.getContentView(this), this);//字体
         mprogress2 = (ProgressBar) findViewById(R.id.mprogress1);
-        zntz_shangchuan = (LinearLayout) findViewById(R.id.zntz_shangchuan);
+        zntz_shangchuan = (RelativeLayout) findViewById(R.id.zntz_shangchuan);
         zn_dianjishangchuan = (TextView) findViewById(R.id.zn_shangchuanshipin);
         znsc_scchenggong = (ImageView) findViewById(R.id.zntz_scchonggong);
         title = (EditText) findViewById(R.id.zn_title);

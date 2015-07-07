@@ -9,206 +9,146 @@
     android:layout_height="fill_parent"
     android:orientation="vertical"
     android:background="#ffdadada">
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="60dp"
-        android:background="#ffe14723"
-        android:orientation="horizontal"
-        android:gravity="center"
-
-
-        >
-        <LinearLayout
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#ffe14723">
+        <RelativeLayout
             android:id="@+id/zntz_fh"
-
-            android:layout_weight="1"
-            android:layout_width="wrap_content"
-            android:layout_height="50dp"
-            android:gravity="center_vertical"
-            >
+            android:layout_width="75dp"
+            android:layout_height="match_parent">
             <Button
-
-
+                android:layout_centerVertical="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/android_20"
                 android:gravity="center_horizontal"
                 android:layout_marginLeft="10dp"/>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_weight="1"
+            </RelativeLayout>
+        <TextView
+            android:layout_centerInParent="true"
             android:layout_width="wrap_content"
-            android:layout_height="50dp"
-            android:gravity="center">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="自拟挑战"
-                android:textSize="25sp"
-                android:textColor="#ffffff"
+            android:layout_height="wrap_content"
+            android:text="自拟挑战"
+            android:textSize="25sp"
+            android:textColor="#ffffff"
 
-                />
-        </LinearLayout>
-        <LinearLayout
-
-            android:layout_weight="1"
-            android:layout_width="wrap_content"
-            android:layout_height="50dp"
-            android:gravity="right"
-            android:layout_marginRight="10dp"
-            android:id="@+id/mimaxiugai_qd">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="    "
-                android:textSize="20sp"
-                android:textColor="#ffffff"
-                android:layout_gravity="center_vertical"/>
-        </LinearLayout>
-    </LinearLayout>
-    <LinearLayout
+            />
+        </RelativeLayout>
+    <RelativeLayout
         android:layout_marginTop="15dp"
+        android:layout_gravity="center_horizontal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:gravity="center_horizontal"
-        android:layout_gravity="center_horizontal">
-        <LinearLayout
+        android:background="@drawable/android_153">
+        <EditText
 
-            android:layout_width="336dp"
-            android:layout_height="50dp"
-            android:background="@drawable/android_153"
-            android:orientation="horizontal"
-            android:gravity="center">
+            android:hint="挑战名称"
+            android:singleLine="false"
+            android:lines="1"
+            android:layout_marginTop="8dp"
+           android:layout_centerInParent="true"
+            android:layout_width="320dp"
+            android:layout_height="46dp"
+            android:background="#ffffff"
+            android:textSize="18sp"
+            android:id="@+id/zn_title"
 
-            <EditText
-
-                android:hint="挑战名称"
-                android:singleLine="false"
-                android:lines="1"
-                android:layout_marginTop="8dp"
-
-                android:layout_gravity="center_horizontal"
-                android:layout_width="320dp"
-                android:layout_height="46dp"
-                android:background="#ffffff"
-                android:textSize="18sp"
-                android:id="@+id/zn_title"
-
-                />
-
-            </LinearLayout>
-        <LinearLayout
-            android:layout_marginTop="10dp"
-            android:layout_width="336dp"
-            android:layout_height="160dp"
-            android:background="@drawable/android_154"
-            android:orientation="horizontal"
-            android:gravity="center">
-
-            <ScrollView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-                <EditText
-                    android:id="@+id/short_describes"
-                    android:gravity="top|left"
-                    android:singleLine="false" android:lines="6"
-                   android:hint="规则细节"
-
-                    android:layout_gravity="center_horizontal"
-                    android:layout_width="320dp"
-                    android:layout_height="150dp"
-                    android:background="#ffffff"
-                    android:textSize="18sp"
-
-                    />
-        </ScrollView>
-
-            </LinearLayout>
-        </LinearLayout>
-    <LinearLayout
-        android:id="@+id/zntz_shangchuan"
-        android:layout_width="fill_parent"
+            />
+        </RelativeLayout>
+    <RelativeLayout
+        android:background="@drawable/android_154"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20sp"
-        android:background="@drawable/android_155"
-        android:gravity="center"
-        android:orientation="horizontal">
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="15dp">
+        <ScrollView
+            android:layout_centerInParent="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+        <EditText
 
+            android:id="@+id/short_describes"
+            android:gravity="top|left"
+            android:singleLine="false" android:lines="6"
+            android:hint="规则细节"
 
-            <TextView
-                android:id="@+id/zn_shangchuanshipin"
-                android:layout_gravity="center"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="点击上传视频"
-                android:background="#ffffff"
-                android:textSize="22sp"
-                android:gravity="center"/>
+            android:layout_gravity="center_horizontal"
+            android:layout_width="320dp"
+            android:layout_height="150dp"
+            android:background="#ffffff"
+            android:textSize="18sp"
+
+            />
+        </ScrollView>
+        </RelativeLayout>
+    <RelativeLayout
+        android:layout_marginTop="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/zntz_shangchuan"
+        android:background="@drawable/android_155">
+        <TextView
+            android:layout_centerInParent="true"
+            android:id="@+id/zn_shangchuanshipin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="点击上传视频"
+            android:background="#ffffff"
+            android:textSize="22sp"
+            />
         <ImageView
             android:id="@+id/zntz_scchonggong"
-            android:layout_marginLeft="10dp"
             android:layout_width="22dp"
             android:layout_height="22dp"
-            android:layout_gravity="center_vertical"
             android:src="@drawable/android_175"
-            android:visibility="gone"/>
-
-
-
-            //没铺完
-
-
-        </LinearLayout>
-                <LinearLayout
+            android:visibility="invisible"
+            android:layout_toRightOf="@id/zn_shangchuanshipin"
+            android:layout_centerVertical="true"/>
+        <RelativeLayout
+            android:layout_below="@id/zn_shangchuanshipin"
+            android:layout_marginTop="15dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/android_156"  >
+            <ProgressBar
+                android:id="@+id/mprogress1"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/android_156"  >
-                    <ProgressBar
-                        android:id="@+id/mprogress1"
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
+                android:max="100"
+                android:progress="0"
+                android:layout_gravity="center_vertical"
+                style="@style/mProgress_horizonta2"
+                 />
+            </RelativeLayout>
 
-                        android:max="100"
-                        android:progress="0"
-                        android:layout_gravity="center_vertical"
-                        style="@style/mProgress_horizonta2"
-
-                        />
-
-
-
-        </LinearLayout>
-    <LinearLayout
-        android:layout_width="250dp"
-        android:layout_height="130dp"
-        android:layout_gravity="center_horizontal"
+    </RelativeLayout>
+    <RelativeLayout
         android:layout_marginTop="10dp"
-        android:orientation="vertical">
+        android:layout_width="300dp"
+        android:layout_height="120dp"
+        android:layout_gravity="center_horizontal">
         <TextView
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="提示"/>
-        <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:text="服务器上"/>
-        </LinearLayout>
-    <Button
-        android:id="@+id/zntz_tijiaoshenhe"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:background="@drawable/android_157"
-        android:text="提交审核"
-        android:textSize="20sp"
-        android:textColor="#ffffff"/>
+            android:text="提示\n服务器上的规则"/>
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_horizontal|bottom">
+        <Button
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true"
+            android:id="@+id/zntz_tijiaoshenhe"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@drawable/android_157"
+            android:text="提交审核"
+            android:textSize="20sp"
+            android:textColor="#ffffff"/>-->
 
-
-
-
-
-
-
+    </RelativeLayout>
 </LinearLayout>
 </boom.boom.myview.SildingFinishLayout>

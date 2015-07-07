@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 
 import boom.boom.FontManager.FontManager;
 import boom.boom.R;
@@ -41,7 +42,7 @@ public class Faqitianzhan_activity extends Activity {
     // Press the back button in mobile phone
 
         FontManager.changeFonts(FontManager.getContentView(this), this);//字体
-        final LinearLayout fqtz_fh = (LinearLayout)findViewById(R.id.fqtz_fh);
+        final RelativeLayout fqtz_fh = (RelativeLayout)findViewById(R.id.fqtz_fh);
         Button zntz = (Button)findViewById(R.id.zntz);
         zntz.setOnClickListener(new View.OnClickListener() {
             @Override

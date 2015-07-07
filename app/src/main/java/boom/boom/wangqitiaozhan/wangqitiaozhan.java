@@ -15,6 +15,7 @@ import android.widget.BaseExpandableListAdapter;
 import android.widget.ExpandableListView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -41,6 +42,7 @@ public class wangqitiaozhan extends Activity{
     List<List<itemData>> item_list;
     LinearLayout imageView;
     String str = null;
+    RelativeLayout wqtz_fh;
     private class itemData{
         String frontname;
         int identifyDigit;
@@ -67,6 +69,13 @@ public class wangqitiaozhan extends Activity{
                     io.GETToHTTPServer();
                     str = io.getResultData();
 
+            }
+        });
+        wqtz_fh = (RelativeLayout) findViewById(R.id.wytz_fanhui);
+        wqtz_fh.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
             }
         });
         thread.start();
