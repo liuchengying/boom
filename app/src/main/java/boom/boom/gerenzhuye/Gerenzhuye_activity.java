@@ -46,7 +46,7 @@ import boom.boom.api.Static;
 import boom.boom.api.SysApplication;
 import boom.boom.api.Utils;
 
-import boom.boom.liuyan.Liuyan_activity;
+
 import boom.boom.liuyanhuifu.Liuyanhuifu_activity;
 import boom.boom.myview.CircleImageView;
 import boom.boom.myview.SildingFinishLayout;
@@ -322,7 +322,7 @@ public class  Gerenzhuye_activity extends FragmentActivity
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent();
-                intent.setClass(Gerenzhuye_activity.this, Liuyanhuifu_activity.class);
+                intent.setClass(Gerenzhuye_activity.this,Liuyanhuifu_activity.class);
                 intent.putExtra("nickname",nickname);
                 intent.putExtra("ID",guestID);
                 intent.putExtra("type", "3");

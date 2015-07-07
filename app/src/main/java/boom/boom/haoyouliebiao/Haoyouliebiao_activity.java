@@ -13,6 +13,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
@@ -34,7 +35,7 @@ import boom.boom.tianjiahaoyou.Tianjiahaoyou_activity;
  */
 public class Haoyouliebiao_activity extends Activity {
     ListView lv;
-    LinearLayout haoyouliebiao_fh;
+    RelativeLayout haoyouliebiao_fh;
     SimpleAdapter mSimpleAdapter;
     TextView hylb_search;
 
@@ -134,7 +135,7 @@ public class Haoyouliebiao_activity extends Activity {
                 }
             });
             lv.setAdapter(mSimpleAdapter);
-            haoyouliebiao_fh = (LinearLayout) findViewById(R.id.haoyouliebiao_fh);
+            haoyouliebiao_fh = (RelativeLayout) findViewById(R.id.haoyouliebiao_fh);
             haoyouliebiao_fh.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

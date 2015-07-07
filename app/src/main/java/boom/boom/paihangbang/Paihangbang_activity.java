@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -66,7 +67,7 @@ public class Paihangbang_activity extends FragmentActivity
 
         mSildingFinishLayout.setTouchView(mSildingFinishLayout);
         SysApplication.getInstance().addActivity(this);
-        LinearLayout phbfh = (LinearLayout)findViewById(R.id.paihangbangfanhuis);
+        RelativeLayout phbfh = (RelativeLayout)findViewById(R.id.paihangbangfanhuis);
         phbfh.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

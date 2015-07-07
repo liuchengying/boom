@@ -10,6 +10,7 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,7 +25,7 @@ import boom.boom.myview.SildingFinishLayout;
  * Created by 刘成英 on 2015/4/1.
  */
 public class Bangzhuyufankui_activity extends Activity {
-    private LinearLayout bangzhuyufankui_fh;
+    private RelativeLayout bangzhuyufankui_fh;
     private Button tijiaofankui;
     private EditText bangzhuyufankui_edit;
     private String suggestText;
@@ -66,7 +67,7 @@ public class Bangzhuyufankui_activity extends Activity {
                     }
                 });
 
-        bangzhuyufankui_fh = (LinearLayout) findViewById(R.id.bangzhuyufankui_fh);
+        bangzhuyufankui_fh = (RelativeLayout) findViewById(R.id.bangzhuyufankui_fh);
         bangzhuyufankui_edit = (EditText) findViewById(R.id.bangzhuyufankui_edit);
         tijiaofankui = (Button) findViewById(R.id.tijiaofankui);
         tijiaofankui.setOnClickListener(new View.OnClickListener() {

@@ -41,7 +41,7 @@ import boom.boom.shangchuandengdai.Shangchuandengdai_activity;
  * Created by 刘成英 on 2015/1/20.
  */
 public class Paishetiaozhan_activity extends Activity implements SurfaceHolder.Callback{
-    private LinearLayout paishefanhui;
+    private RelativeLayout paishefanhui;
     private Button kaishipaishe;
     private Button fangqipaishe;
     private SurfaceView sv;
@@ -177,7 +177,7 @@ public class Paishetiaozhan_activity extends Activity implements SurfaceHolder.C
         setContentView(R.layout.paishetiaozhan);
         SysApplication.getInstance().addActivity(this);
         FontManager.changeFonts(FontManager.getContentView(this), this);//字体
-        paishefanhui = (LinearLayout) findViewById(R.id.paishefanhui);
+        paishefanhui = (RelativeLayout) findViewById(R.id.paishefanhui);
         kaishipaishe = (Button) findViewById(R.id.kaishipaishe);
         fangqipaishe = (Button) findViewById(R.id.fangqipaishe);
         fangqipaishe.setOnClickListener(new View.OnClickListener() {

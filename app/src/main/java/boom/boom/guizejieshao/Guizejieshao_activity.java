@@ -10,6 +10,7 @@ import android.widget.LinearLayout;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.VideoView;
 
@@ -27,7 +28,7 @@ import boom.boom.paishetiaozhan.Paishetiaozhan_activity;
  * Created by 刘成英 on 2015/1/19.
  */
 public class Guizejieshao_activity extends Activity{
-    private LinearLayout fanhuitianzhan;
+    private RelativeLayout fanhuitianzhan;
     private  Button woyaotianzhan;
     private VideoView frame_frontvideo;
     private TextView challenge_title;
@@ -65,7 +66,7 @@ public class Guizejieshao_activity extends Activity{
                 e.printStackTrace();
             }
         }
-        fanhuitianzhan = (LinearLayout) findViewById(R.id.fanhuitiaozhan);
+        fanhuitianzhan = (RelativeLayout) findViewById(R.id.fanhuitiaozhan);
         woyaotianzhan = (Button) findViewById(R.id.woyaotiaozhan);
         if(ifFaqi == 1) woyaotianzhan.setText("发起挑战");
         shipinbofang = (Button)findViewById(R.id.shipinbofang);

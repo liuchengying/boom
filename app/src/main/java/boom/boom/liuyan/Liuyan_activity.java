@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,7 +27,7 @@ import boom.boom.tianzhan.Tiaozhan_activity;
  * Created by lcy on 2015/5/7.
  */
 public class Liuyan_activity extends Activity {
-    private LinearLayout liuyan_fh;
+    private RelativeLayout liuyan_fh;
     private TextView    commentText;
     private Button      button_onSubmit;
     private String      commentStr = null;
@@ -76,7 +77,7 @@ public class Liuyan_activity extends Activity {
                 }
             }
         });
-        liuyan_fh = (LinearLayout) findViewById(R.id.liuyan_fh);
+        liuyan_fh = (RelativeLayout) findViewById(R.id.liuyan_fh);
         liuyan_fh.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

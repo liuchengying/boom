@@ -8,6 +8,7 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import boom.boom.FontManager.FontManager;
@@ -21,7 +22,7 @@ import boom.boom.api.Utils;
  * Created by lcy on 2015/5/28.
  */
 public class Liuyanhuifu_activity extends Activity {
-    private LinearLayout liuyanhuifu_fh;
+    private RelativeLayout liuyanhuifu_fh;
     private EditText commentText;
     private String ID;
     private Button commit;
@@ -39,7 +40,7 @@ public class Liuyanhuifu_activity extends Activity {
         commit = (Button) findViewById(R.id.submit_liuyan);
         commentText.setHint("回复"+intent.getStringExtra("nickname")+":");
         FontManager.changeFonts(FontManager.getContentView(this), this);//字体
-        liuyanhuifu_fh = (LinearLayout) findViewById(R.id.liuyan_fh);
+        liuyanhuifu_fh = (RelativeLayout) findViewById(R.id.liuyan_fh);
         liuyanhuifu_fh.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

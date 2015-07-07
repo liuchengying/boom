@@ -13,6 +13,7 @@ import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.ToggleButton;
@@ -42,7 +43,7 @@ import boom.boom.myview.SildingFinishLayout;
 public class Liuyanban_pinglun extends Activity {
 
     private ListView lv;
-    private LinearLayout liuyanban_fh;
+    private RelativeLayout liuyanban_fh;
     private Button liuyan;
     private String ID;
     private SimpleAdapter mSimpleAdapter;
@@ -262,7 +263,7 @@ public class Liuyanban_pinglun extends Activity {
                 overridePendingTransition(0, R.anim.liuyan_in);
             }
         });
-        liuyanban_fh = (LinearLayout) findViewById(R.id.liuyanban_fh);
+        liuyanban_fh = (RelativeLayout) findViewById(R.id.liuyanban_fh);
         liuyanban_fh.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
