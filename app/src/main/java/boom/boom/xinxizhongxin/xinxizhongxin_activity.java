@@ -4,6 +4,7 @@ package boom.boom.xinxizhongxin;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -36,8 +37,12 @@ import boom.boom.R;
 import boom.boom.api.Msg;
 import boom.boom.api.SysApplication;
 import boom.boom.ExpandableTextView.ExpandableTextView;
+import boom.boom.gerenzhuye.Gerenzhuye_activity;
+import boom.boom.guizejieshao.Guizejieshao_activity;
+import boom.boom.liuyanbanpinglun.Liuyanban_pinglun;
 import boom.boom.myview.SildingFinishLayout;
 import boom.boom.myview.XListView;
+import boom.boom.shipintianzhanpinglun.Shipintianzhan_pinglun;
 
 /**
  * Created by Lyp on 2015/1/22
@@ -106,9 +111,89 @@ public class xinxizhongxin_activity extends Activity implements XListView.IXList
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 int type = (int) adapter.list.get(position-1).get("type");
                 switch (type) {
+                    case 1:
+                        break;
+                    case 2:
+                        Intent intent1 = new Intent();
+                        intent1.putExtra("challenge_number",(String)adapter.list.get(position-1).get("identifyDigit"));
+                        intent1.putExtra("ifFaqi",1);
+                        intent1.setClass(xinxizhongxin_activity.this, Guizejieshao_activity.class);
+                        startActivity(intent1);
+                        break;
+                    case 3:
+                        Intent intent2 = new Intent();
+                        intent2.putExtra("cl_id",(String)adapter.list.get(position-1).get("challenge_id"));
+                        intent2.putExtra("nickname",(String)adapter.list.get(position-1).get("nickname"));
+                        intent2.putExtra("cl_name",(String)adapter.list.get(position-1).get("cl_name"));
+                        intent2.putExtra("date",(String)adapter.list.get(position-1).get("date"));
+                        intent2.putExtra("elapsed",(String)adapter.list.get(position-1).get("elapsed"));
+                        intent2.setClass(xinxizhongxin_activity.this, Shipintianzhan_pinglun.class);
+                        startActivity(intent2);
+                        break;
                     case 4:
-                    ExpandableTextView e = (ExpandableTextView) view.findViewById(R.id.expand_text_view);
-                    e.onClick(view);
+                        ExpandableTextView e = (ExpandableTextView) view.findViewById(R.id.expand_text_view);
+                        e.onClick(view);
+                        break;
+                    case 5:
+                        Intent intent3 = new Intent();
+                        intent3.putExtra("guestID",(String)adapter.list.get(position-1).get("host_id"));
+                        intent3.putExtra("type",4);
+                        intent3.putExtra("ID",(String)adapter.list.get(position-1).get("ID"));
+                        intent3.setClass(xinxizhongxin_activity.this, Gerenzhuye_activity.class);
+                        startActivity(intent3);
+                        break;
+                    case 6:
+                        Intent intent4 = new Intent();
+                        intent4.putExtra("cl_id",(String)adapter.list.get(position-1).get("challenge_id"));
+                        intent4.putExtra("nickname",(String)adapter.list.get(position-1).get("nickname"));
+                        intent4.putExtra("cl_name",(String)adapter.list.get(position-1).get("cl_name"));
+                        intent4.putExtra("date",(String)adapter.list.get(position-1).get("date"));
+                        intent4.putExtra("elapsed",(String)adapter.list.get(position-1).get("elapsed"));
+                        intent4.setClass(xinxizhongxin_activity.this, Shipintianzhan_pinglun.class);
+                        startActivity(intent4);
+                        break;
+                    case 7:
+                        if((int)adapter.list.get(position-1).get("comment_type")<3){
+                            Intent intent5 = new Intent();
+                            intent5.putExtra("cl_id",(String)adapter.list.get(position-1).get("challenge_id"));
+                           /* intent5.putExtra("nickname",(String)adapter.list.get(position-1).get("nickname"));
+                            intent5.putExtra("cl_name",(String)adapter.list.get(position-1).get("text"));
+                            intent5.putExtra("date",(String)adapter.list.get(position-1).get("date"));
+                            intent5.putExtra("elapsed",(String)adapter.list.get(position-1).get("elapsed"));*/
+                            intent5.setClass(xinxizhongxin_activity.this, Shipintianzhan_pinglun.class);
+                            startActivity(intent5);
+                        }else{
+                            Intent intent6 = new Intent();
+                            intent6.putExtra("ID",(String)adapter.list.get(position-1).get("ID"));
+                           /* intent6.putExtra("nickname",(String)adapter.list.get(position-1).get("nickname"));
+                            intent6.putExtra("text",(String)adapter.list.get(position-1).get("text"));
+                            intent6.putExtra("date",(String)adapter.list.get(position-1).get("date"));*/
+                            intent6.setClass(xinxizhongxin_activity.this, Liuyanban_pinglun.class);
+                            startActivity(intent6);
+                        }
+                        break;
+                    case 8:
+                        Intent intent7 = new Intent();
+                        intent7.putExtra("cl_id",(String)adapter.list.get(position-1).get("cl_id"));
+                        intent7.putExtra("ifFaqi",1);
+                        intent7.setClass(xinxizhongxin_activity.this,Guizejieshao_activity.class);
+                        startActivity(intent7);
+                        break;
+                    case 9:
+                        Intent intent8 = new Intent();
+                        intent8.putExtra("guest_id",(String)adapter.list.get(position-1).get("guest_id"));
+                        intent8.putExtra("type",(boolean)adapter.list.get(position-1).get("pass")?1:2);
+                        intent8.setClass(xinxizhongxin_activity.this,Gerenzhuye_activity.class);
+                        startActivity(intent8);
+                        break;
+                    case 10:
+                        break;
+                    case 11:
+                        Intent intent9 = new Intent();
+                        intent9.putExtra("challenge_number",(String)adapter.list.get(position-1).get("identifyDigit"));
+                        intent9.putExtra("ifFaqi",1);
+                        intent9.setClass(xinxizhongxin_activity.this, Guizejieshao_activity.class);
+                        startActivity(intent9);
                         break;
                 }
             }

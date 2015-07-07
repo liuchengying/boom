@@ -3,6 +3,7 @@ package boom.boom.Welcome;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -107,6 +108,7 @@ public class Welcome_activity extends Activity {
                             InputStream in = null;
                             HttpURLConnection urlConn = null;
                             BufferedReader buffer = null;
+                            if(!Static.avatar.equals("null")){
                             try {
                                 Utils.GetBuilder get = new Utils.GetBuilder(Utils.serveraddr + "/api/getimage.php");
                                 get.addItem("token", Static.avatar);
@@ -131,7 +133,12 @@ public class Welcome_activity extends Activity {
                             {
                                 e.printStackTrace();
                             }
-                            Static.avatarImage=bitmap;
+                        }
+                            else {
+                                Resources res = getResources();
+                                bitmap = BitmapFactory.decodeResource(res,R.drawable.android_114);
+                            }
+                            Static.avatarImage = bitmap;
                         }
                     });
                     thread.start();

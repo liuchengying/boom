@@ -177,18 +177,42 @@
 
 
        </FrameLayout>
-       <HorizontalScrollView
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           android:layout_centerHorizontal="true"
 
-           android:scrollbars="none"
-           android:background="@drawable/android_204"
-           android:layout_gravity="center"
+<LinearLayout
+    android:layout_gravity="center_horizontal"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:background="@drawable/android_204">
+    <ToggleButton
+        android:layout_marginLeft="15dp"
+        android:id="@+id/liuyanpinglun_toggle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:textOff=""
+        android:textOn=""
+        android:checked="true"
+        android:background="@drawable/liuyanban_pinglun_dianzan"/>
+    <HorizontalScrollView
+        android:layout_marginLeft="15dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:scrollbars="none"
+        android:layout_gravity="center"
 
-           >
+        >
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="horizontal"
+            android:id="@+id/sppl_horizon">
 
-           </HorizontalScrollView>
+            </LinearLayout>
+        </HorizontalScrollView>
+    </LinearLayout>
+
        <LinearLayout
            android:layout_marginTop="5dp"
            android:layout_width="wrap_content"

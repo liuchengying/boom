@@ -87,6 +87,7 @@ public class  Gerenzhuye_activity extends FragmentActivity
     private Button disagree;
     private int type;
     public String nickname;
+    private String ID;
     android.os.Handler myMessageHandler = new android.os.Handler() {
         @Override
         public void handleMessage(Message msg) {
@@ -109,6 +110,7 @@ public class  Gerenzhuye_activity extends FragmentActivity
         disagree = (Button) findViewById(R.id.grzy_jj_bt);
         guestID = getIntent().getStringExtra("guestID");
         type = getIntent().getIntExtra("type",1);
+        ID = getIntent().getStringExtra("ID");
         switch (type)
         {
             case 1://都不显示
@@ -171,18 +173,66 @@ public class  Gerenzhuye_activity extends FragmentActivity
             }
             case 4://显示拒绝添加
             {
-                tjhy_ll.setVisibility(View.INVISIBLE);
-                tyjj_ll.setVisibility(View.VISIBLE);
+                final HttpIO io = new HttpIO(Utils.serveraddr + "api/newfriend.php?action=verify&guest_id="+guestID);
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        io.SessionID = Static.session_id;
+                        io.getJson();
+                    }
+                }).start();
+                while(io.getResultData() == null);
+                String response = null;
+                try {
+                    JSONObject obj = new JSONObject(io.getResultData());
+                    response = obj.getString("status");
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+
+                if(response.equals("FRIENDSHIP_NOT_EXISTED")){
+                    tjhy_ll.setVisibility(View.VISIBLE);
+                    tjhy_tv.setText("您 已 拒 绝");
+                    tyjj_ll.setVisibility(View.INVISIBLE);
+                }else if(response.equals("AWAITING_FRIENDS_ACCEPTED")) {
+                    tjhy_ll.setVisibility(View.INVISIBLE);
+                    tyjj_ll.setVisibility(View.VISIBLE);
+                }else if(response.equals("FRIENDSHIP_EXISTED")){
+                    tjhy_ll.setVisibility(View.INVISIBLE);
+                    tyjj_ll.setVisibility(View.INVISIBLE);
+                }
+
                 agree.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-
+                        final HttpIO io = new HttpIO(Utils.serveraddr + "/api/newfriend.php?action=verify_friend&state=1&id="+ID);
+                        io.SessionID = Static.session_id;
+                        new Thread(new Runnable() {
+                            @Override
+                            public void run() {
+                                io.GETToHTTPServer();
+                            }
+                        }).start();
+                        while(io.getResultData() == null);
+                        tjhy_ll.setVisibility(View.INVISIBLE);
+                        tyjj_ll.setVisibility(View.INVISIBLE);
                     }
                 });
                 disagree.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-
+                        final HttpIO io = new HttpIO(Utils.serveraddr + "/api/newfriend.php?action=verify_friend&state=2&id="+ID);
+                        io.SessionID = Static.session_id;
+                        new Thread(new Runnable() {
+                            @Override
+                            public void run() {
+                                io.GETToHTTPServer();
+                            }
+                        }).start();
+                        while(io.getResultData() == null);
+                        tjhy_ll.setVisibility(View.VISIBLE);
+                        tjhy_tv.setText("您 已 拒 绝");
+                        tyjj_ll.setVisibility(View.INVISIBLE);
                     }
                 });
                 break;

@@ -75,7 +75,7 @@ public class Liuyanban_fragment extends Fragment implements XListView.IXListView
                 localIntent.putExtra("ID",(String)listItem.get(position-1).get("ID"));
                 localIntent.putExtra("nickname",(String)listItem.get(position-1).get("title"));
                 localIntent.putExtra("text",(String)listItem.get(position-1).get("text"));
-                localIntent.putExtra("time",(String)listItem.get(position-1).get("time"));
+                localIntent.putExtra("date",(String)listItem.get(position-1).get("time"));
                 startActivity(localIntent);
 
             }

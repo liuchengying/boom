@@ -125,22 +125,23 @@ public class Msg {
                             map.put("smallicon",smallicon);
                             map.put("identifyDigit",data.getString("identifyDigit"));
                             break;
-                        case 3://3.往期挑战，官方的审核状态
+                        case 3://3.挑战好友状态
                             if(data.getString("pass").equals("CHALLENGE_SUCCESS"))
                             {
-                                map.put("title", "发布的往期挑战已通过审核!");
-                                map.put("content","挑战“"+data.getString("challenge_frontname")+"”已通过审核！");
-                                smallicon = BitmapFactory.decodeResource(res,R.drawable.android_213);
+                                map.put("title", "我屌爆了！");
+                                map.put("content","我成功超越了 "+data.getString("creator")+" 的挑战!");
+                                icon = BitmapFactory.decodeResource(res,R.drawable.android_218);
                                 map.put("pass",true);
-                                map.put("challenge_id",data.getString("challenge_id"));
                             }else {
-                                map.put("title","发布的往期挑战未通过审核!");
-                                map.put("content","挑战“"+data.getString("challenge_frontname")+"”未通过审核！");
-                                smallicon = BitmapFactory.decodeResource(res,R.drawable.android_215);
+                                map.put("title","我弱爆了！");
+                                map.put("content","挑战 "+data.getString("creator")+" 失败！弱爆了！");
+                                icon = BitmapFactory.decodeResource(res,R.drawable.android_211);
                                 map.put("pass",false);
                             }
-                            map.put("smallicon",smallicon);
-                            icon = BitmapFactory.decodeResource(res,R.drawable.android_217);
+                            map.put("challenge_id",data.getString("challenge_id"));
+                            map.put("cl_name",data.getString("challenge_frontname"));
+                            map.put("elapsed",data.getString("elapsed_time"));
+                            map.put("nickname",data.getString("creator_nickname"));
                             map.put("icon",icon);
                             break;
                         case 4://4.官方推送的消息
@@ -156,11 +157,26 @@ public class Msg {
                             map.put("host_id",data.getString("host_id"));
                             map.put("avatar",data.getString("avatar"));
                             map.put("icon",icon);
+                            map.put("ID",data.getString("ID"));
                             break;
                         case 6://6.用户的自拟挑战别人挑战成功与否的消息
-                            map.put("title","你屌爆了！");
-                            map.put("content","XXX 刚刚挑战您失败");
-                            icon = BitmapFactory.decodeResource(res,R.drawable.android_218);
+                            if(data.getString("pass").equals("CHALLENGE_SUCCESS"))
+                            {
+                                map.put("title", "你弱爆了！");
+                                map.put("content",data.getString("creator")+" 刚刚成功超越了您的挑战！");
+                                icon = BitmapFactory.decodeResource(res,R.drawable.android_211);
+                                map.put("pass",true);
+                                map.put("challenge_id",data.getString("challenge_id"));
+                            }else {
+                                map.put("title","你屌爆了！");
+                                map.put("content",data.getString("creator")+" 刚刚挑战您失败！");
+                                icon = BitmapFactory.decodeResource(res,R.drawable.android_218);
+                                map.put("pass",false);
+                            }
+                            map.put("challenge_id",data.getString("challenge_id"));
+                            map.put("cl_name",data.getString("challenge_frontname"));
+                            map.put("elapsed",data.getString("elapsed_time"));
+                            map.put("nickname",data.getString("creator"));
                             map.put("icon",icon);
                             break;
                         case 7://7.评论回复
@@ -168,6 +184,12 @@ public class Msg {
                             map.put("content",data.getString("nickname")+":"+data.getString("text_value"));
                             icon = BitmapFactory.decodeResource(res,R.drawable.android_216);
                             map.put("icon",icon);
+                            map.put("ID",data.getString("ID"));
+                            map.put("cl_id",data.getString("cl_id"));
+                            /*map.put("nickname",data.getString("nickname"));
+                            map.put("text",data.getString("text_value"));
+                            map.put("elapsed",data.getString("elapsed_time"));*/
+                            map.put("comment_type",data.getInt("commentType"));
                             break;
                         case 8://点好友
                             map.put("title","好友"+data.getString("host_nickname")+"对你发起挑战！");
@@ -190,12 +212,32 @@ public class Msg {
                             smallicon = BitmapFactory.decodeResource(res,(passed)?R.drawable.android_213:R.drawable.android_215);
                             map.put("smallicon",smallicon);
                             icon = BitmapFactory.decodeResource(res,R.drawable.android_209);
+                            map.put("pass",passed?true:false);
+                            map.put("guest_id",data.getString("guest_id"));
                             map.put("icon",icon);
                             break;
-                        case 10://
-                            map.put("title","type10");
-                            map.put("content","type10");
-                            icon = BitmapFactory.decodeResource(res,R.drawable.android_209);
+                        case 10://当天排名
+                            map.put("title","今日排名");
+                            map.put("content","您今日排名全国"+data.getString("all")+"名 地区"+data.getString("region")+"名！");
+                            icon = BitmapFactory.decodeResource(res,R.drawable.android_210);
+                            map.put("icon",icon);
+                            break;
+                        case 11://往期挑战，审核状态
+                            if(data.getString("pass").equals("CHALLENGE_SUCCESS"))
+                            {
+                                map.put("title", "发布的往期挑战已通过审核!");
+                                map.put("content","挑战“"+data.getString("challenge_frontname")+"”已通过审核！");
+                                smallicon = BitmapFactory.decodeResource(res,R.drawable.android_213);
+                                map.put("pass",true);
+                            }else {
+                                map.put("title","发布的往期挑战未通过审核!");
+                                map.put("content","挑战“"+data.getString("challenge_frontname")+"”未通过审核！");
+                                smallicon = BitmapFactory.decodeResource(res,R.drawable.android_215);
+                                map.put("pass",false);
+                            }
+                            map.put("identifyDigit",data.getString("challenge_id"));
+                            map.put("smallicon",smallicon);
+                            icon = BitmapFactory.decodeResource(res,R.drawable.android_217);
                             map.put("icon",icon);
                             break;
                     }
