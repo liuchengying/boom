@@ -21,6 +21,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -69,7 +70,7 @@ public class xinxizhongxin_activity extends Activity implements XListView.IXList
         mSildingFinishLayout.setTouchView(mSildingFinishLayout);
         SysApplication.getInstance().addActivity(this);
         FontManager.changeFonts(FontManager.getContentView(this), this);//字体
-        LinearLayout fh = (LinearLayout) findViewById(R.id.xxzx_fanhui);
+        RelativeLayout fh = (RelativeLayout) findViewById(R.id.xxzx_fanhui);
 
 
 //        Button rightSideButton;

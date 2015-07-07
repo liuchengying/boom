@@ -10,8 +10,35 @@
     android:background="#ffdadada"
     android:divider="@null"
     android:gravity="center_horizontal">
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    android:background="#ffe14723">
+    <RelativeLayout
+        android:id="@+id/xxzx_fanhui"
+        android:layout_width="75dp"
+        android:layout_height="match_parent">
+        <Button
+            android:layout_centerVertical="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/android_20"
+            android:gravity="center_horizontal"
+            android:layout_marginLeft="10dp"
+            android:layout_gravity="center_vertical"
+            />
+        </RelativeLayout>
+    <TextView
+        android:layout_centerInParent="true"
+        android:layout_marginLeft="60dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="信息中心"
+        android:textSize="22sp"
+        android:textColor="#ffffffff" />
+    </RelativeLayout>
 
-
+<!--
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="fill_parent"
@@ -51,6 +78,7 @@
                 android:textColor="#ffffffff" />
         </LinearLayout>
     </LinearLayout>
+-->
 
     <boom.boom.myview.XListView
         android:layout_gravity="center_horizontal"
