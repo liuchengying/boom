@@ -195,6 +195,7 @@
                 />
         </LinearLayout>
         <LinearLayout
+
             android:layout_x="0dp"
             android:layout_y="570dp"
             android:layout_alignParentBottom="true"
