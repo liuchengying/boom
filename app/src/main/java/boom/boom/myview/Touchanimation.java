@@ -73,7 +73,7 @@ public class Touchanimation extends ListView implements AbsListView.OnScrollList
                            if (!animating) {
                                if (!ok) {
                                    AnimationSet animationSet = new AnimationSet(true);
-                                   TranslateAnimation translateAnimation = new TranslateAnimation(0, 0, 0, -500);
+                                   TranslateAnimation translateAnimation = new TranslateAnimation(0, 0, 0, -510);
                                    translateAnimation.setDuration(500);
                                    translateAnimation.setAnimationListener(new Animation.AnimationListener() {
                                        @Override
@@ -86,7 +86,7 @@ public class Touchanimation extends ListView implements AbsListView.OnScrollList
                                            RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(
                                                    all.getLayoutParams());
 
-                                           params.setMargins(0, -380, 0, 0);
+                                           params.setMargins(0, -390, 0, 0);
                                            animating = false;
                                            all.clearAnimation();
                                            all.setLayoutParams(params);
@@ -115,7 +115,7 @@ public class Touchanimation extends ListView implements AbsListView.OnScrollList
                            if (!animating) {
                                if (ok) {
                                    AnimationSet animationSet = new AnimationSet(true);
-                                   TranslateAnimation translateAnimation = new TranslateAnimation(0, 0, 0, 500);
+                                   TranslateAnimation translateAnimation = new TranslateAnimation(0, 0, 0, 490);
                                    translateAnimation.setDuration(500);
                                    translateAnimation.setAnimationListener(new Animation.AnimationListener() {
                                        @Override
@@ -128,7 +128,7 @@ public class Touchanimation extends ListView implements AbsListView.OnScrollList
                                            RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(
                                                    all.getLayoutParams());
 
-                                           params.setMargins(0, 120, 0, 0);
+                                           params.setMargins(0, 110, 0, 0);
                                            animating = false;
                                            all.clearAnimation();
                                            all.setLayoutParams(params);

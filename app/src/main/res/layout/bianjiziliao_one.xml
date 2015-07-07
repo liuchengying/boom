@@ -207,7 +207,7 @@
             <EditText
                 android:gravity="center_vertical"
                 android:layout_marginLeft="25dp"
-                android:layout_width="match_parent"
+                android:layout_width="250dp"
                 android:layout_height="43dp"
                 android:layout_toRightOf="@id/bianjixinxi_gexingqianming"
                 android:background="#ffffff"
@@ -246,7 +246,7 @@
             <EditText
                 android:gravity="center_vertical"
                 android:layout_marginLeft="25dp"
-                android:layout_width="match_parent"
+                android:layout_width="250dp"
                 android:layout_height="43dp"
                 android:layout_toRightOf="@id/bianjixinxi_zhiye"
                 android:background="#ffffff"
@@ -287,7 +287,7 @@
                 android:background="#ffffff"
 
                 android:layout_marginLeft="5dp"
-                android:layout_width="match_parent"
+                android:layout_width="250dp"
                 android:layout_height="40dp"
                 android:gravity="center_vertical"
                 android:text="辽宁大连"
@@ -330,7 +330,7 @@
             <EditText
                 android:gravity="center_vertical"
                 android:layout_marginLeft="25dp"
-                android:layout_width="match_parent"
+                android:layout_width="250dp"
                 android:layout_height="43dp"
                 android:layout_toRightOf="@id/bianjixinxi_xuexiao"
                 android:background="#ffffff"
@@ -369,7 +369,7 @@
             <EditText
                 android:gravity="center_vertical"
                 android:layout_marginLeft="25dp"
-                android:layout_width="match_parent"
+                android:layout_width="250dp"
                 android:layout_height="43dp"
                 android:layout_toRightOf="@id/bianjixinxi_gongsi"
                 android:background="#ffffff"

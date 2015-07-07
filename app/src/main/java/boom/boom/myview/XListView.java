@@ -313,7 +313,7 @@ public class XListView extends ListView implements OnScrollListener {
                                         RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(
                                                 all.getLayoutParams());
 
-                                        params.setMargins(0, -380, 0, 0);
+                                        params.setMargins(0, -400, 0, 0);
                                         animating = false;
                                         all.clearAnimation();
                                         all.setLayoutParams(params);
@@ -342,7 +342,7 @@ public class XListView extends ListView implements OnScrollListener {
                         if (!animating) {
                             if (ok) {
                                 AnimationSet animationSet = new AnimationSet(true);
-                                TranslateAnimation translateAnimation = new TranslateAnimation(0, 0, 0, 500);
+                                TranslateAnimation translateAnimation = new TranslateAnimation(0, 0, 0, 480);
                                 translateAnimation.setDuration(500);
                                 translateAnimation.setAnimationListener(new Animation.AnimationListener() {
                                     @Override
@@ -355,7 +355,7 @@ public class XListView extends ListView implements OnScrollListener {
                                         RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(
                                                 all.getLayoutParams());
 
-                                        params.setMargins(0, 120, 0, 0);
+                                        params.setMargins(0, 100, 0, 0);
                                         animating = false;
                                         all.clearAnimation();
                                         all.setLayoutParams(params);
