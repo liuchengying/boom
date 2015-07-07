@@ -13,9 +13,9 @@
     android:scrollbarAlwaysDrawVerticalTrack="true">
     <RelativeLayout
         android:layout_width="fill_parent"
-        android:layout_height="60dp"
+        android:layout_height="50dp"
         android:background="#ffe14723"
-        android:orientation="horizontal"
+
         >
         <RelativeLayout
             android:layout_width="98dp"
@@ -33,8 +33,7 @@
     </RelativeLayout>
 
             <TextView
-                android:layout_centerVertical="true"
-                android:paddingLeft="95dp"
+                android:layout_centerInParent="true"
                 android:layout_marginLeft="45dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -42,10 +41,7 @@
                 android:textSize="23dp"
                 android:gravity="center"
                 android:textColor="#ffffff"/>
-
-
-
-        </RelativeLayout>
+    </RelativeLayout>
     <ScrollView
         android:layout_width="fill_parent"
         android:layout_height="fill_parent">
@@ -76,7 +72,7 @@
         <Button
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:layout_marginRight="45dp"
+            android:layout_marginRight="15dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/android_52"
@@ -100,7 +96,7 @@
             android:textSize="17sp"/>
         <Button
             android:layout_centerVertical="true"
-            android:layout_marginRight="45dp"
+            android:layout_marginRight="15dp"
             android:layout_alignParentRight="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -126,7 +122,7 @@
             android:id="@+id/sz_toggle1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="40dp"
+            android:layout_marginRight="20dp"
             android:layout_alignParentRight="true"
 
             android:layout_centerVertical="true"
@@ -163,7 +159,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="180dp"
-            android:layout_marginRight="40dp"
+            android:layout_marginRight="20dp"
             android:layout_alignParentRight="true"
 
             android:layout_centerVertical="true"
@@ -201,7 +197,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="90dp"
-            android:layout_marginRight="40dp"
+            android:layout_marginRight="20dp"
             android:layout_alignParentRight="true"
 
             android:layout_centerVertical="true"
