@@ -183,6 +183,7 @@
             android:background="@drawable/android_195"
             android:gravity="center"
             android:id="@+id/grzy_tjhy_ll"
+
             >
             <TextView
                 android:layout_width="wrap_content"
