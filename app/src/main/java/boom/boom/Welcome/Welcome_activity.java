@@ -93,9 +93,9 @@ public class Welcome_activity extends Activity {
                         Static.uniqueSign = data.QueryData("uniquesign");
                         Static.identifyDigit = data.QueryData("identifyDigit");
                         Static.avatar = data.QueryData("avatar");
-                        Static.province = Utils.GetSubJSONObject(data.toJSONObject(), "location").getString("province");
+                       /* Static.province = Utils.GetSubJSONObject(data.toJSONObject(), "location").getString("province");
                         Static.city = Utils.GetSubJSONObject(data.toJSONObject(), "location").getString("city");
-                        Static.area = Utils.GetSubJSONObject(data.toJSONObject(), "location").getString("area");
+                        Static.area = Utils.GetSubJSONObject(data.toJSONObject(), "location").getString("area");*/
                     }catch (Exception e)
                     {
                         e.printStackTrace();

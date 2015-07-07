@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 
 import boom.boom.FontManager.FontManager;
 import boom.boom.R;
@@ -18,8 +19,9 @@ import boom.boom.tongxunlu.tongxunlu_activity;
  * Created by 刘成英 on 2015/3/12.
  */
 public class Shangchuanchenggong1_activity extends Activity {
-    private LinearLayout yaoqinghaoyoutianzhan;
+    private RelativeLayout yaoqinghaoyoutianzhan;
     private Button onRecordFinished;
+    private RelativeLayout sccg_fh;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,7 +31,8 @@ public class Shangchuanchenggong1_activity extends Activity {
 
         SysApplication.getInstance().addActivity(this);
         FontManager.changeFonts(FontManager.getContentView(this), this);//字体
-        yaoqinghaoyoutianzhan = (LinearLayout) findViewById(R.id.yaoqinghaoyoutianzhan);
+        yaoqinghaoyoutianzhan = (RelativeLayout) findViewById(R.id.yaoqinghaoyoutianzhan);
+        sccg_fh = (RelativeLayout) findViewById(R.id.sccg_fh);
         yaoqinghaoyoutianzhan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -37,6 +40,12 @@ public class Shangchuanchenggong1_activity extends Activity {
                 intent.putExtra("challenge_id",getIntent().getSerializableExtra("challenge_id"));
                 intent.setClass(Shangchuanchenggong1_activity.this, tongxunlu_activity.class);
                 startActivity(intent);
+            }
+        });
+        sccg_fh.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
             }
         });
         onRecordFinished.setOnClickListener(new View.OnClickListener() {

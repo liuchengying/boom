@@ -22,6 +22,7 @@ import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -149,7 +150,7 @@ public class tongxunlu_activity extends Activity{
 
             }
         });
-        LinearLayout fanhui= (LinearLayout) findViewById(R.id.txl_fh);
+        RelativeLayout fanhui= (RelativeLayout) findViewById(R.id.txl_fh);
         fanhui.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -158,7 +159,7 @@ public class tongxunlu_activity extends Activity{
             }
         });
 
-        LinearLayout txl_finish = (LinearLayout)findViewById(R.id.txl_finish);
+        RelativeLayout txl_finish = (RelativeLayout)findViewById(R.id.txl_finish);
         txl_finish.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
