@@ -13,12 +13,14 @@ import android.view.View;
 import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 
 import android.widget.TextView;
+import android.widget.ToggleButton;
 import android.widget.VideoView;
 
 import org.json.JSONException;
@@ -65,6 +67,7 @@ public class Shipintianzhan_pinglun extends Activity {
     private TextView cl_name_tv;
     private TextView date_tv;
     private TextView elapsed_tv;
+    private ToggleButton heartlike;
     private SimpleAdapter mSimpleAdapter;
     private LinearLayout shipinpinglun_fh;
     private String guestID;
@@ -82,6 +85,7 @@ public class Shipintianzhan_pinglun extends Activity {
         }
     };
     private void LoadImage (){
+        sppl_horizon.removeAllViews();
         for(int i=0;i<avatarlist.size();i++){
             RoundedImageView imageView=new RoundedImageView(Shipintianzhan_pinglun.this);
             imageView.setImageResource(R.drawable.android_181);
@@ -205,6 +209,22 @@ public class Shipintianzhan_pinglun extends Activity {
         date_tv = (TextView) findViewById(R.id.date);
         elapsed_tv = (TextView) findViewById(R.id.elapsed);
         sppl_horizon = (LinearLayout)findViewById(R.id.sppl_horizon);
+        heartlike = (ToggleButton) findViewById(R.id.shipinpinglun_toggle);
+        heartlike.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                final HttpIO io = new HttpIO(Utils.serveraddr + "api/msg.php?action=like&type=9&position="+ID);
+                io.SessionID = Static.session_id;
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        io.GETToHTTPServer();
+                    }
+                }).start();
+                while (io.getResultData()==null);
+                LoadData();
+            }
+        });
         Intent intent = getIntent();
         //guestID = intent.getStringExtra("guestID");
         cl_id = intent.getStringExtra("cl_id");

@@ -54,6 +54,7 @@ public class Liuyanban_pinglun extends Activity {
     private TextView text_tv;
     private TextView time_tv;
     private LinearLayout lypl_horizon;
+    ToggleButton mTogBtn;
     private ArrayList<String> avatarlist;
     List<Map<String , Object>> listItem = new ArrayList<Map<String,Object>>();
     android.os.Handler myMessageHandler = new android.os.Handler() {
@@ -65,6 +66,7 @@ public class Liuyanban_pinglun extends Activity {
         }
     };
     private void LoadImage (){
+        lypl_horizon.removeAllViews();
         for(int i=0;i<avatarlist.size();i++){
             RoundedImageView imageView=new RoundedImageView(Liuyanban_pinglun.this);
             imageView.setImageResource(R.drawable.android_181);
@@ -178,6 +180,7 @@ public class Liuyanban_pinglun extends Activity {
 
         SysApplication.getInstance().addActivity(this);
         FontManager.changeFonts(FontManager.getContentView(this), this);//字体
+        mTogBtn = (ToggleButton) findViewById(R.id.liuyanpinglun_toggle);
 
         lypl_horizon = (LinearLayout) findViewById(R.id.lypl_horizon);
 /*
@@ -271,22 +274,23 @@ public class Liuyanban_pinglun extends Activity {
                 overridePendingTransition(0,R.anim.base_slide_right_out);
             }
         });
-        final ToggleButton mTogBtn = (ToggleButton) findViewById(R.id.liuyanpinglun_toggle);
 
 
         mTogBtn.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-
             @Override
             public void onCheckedChanged(CompoundButton buttonView,boolean isChecked) {
-                // TODO Auto-generated method stub
-                if (isChecked) {
-
-                    //togglebutton ture 的状态
-                }else{
-                    //togglebutton false 的状态
-
+                //togglebutton ture 的状态
+                final HttpIO io = new HttpIO(Utils.serveraddr + "api/msg.php?action=like&type=12&position="+ID);
+                io.SessionID = Static.session_id;
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        io.GETToHTTPServer();
+                        }
+                }).start();
+                while (io.getResultData()==null);
+                LoadData();
                 }
-            }
         });
 
     }
