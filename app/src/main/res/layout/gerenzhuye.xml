@@ -15,7 +15,7 @@
      android:layout_height="fill_parent">
 
 <LinearLayout
-    android:layout_marginTop="60dp"
+    android:layout_marginTop="50dp"
     android:id="@+id/zhengge"
     android:layout_width="fill_parent"
     android:layout_height="837dp"
@@ -122,7 +122,7 @@
 </LinearLayout>
      <RelativeLayout
          android:layout_width="fill_parent"
-         android:layout_height="60dp"
+         android:layout_height="50dp"
          android:background="#ffe14723"
          android:orientation="horizontal"
          android:gravity="center"
