@@ -7,7 +7,31 @@
     android:background="#ffdadada"
     android:orientation="vertical"
     >
-    <LinearLayout
+   <RelativeLayout
+       android:layout_width="match_parent"
+       android:layout_height="50dp"
+       android:background="#ffe14723">
+       <RelativeLayout
+           android:id="@+id/fanhuitiaozhan"
+           android:layout_width="75dp"
+           android:layout_height="match_parent">
+           <Button
+               android:layout_centerVertical="true"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:background="@drawable/android_20"
+               android:gravity="center_horizontal"
+               android:layout_marginLeft="10dp"/>
+           </RelativeLayout>
+       <TextView
+           android:layout_centerInParent="true"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:text="规则介绍"
+          android:textColor="#ffffff"
+           android:textSize="22sp" />
+       </RelativeLayout>
+    <!--<LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="60dp"
         android:background="#ffe14723"
@@ -51,7 +75,7 @@
                 android:textSize="25sp" />
         </LinearLayout>
 
-    </LinearLayout>
+    </LinearLayout>-->
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"

@@ -14,7 +14,7 @@
     >
     <LinearLayout
         android:layout_width="fill_parent"
-        android:layout_height="60dp"
+        android:layout_height="50dp"
         android:background="#ffe14723"
         android:orientation="horizontal"
         android:gravity="center">
@@ -28,8 +28,8 @@
             <Button
                 android:layout_gravity="center_vertical"
 
-                android:layout_width="25dp"
-                android:layout_height="30dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:background="@drawable/android_51"
                 android:layout_marginLeft="15dp"
                 />
