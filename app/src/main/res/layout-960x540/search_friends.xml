@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:layout_width="fill_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="fill_parent"
+    android:background="#ffdadada"
+    android:orientation="vertical">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#ffe14723">
+        <RelativeLayout
+            android:id="@+id/haoyouliebiao_fh"
+            android:layout_width="75dp"
+            android:layout_height="match_parent">
+            <Button
+                android:layout_centerVertical="true"
+                android:id="@+id/zhucufanhui"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/android_20"
+                android:gravity="center_horizontal"
+                android:layout_marginLeft="10dp"/>
+        </RelativeLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="好友列表"
+            android:textSize="22sp"
+            android:textColor="#ffffff"
+            android:layout_centerInParent="true"
+
+            />
+    </RelativeLayout>
+
+
+    <FrameLayout
+    android:layout_width="fill_parent"
+    android:layout_height="85dp"
+    android:gravity="center"
+    android:focusable="true"
+    android:focusableInTouchMode="true" >
+    <RelativeLayout
+        android:layout_width="340dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@drawable/andriod_84">
+        <!--<ImageView-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:src="@drawable/andriod_84"-->
+        <!--android:layout_gravity="center"/>-->
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/android_85"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="10dp"/>
+    <EditText
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="15dp"
+        android:layout_centerVertical="true"
+        android:hint="请输入好友昵称/ID"
+        android:layout_width="280dp"
+        android:layout_height="42dp"
+        android:layout_gravity="center"
+        android:layout_marginLeft="0dp"
+        android:background="#ffffff"
+        android:textSize="20sp"
+        android:singleLine="true"
+        android:id="@+id/ss_search"
+        >
+        <requestFocus />
+        </EditText>
+    </RelativeLayout>
+</FrameLayout>
+    <ListView
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/search_listview"
+        android:divider="#ffdadada"
+        android:dividerHeight="0dp"
+        android:listSelector="@android:color/transparent">
+        </ListView>
+    </LinearLayout>

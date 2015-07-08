@@ -102,7 +102,37 @@ public class Shezhi_activity extends Activity{
         sz_img2 = (ImageView) findViewById(R.id.sz_img2);
         sz_img3 = (ImageView) findViewById(R.id.sz_img3);
         sz_img();
-
+        final HttpIO io = new HttpIO(Utils.serveraddr + "api/userdata.php?action=get_pri");
+        io.SessionID = Static.session_id;
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                io.GETToHTTPServer();
+            }
+        }).start();
+        while(io.getResultData()==null);
+        try {
+            JSONObject obj = new JSONObject(io.getResultData());
+            switch (obj.getInt("current")){
+                case 3://所有人可见
+                    sz_img3.setVisibility(View.VISIBLE);
+                    sz_img2.setVisibility(View.INVISIBLE);
+                    sz_img1.setVisibility(View.INVISIBLE);
+                    break;
+                case 5://仅好友可见
+                    sz_img2.setVisibility(View.VISIBLE);
+                    sz_img1.setVisibility(View.INVISIBLE);
+                    sz_img3.setVisibility(View.INVISIBLE);
+                    break;
+                case 7://仅自己可见
+                    sz_img1.setVisibility(View.VISIBLE);
+                    sz_img2.setVisibility(View.INVISIBLE);
+                    sz_img3.setVisibility(View.INVISIBLE);
+                    break;
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
         RelativeLayout mmxg = (RelativeLayout)findViewById(R.id.sz_mmxg);
         mmxg.setOnClickListener(new View.OnClickListener() {
             @Override

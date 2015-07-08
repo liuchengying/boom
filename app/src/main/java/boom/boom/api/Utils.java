@@ -2,10 +2,15 @@ package boom.boom.api;
 
 
 
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Matrix;
 import android.hardware.Camera;
 import android.os.Environment;
+import android.util.DisplayMetrics;
+import android.view.Display;
+import android.view.WindowManager;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -249,5 +254,14 @@ public class Utils {
         Bitmap bitmap = Bitmap.createBitmap(bgimage, 0, 0, (int) width,
                 (int) height, matrix, true);
         return bitmap;
+    }
+    public static void getResolution(Context context) {
+
+        Display display = ((WindowManager)context.getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay();
+        DisplayMetrics displayMetrics = new DisplayMetrics();
+        display.getMetrics(displayMetrics);
+        Static.density = displayMetrics.density; //得到密度
+        Static.width = displayMetrics.widthPixels;//得到宽度
+        Static.height = displayMetrics.heightPixels;//得到高度
     }
 }

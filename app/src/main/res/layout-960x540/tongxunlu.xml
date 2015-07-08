@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<boom.boom.myview.SildingFinishLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:id="@+id/sildingFinishLayout">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#ffdadada"
+    >
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#ffe14723">
+        <RelativeLayout
+            android:id="@+id/txl_fh"
+            android:layout_width="75dp"
+            android:layout_height="match_parent">
+            <Button
+                android:layout_centerVertical="true"
+                android:id="@+id/zhucufanhui"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/android_20"
+                android:layout_marginLeft="10dp"/>
+            </RelativeLayout>
+        <TextView
+            android:layout_centerInParent="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="通讯录"
+            android:textSize="25sp"
+            android:textColor="#eeeeee"
+            />
+        <RelativeLayout
+            android:layout_alignParentRight="true"
+            android:id="@+id/txl_finish"
+            android:layout_width="75dp"
+            android:layout_height="match_parent">
+            <ImageView
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/android_186"
+                android:layout_gravity="center_vertical"
+                android:layout_marginRight="10dp"/>
+            </RelativeLayout>
+        </RelativeLayout>
+<!--
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="60dp"
+        android:background="#ffe14723"
+        android:orientation="horizontal"
+        android:gravity="center"
+
+
+        >
+        <LinearLayout
+            android:id="@+id/txl_fh"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:gravity="center_vertical"
+            >
+            <Button
+                android:id="@+id/zhucufanhui"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/android_20"
+                android:gravity="center_horizontal"
+                android:layout_marginLeft="10dp"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:gravity="center">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="通讯录"
+                android:textSize="25sp"
+                android:textColor="#eeeeee"
+
+
+                />
+
+        </LinearLayout>
+        <LinearLayout
+
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:gravity="right"
+            android:id="@+id/txl_finish">
+            <ImageView
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:src="@drawable/android_186"
+             android:layout_gravity="center_vertical"
+             android:layout_marginRight="10dp"/>
+            </LinearLayout>
+
+
+</LinearLayout>
+-->
+    <FrameLayout
+        android:layout_width="fill_parent"
+        android:layout_height="85dp"
+        android:gravity="center"
+        android:focusable="true"
+        android:focusableInTouchMode="true" >
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/andriod_84"
+            android:layout_gravity="center"/>
+
+        <EditText
+
+            android:hint="请输入好友昵称/ID"
+            android:layout_width="300dp"
+            android:layout_height="42dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="0dp"
+            android:background="#ffffff"
+            android:textSize="20sp"
+            android:singleLine="true"
+            android:id="@+id/txl_search"
+            android:drawableLeft="@drawable/android_85"/>
+        </FrameLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center">
+<HorizontalScrollView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_centerHorizontal="true"
+
+    android:scrollbars="none"
+    android:background="@drawable/andriod_86"
+    android:layout_gravity="center"
+
+    >
+
+    <LinearLayout
+
+
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_gravity="center_vertical"
+        android:orientation="horizontal"
+        android:id="@+id/horizon"
+        >
+    </LinearLayout>
+
+
+</HorizontalScrollView>
+    </RelativeLayout>
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:text="我的好友"
+        android:gravity="center_vertical"
+        android:paddingLeft="25dp"
+        android:textSize="20sp"
+        />
+    <ListView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:id="@+id/tongxunlu_listview"
+        android:paddingTop="5dp">
+
+        </ListView>
+    </LinearLayout>
+</boom.boom.myview.SildingFinishLayout>
