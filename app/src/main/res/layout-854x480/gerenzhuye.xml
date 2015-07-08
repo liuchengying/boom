@@ -174,7 +174,7 @@
         android:layout_height="wrap_content">
         <LinearLayout
             android:layout_x="0dp"
-            android:layout_y="470dp"
+            android:layout_y="510dp"
             android:layout_alignParentBottom="true"
             android:visibility="invisible"
             android:layout_width="fill_parent"
@@ -196,7 +196,7 @@
         </LinearLayout>
         <LinearLayout
             android:layout_x="0dp"
-            android:layout_y="470dp"
+            android:layout_y="510dp"
             android:layout_alignParentBottom="true"
             android:visibility="invisible"
             android:layout_width="fill_parent"
