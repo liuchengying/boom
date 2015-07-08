@@ -4,6 +4,7 @@ package boom.boom.myview;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.util.DisplayMetrics;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewTreeObserver.OnGlobalLayoutListener;
@@ -270,16 +271,19 @@ public class XListView extends ListView implements OnScrollListener {
 	}
     boolean animating ;
     static boolean ok;
-	@Override
+
+
+    @Override
 	public boolean onTouchEvent(MotionEvent ev) {
 
-		if (mLastY == -1) {
+        if (mLastY == -1) {
 			mLastY = ev.getRawY();
             Y = ev.getRawY();
 		}
 
 		switch (ev.getAction()) {
 		case MotionEvent.ACTION_DOWN:
+
             Y = ev.getRawY();
 			mLastY = ev.getRawY();
 			break;

@@ -27,6 +27,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -119,6 +120,12 @@ public class  Gerenzhuye_activity extends FragmentActivity
         guestID = getIntent().getStringExtra("guestID");
         type = getIntent().getIntExtra("type",1);
         ID = getIntent().getStringExtra("ID");
+
+
+
+
+
+
         switch (type)
         {
             case 1://都不显示
