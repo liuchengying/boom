@@ -42,7 +42,7 @@ public class Diqupaihang_fragment extends Fragment implements XListView.IXListVi
 //    private Button cancleButton;
 //    private PopupWindow popupWindow;
 //    private View popupWindowView;
-    private ArrayList<HashMap<String, Object>> listItem;
+    private ArrayList<HashMap<String, Object>> listItem = new ArrayList<HashMap<String,     Object>>();;
     private SimpleAdapter mSimpleAdapter;
     private int loadedline=0;
 
@@ -60,6 +60,15 @@ public class Diqupaihang_fragment extends Fragment implements XListView.IXListVi
         lv.setXListViewListener(this);
 
         onRefresh();
+        mSimpleAdapter = new SimpleAdapter(getActivity(), listItem,//需要绑定的数据
+                R.layout.quanguopaiming_item,//每一行的布局//动态数组中的数据源的键对应到定义布局的View中
+                new String[]{
+                        "nickname", "count", "address", "commit", "used"},
+                new int[]{R.id.qgph_nickname, R.id.qgph_count, R.id.qgph_addr, R.id.qgph_committime, R.id.qgph_usedtime}
+        );
+        lv.setAdapter(mSimpleAdapter);
+
+
 
 //        popupWindowView = inflater.inflate(R.layout.shezhi_touxiang, null);
 //        lv.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
@@ -126,7 +135,7 @@ public class Diqupaihang_fragment extends Fragment implements XListView.IXListVi
                         httpResult = io.getResultData();
                         try {
                             JSONObject obj = Utils.GetSubJSONObject(new JSONObject(httpResult), "response");
-                            listItem = new ArrayList<HashMap<String, Object>>();//*在数组中存放数据*//*
+
                             if (obj.getString("state").equals("SUCCESS")) {
                                 int round = obj.getInt("limit");
                                 for (int i = 1; i < round + 1; i++) {
@@ -152,17 +161,6 @@ public class Diqupaihang_fragment extends Fragment implements XListView.IXListVi
                             e.printStackTrace();
                         }
                     }
-                    mSimpleAdapter = new SimpleAdapter(getActivity(), listItem,//需要绑定的数据
-                            R.layout.quanguopaiming_item,//每一行的布局//动态数组中的数据源的键对应到定义布局的View中
-                            new String[]{
-                                    "nickname", "count", "address", "commit", "used"},
-                            new int[]{R.id.qgph_nickname, R.id.qgph_count, R.id.qgph_addr, R.id.qgph_committime, R.id.qgph_usedtime}
-                    );
-
-                    lv.setPullLoadEnable(true);
-                    lv.setPullRefreshEnable(true);
-                    lv.setXListViewListener(Diqupaihang_fragment.this);
-                    lv.setAdapter(mSimpleAdapter);
 
                     onLoad();
                 }catch (Exception e)

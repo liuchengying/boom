@@ -2,6 +2,7 @@ package boom.boom.paihangbang;
 
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -30,7 +31,7 @@ public class Quanguopaihang_fragment extends Fragment implements XListView.IXLis
     private XListView lv;
     private Handler mHandler;
     private SimpleAdapter mSimpleAdapter;
-    private ArrayList<HashMap<String, Object>> listItem;
+    private ArrayList<HashMap<String, Object>> listItem = new ArrayList<HashMap<String,     Object>>();;
     private int loadedline=0;
     private String httpResult = null;
     private final static String DATE_FORMAT_STR = "yyyy-MM-dd HH:mm";
@@ -41,10 +42,27 @@ public class Quanguopaihang_fragment extends Fragment implements XListView.IXLis
         View v=inflater.inflate(R.layout.paihangbang2, container, false);
          lv= (XListView) v.findViewById(R.id.listView3);
         lv.setPullLoadEnable(true);
-        mHandler = new Handler();
+        mHandler = new Handler(new Handler.Callback() {
+            @Override
+            public boolean handleMessage(Message msg) {
+                mSimpleAdapter.notifyDataSetChanged();
+                return true;
+            }
+        });
 
 
         onRefresh();
+        mSimpleAdapter = new SimpleAdapter(getActivity(),listItem,//需要绑定的数据
+                R.layout.quanguopaiming_item,//每一行的布局//动态数组中的数据源的键对应到定义布局的View中
+                new String[] {
+                        "nickname", "count", "address", "commit", "used"},
+                new int[] {R.id.qgph_nickname,R.id.qgph_count,R.id.qgph_addr,R.id.qgph_committime,R.id.qgph_usedtime}
+        );
+
+        lv.setPullLoadEnable(true);
+        lv.setPullRefreshEnable(true);
+        lv.setXListViewListener(Quanguopaihang_fragment.this);
+        lv.setAdapter(mSimpleAdapter);
         return v;
     }
     private void onLoad() {
@@ -77,7 +95,7 @@ public class Quanguopaihang_fragment extends Fragment implements XListView.IXLis
                 while (httpResult == null);
                 try{
                         JSONObject obj= Utils.GetSubJSONObject(new JSONObject(httpResult),"response" );
-                        listItem = new ArrayList<HashMap<String,     Object>>();//*在数组中存放数据*//*
+                        //*在数组中存放数据*//*
                         if(obj.getString("state").equals("SUCCESS"))
                         {
                             int round = obj.getInt("limit");
@@ -105,17 +123,7 @@ public class Quanguopaihang_fragment extends Fragment implements XListView.IXLis
                 {
                     e.printStackTrace();
                 }
-                mSimpleAdapter = new SimpleAdapter(getActivity(),listItem,//需要绑定的数据
-                        R.layout.quanguopaiming_item,//每一行的布局//动态数组中的数据源的键对应到定义布局的View中
-                        new String[] {
-                                "nickname", "count", "address", "commit", "used"},
-                        new int[] {R.id.qgph_nickname,R.id.qgph_count,R.id.qgph_addr,R.id.qgph_committime,R.id.qgph_usedtime}
-                );
 
-                lv.setPullLoadEnable(true);
-                lv.setPullRefreshEnable(true);
-                lv.setXListViewListener(Quanguopaihang_fragment.this);
-                lv.setAdapter(mSimpleAdapter);
                 onLoad();
             }
         }, 2000);
