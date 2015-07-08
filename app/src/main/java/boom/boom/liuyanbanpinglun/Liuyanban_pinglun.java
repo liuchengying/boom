@@ -304,6 +304,7 @@ public class Liuyanban_pinglun extends Activity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
+        setResult(1);
         overridePendingTransition(0, R.anim.base_slide_right_out);
     }
 }

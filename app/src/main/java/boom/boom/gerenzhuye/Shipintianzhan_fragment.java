@@ -121,7 +121,7 @@ public class Shipintianzhan_fragment extends Fragment implements XListView.IXLis
         mHandler.postDelayed(new Runnable() {
             @Override
             public void run() {
-
+                onSyncDataFromServer();
                 onLoad();
             }
         }, 2000);
@@ -141,7 +141,7 @@ public class Shipintianzhan_fragment extends Fragment implements XListView.IXLis
     }
 
     public void onSyncDataFromServer(){
-
+        listItem.clear();
         Thread thread = new Thread(new Runnable() {
             @Override
             public void run() {

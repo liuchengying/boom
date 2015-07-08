@@ -1,6 +1,7 @@
 package boom.boom.gerenzhuye;
 
 import android.content.Intent;
+import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
@@ -32,6 +33,7 @@ import boom.boom.api.Static;
 import boom.boom.api.Utils;
 
 import boom.boom.liuyanbanpinglun.Liuyanban_pinglun;
+import boom.boom.liuyanhuifu.Liuyanhuifu_activity;
 import boom.boom.myview.CircleImageView;
 import boom.boom.myview.XListView;
 
@@ -52,6 +54,23 @@ public class Liuyanban_fragment extends Fragment implements XListView.IXListView
     private PopupWindow popupWindow;
     private View popupWindowView;
     ArrayList<HashMap<String, Object>> listItem = new ArrayList<HashMap<String,     Object>>();//*在数组中存放数据*//*
+    public Handler myHandler = new Handler(new Handler.Callback() {
+        @Override
+        public boolean handleMessage(Message msg) {
+            //Toast.makeText(getActivity(),"11",Toast.LENGTH_SHORT).show();
+            mSimpleAdapter.notifyDataSetChanged();
+            return true;
+        }
+    });
+
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        onSyncDataFromServer();
+        Message msg = new Message();
+        myHandler.sendMessage(msg);
+    }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState)
@@ -63,6 +82,18 @@ public class Liuyanban_fragment extends Fragment implements XListView.IXListView
         lv.setPullLoadEnable(true);
         mHandler = new Handler();
         this.onSyncDataFromServer();
+        try {
+//        JSONObject obj_new = Challenge.getChallengeByIdentify()
+            mSimpleAdapter = new SimpleAdapter(getActivity(), listItem,//需要绑定的数据
+                    R.layout.liuyanban_item,//每一行的布局//动态数组中的数据源的键对应到定义布局的View中
+                    new String[]{
+                            "title", "text", "like", "comment", "time"},
+                    new int[]{R.id.nickname, R.id.lyb_text, R.id.like, R.id.comment, R.id.date}
+            );
+        }catch (Exception e)
+        {
+            e.printStackTrace();
+        }
         lv.setPullLoadEnable(true);
         lv.setPullRefreshEnable(true);
         lv.setXListViewListener(this);
@@ -76,39 +107,68 @@ public class Liuyanban_fragment extends Fragment implements XListView.IXListView
                 localIntent.putExtra("nickname",(String)listItem.get(position-1).get("title"));
                 localIntent.putExtra("text",(String)listItem.get(position-1).get("text"));
                 localIntent.putExtra("date",(String)listItem.get(position-1).get("time"));
-                startActivity(localIntent);
+                startActivityForResult(localIntent, 1);
 
             }
         });
 
-        if(guestID == Static.identifyDigit){
-        popupWindowView = inflater.inflate(R.layout.shanchuliuyan_item, null);
+        if(guestID .equals( Static.identifyDigit)) {
+            popupWindowView = inflater.inflate(R.layout.shanchuliuyan_item, null);
 
 
-        lv.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-            @Override
-            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-                popupWindow = new PopupWindow(popupWindowView);
-                popupWindow.setWidth(LinearLayout.LayoutParams.FILL_PARENT);
-                popupWindow.setHeight(LinearLayout.LayoutParams.FILL_PARENT);
-                popupWindow.setBackgroundDrawable(new BitmapDrawable());
-                popupWindow.setOutsideTouchable(true);
-                popupWindow.setFocusable(true);
+            lv.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+                @Override
+                public boolean onItemLongClick(AdapterView<?> parent, View view, final int position, long id) {
+                    popupWindow = new PopupWindow(popupWindowView);
+                    popupWindow.setWidth(LinearLayout.LayoutParams.FILL_PARENT);
+                    popupWindow.setHeight(LinearLayout.LayoutParams.FILL_PARENT);
+                    popupWindow.setBackgroundDrawable(new BitmapDrawable());
+                    popupWindow.setOutsideTouchable(true);
+                    popupWindow.setFocusable(true);
 
-                //设置PopupWindow的弹出和消失效果
-                popupWindow.setAnimationStyle(R.style.popupAnimation);
+                    //设置PopupWindow的弹出和消失效果
+                    popupWindow.setAnimationStyle(R.style.popupAnimation);
 
 
-                cancleButton = (Button) popupWindowView.findViewById(R.id.liuyanban_cencle);
-                confirmButton = (Button) popupWindowView.findViewById(R.id.shanchuliuyan);
-                popupWindow.showAtLocation(confirmButton, Gravity.CENTER, 0, 0);
-                confirmButton.setOnClickListener(Itemclick);
+                    cancleButton = (Button) popupWindowView.findViewById(R.id.liuyanban_cencle);
+                    confirmButton = (Button) popupWindowView.findViewById(R.id.shanchuliuyan);
+                    popupWindow.showAtLocation(confirmButton, Gravity.CENTER, 0, 0);
+                    confirmButton.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            String  ID = (String) listItem.get(position-1).get("ID");
+                            if(popupWindow.isShowing()){
+                                popupWindow.dismiss();
+                            }
+                            final HttpIO io = new HttpIO(Utils.serveraddr + "/api/comment.php?action=delete&id="+ID);
+                            io.SessionID = Static.session_id;
+                            new Thread(new Runnable() {
+                            @Override
+                            public void run() {
+                                io.GETToHTTPServer();
+                            }
+                            }).start();
+                            while(io.getResultData()==null);
+                            onSyncDataFromServer();
+                            Message msg = new Message();
+                            myHandler.sendMessage(msg);
+                            Toast.makeText(getActivity(),"删除成功！",Toast.LENGTH_SHORT).show();
+                        }
+                    });
 
-                cancleButton.setOnClickListener(Itemclick);
-                return true;
-            }
+                    cancleButton.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            if(popupWindow.isShowing()){
+                                popupWindow.dismiss();
+                            }
+                        }
+                    });
+                    return true;
+                }
 
-        });}
+            });
+        }
         return v;
     }
     private void onLoad() {
@@ -140,32 +200,11 @@ public class Liuyanban_fragment extends Fragment implements XListView.IXListView
         }, 2000);
 
     }
-    private View.OnClickListener Itemclick = new View.OnClickListener() {
-        @Override
-        public void onClick( View v) {
-            if(popupWindow.isShowing()){
-                popupWindow.dismiss();
-            }
-            switch (v.getId()) {
-                case R.id.shanchuliuyan:
-
-                    break;
-                case R.id.liuyanban_cencle:
-
-                    break;
-                default:
-                    break;
-            }
-        }
-
-
-
-    };
 
 
     public void onSyncDataFromServer(){
         String challenge_name = null, challenge_nickname = null;
-
+        listItem.clear();
         //http://172.24.10.118/api/comment.php?action=queryFriends&guest_id=10000
         Utils.GetBuilder get = new Utils.GetBuilder(Utils.serveraddr + "/api/comment.php");
         get.addItem("action", "queryFriends");
@@ -222,17 +261,9 @@ public class Liuyanban_fragment extends Fragment implements XListView.IXListView
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        try {
-//        JSONObject obj_new = Challenge.getChallengeByIdentify()
-            mSimpleAdapter = new SimpleAdapter(getActivity(), listItem,//需要绑定的数据
-                    R.layout.liuyanban_item,//每一行的布局//动态数组中的数据源的键对应到定义布局的View中
-                    new String[]{
-                            "title", "text", "like", "comment", "time"},
-                    new int[]{R.id.nickname, R.id.lyb_text, R.id.like, R.id.comment, R.id.date}
-            );
-        }catch (Exception e)
-        {
-            e.printStackTrace();
-        }
+
+        Message msg = new Message();
+        myHandler.sendMessage(msg);
+        //lv.
     }
 }

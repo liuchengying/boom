@@ -88,6 +88,7 @@ public class  Gerenzhuye_activity extends FragmentActivity
     private int type;
     public String nickname;
     private String ID;
+    Liuyanban_fragment tab02;
     android.os.Handler myMessageHandler = new android.os.Handler() {
         @Override
         public void handleMessage(Message msg) {
@@ -95,6 +96,13 @@ public class  Gerenzhuye_activity extends FragmentActivity
             gerenzhuye_touxing.setImageBitmap(avatar);
         }
     };
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        tab02.onSyncDataFromServer();
+        Message msg = new Message();
+        tab02.myHandler.sendMessage(msg);
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -394,7 +402,7 @@ public class  Gerenzhuye_activity extends FragmentActivity
         mViewPager = (ViewPager) findViewById(R.id.id_viewpager);
         mDatas = new ArrayList<Fragment>();
         Shipintianzhan_fragment tab01 = new Shipintianzhan_fragment();
-        Liuyanban_fragment tab02 = new Liuyanban_fragment();
+        tab02 = new Liuyanban_fragment();
         Xiangxiziliao_fragment tab03 = new Xiangxiziliao_fragment();
         Fragment fragment = new Fragment();
 
