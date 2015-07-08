@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<boom.boom.myview.SildingFinishLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:id="@+id/sildingFinishLayout">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent" android:layout_height="fill_parent"
+    android:background="#ffdadada"
+    android:orientation="vertical">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#ffe14723">
+        <RelativeLayout
+            android:layout_width="75dp"
+            android:layout_height="match_parent"
+            android:id="@+id/paihangbangfanhuis">
+            <Button
+                android:layout_centerVertical="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/android_20"
+                android:gravity="center_horizontal"
+                android:layout_marginLeft="10dp"/>
+            </RelativeLayout>
+        <TextView
+            android:layout_centerInParent="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="排行榜"
+            android:textColor="#ffffff"
+            android:textSize="22sp"
+            />
+        </RelativeLayout>
+<!--
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="60dp"
+        android:background="#ffe14723"
+        android:orientation="horizontal"
+        android:gravity="center"
+
+
+        >
+        <LinearLayout
+            android:id="@+id/paihangbangfanhuis"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:gravity="center_vertical"
+            >
+            <Button
+
+
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/android_20"
+                android:gravity="center_horizontal"
+                android:layout_marginLeft="10dp"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:gravity="center">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="排行榜"
+                android:textColor="#eeeeee"
+                android:textSize="25sp"
+
+
+                />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_weight="1"
+            android:layout_width="40dp"
+            android:layout_height="50dp"
+            android:gravity="right"
+            android:layout_marginRight="10dp"
+            >
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/android_118"
+                android:layout_gravity="center_vertical"
+                android:text="我的排行"
+                android:textColor="#eeeeee"
+                android:textSize="16sp"/>
+        </LinearLayout>
+    </LinearLayout>
+-->
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/android_119"
+        >
+        <LinearLayout
+
+
+            android:layout_width="fill_parent"
+            android:layout_height="50dp"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center"
+
+
+            >
+            <TextView
+                android:id="@+id/phb_1"
+                android:textIsSelectable="true"
+                android:gravity="center"
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:text="地区排行"
+                android:textSize="20sp"
+                android:textColor="#eeeeee"/>
+            <TextView
+                android:id="@+id/phb_2"
+                android:textIsSelectable="true"
+                android:gravity="center"
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:text="全国排行"
+                android:textSize="20sp"
+                android:textColor="#eeeeee"/>
+
+            </LinearLayout>
+        <ImageView
+            android:id="@+id/gundongtiao1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/android_120"/>
+        </LinearLayout>
+    <android.support.v4.view.ViewPager
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:id="@+id/id_viewpager1"
+        />
+
+
+</LinearLayout>
+</boom.boom.myview.SildingFinishLayout>

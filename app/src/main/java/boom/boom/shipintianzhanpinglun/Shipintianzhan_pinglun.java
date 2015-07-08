@@ -17,6 +17,7 @@ import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.SimpleAdapter;
 
 import android.widget.TextView;
@@ -62,14 +63,14 @@ public class Shipintianzhan_pinglun extends Activity {
     private String date;
     private String elapsed;
     private ListView lv;
-    private Button liuyan;
+    private RelativeLayout liuyan;
     private TextView nickname_tv;
     private TextView cl_name_tv;
     private TextView date_tv;
     private TextView elapsed_tv;
     private ToggleButton heartlike;
     private SimpleAdapter mSimpleAdapter;
-    private LinearLayout shipinpinglun_fh;
+    private RelativeLayout shipinpinglun_fh;
     private String guestID;
     private String cl_id;
     private String ID;
@@ -362,7 +363,7 @@ public class Shipintianzhan_pinglun extends Activity {
                 overridePendingTransition(0,R.anim.liuyan_in);
             }
         });
-        liuyan = (Button) findViewById(R.id.pinglun_liuyan);
+        liuyan = (RelativeLayout) findViewById(R.id.pinglun_liuyan);
         liuyan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -375,7 +376,7 @@ public class Shipintianzhan_pinglun extends Activity {
                 overridePendingTransition(0, R.anim.liuyan_in);
             }
         });
-       shipinpinglun_fh = (LinearLayout) findViewById(R.id.shipinpinglun_fh);
+       shipinpinglun_fh = (RelativeLayout) findViewById(R.id.shipinpinglun_fh);
         shipinpinglun_fh.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

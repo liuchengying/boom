@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<boom.boom.myview.SildingFinishLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:id="@+id/sildingFinishLayout">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffdadada">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#ffe14723"
+        >
+        <RelativeLayout
+            android:id="@+id/wytz_fanhui"
+            android:layout_width="75dp"
+            android:layout_height="match_parent">
+            <Button
+                android:layout_centerVertical="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/android_20"
+                android:gravity="center_horizontal"
+                android:layout_marginLeft="10dp"
+                android:layout_gravity="center_vertical"
+                 />
+            </RelativeLayout>
+        <TextView
+            android:layout_centerInParent="true"
+            android:layout_marginLeft="60dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="往期挑战"
+            android:textSize="22sp"
+            android:textColor="#ffffffff" />
+        </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <ExpandableListView
+            android:layout_marginTop="20dp"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center_horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/expand"
+            android:groupIndicator="@null"
+            android:divider="#ffdadada"
+            android:listSelector="#ffdadada"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp">
+
+        </ExpandableListView>
+        </RelativeLayout>
+
+
+    <!--<LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="60dp"
+        android:background="#ffe14723"
+        android:weightSum="1">
+
+
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="0.29">
+            <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/android_20"
+            android:gravity="center_horizontal"
+            android:layout_marginLeft="10dp"
+            android:layout_gravity="center_vertical"
+            android:id="@+id/wytz_fanhui" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:gravity="center_vertical">
+            <TextView
+                android:layout_marginLeft="60dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="往期挑战"
+                android:textSize="25sp"
+                android:textColor="#ffffffff" />
+        </LinearLayout>
+    </LinearLayout>
+   <LinearLayout
+       android:layout_width="fill_parent"
+       android:layout_height="fill_parent"
+
+       android:layout_gravity="center_horizontal"
+       android:orientation="vertical">
+    <ExpandableListView
+        android:layout_marginTop="20dp"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center_horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/expand"
+        android:groupIndicator="@null"
+        android:divider="#ffdadada"
+        android:listSelector="#ffdadada"
+        android:layout_marginLeft="9dp"
+        android:layout_marginRight="9dp">
+
+        </ExpandableListView>
+
+   </LinearLayout>-->
+
+</LinearLayout>
+</boom.boom.myview.SildingFinishLayout>

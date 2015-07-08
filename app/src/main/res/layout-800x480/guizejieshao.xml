@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffdadada"
+    android:orientation="vertical"
+    >
+   <RelativeLayout
+       android:layout_width="match_parent"
+       android:layout_height="50dp"
+       android:background="#ffe14723">
+       <RelativeLayout
+           android:id="@+id/fanhuitiaozhan"
+           android:layout_width="75dp"
+           android:layout_height="match_parent">
+           <Button
+               android:layout_centerVertical="true"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:background="@drawable/android_20"
+               android:gravity="center_horizontal"
+               android:layout_marginLeft="10dp"/>
+           </RelativeLayout>
+       <TextView
+           android:layout_centerInParent="true"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:text="规则介绍"
+          android:textColor="#ffffff"
+           android:textSize="22sp" />
+       </RelativeLayout>
+    <!--<LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="60dp"
+        android:background="#ffe14723"
+        android:orientation="horizontal"
+        android:gravity="center">
+        <LinearLayout
+            android:id="@+id/fanhuitiaozhan"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:gravity="center_vertical"
+            >
+            <Button
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/android_20"
+                android:gravity="center_horizontal"
+                android:layout_marginLeft="10dp"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:gravity="center">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="规则介绍"
+                android:textSize="25sp" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:gravity="center_vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="     "
+                android:textSize="25sp" />
+        </LinearLayout>
+
+    </LinearLayout>-->
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:layout_marginTop="10dp">
+        <TextView
+            android:id="@+id/challenge_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="斜立易拉罐规则介绍"
+            android:textColor="#787878"
+            android:textSize="16sp"/>
+        <TextView
+            android:id="@+id/challenge_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/android_66"
+            android:text="日期"
+            android:gravity="center"
+            android:textColor="#ffffff"/>
+        </LinearLayout>
+    <FrameLayout
+        android:layout_gravity="center_horizontal"
+        android:layout_width="330dp"
+        android:layout_height="175dp"
+        android:layout_marginTop="5dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:background="#000000"
+        >
+
+        <VideoView
+
+
+            android:layout_width="330dp"
+            android:layout_height="175dp"
+            android:id="@+id/videoView_front"
+            android:layout_gravity="center"
+            />
+        <ImageView
+            android:layout_marginLeft="-4dp"
+            android:layout_marginTop="-2dp"
+            android:layout_width="wrap_content"
+            android:layout_height="178dp"
+            android:src="@drawable/android_174"/>
+        <ImageView
+            android:layout_marginRight="-3dp"
+            android:layout_gravity="right"
+            android:layout_marginTop="-2dp"
+            android:layout_width="wrap_content"
+            android:layout_height="178dp"
+            android:src="@drawable/android_173"/>
+
+        <Button
+            android:id="@+id/shipinbofang"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/android_172"
+            android:layout_gravity="center"
+            android:visibility="visible"/>
+
+
+    </FrameLayout>   <LinearLayout
+       android:layout_width="310dp"
+       android:layout_height="180dp"
+       android:background="@drawable/android_67"
+       android:layout_gravity="center"
+       android:layout_marginTop="1dp"
+       android:gravity="center_horizontal"
+       android:orientation="vertical">
+       <TextView
+           android:layout_width="wrap_content"
+           android:layout_height="38dp"
+           android:text="规则介绍"
+           android:gravity="center"
+           android:textSize="15sp"/>
+       <TextView
+           android:id="@+id/challenge_text"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:text="服务器中的游戏规则"/>
+       <!--在规则介绍界面中的规则显示文本框，连通服务器-->
+       </LinearLayout>
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="5dp"
+        >
+
+        <Button
+            android:layout_gravity="bottom"
+            android:id="@+id/woyaotiaozhan"
+            android:layout_width="310dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/android_68"
+            android:text="我要挑战"
+            android:textSize="20sp"
+
+            />
+        <!--规则介绍界面中的我要挑战按钮 （最下面的按钮）-->
+        </LinearLayout>
+
+</LinearLayout>

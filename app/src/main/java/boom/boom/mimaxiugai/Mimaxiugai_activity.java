@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,7 +31,7 @@ public class Mimaxiugai_activity extends Activity{
     TextView oldPassword;
     TextView newPassword;
     TextView confirmPassword;
-    LinearLayout confirm;
+    RelativeLayout confirm;
     String sOld;
     String sNew;
     String sConfirm;
@@ -91,7 +92,7 @@ public class Mimaxiugai_activity extends Activity{
         oldPassword=(TextView)findViewById(R.id.xgmm_oldpw);
         newPassword=(TextView)findViewById(R.id.xgmm_newpw);
         confirmPassword=(TextView)findViewById(R.id.xgmm_confirmpw);
-        confirm=(LinearLayout)findViewById(R.id.xgmm_ok);
+        confirm=(RelativeLayout)findViewById(R.id.xgmm_ok);
 
         confirm.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -136,7 +137,7 @@ public class Mimaxiugai_activity extends Activity{
             }
         });
 
-        LinearLayout mmxg_fh = (LinearLayout)findViewById(R.id.mimaxiugai_fh);
+        RelativeLayout mmxg_fh = (RelativeLayout)findViewById(R.id.mimaxiugai_fh);
         mmxg_fh.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

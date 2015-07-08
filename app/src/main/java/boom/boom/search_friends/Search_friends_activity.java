@@ -15,6 +15,7 @@ import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.SimpleAdapter;
 import android.widget.Toast;
 
@@ -45,6 +46,7 @@ public class Search_friends_activity extends Activity{
     EditText search;
     ListView search_listview;
     RoundedImageView avatar_round;
+    RelativeLayout hylb_fh;
     ArrayList<HashMap<String, Object>> listItem = new ArrayList<HashMap<String,     Object>>();
     SimpleAdapter mSimpleAdapter;
     android.os.Handler myMessageHandler = new android.os.Handler() {
@@ -63,6 +65,7 @@ public class Search_friends_activity extends Activity{
         FontManager.changeFonts(FontManager.getContentView(this), this);//字体
         search = (EditText) findViewById(R.id.ss_search);
         search_listview = (ListView) findViewById(R.id.search_listview);
+        hylb_fh = (RelativeLayout) findViewById(R.id.haoyouliebiao_fh);
         mSimpleAdapter = new SimpleAdapter(Search_friends_activity.this, listItem,//需要绑定的数据
                 R.layout.search_friends_item,//每一行的布局//动态数组中的数据源的键对应到定义布局的View中
                 new String[]{

@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<boom.boom.myview.SildingFinishLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:id="@+id/sildingFinishLayout">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:background="#ffdadada"
+    android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="60dp"
+        android:background="#ffe14723"
+        android:orientation="horizontal"
+        android:gravity="center"
+
+
+        >
+        <LinearLayout
+            android:id="@+id/zhucufanhui"
+            android:layout_weight="0.44"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:gravity="center_vertical"
+            >
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/android_20"
+                android:gravity="center_horizontal"
+                android:layout_marginLeft="10dp"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:gravity="center_vertical">
+            <TextView
+                android:layout_marginLeft="60dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="注册验证"
+                android:textSize="25sp"
+                android:textColor="#eeeeee"
+
+
+                />
+        </LinearLayout>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="150dp"
+        android:gravity="center_horizontal"
+        >
+        <ImageView
+            android:layout_width="160dp"
+            android:layout_height="100dp"
+            android:src="@drawable/android_101"
+            android:layout_gravity="bottom" />
+    </LinearLayout>
+    <LinearLayout
+
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+
+        >
+        <EditText
+
+            android:id="@+id/zhuceyonghuming"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/android_17"
+            android:hint="请输入手机号"
+            android:gravity="center"
+            android:layout_marginTop="10dp"/>
+        </LinearLayout>
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical"
+        android:layout_gravity="center"
+        android:gravity="center_horizontal"
+        >
+        <LinearLayout
+            android:layout_marginTop="12dp"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center">
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/android_102"
+                android:hint="请输入验证码"
+                android:gravity="center"
+                />
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/android_103"
+                android:gravity="center"
+                android:text="获取验证码"
+                android:textColor="#eeeeee"
+                android:textSize="17sp"/>
+            </LinearLayout>
+
+
+        <Button
+            android:layout_marginTop="12dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/android_65"
+            android:text="提交"
+            android:textSize="18sp"
+            android:textColor="#eeeeee"/>
+
+        </LinearLayout>
+
+
+
+</LinearLayout>
+</boom.boom.myview.SildingFinishLayout>

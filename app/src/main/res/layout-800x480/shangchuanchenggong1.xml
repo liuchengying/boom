@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:background="#ffdadada">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#ffe14723">
+        <RelativeLayout
+            android:id="@+id/sccg_fh"
+            android:layout_width="75dp"
+            android:layout_height="match_parent">
+            <Button
+                android:layout_centerVertical="true"
+                android:id="@+id/shezhifanhui"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/android_51"
+                android:layout_marginLeft="15dp"
+                />
+            </RelativeLayout>
+        <TextView
+            android:layout_centerInParent="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="上传成功"
+            android:textSize="23dp"
+            android:gravity="center"
+            android:textColor="#ffffff"/>
+        </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_marginTop="60dp"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+
+
+        >
+        <ImageView
+            android:layout_centerHorizontal="true"
+            android:id="@+id/jiantou"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/android_108"/>
+        <TextView
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/jiantou"
+            android:layout_marginTop="15dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="上传成功"
+            android:textSize="40sp"
+            android:textColor="#ffe14723"/>
+        </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/yaoqinghaoyoutianzhan"
+        android:layout_marginTop="70dp"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@drawable/android_190"
+        >
+        <TextView
+            android:layout_centerVertical="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="邀请好友挑战"
+            android:gravity="center_vertical"
+            android:layout_marginLeft="40dp"
+            android:textSize="20sp"/>
+
+
+            <ImageView
+                android:layout_marginRight="15dp"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                 android:src="@drawable/android_185"/>
+
+      </RelativeLayout>
+
+
+
+   <RelativeLayout
+       android:layout_width="fill_parent"
+       android:layout_height="fill_parent"
+       android:layout_gravity="center_horizontal"
+       android:gravity="center_horizontal">
+
+       <Button
+           android:layout_marginBottom="10dp"
+           android:layout_alignParentBottom="true"
+           android:layout_gravity="bottom"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:background="@drawable/android_59"
+           android:text="完成"
+           android:textSize="25dp"
+           android:textColor="#ffffff"
+           android:id="@+id/onRecordFinished" />
+       </RelativeLayout>
+
+    </LinearLayout>

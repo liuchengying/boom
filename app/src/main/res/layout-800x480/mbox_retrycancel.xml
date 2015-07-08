@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="1">
+
+
+
+    <FrameLayout
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/andriod_87"
+        android:layout_gravity="center_horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="29dp"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="请检查网络畅通"
+            android:id="@+id/rt_text"
+            android:layout_gravity="center"
+            android:textColor="#ffdacaaa" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" 重试"
+            android:id="@+id/rt_retry"
+            android:layout_gravity="left|bottom"
+            android:background="@drawable/andriod_89"
+            android:textColor="#ffffffff" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="放弃"
+            android:id="@+id/rt_cancel"
+            android:layout_gravity="right|bottom"
+            android:background="@drawable/andriod_90"
+            android:textColor="#ffffffff" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="上传失败"
+            android:id="@+id/rt_title"
+            android:layout_gravity="center_horizontal|top"
+            android:textColor="#ffe8694c"
+            android:textSize="30dp"
+            android:layout_marginTop="20dp" />
+    </FrameLayout>
+</LinearLayout>
