@@ -51,9 +51,9 @@ public class Shangchuanchenggong1_activity extends Activity {
         onRecordFinished.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent();
+                /*Intent intent = new Intent();
                 intent.setClass(Shangchuanchenggong1_activity.this, Tiaozhan_activity.class);
-                startActivity(intent);
+                startActivity(intent);*/
                 Shangchuanchenggong1_activity.this.finish();
             }
         });

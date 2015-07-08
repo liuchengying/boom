@@ -182,7 +182,7 @@ public class xinxizhongxin_activity extends Activity implements XListView.IXList
                         break;
                     case 9:
                         Intent intent8 = new Intent();
-                        intent8.putExtra("guest_id",(String)adapter.list.get(position-1).get("guest_id"));
+                        intent8.putExtra("guestID",(String)adapter.list.get(position-1).get("guest_id"));
                         intent8.putExtra("type",(boolean)adapter.list.get(position-1).get("pass")?1:2);
                         intent8.setClass(xinxizhongxin_activity.this,Gerenzhuye_activity.class);
                         startActivity(intent8);

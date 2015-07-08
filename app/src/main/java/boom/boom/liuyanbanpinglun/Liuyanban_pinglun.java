@@ -90,7 +90,7 @@ public class Liuyanban_pinglun extends Activity {
                 thread.start();
                 imageView.setImageResource(R.drawable.android_181);
             } else {
-                avatar = Utils.zoomImage(avatar,85,85);
+                avatar = Utils.zoomImage(avatar,60,70);
 
                 imageView.setImageBitmap(avatar);
             }

@@ -145,7 +145,8 @@ public class Guizejieshao_activity extends Activity{
                 }
                 intent.setClass(Guizejieshao_activity.this, Paishetiaozhan_activity.class);
                        startActivity(intent);
-                //Guizejieshao_activity.this.finish();
+
+                Guizejieshao_activity.this.finish();
                 }
         });
         fanhuitianzhan.setOnClickListener(new View.OnClickListener() {

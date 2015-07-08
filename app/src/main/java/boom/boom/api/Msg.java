@@ -91,6 +91,7 @@ public class Msg {
                     String title = null;
                     String text = null;
                     JSONObject data = Utils.GetSubJSONObject(tmp,"data");
+                    System.gc();
                     switch (type) {
                         case 1://1.挑战成功或者失败
 
