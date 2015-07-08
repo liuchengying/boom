@@ -60,15 +60,15 @@ public class Shezhi_activity extends Activity{
             super.handleMessage(msg);
             if(msg.what==1){
                 Intent intent = new Intent();
-                Bundle bundle=new Bundle();
-                bundle.putSerializable("info",editInformation);
-                intent.putExtras(bundle);
+                //Bundle bundle=new Bundle();
+                //bundle.putSerializable("info",editInformation);
+                //intent.putExtras(bundle);
                 intent.setClass(Shezhi_activity.this, Bianjixinxi_activity.class);
                 startActivity(intent);
-                dialog.dismiss();
+                //dialog.dismiss();
             }
             else {
-                dialog.dismiss();
+                //dialog.dismiss();
                 Toast.makeText(Shezhi_activity.this,editInformation.ServerErr,Toast.LENGTH_SHORT).show();
             }
 
@@ -116,9 +116,9 @@ public class Shezhi_activity extends Activity{
         xggezl.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                dialog = new LoadingDialog(Shezhi_activity.this,"正在加载...");
-                dialog.show();
-                dialog.setCancelable(false);
+                //dialog = new LoadingDialog(Shezhi_activity.this,"正在加载...");
+                //dialog.show();
+                //dialog.setCancelable(false);
 
                 new Thread(new Runnable() {
                     @Override
@@ -126,9 +126,10 @@ public class Shezhi_activity extends Activity{
 
                         try {
                             Message m = new Message();
-                            m.what=editInformation.GetInformation();
+                            //m.what=editInformation.GetInformation();
+                            m.what = 1;
                             Shezhi_activity.this.myMessageHandler.sendMessage(m);
-                        } catch (JSONException e) {
+                        } catch (Exception e) {
                             e.printStackTrace();
                         }
                     }

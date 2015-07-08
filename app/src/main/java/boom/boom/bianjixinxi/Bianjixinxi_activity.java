@@ -14,6 +14,7 @@ import android.hardware.Camera;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Handler;
 import android.os.Message;
 import android.provider.MediaStore;
 import android.view.Gravity;
@@ -52,6 +53,7 @@ import javax.microedition.khronos.egl.EGLDisplay;
 import boom.boom.FontManager.FontManager;
 import boom.boom.R;
 import boom.boom.api.EditInformation;
+import boom.boom.api.HttpIO;
 import boom.boom.api.LoadingDialog;
 import boom.boom.api.Static;
 import boom.boom.api.SysApplication;
@@ -126,6 +128,179 @@ public class Bianjixinxi_activity  extends Activity {
                 Toast.makeText(Bianjixinxi_activity.this,"保存失败，请重试！",Toast.LENGTH_SHORT).show();
             }
         }};
+    Handler onCreateHandler = new Handler(new Handler.Callback() {
+        @Override
+        public boolean handleMessage(Message msg) {
+            RelativeLayout fanhui = (RelativeLayout) findViewById(R.id.bianjixinxi_fh);
+
+            //editInformation=(EditInformation)getIntent().getExtras().getSerializable("info");
+
+
+            sexlist.add("男");
+            sexlist.add("女");
+            sex = (Spinner) findViewById(R.id.sex);
+            adapter = new ArrayAdapter<String>(Bianjixinxi_activity.this,R.layout.shezhi_spinner_style1, sexlist);
+            adapter.setDropDownViewResource(R.layout.shezhi_spinner_style);
+            sex.setAdapter(adapter);
+            star = (Spinner) findViewById(R.id.star);
+            //iv_image = (RoundedImageView) findViewById(R.id.bianjiziliao_touxiang);
+            sex.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                    String str=parent.getItemAtPosition(position).toString();
+
+                }
+
+                @Override
+                public void onNothingSelected(AdapterView<?> parent) {
+
+                }
+            });
+
+            starlist.add("白羊座");
+            starlist.add("金牛座");
+            starlist.add("双子座");
+            starlist.add("巨蟹座");
+            starlist.add("狮子座");
+            starlist.add("处女座");
+            starlist.add("天秤座");
+            starlist.add("天蝎座");
+            starlist.add("射手座");
+            starlist.add("摩羯座");
+            starlist.add("水瓶座");
+            starlist.add("双鱼座");
+
+            adapter1 = new ArrayAdapter<String>(Bianjixinxi_activity.this, R.layout.shezhi_spinner_style1, starlist);
+            adapter1.setDropDownViewResource(R.layout.shezhi_spinner_style);
+            star.setAdapter(adapter1);
+
+            fanhui.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    finish();
+                    overridePendingTransition(0, R.anim.base_slide_right_out);
+                }
+            });
+
+
+
+
+            LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
+            popupWindowView = inflater.inflate(R.layout.shezhi_touxiang, null);
+            popupWindow = new PopupWindow(popupWindowView, LinearLayout.LayoutParams.FILL_PARENT, LinearLayout.LayoutParams.FILL_PARENT, true);
+            popupWindow.setBackgroundDrawable(new BitmapDrawable());
+            popupWindow.setOutsideTouchable(true);
+            popupWindow.setFocusable(true);
+            sz_touxiang = (RoundedImageView) findViewById(R.id.bianjiziliao_touxiang);
+            sz_touxiang.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    //设置PopupWindow的弹出和消失效果
+                    popupWindow.setAnimationStyle(R.style.popupAnimation);
+                    confirmButton = (Button) popupWindowView.findViewById(R.id.sz_touxiang_paishe);
+
+                    cancleButton = (Button) popupWindowView.findViewById(R.id.cancleButton);
+                    button = (Button) popupWindowView.findViewById(R.id.sz_touxiang_bendi);
+                    popupWindow.showAtLocation(confirmButton, Gravity.CENTER, 0, 0);
+                    confirmButton.setOnClickListener(Itemclick);
+                    cancleButton.setOnClickListener(Itemclick);
+                    button.setOnClickListener(Itemclick);
+
+                }
+            });
+            TextView suozaidi = (TextView) findViewById(R.id.bjxx_szd);
+            suozaidi.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    View view = dialogm();
+                    final MyAlertDialog dialog1 = new MyAlertDialog(Bianjixinxi_activity.this)
+                            .builder()
+                            .setTitle("请选择地区：")
+                            .setView(view)
+                            .setNegativeButton("取消", new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+
+                                }
+                            });
+                    dialog1.setPositiveButton("保存", new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Toast.makeText(getApplicationContext(), cityTxt,Toast.LENGTH_SHORT).show();
+                            location.setText(cityTxt);
+                        }
+                    });
+                    dialog1.show();
+                }
+            });
+            try {
+                //dialog = new LoadingDialog(Bianjixinxi_activity.this, "正在加载...");
+                sex.setSelection(editInformation.sex, false);
+                star.setSelection(editInformation.star, false);
+                sign = (EditText) findViewById(R.id.gexingqianming);
+                sign.setText(editInformation.uniquesign);
+                nickname = (EditText) findViewById(R.id.bjxx_nc);
+                nickname.setText(editInformation.nickname);
+                age = (EditText) findViewById(R.id.bjxx_nl);
+                age.setText("" + editInformation.age);
+                job = (EditText) findViewById(R.id.bjxx_zy);
+                job.setText(editInformation.job);
+                location = (TextView) findViewById(R.id.bjxx_szd);
+                location.setText(editInformation.address);
+                school = (EditText) findViewById(R.id.bjxx_xx);
+                school.setText(editInformation.school);
+                company = (EditText) findViewById(R.id.bjxx_gs);
+                company.setText(editInformation.company);
+                email = (EditText) findViewById(R.id.bjxx_yx);
+                email.setText(editInformation.email);
+                sz_touxiang.setImageBitmap(Static.avatarImage);
+                save = (RelativeLayout) findViewById(R.id.bianjixinxi_baocun);
+                dialog.dismiss();
+                save.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        editInformation.nickname = nickname.getText().toString();
+                        editInformation.sex = sex.getSelectedItemPosition();
+                        editInformation.age = Integer.parseInt(age.getText().toString());
+                        editInformation.star = star.getSelectedItemPosition();
+                        editInformation.job = job.getText().toString();
+                        editInformation.address = location.getText().toString();
+                        editInformation.school = school.getText().toString();
+                        editInformation.company = company.getText().toString();
+                        editInformation.email = email.getText().toString();
+                        editInformation.avatarImage = avatar;
+                        editInformation.uniquesign = sign.getText().toString();
+                        //dialog.show();
+                        //dialog.setCancelable(false);
+                        new Thread(new Runnable() {
+                            @Override
+                            public void run() {
+
+                                try {
+                                    Message m = new Message();
+                                    m.what = editInformation.save(avatarChanged);
+                                    Bianjixinxi_activity.this.myMessageHandler.sendMessage(m);
+                                    Synch();
+                                    Message mm = new Message();
+                                    mm.what = avatarChanged ? 1 : 0;
+                                    Static.tiaozhan_handler.sendMessage(mm);
+                                } catch (Exception e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        }).start();
+
+                    }
+                });
+            }catch (Exception e)
+            {
+                e.printStackTrace();
+            }
+
+            return true;
+        }
+    });
+
 
     private void Synch(){
         try{
@@ -151,170 +326,23 @@ public class Bianjixinxi_activity  extends Activity {
 
         SysApplication.getInstance().addActivity(this);
         FontManager.changeFonts(FontManager.getContentView(this), this);//字体
-        RelativeLayout fanhui = (RelativeLayout) findViewById(R.id.bianjixinxi_fh);
+        dialog = new LoadingDialog(Bianjixinxi_activity.this,"正在加载...");
+        dialog.show();
+        dialog.setCancelable(false);
 
-        editInformation=(EditInformation)getIntent().getExtras().getSerializable("info");
-
-
-        sexlist.add("男");
-        sexlist.add("女");
-        sex = (Spinner) findViewById(R.id.sex);
-        adapter = new ArrayAdapter<String>(this,R.layout.shezhi_spinner_style1, sexlist);
-        adapter.setDropDownViewResource(R.layout.shezhi_spinner_style);
-        sex.setAdapter(adapter);
-        star = (Spinner) findViewById(R.id.star);
-        //iv_image = (RoundedImageView) findViewById(R.id.bianjiziliao_touxiang);
-        sex.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        new Thread(new Runnable() {
             @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                String str=parent.getItemAtPosition(position).toString();
-
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
-
-        starlist.add("白羊座");
-        starlist.add("金牛座");
-        starlist.add("双子座");
-        starlist.add("巨蟹座");
-        starlist.add("狮子座");
-        starlist.add("处女座");
-        starlist.add("天秤座");
-        starlist.add("天蝎座");
-        starlist.add("射手座");
-        starlist.add("摩羯座");
-        starlist.add("水瓶座");
-        starlist.add("双鱼座");
-
-        adapter1 = new ArrayAdapter<String>(this, R.layout.shezhi_spinner_style1, starlist);
-        adapter1.setDropDownViewResource(R.layout.shezhi_spinner_style);
-        star.setAdapter(adapter1);
-
-        fanhui.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-                overridePendingTransition(0, R.anim.base_slide_right_out);
-            }
-        });
-
-
-
-
-        LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
-        popupWindowView = inflater.inflate(R.layout.shezhi_touxiang, null);
-        popupWindow = new PopupWindow(popupWindowView, LinearLayout.LayoutParams.FILL_PARENT, LinearLayout.LayoutParams.FILL_PARENT, true);
-        popupWindow.setBackgroundDrawable(new BitmapDrawable());
-        popupWindow.setOutsideTouchable(true);
-        popupWindow.setFocusable(true);
-        sz_touxiang = (RoundedImageView) findViewById(R.id.bianjiziliao_touxiang);
-        sz_touxiang.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //设置PopupWindow的弹出和消失效果
-                popupWindow.setAnimationStyle(R.style.popupAnimation);
-                confirmButton = (Button) popupWindowView.findViewById(R.id.sz_touxiang_paishe);
-
-                cancleButton = (Button) popupWindowView.findViewById(R.id.cancleButton);
-                button = (Button) popupWindowView.findViewById(R.id.sz_touxiang_bendi);
-                popupWindow.showAtLocation(confirmButton, Gravity.CENTER, 0, 0);
-                confirmButton.setOnClickListener(Itemclick);
-                cancleButton.setOnClickListener(Itemclick);
-                button.setOnClickListener(Itemclick);
-
-            }
-        });
-        TextView suozaidi = (TextView) findViewById(R.id.bjxx_szd);
-        suozaidi.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                View view = dialogm();
-                final MyAlertDialog dialog1 = new MyAlertDialog(Bianjixinxi_activity.this)
-                        .builder()
-                        .setTitle("请选择地区：")
-                        .setView(view)
-                        .setNegativeButton("取消", new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-
-                            }
-                        });
-                dialog1.setPositiveButton("保存", new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Toast.makeText(getApplicationContext(), cityTxt,Toast.LENGTH_SHORT).show();
-                        location.setText(cityTxt);
-                    }
-                });
-                dialog1.show();
-            }
-        });
-        try {
-            dialog = new LoadingDialog(Bianjixinxi_activity.this, "正在加载...");
-            sex.setSelection(editInformation.sex, false);
-            star.setSelection(editInformation.star, false);
-            sign = (EditText) findViewById(R.id.gexingqianming);
-            sign.setText(editInformation.uniquesign);
-            nickname = (EditText) findViewById(R.id.bjxx_nc);
-            nickname.setText(editInformation.nickname);
-            age = (EditText) findViewById(R.id.bjxx_nl);
-            age.setText("" + editInformation.age);
-            job = (EditText) findViewById(R.id.bjxx_zy);
-            job.setText(editInformation.job);
-            location = (TextView) findViewById(R.id.bjxx_szd);
-            location.setText(editInformation.address);
-            school = (EditText) findViewById(R.id.bjxx_xx);
-            school.setText(editInformation.school);
-            company = (EditText) findViewById(R.id.bjxx_gs);
-            company.setText(editInformation.company);
-            email = (EditText) findViewById(R.id.bjxx_yx);
-            email.setText(editInformation.email);
-            sz_touxiang.setImageBitmap(Static.avatarImage);
-            save = (RelativeLayout) findViewById(R.id.bianjixinxi_baocun);
-            save.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    editInformation.nickname = nickname.getText().toString();
-                    editInformation.sex = sex.getSelectedItemPosition();
-                    editInformation.age = Integer.parseInt(age.getText().toString());
-                    editInformation.star = star.getSelectedItemPosition();
-                    editInformation.job = job.getText().toString();
-                    editInformation.address = location.getText().toString();
-                    editInformation.school = school.getText().toString();
-                    editInformation.company = company.getText().toString();
-                    editInformation.email = email.getText().toString();
-                    editInformation.avatarImage = avatar;
-                    editInformation.uniquesign = sign.getText().toString();
-                    dialog.show();
-                    dialog.setCancelable(false);
-                    new Thread(new Runnable() {
-                        @Override
-                        public void run() {
-
-                            try {
-                                Message m = new Message();
-                                m.what = editInformation.save(avatarChanged);
-                                Bianjixinxi_activity.this.myMessageHandler.sendMessage(m);
-                                Synch();
-                                Message mm = new Message();
-                                mm.what = avatarChanged ? 1 : 0;
-                                Static.tiaozhan_handler.sendMessage(mm);
-                            } catch (Exception e) {
-                                e.printStackTrace();
-                            }
-                        }
-                    }).start();
-
+            public void run() {
+                try {
+                    editInformation = new EditInformation();
+                    editInformation.GetInformation();
+                    Message msg = new Message();
+                    onCreateHandler.sendMessage(msg);
+                }catch (Exception e){
+                    e.printStackTrace();
                 }
-            });
-        }catch (Exception e)
-        {
-            e.printStackTrace();
-        }
+            }
+        }).start();
     }//oncreate
 
     public void onBackPressed() {

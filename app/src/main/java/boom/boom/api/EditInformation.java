@@ -33,13 +33,12 @@ public class EditInformation implements Serializable {
     public String avatar;
     public Bitmap avatarImage;
     public int coins;
+
     //http://172.24.10.118/api/userdata.php?action=alter&method=email&value=yangxue@net.cn
     private static final String GETINFOMATION_SERVER=Utils.serveraddr+"/api/userdata.php";
     public int GetInformation()
             throws JSONException
     {
-
-
         Utils.GetBuilder get = new Utils.GetBuilder(GETINFOMATION_SERVER);
         get.addItem("action", "get");
         String url_request = get.toString();
@@ -87,7 +86,6 @@ public class EditInformation implements Serializable {
 
         }
         else {
-
             ServerErr="登陆超时！";
             return 0;
         }
