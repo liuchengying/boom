@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#b5555555"
+    android:gravity="center_horizontal"
+    >
+
+    <LinearLayout
+
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="12dip"
+        android:paddingLeft="10dip"
+        android:paddingRight="10dip"
+        android:orientation="vertical"
+        android:layout_gravity="bottom">
+        <Button
+            android:id="@+id/sz_touxiang_paishe"
+            android:background="@drawable/android_192"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="拍 摄"
+            android:textSize="20dp"
+            android:textColor="#ffffff"/>
+        <Button
+            android:layout_marginTop="12dp"
+            android:id="@+id/sz_touxiang_bendi"
+            android:background="@drawable/android_192"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="从手机相册选取"
+            android:textSize="20dp"
+            android:textColor="#ffffff"/>
+
+        <Button
+            android:id="@+id/cancleButton"
+            android:layout_marginTop="12dip"
+            android:background="@drawable/android_193"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="取   消"
+            android:textSize="20dp"
+            android:textColor="#FF0000"/>
+    </LinearLayout>
+
+</LinearLayout>

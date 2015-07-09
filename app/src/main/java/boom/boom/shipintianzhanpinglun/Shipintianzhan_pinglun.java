@@ -110,7 +110,11 @@ public class Shipintianzhan_pinglun extends Activity {
                 thread.start();
                 imageView.setImageResource(R.drawable.android_181);
             } else {
-                avatar = Utils.zoomImage(avatar,85,85);
+                Log.e("1","width:"+Static.width+" height:"+Static.height);
+                if(Static.width == 480 && Static.height == 854)
+                    avatar = Utils.zoomImage(avatar,10,15);
+                else
+                    avatar = Utils.zoomImage(avatar,60,70);
 
                 imageView.setImageBitmap(avatar);
             }
@@ -138,6 +142,8 @@ public class Shipintianzhan_pinglun extends Activity {
             cl_name = data.getString("challenge_frontname");
             date = data.getString("date");
             elapsed = data.getString("elapsed_time");
+            int liked = data.getInt("heart_like");
+            heartlike.setChecked(liked > 0);
             }catch (Exception e){
                 e.printStackTrace();
             }
@@ -203,6 +209,7 @@ public class Shipintianzhan_pinglun extends Activity {
         mSildingFinishLayout.setTouchView(mSildingFinishLayout);
         SysApplication.getInstance().addActivity(this);
         FontManager.changeFonts(FontManager.getContentView(this), this);//字体
+        Utils.getResolution(Shipintianzhan_pinglun.this);
         allLinear = (LinearLayout) findViewById(R.id.list_all);
         lv = (ListView) findViewById(R.id.shipinpinglun_listview);
         nickname_tv = (TextView) findViewById(R.id.nickname);
@@ -211,9 +218,9 @@ public class Shipintianzhan_pinglun extends Activity {
         elapsed_tv = (TextView) findViewById(R.id.elapsed);
         sppl_horizon = (LinearLayout)findViewById(R.id.sppl_horizon);
         heartlike = (ToggleButton) findViewById(R.id.shipinpinglun_toggle);
-        heartlike.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        heartlike.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+            public void onClick(View v) {
                 final HttpIO io = new HttpIO(Utils.serveraddr + "api/msg.php?action=like&type=9&position="+ID);
                 io.SessionID = Static.session_id;
                 new Thread(new Runnable() {
@@ -231,8 +238,6 @@ public class Shipintianzhan_pinglun extends Activity {
         cl_id = intent.getStringExtra("cl_id");
         ID = intent.getStringExtra("ID");
         LoadData();
-
-
         /*nickname = intent.getStringExtra("nickname");
         cl_name = intent.getStringExtra("cl_name");
         date = intent.getStringExtra("date");

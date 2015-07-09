@@ -25,4 +25,7 @@ public class Static {
     public static String province=null;
     public static String city= null;
     public static String area = null;
+    public static float density;
+    public static float width;
+    public static float height;
 }

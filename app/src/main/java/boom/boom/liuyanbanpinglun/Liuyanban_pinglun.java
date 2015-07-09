@@ -56,6 +56,7 @@ public class Liuyanban_pinglun extends Activity {
     private LinearLayout lypl_horizon;
     ToggleButton mTogBtn;
     private ArrayList<String> avatarlist;
+
     List<Map<String , Object>> listItem = new ArrayList<Map<String,Object>>();
     android.os.Handler myMessageHandler = new android.os.Handler() {
         @Override
@@ -117,6 +118,8 @@ public class Liuyanban_pinglun extends Activity {
                 JSONObject host_user = Utils.GetSubJSONObject(obj, "host_user");
                 nickname = host_user.getString("nickname");
                 time = data.getString("assign_date");
+                int liked = data.getInt("heart_like");
+                mTogBtn.setChecked(liked>0);
             }catch (Exception e){
                 e.printStackTrace();
             }
