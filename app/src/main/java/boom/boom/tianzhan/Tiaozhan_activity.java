@@ -2,6 +2,8 @@ package boom.boom.tianzhan;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.Fragment;
+import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -9,6 +11,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Message;
+import android.support.v4.app.FragmentActivity;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
@@ -44,7 +47,7 @@ import boom.boom.xinxizhongxin.xinxizhongxin_activity;
 /**
  * Created by 刘成英 on 2015/1/13.
  */
-public class Tiaozhan_activity extends Activity {
+public class Tiaozhan_activity extends FragmentActivity {
     private SlidingMenu mLeftMenu ;
     private Button cahuaanniu;
     private Button danrentiaozhan;
@@ -57,6 +60,7 @@ public class Tiaozhan_activity extends Activity {
     private myImageView cehuatouxiang;
     private Button faqitianzhan;
     private Button tz_grzy;
+    private LinearLayout ch_xitongshezhi;
     private LinearLayout ch_haoyouliebiao;
     private LinearLayout xiaoxizhongxin_jiaobiao;
     private BadgeView mBadgeView;
@@ -94,7 +98,7 @@ public class Tiaozhan_activity extends Activity {
                 Intent intent = new Intent();
                 intent.setClass(Tiaozhan_activity.this, Paihangbang_activity.class);
                 startActivity(intent);
-                overridePendingTransition(R.anim.base_slide_right_in, R.anim.base_slide_remain);
+                overridePendingTransition(R.anim.base_slide_remain, R.anim.base_slide_right_in);
             }
         });
                 // *** 消息提示红色角标 ***
@@ -147,7 +151,7 @@ public class Tiaozhan_activity extends Activity {
                         dianjicehua(v);
                     }
                 };
-                timer.schedule(timerTask, 1250);
+                timer.schedule(timerTask, 800);
                 overridePendingTransition(R.anim.base_slide_right_in, R.anim.base_slide_remain);
             }
         });
@@ -181,6 +185,9 @@ public class Tiaozhan_activity extends Activity {
                 intent.setClass(Tiaozhan_activity.this, Shezhi_activity.class);
                 startActivity(intent);
                 overridePendingTransition(R.anim.base_slide_right_in, R.anim.base_slide_remain);
+
+
+
             }
         });
 
@@ -203,7 +210,8 @@ public class Tiaozhan_activity extends Activity {
                         dianjicehua(v);
                     }
                 };
-                timer.schedule(timerTask, 1000);
+                timer.schedule(timerTask, 800);
+                overridePendingTransition(R.anim.base_slide_right_in, R.anim.base_slide_remain);
             }
         });
         LinearLayout phg=(LinearLayout)findViewById(R.id.ch_paihangbang);
@@ -220,7 +228,8 @@ public class Tiaozhan_activity extends Activity {
                         dianjicehua(v);
                     }
                 };
-                timer.schedule(timerTask, 1000);
+                timer.schedule(timerTask, 800);
+                overridePendingTransition(R.anim.base_slide_right_in, R.anim.base_slide_remain);
             }
         });
         cehuatouxiang.setOnClickListener(new View.OnClickListener() {
@@ -238,13 +247,31 @@ public class Tiaozhan_activity extends Activity {
                         dianjicehua(v);
                     }
                 };
-                timer.schedule(timerTask, 1250);
+                timer.schedule(timerTask, 800);
                 overridePendingTransition(R.anim.base_slide_right_in, R.anim.base_slide_remain);
             }
         });
         if(Static.avatarImage!=null) {
             cehuatouxiang.setImageBitmap(Static.avatarImage);
         }
+        ch_xitongshezhi = (LinearLayout) findViewById(R.id.ch_xitongshezhi);
+        ch_xitongshezhi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(final View v) {
+                Intent intent = new Intent();
+                intent.setClass(Tiaozhan_activity.this, Shezhi_activity.class);
+                startActivity(intent);
+                Timer timer=new Timer();
+                TimerTask timerTask=new TimerTask() {
+                    @Override
+                    public void run() {
+                        dianjicehua(v);
+                    }
+                };
+                timer.schedule(timerTask, 800);
+                overridePendingTransition(R.anim.base_slide_right_in, R.anim.base_slide_remain);
+            }
+        });
         ch_haoyouliebiao = (LinearLayout) findViewById(R.id.ch_haoyouliebiao);
         ch_haoyouliebiao.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -259,7 +286,7 @@ public class Tiaozhan_activity extends Activity {
                         dianjicehua(v);
                     }
                 };
-                timer.schedule(timerTask, 1250);
+                timer.schedule(timerTask, 800);
                 overridePendingTransition(R.anim.base_slide_right_in, R.anim.base_slide_remain);
             }
         });

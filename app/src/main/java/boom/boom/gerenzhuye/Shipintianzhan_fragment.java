@@ -2,6 +2,8 @@ package boom.boom.gerenzhuye;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.view.LayoutInflater;
@@ -51,11 +53,56 @@ public class Shipintianzhan_fragment extends Fragment implements XListView.IXLis
     private String guestID;
     LinearLayout all;
     String result = null;
-    boolean animating;
-    boolean upordown;
-    int UP =0;
-    int DOWN = 0;
-    final ArrayList<HashMap<String, Object>> listItem= new ArrayList<HashMap<String,     Object>>();
+    ArrayList<HashMap<String, Object>> listItem= new ArrayList<HashMap<String,     Object>>();
+    Handler asncHandler =new Handler(new Handler.Callback() {
+        @Override
+        public boolean handleMessage(Message msg) {
+            if(msg.what == 1){
+                listItem.clear();
+                int round = 0;
+                result = msg.getData().getString("data");
+                try {
+                    Gerenzhuye_activity.obj = new JSONObject(result);
+                    JSONObject tmp = Utils.GetSubJSONObject(Gerenzhuye_activity.obj, "response");
+                    round = Integer.parseInt(tmp.getString("limit"));
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                for(int i=0;i<round;i++){
+                    String title = null, text = null, location = null, assign_time = null, elapsed = null, cl_id = null,ID = null;
+                    if (Gerenzhuye_activity.obj != null) try {
+                        JSONObject tmp = Utils.GetSubJSONObject(Gerenzhuye_activity.obj, "line"+i);
+                        title = tmp.getString("frontname");
+                        text = "观看次数" + tmp.getString("play_time") + "次";
+                        location = tmp.getString("location_intent");
+                        assign_time = tmp.getString("date");
+                        elapsed = tmp.getString("elapsed_time");
+                        cl_id = tmp.getString("challenge_id");
+                        ID = tmp.getString("ID");
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                    HashMap<String, Object> map = new HashMap<String, Object>();
+                    map.put("title",title);
+                    map.put("count", text);
+                    map.put("location", location);
+                    map.put("assign_time", assign_time);
+                    map.put("elapsed", elapsed);
+                    map.put("cl_id",cl_id);
+                    map.put("ID",ID);
+                    listItem.add(map);
+                }
+            }else{
+                try {
+                    Toast.makeText(getActivity(), "网络连接错误！请检查网络连接", Toast.LENGTH_SHORT).show();
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+            }
+            mSimpleAdapter.notifyDataSetChanged();
+            return true;
+        }
+    });
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState)
@@ -63,7 +110,16 @@ public class Shipintianzhan_fragment extends Fragment implements XListView.IXLis
         View v=inflater.inflate(R.layout.tianjiahaoyou1, container, false);
         lv= (XListView) v.findViewById(R.id.listView4);
         lv.mContext = getActivity();
-
+        try {
+            mSimpleAdapter = new SimpleAdapter(getActivity(), listItem,//需要绑定的数据
+                    R.layout.shipintiaozhan_item,//每一行的布局//动态数组中的数据源的键对应到定义布局的View中
+                    new String[]{
+                            "title", "count", "location", "assign_time", "elapsed"},
+                    new int[]{R.id.title, R.id.count, R.id.location, R.id.assign_time, R.id.elapsed}
+            );
+        }catch (Exception e){
+            e.printStackTrace();
+        }
         guestID = getFragmentManager().findFragmentByTag("179521").getArguments().getString("guestID");
         lv.setPullLoadEnable(true);
         mHandler = new android.os.Handler();
@@ -104,7 +160,7 @@ public class Shipintianzhan_fragment extends Fragment implements XListView.IXLis
                 localIntent.putExtra("nickname",((Gerenzhuye_activity)getActivity()).nickname);
                 localIntent.putExtra("cl_name",(String)listItem.get(pos).get("title"));
                 startActivity(localIntent);
-
+                getActivity().overridePendingTransition(R.anim.base_slide_right_in,R.anim.base_slide_remain);
             }
         });
 
@@ -142,63 +198,12 @@ public class Shipintianzhan_fragment extends Fragment implements XListView.IXLis
 
     public void onSyncDataFromServer(){
         listItem.clear();
-        Thread thread = new Thread(new Runnable() {
-            @Override
-            public void run() {
                 result = null;
-
                 //http://172.24.10.118/api/rank.php?action=getFriendsrank&guest_id=10000
                 Utils.GetBuilder get = new Utils.GetBuilder(Utils.serveraddr + "/api/rank.php");
                 get.addItem("action", "getFriendsrank");
-                get.addItem("guest_id",guestID);
-                HttpIO io = new HttpIO(get.toString());
-                io.SetCustomSessionID(Static.session_id);
-                Gerenzhuye_activity.obj = null;
-                io.GETToHTTPServer();
-                result = io.getResultData();
-            }
-        });
-        thread.start();
+                get.addItem("guest_id", guestID);
+                HttpIO.GetHttpEX(getActivity(),asncHandler,get.toString());
 
-        int round = 0;
-        while (result==null);
-        try {
-            Gerenzhuye_activity.obj = new JSONObject(result);
-            JSONObject tmp = Utils.GetSubJSONObject(Gerenzhuye_activity.obj, "response");
-            round = Integer.parseInt(tmp.getString("limit"));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        for(int i=0;i<round;i++){
-            String title = null, text = null, location = null, assign_time = null, elapsed = null, cl_id = null,ID = null;
-            if (Gerenzhuye_activity.obj != null) try {
-                JSONObject tmp = Utils.GetSubJSONObject(Gerenzhuye_activity.obj, "line"+i);
-                title = tmp.getString("frontname");
-                text = "观看次数" + tmp.getString("play_time") + "次";
-                location = tmp.getString("location_intent");
-                assign_time = tmp.getString("date");
-                elapsed = tmp.getString("elapsed_time");
-                cl_id = tmp.getString("challenge_id");
-                ID = tmp.getString("ID");
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-            HashMap<String, Object> map = new HashMap<String, Object>();
-            map.put("title",title);
-            map.put("count", text);
-            map.put("location", location);
-            map.put("assign_time", assign_time);
-            map.put("elapsed", elapsed);
-            map.put("cl_id",cl_id);
-            map.put("ID",ID);
-
-            listItem.add(map);
-        }
-        mSimpleAdapter = new SimpleAdapter(getActivity(),listItem,//需要绑定的数据
-                R.layout.shipintiaozhan_item,//每一行的布局//动态数组中的数据源的键对应到定义布局的View中
-                new String[] {
-                        "title", "count" , "location", "assign_time", "elapsed"},
-                new int[] {R.id.title,R.id.count,R.id.location,R.id.assign_time,R.id.elapsed}
-        );
     }
 }

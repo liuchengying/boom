@@ -19,7 +19,7 @@ public class Challenge {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                HttpIO io = new HttpIO(Utils.serveraddr + challenge_api + "?action=get_short_intro");
+                HttpIO io = new HttpIO(Utils.serveraddr + "/api/take_challenge.php?action=get_short_intro");
                 io.SetCustomSessionID(Static.session_id);
                 io.GETToHTTPServer();
                 RawDataStore = io.getResultData();

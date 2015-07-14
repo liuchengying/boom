@@ -238,6 +238,7 @@ public class Paishetiaozhan_activity extends Activity implements SurfaceHolder.C
                     if (!workingState) {
                         intent.putExtra("challenge_name", cl_name);
                         intent.putExtra("challenge_id", cl_id);
+                        intent.putExtra("pf_iv",getIntent().getIntExtra("pf_iv",0));
                         intent.setClass(Paishetiaozhan_activity.this, Shangchuandengdai_activity.class);
                         startActivity(intent);
                         Paishetiaozhan_activity.this.finish();

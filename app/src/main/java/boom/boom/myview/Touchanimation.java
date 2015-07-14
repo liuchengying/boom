@@ -59,7 +59,7 @@ public class Touchanimation extends ListView implements AbsListView.OnScrollList
                z = ev.getRawY();
                F = z - Y;
                try {
-                   all = ((Shipintianzhan_pinglun) mContext).allLinear;
+                   //all = ((Shipintianzhan_pinglun) mContext).allLinear;
                }catch (Exception e)
                {
                    e.printStackTrace();

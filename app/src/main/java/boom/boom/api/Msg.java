@@ -29,12 +29,25 @@ public class Msg {
     private String RawDataStore;
     private JSONObject json_data;
     private static int counter = 0;
+    private Handler LastHandler;
     android.os.Handler myMessageHandler = new android.os.Handler() {
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
+            Message m = new Message();
+            m.what = msg.what;
             try{
+                if(msg.what == 1){
+                    RawDataStore = msg.getData().getString("data");
+                    try {
+                        json_data = new JSONObject(RawDataStore);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }else {
 
+                }
+                LastHandler.sendMessage(m);
             }
             catch (Exception e)
             {
@@ -42,31 +55,10 @@ public class Msg {
             }
         }
     };
-    public Msg(){
-
-                    final HttpIO io = new HttpIO(Utils.serveraddr + MSG_API_URL );
-                    new Thread(new Runnable() {
-                        @Override
-                        public void run() {
-                            io.SetCustomSessionID(Static.session_id);
-                            io.GETToHTTPServer();
-                        }
-                    }).start();
-                    while(io.getResultData() == null);
-                    if(io.LastError==0) {
-                        RawDataStore = io.getResultData();
-                        try {
-                            json_data = new JSONObject(RawDataStore);
-
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                    else
-                    {
-                        LastError=DATAERROR;
-                    }
-                }
+    public Msg(Context context,Handler handler){
+        HttpIO.GetHttpEX(context,myMessageHandler,Utils.serveraddr + MSG_API_URL);
+        LastHandler = handler;
+    }
 
 
 
@@ -94,7 +86,6 @@ public class Msg {
                     System.gc();
                     switch (type) {
                         case 1://1.挑战成功或者失败
-
                             if(data.getString("pass").equals("CHALLENGE_SUCCESS"))
                             {
                                 title = "挑战成功！";
@@ -104,6 +95,8 @@ public class Msg {
                                 title = "挑战失败！";
                                 text = "您的"+data.getString("challenge_frontname")+"失败！";
                             }
+                            map.put("ID",data.getString("ID"));
+                            map.put("cl_id",data.getString("challenge_id"));
                             map.put("title",title);
                             map.put("content",text);
                             icon = BitmapFactory.decodeResource(res, R.drawable.android_217);
@@ -139,6 +132,7 @@ public class Msg {
                                 icon = BitmapFactory.decodeResource(res,R.drawable.android_211);
                                 map.put("pass",false);
                             }
+                            map.put("ID",data.getString("ID"));
                             map.put("challenge_id",data.getString("challenge_id"));
                             map.put("cl_name",data.getString("challenge_frontname"));
                             map.put("elapsed",data.getString("elapsed_time"));
@@ -174,6 +168,7 @@ public class Msg {
                                 icon = BitmapFactory.decodeResource(res,R.drawable.android_218);
                                 map.put("pass",false);
                             }
+                            map.put("ID",data.getString("ID"));
                             map.put("challenge_id",data.getString("challenge_id"));
                             map.put("cl_name",data.getString("challenge_frontname"));
                             map.put("elapsed",data.getString("elapsed_time"));
@@ -200,6 +195,7 @@ public class Msg {
                             map.put("icon",icon);
                             map.put("cl_id",data.getString("cl_id"));
                             map.put("smallicon",smallicon);
+                            map.put("pf_iv",data.getInt("ID"));
                             break;
                         case 9://好友同意或拒绝
                             boolean passed = false;
@@ -236,10 +232,20 @@ public class Msg {
                                 smallicon = BitmapFactory.decodeResource(res,R.drawable.android_215);
                                 map.put("pass",false);
                             }
+                            map.put("ID",data.getString("ID"));
                             map.put("identifyDigit",data.getString("challenge_id"));
                             map.put("smallicon",smallicon);
                             icon = BitmapFactory.decodeResource(res,R.drawable.android_217);
                             map.put("icon",icon);
+                            break;
+                        case 12://收到留言
+                            map.put("title","收到评论回复！");
+                            map.put("content",data.getString("nickname")+":"+data.getString("text_value"));
+                            icon = BitmapFactory.decodeResource(res,R.drawable.android_216);
+                            map.put("icon",icon);
+                            map.put("commentType",data.getInt("commentType"));
+                            map.put("ID",data.getString("ID"));
+                            map.put("cl_id",data.getString("cl_id"));
                             break;
                     }
 

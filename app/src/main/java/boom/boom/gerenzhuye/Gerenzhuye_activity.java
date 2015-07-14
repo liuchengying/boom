@@ -6,6 +6,7 @@ import android.app.Activity;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.app.FragmentActivity;
@@ -33,6 +34,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.json.JSONObject;
 
@@ -97,63 +99,18 @@ public class  Gerenzhuye_activity extends FragmentActivity
             gerenzhuye_touxing.setImageBitmap(avatar);
         }
     };
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        tab02.onSyncDataFromServer();
-        Message msg = new Message();
-        tab02.myHandler.sendMessage(msg);
-    }
-    @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
-        super.onCreate(savedInstanceState);
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
-        setContentView(R.layout.gerenzhuye);
-        SysApplication.getInstance().addActivity(this);
-        FontManager.changeFonts(FontManager.getContentView(this), this);//字体
-        tjhy_ll = (LinearLayout) findViewById(R.id.grzy_tjhy_ll);
-        tjhy_tv = (TextView) findViewById(R.id.grzy_tjhy_tv);
-        tyjj_ll = (LinearLayout) findViewById(R.id.grzy_tyjj_ll);
-        agree = (Button) findViewById(R.id.grzy_ty_bt);
-        disagree = (Button) findViewById(R.id.grzy_jj_bt);
-        guestID = getIntent().getStringExtra("guestID");
-        type = getIntent().getIntExtra("type",1);
-        ID = getIntent().getStringExtra("ID");
-
-
-
-
-
-
-        switch (type)
-        {
-            case 1://都不显示
-            {
-                tjhy_ll.setVisibility(View.INVISIBLE);
-                tyjj_ll.setVisibility(View.INVISIBLE);
-                break;
-            }
-            case 2://显示添加好友
-            {
-                tjhy_ll.setVisibility(View.VISIBLE);
-                final HttpIO io = new HttpIO(Utils.serveraddr + "api/newfriend.php?action=verify&guest_id="+guestID);
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        io.SessionID = Static.session_id;
-                        io.getJson();
-                    }
-                }).start();
-                while(io.getResultData() == null);
+    Handler type2Handler = new Handler(new Handler.Callback() {
+        @Override
+        public boolean handleMessage(Message msg) {
+            if(msg.what == 1){
                 String response = null;
                 try {
-                    JSONObject obj = new JSONObject(io.getResultData());
+                    tjhy_ll.setVisibility(View.VISIBLE);
+                    JSONObject obj = new JSONObject(msg.getData().getString("data"));
                     response = obj.getString("status");
                 }catch (Exception e){
                     e.printStackTrace();
                 }
-
                 if(response.equals("FRIENDSHIP_NOT_EXISTED")){
                     tjhy_tv.setText("添 加 好 友");
                     tjhy_ll.setOnClickListener(new View.OnClickListener() {
@@ -174,32 +131,21 @@ public class  Gerenzhuye_activity extends FragmentActivity
                 }else if(response.equals("AWAITING_FRIENDS_ACCEPTED")) {
                     tjhy_tv.setText("等 待 通 过");
                 }
-
-
                 tyjj_ll.setVisibility(View.INVISIBLE);
-                break;
+            }else {
+                Toast.makeText(Gerenzhuye_activity.this,"网络连接错误！请检查网络连接",Toast.LENGTH_SHORT).show();
             }
-            case 3://显示等待通过
-            {
-                tjhy_ll.setVisibility(View.VISIBLE);
-                tjhy_tv.setText("等 待 通 过");
-                tyjj_ll.setVisibility(View.INVISIBLE);
-                break;
-            }
-            case 4://显示拒绝添加
-            {
-                final HttpIO io = new HttpIO(Utils.serveraddr + "api/newfriend.php?action=verify&guest_id="+guestID);
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        io.SessionID = Static.session_id;
-                        io.getJson();
-                    }
-                }).start();
-                while(io.getResultData() == null);
+            return true;
+        }
+    });
+
+    Handler type4Handler = new Handler(new Handler.Callback() {
+        @Override
+        public boolean handleMessage(Message msg) {
+            if(msg.what == 1){
                 String response = null;
                 try {
-                    JSONObject obj = new JSONObject(io.getResultData());
+                    JSONObject obj = new JSONObject(msg.getData().getString("data"));
                     response = obj.getString("status");
                 }catch (Exception e){
                     e.printStackTrace();
@@ -250,6 +196,103 @@ public class  Gerenzhuye_activity extends FragmentActivity
                         tyjj_ll.setVisibility(View.INVISIBLE);
                     }
                 });
+            }else {
+                Toast.makeText(Gerenzhuye_activity.this,"网络连接错误！请检查网络连接",Toast.LENGTH_SHORT).show();
+            }
+            return true;
+        }
+    });
+
+    Handler userdataHandler = new Handler(new Handler.Callback() {
+        @Override
+        public boolean handleMessage(Message msg) {
+            if(msg.what == 1){
+                try {
+                    result = msg.getData().getString("data");
+                    JSONObject obj = Utils.GetSubJSONObject(new JSONObject(result), "data");
+                    username = (TextView) findViewById(R.id.gerenzhuye_yonghuming);
+                    nickname = obj.getString("nickname");
+                    username.setText(nickname);
+                    sign = (TextView) findViewById(R.id.gerenzhuye_qianming);
+                    sign.setText(obj.getString("uniquesign"));
+                    gerenzhuye_touxing = (CircleImageView) findViewById(R.id.gerenzhuye_touxiang);
+                    data = obj.getString("avatar");
+                    if ((avatar = AsyncLoadAvatar.GetLocalImage((String) data)) == null)           //获取存在本地的Bitmap
+                    {
+                        Thread thread = new Thread(new Runnable() {
+                            @Override
+                            public void run() {
+                                if (AsyncLoadAvatar.SaveBitmapToLocal(AsyncLoadAvatar.DownloadBitmap((String) data), (String) data));  //returned Bitmap   把Bitmap保存到本地
+                                {
+                                    Message m = new Message();
+                                    Gerenzhuye_activity.this.myMessageHandler.sendMessage(m);
+                                }
+                            }
+                        });
+                        thread.start();
+
+                        gerenzhuye_touxing.setImageResource(R.drawable.android_181);
+
+                    } else {
+                        gerenzhuye_touxing.setImageDrawable(new BitmapDrawable(avatar));
+                        //gerenzhuye_touxing.setImageBitmap(avatar);
+                    }
+                }catch (Exception e)
+                {
+                    e.printStackTrace();
+                }
+            }else {
+                Toast.makeText(Gerenzhuye_activity.this,"网络连接错误！请检查网络连接",Toast.LENGTH_SHORT).show();
+            }
+            return true;
+        }
+    });
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        tab02.onSyncDataFromServer();
+        Message msg = new Message();
+        tab02.myHandler.sendMessage(msg);
+    }
+    @Override
+    protected void onCreate(Bundle savedInstanceState)
+    {
+        super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        setContentView(R.layout.gerenzhuye);
+        SysApplication.getInstance().addActivity(this);
+        FontManager.changeFonts(FontManager.getContentView(this), this);//字体
+        tjhy_ll = (LinearLayout) findViewById(R.id.grzy_tjhy_ll);
+        tjhy_tv = (TextView) findViewById(R.id.grzy_tjhy_tv);
+        tyjj_ll = (LinearLayout) findViewById(R.id.grzy_tyjj_ll);
+        agree = (Button) findViewById(R.id.grzy_ty_bt);
+        disagree = (Button) findViewById(R.id.grzy_jj_bt);
+        guestID = getIntent().getStringExtra("guestID");
+        type = getIntent().getIntExtra("type",1);
+        ID = getIntent().getStringExtra("ID");
+        switch (type)
+        {
+            case 1://都不显示
+            {
+                tjhy_ll.setVisibility(View.INVISIBLE);
+                tyjj_ll.setVisibility(View.INVISIBLE);
+                break;
+            }
+            case 2://显示添加好友
+            {
+                HttpIO.GetHttpEX(Gerenzhuye_activity.this,type2Handler,Utils.serveraddr + "api/newfriend.php?action=verify&guest_id="+guestID);
+                break;
+            }
+            case 3://显示等待通过
+            {
+                tjhy_ll.setVisibility(View.VISIBLE);
+                tjhy_tv.setText("等 待 通 过");
+                tyjj_ll.setVisibility(View.INVISIBLE);
+                break;
+            }
+            case 4://显示拒绝添加
+            {
+                HttpIO.GetHttpEX(Gerenzhuye_activity.this,type4Handler,Utils.serveraddr + "api/newfriend.php?action=verify&guest_id="+guestID);
                 break;
             }
         }
@@ -267,71 +310,24 @@ public class  Gerenzhuye_activity extends FragmentActivity
         mSildingFinishLayout.setTouchView(mSildingFinishLayout);
         allLinear = (LinearLayout) findViewById(R.id.zhengge);
 
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
+
                 //http://172.24.10.118/api/userdata.php?action=getFriends&guest_id=10000
                 Utils.GetBuilder get  = new Utils.GetBuilder(Utils.serveraddr + Utils.userdata_api);
                 get.addItem("action", "getFriends");
                 get.addItem("guest_id",guestID);
-                HttpIO io = new HttpIO(get.toString());
-                io.SetCustomSessionID(Static.session_id);
-                io.GETToHTTPServer();
-                switch (io.LastError){
-                    case HttpIO.CONNECTION_TIMED_OUT:
-                        result = "TIME_OUT";
-                        break;
-                    default:
-                        result = io.getResultData();
-                        break;
-                }
+                HttpIO.GetHttpEX(Gerenzhuye_activity.this,userdataHandler,get.toString());
+
+        gerenzhuyefanhui = (RelativeLayout) findViewById(R.id.gerenzhuyefanhui);
+        gerenzhuyefanhui.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+                overridePendingTransition(0, R.anim.base_slide_right_out);
             }
-        }).start();
-        while (result == null);
-        try {
-            JSONObject obj = Utils.GetSubJSONObject(new JSONObject(result), "data");
-
-            username = (TextView) findViewById(R.id.gerenzhuye_yonghuming);
-            nickname = obj.getString("nickname");
-            username.setText(nickname);
-            sign = (TextView) findViewById(R.id.gerenzhuye_qianming);
-            sign.setText(obj.getString("uniquesign"));
-            gerenzhuye_touxing = (CircleImageView) findViewById(R.id.gerenzhuye_touxiang);
-            data = obj.getString("avatar");
-            if ((avatar = AsyncLoadAvatar.GetLocalImage((String) data)) == null)           //获取存在本地的Bitmap
-            {
-                Thread thread = new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        if (AsyncLoadAvatar.SaveBitmapToLocal(AsyncLoadAvatar.DownloadBitmap((String) data), (String) data));  //returned Bitmap   把Bitmap保存到本地
-                        {
-                            Message m = new Message();
-                            Gerenzhuye_activity.this.myMessageHandler.sendMessage(m);
-                        }
-                    }
-                });
-                thread.start();
-                gerenzhuye_touxing.setImageResource(R.drawable.android_181);
-
-            } else {
-                gerenzhuye_touxing.setImageBitmap(avatar);
-            }
-            gerenzhuyefanhui = (RelativeLayout) findViewById(R.id.gerenzhuyefanhui);
-            gerenzhuyefanhui.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    finish();
-                    overridePendingTransition(0, R.anim.base_slide_right_out);
-                }
-            });
-            jiantingqiehuan();
-            initTabLine();
-            initView();
-
-        }catch (Exception e)
-        {
-            e.printStackTrace();
-        }
+        });
+        jiantingqiehuan();
+        initTabLine();
+        initView();
         liuyan = (Button) findViewById(R.id.liuyan_button);
         liuyan.setOnClickListener(new View.OnClickListener() {
             @Override

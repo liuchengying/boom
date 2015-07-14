@@ -26,7 +26,7 @@ public class Faqitianzhan_activity extends Activity {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.faqitiaozhan);
-        SildingFinishLayout mSildingFinishLayout = (SildingFinishLayout) findViewById(R.id.sildingFinishLayout);
+        /*SildingFinishLayout mSildingFinishLayout = (SildingFinishLayout) findViewById(R.id.sildingFinishLayout);
         mSildingFinishLayout
                 .setOnSildingFinishListener(new SildingFinishLayout.OnSildingFinishListener() {
 
@@ -36,7 +36,7 @@ public class Faqitianzhan_activity extends Activity {
                     }
                 });
 
-        mSildingFinishLayout.setTouchView(mSildingFinishLayout);
+        mSildingFinishLayout.setTouchView(mSildingFinishLayout);*/
 
 
     // Press the back button in mobile phone
@@ -50,6 +50,7 @@ public class Faqitianzhan_activity extends Activity {
                 Intent intent = new Intent();
                 intent.setClass(Faqitianzhan_activity.this, Zinitianzhan_activity.class);
                 startActivity(intent);
+                overridePendingTransition(R.anim.base_slide_right_in,R.anim.base_slide_remain);
             }
         });
         fqtz_fh.setOnClickListener(new View.OnClickListener() {

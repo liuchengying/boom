@@ -55,7 +55,7 @@ public class Paihangbang_activity extends FragmentActivity
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.paihangbang);
-        SildingFinishLayout mSildingFinishLayout = (SildingFinishLayout) findViewById(R.id.sildingFinishLayout);
+        /*SildingFinishLayout mSildingFinishLayout = (SildingFinishLayout) findViewById(R.id.sildingFinishLayout);
         mSildingFinishLayout
                 .setOnSildingFinishListener(new SildingFinishLayout.OnSildingFinishListener() {
 
@@ -65,7 +65,7 @@ public class Paihangbang_activity extends FragmentActivity
                     }
                 });
 
-        mSildingFinishLayout.setTouchView(mSildingFinishLayout);
+        mSildingFinishLayout.setTouchView(mSildingFinishLayout);*/
         SysApplication.getInstance().addActivity(this);
         RelativeLayout phbfh = (RelativeLayout)findViewById(R.id.paihangbangfanhuis);
         phbfh.setOnClickListener(new View.OnClickListener() {

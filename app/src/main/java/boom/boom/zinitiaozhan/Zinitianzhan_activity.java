@@ -99,7 +99,7 @@ public class Zinitianzhan_activity extends Activity {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.zinitiaozhan);
         zntz_tijiaoshenhe = (Button) findViewById(R.id.zntz_tijiaoshenhe);
-        SildingFinishLayout mSildingFinishLayout = (SildingFinishLayout) findViewById(R.id.sildingFinishLayout);
+        /*SildingFinishLayout mSildingFinishLayout = (SildingFinishLayout) findViewById(R.id.sildingFinishLayout);
         mSildingFinishLayout
                 .setOnSildingFinishListener(new SildingFinishLayout.OnSildingFinishListener() {
 
@@ -109,7 +109,7 @@ public class Zinitianzhan_activity extends Activity {
                     }
                 });
 
-        mSildingFinishLayout.setTouchView(mSildingFinishLayout);
+        mSildingFinishLayout.setTouchView(mSildingFinishLayout);*/
         RelativeLayout zntz_fh = (RelativeLayout) findViewById(R.id.zntz_fh);
         zntz_fh.setOnClickListener(new View.OnClickListener() {
             @Override

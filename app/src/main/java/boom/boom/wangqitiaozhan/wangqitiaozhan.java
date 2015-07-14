@@ -7,6 +7,8 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -39,10 +41,11 @@ import boom.boom.guizejieshao.Guizejieshao_activity;
 public class wangqitiaozhan extends Activity{
     ExpandableListView expandableListView;
     List<itemData> group_list;
-    List<List<itemData>> item_list;
+    List<List<itemData>> item_list = new ArrayList<List<itemData>>();
     LinearLayout imageView;
     String str = null;
     RelativeLayout wqtz_fh;
+    MyExpandableListViewAdapter adapter = new MyExpandableListViewAdapter(this);
     private class itemData{
         String frontname;
         int identifyDigit;
@@ -52,6 +55,47 @@ public class wangqitiaozhan extends Activity{
             identifyDigit = digit;
         }
     }
+    Handler myHandler = new Handler(new Handler.Callback() {
+        @Override
+        public boolean handleMessage(Message msg) {
+            if(msg.what == 1){
+                str = msg.getData().getString("data");
+                try{
+                    JSONObject obj = new JSONObject(str);
+
+                    if(obj.getString("state").equals("SUCCESS"))
+                    {
+                        int round = obj.getInt("limit");
+                        for(int i=1;i<round+1;i++) {
+                            JSONObject tmp = Utils.GetSubJSONObject(obj,""+i);
+                            group_list.add(new itemData(tmp.getString("nickname"),tmp.getInt("identifyDigit")));
+
+                            JSONObject perSeries = Utils.GetSubJSONObject(tmp,"data");
+                            int limit = perSeries.getInt("limit");
+                            ArrayList<itemData> strItem = new ArrayList<itemData>();
+                            for(int m=1;m<limit+1;m++){
+                                try {
+                                    JSONObject item = Utils.GetSubJSONObject(perSeries, "" + m);
+                                    strItem.add(new itemData(item.getString("frontname"),item.getInt("identifyDigit")));
+                                }catch (Exception e)
+                                {
+                                    e.printStackTrace();
+                                }
+                            }
+                            item_list.add(strItem);
+                        }
+                        adapter.notifyDataSetChanged();
+                    }
+                }catch (Exception e)
+                {
+                    e.printStackTrace();
+                }
+            }else {
+                Toast.makeText(wangqitiaozhan.this,"网络连接失败！请检查网络连接",Toast.LENGTH_SHORT).show();
+            }
+            return true;
+        }
+    });
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,17 +104,7 @@ public class wangqitiaozhan extends Activity{
         SysApplication.getInstance().addActivity(this);
         FontManager.changeFonts(FontManager.getContentView(this), this);//字体
         group_list = new ArrayList<itemData>();
-        Thread thread = new Thread(new Runnable() {
-            @Override
-            public void run() {
 
-                    HttpIO io = new HttpIO(Utils.serveraddr + "api/getChallenge.php?action=gethistoryBySeries");
-                    io.SessionID = Static.session_id;
-                    io.GETToHTTPServer();
-                    str = io.getResultData();
-
-            }
-        });
         wqtz_fh = (RelativeLayout) findViewById(R.id.wytz_fanhui);
         wqtz_fh.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -78,54 +112,22 @@ public class wangqitiaozhan extends Activity{
                 finish();
             }
         });
-        thread.start();
-        while(str == null);
-        try{
-        JSONObject obj = new JSONObject(str);
-        item_list = new ArrayList<List<itemData>>();
-        if(obj.getString("state").equals("SUCCESS"))
-        {
-            int round = obj.getInt("limit");
-            for(int i=1;i<round+1;i++) {
-                JSONObject tmp = Utils.GetSubJSONObject(obj,""+i);
-                group_list.add(new itemData(tmp.getString("nickname"),tmp.getInt("identifyDigit")));
-
-                JSONObject perSeries = Utils.GetSubJSONObject(tmp,"data");
-                int limit = perSeries.getInt("limit");
-                ArrayList<itemData> strItem = new ArrayList<itemData>();
-                for(int m=1;m<limit+1;m++){
-                    try {
-                        JSONObject item = Utils.GetSubJSONObject(perSeries, "" + m);
-                        strItem.add(new itemData(item.getString("frontname"),item.getInt("identifyDigit")));
-                    }catch (Exception e)
-                    {
-                        e.printStackTrace();
-                    }
-                }
-                item_list.add(strItem);
-            }
-        }
-    }catch (Exception e)
-    {
-        e.printStackTrace();
-    }
-
-
         expandableListView=(ExpandableListView)findViewById(R.id.expand);
-        expandableListView.setAdapter(new MyExpandableListViewAdapter(this));
+        expandableListView.setAdapter(adapter);
 
         expandableListView.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
             @Override
             public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
                 itemData item = item_list.get(groupPosition).get(childPosition);
                 Intent intent = new Intent();
-                intent.putExtra("challenge_number",item.identifyDigit);
-                intent.putExtra("ifFaqi",1);
+                intent.putExtra("challenge_number", item.identifyDigit);
+                intent.putExtra("ifFaqi", 1);
                 intent.setClass(wangqitiaozhan.this, Guizejieshao_activity.class);
                 startActivity(intent);
                 return false;
             }
         });
+        HttpIO.GetHttpEX(wangqitiaozhan.this, myHandler, Utils.serveraddr + "api/getChallenge.php?action=gethistoryBySeries");
     }
     class MyExpandableListViewAdapter extends BaseExpandableListAdapter {
 

@@ -39,6 +39,7 @@ public class Shangchuandengdai_activity extends Activity {
     private String cl_name;
     private int elapsed;
     private String cl_id;
+    private int pf_iv;
 //    private int int_progress;
 //    private Boolean upload_onComplete;
 //    private int b=0;
@@ -69,6 +70,7 @@ public class Shangchuandengdai_activity extends Activity {
         cl_name  = intent.getStringExtra("challenge_name");
         elapsed = intent.getIntExtra("elapsed", 20);
         cl_id = intent.getStringExtra("challenge_id");
+        pf_iv = intent.getIntExtra("pf_iv",0);
         shangchuandengdaifanhui = (Button) findViewById(R.id.shangchuandengdaifanhui);
         progressBar = (boom.boom.myview.ProgressBar) findViewById(R.id.progress123);
         fangqishangchuang = (Button) findViewById(R.id.fangqishangchuan);
@@ -100,6 +102,7 @@ public class Shangchuandengdai_activity extends Activity {
                     get1.addItem("challenge", cl_id);
                     get1.addItem("dvtoken", token);
                     get1.addItem("elapsed", elapsed + "");
+                    get1.addItem("pf_iv",pf_iv + "");
                     HttpIO io = new HttpIO(get1.toString());
                     io.SetCustomSessionID(Static.session_id);
                     io.GETToHTTPServer();

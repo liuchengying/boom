@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.Message;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -61,11 +62,12 @@ import static android.app.PendingIntent.getActivity;
 public class tongxunlu_activity extends Activity{
     LinearLayout horizon;
     String result = null;
-    ArrayList<HashMap<String,Object>> listItem;
+    ArrayList<HashMap<String,Object>> listItem = new ArrayList<>();
     MyAdapter mSimpleAdapter;
     String cl_id;
     EditText search;
     ListView lv;
+    FriendList friendList;
     android.os.Handler myMessageHandler = new android.os.Handler() {
         @Override
         public void handleMessage(Message msg) {
@@ -73,6 +75,20 @@ public class tongxunlu_activity extends Activity{
             mSimpleAdapter.notifyDataSetChanged();
         }
     };
+    Handler getListHandler = new Handler(new Handler.Callback() {
+        @Override
+        public boolean handleMessage(Message msg) {
+            if(msg.what == 1){
+                friendList.GetFriendList(listItem);
+                mSimpleAdapter.initDate();
+                mSimpleAdapter.notifyDataSetChanged();
+            }else {
+                Toast.makeText(tongxunlu_activity.this,"网络连接错误！请检查网络连接",Toast.LENGTH_SHORT).show();
+            }
+            return true;
+        }
+    });
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -91,17 +107,9 @@ public class tongxunlu_activity extends Activity{
         SysApplication.getInstance().addActivity(this);
         FontManager.changeFonts(FontManager.getContentView(this), this);//字体
         lv = (ListView) findViewById(R.id.tongxunlu_listview);
-
+        friendList = new FriendList(tongxunlu_activity.this,getListHandler);
         horizon=(LinearLayout)findViewById(R.id.horizon);
-        Thread thread = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                FriendList friendList = new FriendList();
-                listItem = friendList.GetFriendList();
-            }
-        });
-        thread.start();
-        while(listItem==null);
+
         cl_id = (String)getIntent().getSerializableExtra("challenge_id");
         mSimpleAdapter=new MyAdapter(listItem,this);
         lv.setAdapter(mSimpleAdapter);
@@ -235,6 +243,7 @@ public class tongxunlu_activity extends Activity{
 
         // 初始化isSelected的数据
         private void initDate(){
+            isSelected.clear();
             for(int i=0; i<list.size();i++) {
                 isSelected.put(i,false);
             }
@@ -290,6 +299,9 @@ public class tongxunlu_activity extends Activity{
                 }
             }
         }
+
+
+
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
             ViewHolder holder = null;

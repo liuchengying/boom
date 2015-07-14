@@ -1,10 +1,15 @@
 package boom.boom.api;
 
 
+import android.content.Context;
+import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+
 
 /**
  * Created by 1eekai on 2015/1/16.
@@ -18,7 +23,7 @@ public class User {
     private String ServerErr;
     private String result = null;
     private HttpIO io;
-
+    private Handler LastHandler;
     public User(String user, String pass) {
         this.username = user;
         this.password = pass;
@@ -26,27 +31,15 @@ public class User {
         session_id = null;
 
     }
-
-    public User(final String session){
-        Thread thread = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                session_id = session;
-                Utils.GetBuilder get = new Utils.GetBuilder(Utils.serveraddr + Utils.userdata_api);
-                get.addItem("action", "getState");
-                Log.e("URI", get.toString());
-                io = new HttpIO(get.toString());
-                io.SetCustomSessionID(session_id);
-                io.GETToHTTPServer();
-                result = io.getResultData();
-            }
-        });
-        thread.start();
-        while(result == null);
-        JSONObject obj = null;
-        try {
-                    if (io.LastError == 0) {
-
+    Handler loginHandler = new Handler(new Handler.Callback() {
+        @Override
+        public boolean handleMessage(Message msg) {
+            Message m = new Message();
+            if(msg.what == 1){
+                m.what = 1;
+                result = msg.getData().getString("data");
+                JSONObject obj = null;
+                try {
                         Log.e("Result", "Result ==> " + result);
                         obj = new JSONObject(result);
                         if (obj.getString("state").equals("SUCCESS")) {
@@ -54,12 +47,26 @@ public class User {
                         } else {
                             ifUserLoggedIn = false;
                         }
-                    }else{
-                        ifUserLoggedIn = false;
-                    }
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
+            }else {
+                m.what = 0;
+                ifUserLoggedIn = false;
+            }
+
+            LastHandler.sendMessage(m);
+            return true;
+        }
+    });
+    public User(final String session,Context context,Handler handler){
+
+                session_id = session;
+                Utils.GetBuilder get = new Utils.GetBuilder(Utils.serveraddr + Utils.userdata_api);
+                get.addItem("action", "getState");
+                Log.e("URI", get.toString());
+                HttpIO.GetHttpEX(context, loginHandler, get.toString());
+                LastHandler = handler;
     }
 
     public String getServerErr() {

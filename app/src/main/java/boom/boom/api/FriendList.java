@@ -1,5 +1,9 @@
 package boom.boom.api;
 
+import android.content.Context;
+import android.os.Handler;
+import android.os.Message;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -13,27 +17,33 @@ import boom.boom.R;
  */
 public class FriendList {
     public String ServerErr;
+    private Handler LastHandler;
+    String httpResult;
     ///api/newfriend.php?action=query
     private final String USER_LOGIN_URL = Utils.serveraddr + "api/newfriend.php";
-
-    public ArrayList<HashMap<String, Object>> GetFriendList() {
-        ArrayList<HashMap<String, Object>> listItem = new ArrayList<HashMap<String, Object>>();//*在数组中存放数据*//*
+    private Handler myHandler = new Handler(new Handler.Callback() {
+        @Override
+        public boolean handleMessage(Message msg) {
+            Message m = new Message();
+            m.what = msg.what;
+            if(msg.what == 1){
+                httpResult = msg.getData().getString("data");
+            }
+            LastHandler.sendMessage(m);
+            return true;
+        }
+    });
+    public FriendList(Context context,Handler handler){
+        LastHandler = handler;
+        Utils.GetBuilder get = new Utils.GetBuilder(USER_LOGIN_URL);
+        get.addItem("action", "query");
+        HttpIO.GetHttpEX(context,myHandler,get.toString());
+    }
+    public void GetFriendList(ArrayList<HashMap<String, Object>> listItem) {
+        //ArrayList<HashMap<String, Object>> listItem = new ArrayList<HashMap<String, Object>>();//*在数组中存放数据*//*
+        listItem.clear();
         try {
-            Utils.GetBuilder get = new Utils.GetBuilder(USER_LOGIN_URL);
-            get.addItem("action", "query");
-            String url_request = get.toString();
-            final HttpIO io = new HttpIO(url_request);
-            new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    io.SetCustomSessionID(Static.session_id);
-                    io.GETToHTTPServer();
-                }
-            }).start();
-            while(io.getResultData() == null);
-            if (io.LastError == 0) {
-                String httpResult = io.getResultData();
-                //JSONArray jsonArray = JSONArray.fromObject(str);
+
                 JSONObject obj = new JSONObject(httpResult);
                 JSONObject response = Utils.GetSubJSONObject(obj,"response");
 
@@ -41,7 +51,7 @@ public class FriendList {
                 if (status.equalsIgnoreCase("FAILED"))
                 {
                     ServerErr = "获取好友列表失败!";
-                    return null;
+                    return;
                 }else if (status.equalsIgnoreCase("SUCCESS")) {
                     int limit = response.getInt("limit");
                     for(int i=0;i<limit;i++)
@@ -58,13 +68,13 @@ public class FriendList {
                         map.put("position",i);
                         listItem.add(map);
                     }
-                    return listItem;
+                    return ;
                 }
-            }
+
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return listItem;
+        return ;
     }
 
 }

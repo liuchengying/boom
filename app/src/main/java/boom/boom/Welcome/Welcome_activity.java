@@ -7,7 +7,10 @@ import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
+import android.widget.Toast;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -20,6 +23,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Timer;
 import java.util.TimerTask;
+
 
 import boom.boom.FontManager.FontManager;
 import boom.boom.R;
@@ -36,8 +40,93 @@ import boom.boom.zhujiemian.Main_activity;
  */
 public class Welcome_activity extends Activity {
     public String session;
+    User user;
     public boolean msg_delivered = false;
-
+    Handler loginHandler = new Handler(new Handler.Callback() {
+        @Override
+        public boolean handleMessage(Message msg) {
+            if(msg.what == 1){
+                if (user.ifLoggedIn()){
+                    UserData data  = new UserData(session);
+                    Static.session_id = session;
+                    Log.e("Test", "Test3");
+                    try {
+                        Static.username = data.QueryData("name");
+                        Static.nickname = data.QueryData("nickname");
+                        Static.uniqueSign = data.QueryData("uniquesign");
+                        Static.identifyDigit = data.QueryData("identifyDigit");
+                        Static.avatar = data.QueryData("avatar");
+                       /* Static.province = Utils.GetSubJSONObject(data.toJSONObject(), "location").getString("province");
+                        Static.city = Utils.GetSubJSONObject(data.toJSONObject(), "location").getString("city");
+                        Static.area = Utils.GetSubJSONObject(data.toJSONObject(), "location").getString("area");*/
+                    }catch (Exception e)
+                    {
+                        e.printStackTrace();
+                    }
+                    Thread thread = new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Bitmap bitmap=null;
+                            String resultData = "";
+                            InputStream in = null;
+                            HttpURLConnection urlConn = null;
+                            BufferedReader buffer = null;
+                            if(!Static.avatar.equals("null")){
+                                try {
+                                    Utils.GetBuilder get = new Utils.GetBuilder(Utils.serveraddr + "/api/getimage.php");
+                                    get.addItem("token", Static.avatar);
+                                    URL url = new URL(get.toString());
+                                    if (url != null) {
+                                        urlConn = (HttpURLConnection) url.openConnection();
+                                        urlConn.setConnectTimeout(5000);// 设置超时时间
+                                        urlConn.setRequestProperty("Cookie","PHPSESSID=" + Static.session_id);
+                                        try {
+                                            in = urlConn.getInputStream();
+                                        } catch (ConnectException e) {
+                                            e.printStackTrace();
+                                        }
+                                    }
+                                    //解析得到图片
+                                    bitmap = BitmapFactory.decodeStream(in);
+                                    //关闭数据流
+                                    in.close();
+                                    urlConn.disconnect();
+                                }
+                                catch (Exception e)
+                                {
+                                    e.printStackTrace();
+                                }
+                            }
+                            else {
+                                Resources res = getResources();
+                                bitmap = BitmapFactory.decodeResource(res,R.drawable.android_114);
+                            }
+                            Static.avatarImage = bitmap;
+                        }
+                    });
+                    thread.start();
+                    while (Static.avatarImage == null);
+                    Intent intent = new Intent();
+                    intent.setClass(Welcome_activity.this, Tiaozhan_activity.class);
+                    startActivity(intent);
+                }else{
+                    Intent intent = new Intent(Welcome_activity.this,Main_activity.class);
+                    intent.putExtra("State", 3);
+                    startActivity(intent);
+                    msg_delivered = true;
+                    Welcome_activity.this.finish();
+                }
+            }else {
+                Toast.makeText(Welcome_activity.this,"网络连接错误！请检查网络连接",Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(Welcome_activity.this,Main_activity.class);
+                intent.putExtra("State", 3);
+                startActivity(intent);
+                msg_delivered = true;
+                Welcome_activity.this.finish();
+            }
+            return true;
+        }
+    });
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -82,77 +171,9 @@ public class Welcome_activity extends Activity {
                 for (counter = 0; buffer[counter] != '\u0000'; counter++);
                 Log.e("Test", "Test2");
                 this.session = this.session.substring(0, counter);
-                User user = new User(session);
-                if (user.ifLoggedIn()){
-                    UserData data  = new UserData(session);
-                    Static.session_id = session;
-                    Log.e("Test", "Test3");
-                    try {
-                        Static.username = data.QueryData("name");
-                        Static.nickname = data.QueryData("nickname");
-                        Static.uniqueSign = data.QueryData("uniquesign");
-                        Static.identifyDigit = data.QueryData("identifyDigit");
-                        Static.avatar = data.QueryData("avatar");
-                       /* Static.province = Utils.GetSubJSONObject(data.toJSONObject(), "location").getString("province");
-                        Static.city = Utils.GetSubJSONObject(data.toJSONObject(), "location").getString("city");
-                        Static.area = Utils.GetSubJSONObject(data.toJSONObject(), "location").getString("area");*/
-                    }catch (Exception e)
-                    {
-                        e.printStackTrace();
-                    }
-                    Thread thread = new Thread(new Runnable() {
-                        @Override
-                        public void run() {
-                            Bitmap bitmap=null;
-                            String resultData = "";
-                            InputStream in = null;
-                            HttpURLConnection urlConn = null;
-                            BufferedReader buffer = null;
-                            if(!Static.avatar.equals("null")){
-                            try {
-                                Utils.GetBuilder get = new Utils.GetBuilder(Utils.serveraddr + "/api/getimage.php");
-                                get.addItem("token", Static.avatar);
-                                URL url = new URL(get.toString());
-                                if (url != null) {
-                                    urlConn = (HttpURLConnection) url.openConnection();
-                                    urlConn.setConnectTimeout(5000);// 设置超时时间
-                                    urlConn.setRequestProperty("Cookie","PHPSESSID=" + Static.session_id);
-                                    try {
-                                        in = urlConn.getInputStream();
-                                    } catch (ConnectException e) {
-                                        e.printStackTrace();
-                                    }
-                                }
-                                //解析得到图片
-                                bitmap = BitmapFactory.decodeStream(in);
-                                //关闭数据流
-                                in.close();
-                                urlConn.disconnect();
-                            }
-                            catch (Exception e)
-                            {
-                                e.printStackTrace();
-                            }
-                        }
-                            else {
-                                Resources res = getResources();
-                                bitmap = BitmapFactory.decodeResource(res,R.drawable.android_114);
-                            }
-                            Static.avatarImage = bitmap;
-                        }
-                    });
-                    thread.start();
-                    while (Static.avatarImage == null);
-                    Intent intent = new Intent();
-                    intent.setClass(Welcome_activity.this, Tiaozhan_activity.class);
-                    startActivity(intent);
-                }else{
-                    Intent intent = new Intent(Welcome_activity.this,Main_activity.class);
-                    intent.putExtra("State", 3);
-                    startActivity(intent);
-                    msg_delivered = true;
-                    Welcome_activity.this.finish();
-                }
+                Static.session_id = this.session;
+                user = new User(session,Welcome_activity.this,loginHandler);
+
             } catch (IOException e) {
                 e.printStackTrace();
             }

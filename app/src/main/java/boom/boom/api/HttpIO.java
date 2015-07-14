@@ -1,8 +1,14 @@
 package boom.boom.api;
 
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.media.MediaExtractor;
+import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.os.StrictMode;
+import android.widget.Toast;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
@@ -23,6 +29,9 @@ import java.net.HttpURLConnection;
 import java.net.URI;
 import java.net.URL;
 import java.util.List;
+
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.zip.GZIPInputStream;
 
 /**
@@ -170,6 +179,7 @@ public class HttpIO {
             }
             result = strBuffer.toString();
         } catch (Exception e) {
+            this.LastError = 1;
             e.printStackTrace();
         } finally {
             if (reader != null) {
@@ -280,6 +290,48 @@ public class HttpIO {
         }
         this.ResultBuffer = resultData;
         return bitmap;
+    }
+    public static void GetHttpEX (final Context context , final Handler handler , String URL){
+        try{
+           /* final LoadingDialog loadingDialog = new LoadingDialog(context,"正在加载...");
+            loadingDialog.setCancelable(false);
+            loadingDialog.show();*/
+            final HttpIO io = new HttpIO(URL);
+            io.SessionID = Static.session_id;
+            final TimerTask task = new TimerTask() {
+                @Override
+                public void run() {
+                    Message msg = new Message();
+                    msg.what = 0;
+                    //loadingDialog.cancel();
+                    handler.sendMessage(msg);
+                    //Toast.makeText(context,"网络连接失败！请检查网络连接",Toast.LENGTH_SHORT).show();
+                }
+            };
+            Timer timer = new Timer(true);
+            timer.schedule(task,5000);
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    io.GETToHTTPServer();
+                    if(io.LastError==0) {
+                        Message msg = new Message();
+                        msg.what = 1;
+                        Bundle bundle = new Bundle();
+                        bundle.putString("data", io.getResultData());
+                        msg.setData(bundle);
+                        handler.sendMessage(msg);
+                        task.cancel();
+                        //loadingDialog.cancel();
+                    }else {
+
+                    }
+                }
+            }).start();
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 }
 

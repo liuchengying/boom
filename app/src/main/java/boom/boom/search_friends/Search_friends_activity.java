@@ -37,7 +37,7 @@ import boom.boom.api.Utils;
 import boom.boom.gerenzhuye.Gerenzhuye_activity;
 import boom.boom.myview.RoundedImageView;
 import boom.boom.shezhi.Shezhi_activity;
-import boom.boom.tianjiahaoyou.Tianjiahaoyou_activity;
+
 
 /**
  * Created by Administrator on 2015/6/3.

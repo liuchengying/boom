@@ -58,12 +58,70 @@ public class Liuyanban_fragment extends Fragment implements XListView.IXListView
         @Override
         public boolean handleMessage(Message msg) {
             //Toast.makeText(getActivity(),"11",Toast.LENGTH_SHORT).show();
-            mSimpleAdapter.notifyDataSetChanged();
+            try {
+                mSimpleAdapter.notifyDataSetChanged();
+            }catch (Exception e){
+                e.printStackTrace();
+            }
             return true;
         }
     });
 
-
+    Handler asynHandler = new Handler(new Handler.Callback() {
+        @Override
+        public boolean handleMessage(Message msg) {
+            if(msg.what == 1){
+                listItem.clear();
+                int round = 0;
+                JSONObject obj=null;
+                try {
+                        obj= new JSONObject(msg.getData().getString("data"));
+                        if(obj.getString("state").equals("SUCCESS")) {
+                            round = obj.getInt("limit");
+                            JSONObject tmp;
+                            int i = 0;
+                            while ((tmp = Utils.GetSubJSONObject(obj, "line" + i)) != null) {
+                                String title = null, text = null, time = null, ID = null;
+                                int like = 0, comment = 0;
+                                if (obj != null) try {
+                                    ID = tmp.getString("ID");
+                                    title = tmp.getString("nickname");
+                                    text = tmp.getString("text_value");
+                                    like = tmp.getInt("heart_like");
+                                    comment = tmp.getInt("refer_sum");
+                                    time = tmp.getString("assign_date");
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+                                HashMap<String, Object> map = new HashMap<String, Object>();
+                                map.put("title", title);//加入图片            map.put("ItemTitle", "第"+i+"行");
+                                map.put("text", text);
+                                map.put("like", like);
+                                map.put("comment", comment);
+                                map.put("time", time);
+                                map.put("ID",ID);
+                                listItem.add(map);
+                                i++;
+                            }
+                        }else {
+                            if(obj.getString("reason").equals("USER_NOT_PERMITTED")){
+                                Toast.makeText(getActivity(),"您没有权限访问",Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                mSimpleAdapter.notifyDataSetChanged();
+            }else {
+                try {
+                    Toast.makeText(getActivity(), "网络连接错误！请检查网络连接", Toast.LENGTH_SHORT).show();
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+            }
+            return true;
+        }
+    });
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -210,60 +268,8 @@ public class Liuyanban_fragment extends Fragment implements XListView.IXListView
         get.addItem("action", "queryFriends");
         get.addItem("type","3");
         get.addItem("guest_id",guestID);
-        final HttpIO io = new HttpIO(get.toString());
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                io.SessionID=Static.session_id;
-                io.GETToHTTPServer();
-            }
-        }).start();
-        while(io.getResultData() == null);
-        int round = 0;
-        JSONObject obj=null;
-        try {
-            if(io.getResultData()!=null) {
-                obj= new JSONObject(io.getResultData());
-                if(obj.getString("state").equals("SUCCESS")) {
-                    round = obj.getInt("limit");
-                    JSONObject tmp;
-                    int i = 0;
-                    while ((tmp = Utils.GetSubJSONObject(obj, "line" + i)) != null) {
-                        String title = null, text = null, time = null, ID = null;
-                        int like = 0, comment = 0;
-                        if (obj != null) try {
-                            ID = tmp.getString("ID");
-                            title = tmp.getString("nickname");
-                            text = tmp.getString("text_value");
-                            like = tmp.getInt("heart_like");
-                            comment = tmp.getInt("refer_sum");
-                            time = tmp.getString("assign_date");
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                        HashMap<String, Object> map = new HashMap<String, Object>();
-                        map.put("title", title);//加入图片            map.put("ItemTitle", "第"+i+"行");
-                        map.put("text", text);
-                        map.put("like", like);
-                        map.put("comment", comment);
-                        map.put("time", time);
-                        map.put("ID",ID);
-                        listItem.add(map);
-                        i++;
-                    }
-                }else {
-                    if(obj.getString("reason").equals("USER_NOT_PERMITTED")){
-                        Toast.makeText(getActivity(),"您没有权限访问",Toast.LENGTH_SHORT).show();
-                    }
-                }
-            }
+        HttpIO.GetHttpEX(getActivity(),asynHandler,get.toString());
 
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
-        Message msg = new Message();
-        myHandler.sendMessage(msg);
         //lv.
     }
 }

@@ -75,7 +75,7 @@ public class Mimaxiugai_activity extends Activity{
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.xiugaimima);
-        SildingFinishLayout mSildingFinishLayout = (SildingFinishLayout) findViewById(R.id.sildingFinishLayout);
+       /* SildingFinishLayout mSildingFinishLayout = (SildingFinishLayout) findViewById(R.id.sildingFinishLayout);
         mSildingFinishLayout
                 .setOnSildingFinishListener(new SildingFinishLayout.OnSildingFinishListener() {
 
@@ -85,7 +85,7 @@ public class Mimaxiugai_activity extends Activity{
                     }
                 });
 
-        mSildingFinishLayout.setTouchView(mSildingFinishLayout);
+        mSildingFinishLayout.setTouchView(mSildingFinishLayout);*/
         SysApplication.getInstance().addActivity(this);
         FontManager.changeFonts(FontManager.getContentView(this), this);//字体
 
@@ -149,7 +149,7 @@ public class Mimaxiugai_activity extends Activity{
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        overridePendingTransition(0, R.anim.base_slide_right_out);
+        overridePendingTransition(R.anim.base_slide_remain, R.anim.base_slide_right_out);
     }
 
 }
