@@ -72,7 +72,7 @@ public class Quanguopaihang_fragment extends Fragment implements XListView.IXLis
     }
     public void onRefresh(){
 
-        mHandler.postDelayed(new Runnable() {
+        mHandler.post(new Runnable() {
             @Override
             public void run() {
                 //http://172.24.10.118/api/rank.php?action=board_hero
@@ -126,10 +126,10 @@ public class Quanguopaihang_fragment extends Fragment implements XListView.IXLis
 
                 onLoad();
             }
-        }, 2000);
+        });
     }
     public void onLoadMore() {
-        mHandler.postDelayed(new Runnable() {
+        mHandler.post(new Runnable() {
             @Override
             public void run() {
                 String httpResult;
@@ -179,7 +179,7 @@ public class Quanguopaihang_fragment extends Fragment implements XListView.IXLis
                     onLoad();
                 }
             }
-        }, 2000);
+        });
 
     }
 }

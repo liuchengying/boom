@@ -4,6 +4,8 @@ import android.graphics.Bitmap;
 
 import org.json.JSONObject;
 
+import boom.boom.myview.BadgeView;
+
 /**
  * Created by laoli on 2015/2/19.
  */
@@ -28,4 +30,5 @@ public class Static {
     public static float density;
     public static float width;
     public static float height;
+    public static BadgeView badgeView;
 }

@@ -96,6 +96,7 @@ public class  Gerenzhuye_activity extends FragmentActivity
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
+            avatar = AsyncLoadAvatar.GetLocalImage((String) data);
             gerenzhuye_touxing.setImageBitmap(avatar);
         }
     };

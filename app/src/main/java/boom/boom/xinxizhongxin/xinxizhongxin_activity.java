@@ -37,6 +37,7 @@ import java.util.Map;
 import boom.boom.FontManager.FontManager;
 import boom.boom.R;
 import boom.boom.api.Msg;
+import boom.boom.api.Static;
 import boom.boom.api.SysApplication;
 import boom.boom.ExpandableTextView.ExpandableTextView;
 import boom.boom.gerenzhuye.Gerenzhuye_activity;
@@ -54,14 +55,15 @@ public class xinxizhongxin_activity extends Activity implements XListView.IXList
     private XListView list;
     private final static String DATE_FORMAT_STR = "yyyy-MM-dd HH:mm";
     private Msg msg;
+    ArrayList<HashMap<String,Object>> arrayList = new ArrayList<HashMap<String, Object>>();
+    final ExpandableAdapter adapter = new ExpandableAdapter(xinxizhongxin_activity.this,arrayList);
     private Handler handler = new Handler(new Handler.Callback() {
         @Override
         public boolean handleMessage(Message m) {
             if(m.what == 1){
-                ArrayList<HashMap<String,Object>> arrayList = new ArrayList<HashMap<String, Object>>();
-                arrayList = msg.GetList(false,xinxizhongxin_activity.this);
-                final ExpandableAdapter adapter = new ExpandableAdapter(xinxizhongxin_activity.this,arrayList);
-                list.setAdapter(adapter);
+                arrayList = msg.GetList(false,xinxizhongxin_activity.this,arrayList);
+                adapter.notifyDataSetChanged();
+
                 // ExpandableAdapter.setListViewHeightBasedOnChildren(list);
                 list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
@@ -193,6 +195,7 @@ public class xinxizhongxin_activity extends Activity implements XListView.IXList
             }else {
                 Toast.makeText(xinxizhongxin_activity.this,"网络连接错误！请检查网络连接",Toast.LENGTH_SHORT).show();
             }
+            onLoad();
             return true;
         }
     });
@@ -200,7 +203,7 @@ public class xinxizhongxin_activity extends Activity implements XListView.IXList
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.xinxizhongxin);
-
+        Static.badgeView.setBadgeCount(0);
         SysApplication.getInstance().addActivity(this);
         FontManager.changeFonts(FontManager.getContentView(this), this);//字体
         RelativeLayout fh = (RelativeLayout) findViewById(R.id.xxzx_fanhui);
@@ -218,7 +221,7 @@ public class xinxizhongxin_activity extends Activity implements XListView.IXList
         list.setPullLoadEnable(true);
         list.setPullRefreshEnable(true);
         list.setXListViewListener(this);
-
+        list.setAdapter(adapter);
         msg = new Msg(xinxizhongxin_activity.this,handler);
 
     }
@@ -234,7 +237,18 @@ public class xinxizhongxin_activity extends Activity implements XListView.IXList
     }
     @Override
     public void onRefresh() {
+        handler.post(new Runnable() {
+            @Override
+            public void run() {
+                msg = new Msg(xinxizhongxin_activity.this,handler);
+            }
+        });
+    }
 
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        onRefresh();
     }
 
     @Override

@@ -64,9 +64,9 @@ public class Msg {
 
 
 
-    public ArrayList<HashMap<String, Object>> GetList(boolean reset,Context context){
+    public ArrayList<HashMap<String, Object>> GetList(boolean reset,Context context ,ArrayList<HashMap<String, Object>> list){
         if (reset == true)  counter = 0;
-        ArrayList<HashMap<String, Object>> list = new ArrayList<>();
+        list.clear();
         try {
             JSONObject response = Utils.GetSubJSONObject(json_data, "response");
             if(response.getString("state").equals("SUCCESS")){

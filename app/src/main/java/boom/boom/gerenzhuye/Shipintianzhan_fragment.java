@@ -174,25 +174,25 @@ public class Shipintianzhan_fragment extends Fragment implements XListView.IXLis
 
     @Override
     public void onRefresh() {
-        mHandler.postDelayed(new Runnable() {
+        mHandler.post(new Runnable() {
             @Override
             public void run() {
                 onSyncDataFromServer();
                 onLoad();
             }
-        }, 2000);
+        });
 
     }
 
     @Override
     public void onLoadMore() {
-        mHandler.postDelayed(new Runnable() {
+        mHandler.post(new Runnable() {
             @Override
             public void run() {
 
                 onLoad();
             }
-        }, 2000);
+        });
 
     }
 

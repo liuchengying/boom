@@ -112,7 +112,7 @@ public class Diqupaihang_fragment extends Fragment implements XListView.IXListVi
 
     @Override
     public void onRefresh() {
-        mHandler.postDelayed(new Runnable() {
+        mHandler.post(new Runnable() {
             @Override
             public void run() {
                 try {
@@ -168,13 +168,13 @@ public class Diqupaihang_fragment extends Fragment implements XListView.IXListVi
                     e.printStackTrace();
                 }
             }
-        }, 2000);
+        });
 
     }
 
     @Override
     public void onLoadMore() {
-        mHandler.postDelayed(new Runnable() {
+        mHandler.post(new Runnable() {
             @Override
             public void run() {
                 String httpResult;
@@ -225,7 +225,7 @@ public class Diqupaihang_fragment extends Fragment implements XListView.IXListVi
                     onLoad();
                 }
             }
-        }, 2000);
+        });
 
 
     }

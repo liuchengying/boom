@@ -110,10 +110,10 @@ public class Tiaozhan_activity extends FragmentActivity {
                 }
                 mBadgeView = new BadgeView(Tiaozhan_activity.this);
                 mBadgeView.setBackgroundResource(R.drawable.android_202);
-                mBadgeView.setBadgeCount(2);
+                mBadgeView.setBadgeCount(0);
                 mBadgeView.setTextSize(12);
                 xiaoxizhongxin_jiaobiao.addView(mBadgeView);
-
+                Static.badgeView = mBadgeView;
                 tz_grzy = (Button) findViewById(R.id.tz_grzy);
         tz_grzy.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -202,7 +202,6 @@ public class Tiaozhan_activity extends FragmentActivity {
                 Intent intent=new Intent();
                 intent.setClass(Tiaozhan_activity.this, xinxizhongxin_activity.class);
                 startActivity(intent);
-                mBadgeView.setVisibility(View.INVISIBLE);
                 Timer timer=new Timer();
                 TimerTask timerTask=new TimerTask() {
                     @Override
