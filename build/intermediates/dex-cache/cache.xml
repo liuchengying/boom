@@ -2,6 +2,62 @@
 <items version="2" >
 
     <item
+        jar="D:\workspace\BoomTime\app\libs\nineoldandroids-2.4.0.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="59f19e43354d32de831379c23ce03bb259a4c2b7">
+        <dex dex="D:\workspace\BoomTime\app\build\intermediates\pre-dexed\debug\nineoldandroids-2.4.0-b2d87a670b7a0ca27d42a0431d5e2f065e6f9af0.jar" />
+    </item>
+    <item
+        jar="D:\workspace\BoomTime\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\19.1.0\classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="3499ceba05ca1f6037c6a2fad73df8f636224a28">
+        <dex dex="D:\workspace\BoomTime\app\build\intermediates\pre-dexed\debug\classes-cc75af89cd8c3b95a82eac46d5c6755153051800.jar" />
+    </item>
+    <item
+        jar="D:\workspace\BoomTime\app\libs\httpmime-4.3.6.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="66a39a5e37d5da40fdad6176fc24ef4316e74702">
+        <dex dex="D:\workspace\BoomTime\app\build\intermediates\pre-dexed\debug\httpmime-4.3.6-afc9283e4acd08c0b27c9aaac0fb4b9a9c6f8c4b.jar" />
+    </item>
+    <item
+        jar="D:\workspace\BoomTime\app\libs\httpcore-4.3.3.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="f91b7a4aadc5cf486df6e4634748d7dd7a73f06d">
+        <dex dex="D:\workspace\BoomTime\app\build\intermediates\pre-dexed\debug\httpcore-4.3.3-274fec5ced0da238c328a4b5e6cd0daece319574.jar" />
+    </item>
+    <item
+        jar="E:\sdk\extras\android\m2repository\com\android\support\support-v4\19.1.0\support-v4-19.1.0.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="85f201b380937e61a9dce6ca90ccf6872abbfb67">
+        <dex dex="D:\workspace\BoomTime\app\build\intermediates\pre-dexed\debug\support-v4-19.1.0-2e6e25d109b7d5cb6678a669b8dfd80fa379256f.jar" />
+    </item>
+    <item
+        jar="D:\workspace\BoomTime\app\build\intermediates\exploded-aar\BoomTime\sMSSDK\unspecified\classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="473471887f618b8c2298c1435d58ad0f28358742">
+        <dex dex="D:\workspace\BoomTime\app\build\intermediates\pre-dexed\debug\classes-09509a0e68134f9dd466e3e2d6ea3f86e1fe19ce.jar" />
+    </item>
+    <item
+        jar="D:\workspace\BoomTime\app\build\intermediates\exploded-aar\BoomTime\sMSSDK\unspecified\libs\SMSSDK-1.2.2.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="fdbdc82cc81d5d26e2ef56ab5f4ffb0fc04b4b00">
+        <dex dex="D:\workspace\BoomTime\app\build\intermediates\pre-dexed\debug\SMSSDK-1.2.2-4f4b92b8e3aa7e8490c146eec83bac09c135f1e8.jar" />
+    </item>
+    <item
+        jar="D:\workspace\BoomTime\app\build\intermediates\exploded-aar\BoomTime\sMSSDK\unspecified\libs\MobTools.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="c41aaf9ac27d8a39338463e980799f855ee3d432">
+        <dex dex="D:\workspace\BoomTime\app\build\intermediates\pre-dexed\debug\MobTools-00598e47e24be1a032bdc13aac11a6b7548212e9.jar" />
+    </item>
+    <item
         jar="D:\workspace\BoomTime\app\libs\pushservice-4.5.1.8.jar"
         jumboMode="false"
         revision="21.1.2"

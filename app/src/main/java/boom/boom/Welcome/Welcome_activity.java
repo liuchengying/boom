@@ -37,6 +37,7 @@ import boom.boom.api.UserData;
 import boom.boom.api.Utils;
 import boom.boom.tianzhan.Tiaozhan_activity;
 import boom.boom.zhujiemian.Main_activity;
+import cn.smssdk.SMSSDK;
 
 /**
  * Created by 刘成英 on 2015/1/13.
@@ -137,6 +138,7 @@ public class Welcome_activity extends Activity {
         PushManager.startWork(getApplicationContext(),
                 PushConstants.LOGIN_TYPE_API_KEY,
                 "0IeoZXE2Wd6pNCjVk9yQAK3H");
+        SMSSDK.initSDK(this, "8d930e70baed", "421e26e130df780c049c7c22f07fb18c");
         SysApplication.getInstance().addActivity(this);
         FontManager.changeFonts(FontManager.getContentView(this), this);//字体
         File file = new File(Utils.getWorkPath());

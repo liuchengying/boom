@@ -28,7 +28,8 @@
         android:icon="@drawable/android" android:theme="@style/AppTheme"
         android:largeHeap="true">
         <activity android:name="boom.boom.Welcome.Welcome_activity"
-            android:theme="@android:style/Theme.Black.NoTitleBar">
+            android:theme="@android:style/Theme.Black.NoTitleBar"
+            android:launchMode="singleTask">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"></action>
                 <category android:name="android.intent.category.LAUNCHER"></category>
@@ -63,6 +64,8 @@
         <activity android:name="boom.boom.shouquanchenggong.Shouquanchengong_activity"
             android:theme="@android:style/Theme.Black.NoTitleBar"></activity>
         <activity android:name="boom.boom.zhuceyanzheng.Zhuceyanzheng_activity"
+            android:theme="@android:style/Theme.Black.NoTitleBar"></activity>
+        <activity android:name="boom.boom.shezhimima.Shezhimima_activity"
             android:theme="@android:style/Theme.Black.NoTitleBar"></activity>
         <activity android:name="boom.boom.qiandao.Qiandao_activity"
             android:theme="@android:style/Theme.Translucent"></activity>

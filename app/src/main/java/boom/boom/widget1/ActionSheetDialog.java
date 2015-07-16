@@ -40,14 +40,13 @@ public class ActionSheetDialog {
 	}
 
 	public ActionSheetDialog builder() {
-		// ��ȡDialog����
 		View view = LayoutInflater.from(context).inflate(
 				R.layout.toast_view_actionsheet, null);
 
-		// ����Dialog��С���Ϊ��Ļ���
+
 		view.setMinimumWidth(display.getWidth());
 
-		// ��ȡ�Զ���Dialog�����еĿؼ�
+
 		sLayout_content = (ScrollView) view.findViewById(R.id.sLayout_content);
 		lLayout_content = (LinearLayout) view
 				.findViewById(R.id.lLayout_content);
@@ -60,7 +59,7 @@ public class ActionSheetDialog {
 			}
 		});
 
-		// ����Dialog���ֺͲ���
+
 		dialog = new Dialog(context, R.style.ActionSheetDialogStyle);
 		dialog.setContentView(view);
 		Window dialogWindow = dialog.getWindow();

@@ -39,4 +39,5 @@ dependencies {
     compile files('libs/httpclient-win-4.4.1.jar')
     compile files('libs/httpcore-4.3.3.jar')
     compile files('libs/pushservice-4.5.1.8.jar')
+    compile project(':sMSSDK')
 }

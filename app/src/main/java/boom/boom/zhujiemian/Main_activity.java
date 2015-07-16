@@ -41,6 +41,8 @@ import boom.boom.api.Utils;
 import boom.boom.denglu.dengluzhuce_activity;
 import boom.boom.mimazhaohui.Mimazhaohui_activity;
 import boom.boom.tianzhan.Tiaozhan_activity;
+import boom.boom.zhuceyanzheng.Zhuceyanzheng_activity;
+
 /**
  * Created by 刘成英 on 2015/1/13.
  */
@@ -253,8 +255,9 @@ public class Main_activity extends Activity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent();
-                intent.setClass(Main_activity.this,dengluzhuce_activity.class);
+                intent.setClass(Main_activity.this,Zhuceyanzheng_activity.class);
                 startActivity(intent);
+                overridePendingTransition(R.anim.base_slide_right_in,R.anim.base_slide_remain);
 
             }
         });

@@ -8,47 +8,37 @@
     android:layout_width="match_parent" android:layout_height="match_parent"
     android:background="#ffdadada"
     android:orientation="vertical">
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="fill_parent"
-        android:layout_height="60dp"
+        android:layout_height="50dp"
         android:background="#ffe14723"
-        android:orientation="horizontal"
-        android:gravity="center"
-
 
         >
-        <LinearLayout
-            android:id="@+id/zhucufanhui"
-            android:layout_weight="0.44"
-            android:layout_width="wrap_content"
+        <RelativeLayout
+            android:layout_width="75dp"
             android:layout_height="fill_parent"
+            android:id="@+id/shezhifanhui"
             android:gravity="center_vertical"
             >
             <Button
+
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/android_20"
-                android:gravity="center_horizontal"
-                android:layout_marginLeft="10dp"/>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_weight="1"
-            android:layout_width="wrap_content"
-            android:layout_height="50dp"
-            android:gravity="center_vertical">
-            <TextView
-                android:layout_marginLeft="60dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="注册验证"
-                android:textSize="25sp"
-                android:textColor="#eeeeee"
-
-
+                android:background="@drawable/android_51"
+                android:layout_marginLeft="15dp"
                 />
-        </LinearLayout>
+        </RelativeLayout>
 
-    </LinearLayout>
+        <TextView
+            android:layout_centerInParent="true"
+            android:layout_marginLeft="45dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="手机注册"
+            android:textSize="23dp"
+            android:gravity="center"
+            android:textColor="#ffffff"/>
+    </RelativeLayout>
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="150dp"
@@ -71,13 +61,18 @@
         >
         <EditText
 
-            android:id="@+id/zhuceyonghuming"
+            android:id="@+id/sjzc_phonenumber"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/android_17"
             android:hint="请输入手机号"
             android:gravity="center"
-            android:layout_marginTop="10dp"/>
+            android:layout_marginTop="10dp"
+            android:editable="true"
+            android:inputType="phone"
+            android:singleLine="true"
+            android:phoneNumber="true"
+            android:maxLength="11" />
         </LinearLayout>
     <LinearLayout
         android:layout_width="fill_parent"
@@ -93,13 +88,17 @@
             android:orientation="horizontal"
             android:gravity="center">
             <EditText
+                android:id="@+id/sjzc_verifiedcode"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/android_102"
                 android:hint="请输入验证码"
                 android:gravity="center"
-                />
+                android:singleLine="true"
+                android:maxLength="4"
+                android:inputType="number" />
             <Button
+                android:id="@+id/sjzc_getcode"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/android_103"
@@ -111,6 +110,7 @@
 
 
         <Button
+            android:id="@+id/sjzc_commit"
             android:layout_marginTop="12dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

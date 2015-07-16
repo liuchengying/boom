@@ -10,17 +10,34 @@
         android:layout_width="fill_parent"
         android:layout_height="50dp"
         android:background="#ffe14723"
-        android:orientation="horizontal"
-        android:gravity="center">
+        >
+        <RelativeLayout
+
+            android:layout_width="75dp"
+            android:layout_height="fill_parent"
+            android:id="@+id/wanshanxinxi_fh"
+            android:gravity="center_vertical"
+            >
+            <Button
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/android_51"
+                android:layout_marginLeft="15dp"
+                />
+        </RelativeLayout>
+
         <TextView
+            android:layout_centerInParent="true"
+            android:layout_marginLeft="45dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="完善信息"
-            android:textSize="22sp"
+            android:textSize="22dp"
+            android:gravity="center"
             android:textColor="#ffffff"/>
-
     </RelativeLayout>
-    <LinearLayout
+    <RelativeLayout
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
@@ -29,19 +46,17 @@
     android:layout_marginTop="40dp"
 
     >
-    <ImageView
+        <ImageView
+            android:layout_centerHorizontal="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/android_61"
-        android:layout_gravity="center"/>
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center"
-        android:layout_marginTop="20dp">
+        android:layout_gravity="center"
+            android:id="@+id/img"/>
         <TextView
+            android:layout_marginTop="10dp"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/img"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/android_60"
@@ -49,7 +64,92 @@
             android:gravity="center"
 
             />
-        </LinearLayout>
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal">
+        <EditText
+            android:id="@+id/loginnanme"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/android_62"
+            android:hint="请输入登录名"
+            android:gravity="center"/>
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal">
+        <EditText
+            android:id="@+id/nickname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/android_62"
+            android:hint="请输入昵称"
+            android:gravity="center"/>
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal">
+
+    <ToggleButton
+        android:id="@+id/sex"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/choose_sex"
+        android:textOff="男"
+        android:textOn="男"
+        android:textColor="#ff919191"
+        android:checked="false"/>
+    <ToggleButton
+            android:id="@+id/sex1"
+            android:layout_toRightOf="@id/sex"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/choose_sex1"
+            android:textOff="女"
+            android:textOn="女"
+            android:textColor="#ff919191"
+
+            android:checked="false"/>
+
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal">
+        <TextView
+
+            android:id="@+id/addr"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/android_62"
+            android:hint="请选择的所在地"
+            android:gravity="center"/>
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal">
+        <Button
+            android:id="@+id/commit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="完成"
+            android:background="@drawable/android_65"/>
+    </RelativeLayout>
+
+<!--
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
@@ -74,12 +174,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:layout_marginTop="10dp">
-            <EditText
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/android_62"
-                android:hint="请输入昵称"
-                android:gravity="center"/>
+
 
         </LinearLayout>
         <LinearLayout
@@ -121,12 +216,6 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:layout_marginTop="10dp">
-            <EditText
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/android_62"
-                android:hint="请选择的所在地"
-                android:gravity="center"/>
 
         </LinearLayout>
         <LinearLayout
@@ -143,11 +232,8 @@
 
         </LinearLayout>
         </LinearLayout>
+-->
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/scrollView"
-        android:layout_gravity="right" />
+
 
 </LinearLayout>
