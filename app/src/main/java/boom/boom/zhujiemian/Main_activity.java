@@ -264,6 +264,12 @@ public class Main_activity extends Activity {
 
     }
 
+    @Override
+    public void onBackPressed() {
+        //super.onBackPressed();
+        SysApplication.getInstance().exit();
+    }
+
     public boolean isNetworkAvailable(Activity activity)
     {
         Context context = activity.getApplicationContext();

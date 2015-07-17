@@ -76,7 +76,8 @@
             android:layout_height="wrap_content"
             android:background="@drawable/android_62"
             android:hint="请输入登录名"
-            android:gravity="center"/>
+            android:gravity="center"
+            android:singleLine="true" />
     </RelativeLayout>
     <RelativeLayout
         android:layout_marginTop="10dp"
@@ -89,7 +90,8 @@
             android:layout_height="wrap_content"
             android:background="@drawable/android_62"
             android:hint="请输入昵称"
-            android:gravity="center"/>
+            android:gravity="center"
+            android:singleLine="true" />
     </RelativeLayout>
     <RelativeLayout
         android:layout_marginTop="10dp"
@@ -132,7 +134,8 @@
             android:layout_height="wrap_content"
             android:background="@drawable/android_62"
             android:hint="请选择的所在地"
-            android:gravity="center"/>
+            android:gravity="center"
+            android:singleLine="true" />
 
     </RelativeLayout>
     <RelativeLayout

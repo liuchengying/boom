@@ -58,9 +58,9 @@ public class Wanshanxinxi_activity extends Activity{
                         Intent intent = new Intent();
                         intent.setClass(Wanshanxinxi_activity.this, Main_activity.class);
                         startActivity(intent);
-
+                        finish();
                     }else {
-                        if(obj.getString("reson").equals("REG_FAILED_USER_EXISTED"))
+                        if(obj.getString("reason").equals("REG_FAILED_USER_EXISTED"))
                         {
                             Toast.makeText(Wanshanxinxi_activity.this,"用户名已存在！",Toast.LENGTH_SHORT).show();
                         }else {
@@ -112,7 +112,7 @@ public class Wanshanxinxi_activity extends Activity{
                     optional += "&sex=" + (sex_boy.isChecked()?0:1);
                 }
                 if (!addr.getText().toString().equals("")){
-                    optional += "&location=" + addr.getText();
+                    optional += "&province=" + Static.province + "&city=" + Static.city + "&area=" + Static.area;
                 }
                 HttpIO.GetHttpEX(Wanshanxinxi_activity.this,commitHandler, Utils.serveraddr+"/api/userRegister.php?action=initLoginName&identify="+identifyDigit+"&name="+loginname.getText()+optional);
             }

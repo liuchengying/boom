@@ -54,14 +54,17 @@ public class Zhuceyanzheng_activity extends Activity {
                         intent.setClass(Zhuceyanzheng_activity.this, Shezhimima_activity.class);
                         intent.putExtra("identifyDigit", identifyDigit);
                         startActivity(intent);
+                        finish();
                     }else {
-                        String reson = obj.getString("reson");
-                        if(reson.equals("NOT_VALID_SMS_CODE")){
+                        String reason = obj.getString("reason");
+                        if(reason.equals("NOT_VALID_SMS_CODE")){
                             Toast.makeText(Zhuceyanzheng_activity.this,"验证码不正确!",Toast.LENGTH_SHORT).show();
-                        }else if (reson.equals("REQUEST_TOO_FREQUENTLY")){
+                        }else if (reason.equals("REQUEST_TOO_FREQUENTLY")){
                             Toast.makeText(Zhuceyanzheng_activity.this,"请求过于频繁!",Toast.LENGTH_SHORT).show();
-                        }else if (reson.equals("MOBILE_NO_NOT_VALID")){
+                        }else if (reason.equals("MOBILE_NO_NOT_VALID")){
                             Toast.makeText(Zhuceyanzheng_activity.this,"手机号不正确!",Toast.LENGTH_SHORT).show();
+                        }else if (reason.equals("REG_FAILED_MOBILE_EXISTED")){
+                            Toast.makeText(Zhuceyanzheng_activity.this,"手机号已注册!",Toast.LENGTH_LONG).show();
                         }else {
                             Toast.makeText(Zhuceyanzheng_activity.this,"未知错误!",Toast.LENGTH_SHORT).show();
                         }
@@ -70,7 +73,7 @@ public class Zhuceyanzheng_activity extends Activity {
                     e.printStackTrace();
                 }
             }else {
-
+                Toast.makeText(Zhuceyanzheng_activity.this,"网络连接错误，请稍后再试",Toast.LENGTH_SHORT).show();
             }
             return true;
         }

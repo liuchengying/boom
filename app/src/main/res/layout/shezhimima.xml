@@ -64,7 +64,8 @@
                 android:hint="请输入密码"
                 android:gravity="center"
                 android:layout_marginTop="10dp"
-                android:singleLine="true" />
+                android:singleLine="true"
+                android:password="true" />
             <EditText
                 android:layout_below="@id/password_one"
                 android:id="@+id/password_two"
