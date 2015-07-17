@@ -259,7 +259,7 @@ public class Msg {
         {
             e.printStackTrace();
         }
-        return null;
+        return list;
     }
 
 }

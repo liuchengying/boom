@@ -20,6 +20,9 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.baidu.android.pushservice.PushConstants;
+import com.baidu.android.pushservice.PushManager;
+
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.net.ConnectException;
@@ -44,6 +47,8 @@ import boom.boom.qiandao.Qiandao_activity;
 import boom.boom.shezhi.Shezhi_activity;
 import boom.boom.slidingMenu.SlidingMenu;
 import boom.boom.xinxizhongxin.xinxizhongxin_activity;
+import cn.smssdk.SMSSDK;
+
 /**
  * Created by 刘成英 on 2015/1/13.
  */
@@ -114,6 +119,10 @@ public class Tiaozhan_activity extends FragmentActivity {
                 mBadgeView.setTextSize(12);
                 xiaoxizhongxin_jiaobiao.addView(mBadgeView);
                 Static.badgeView = mBadgeView;
+                PushManager.startWork(getApplicationContext(),
+                        PushConstants.LOGIN_TYPE_API_KEY,
+                        "0IeoZXE2Wd6pNCjVk9yQAK3H");
+
                 tz_grzy = (Button) findViewById(R.id.tz_grzy);
         tz_grzy.setOnClickListener(new View.OnClickListener() {
             @Override

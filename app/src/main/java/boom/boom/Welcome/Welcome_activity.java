@@ -135,12 +135,9 @@ public class Welcome_activity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.huanyingjiemian);
-        PushManager.startWork(getApplicationContext(),
-                PushConstants.LOGIN_TYPE_API_KEY,
-                "0IeoZXE2Wd6pNCjVk9yQAK3H");
-        SMSSDK.initSDK(this, "8d930e70baed", "421e26e130df780c049c7c22f07fb18c");
         SysApplication.getInstance().addActivity(this);
         FontManager.changeFonts(FontManager.getContentView(this), this);//字体
+        SMSSDK.initSDK(this, "8d930e70baed", "421e26e130df780c049c7c22f07fb18c");
         File file = new File(Utils.getWorkPath());
         if (!file.exists() && !file.isDirectory()){
             Log.e("BASE_FILE", "Unable to find the base data directory. Generate new one.");
