@@ -39,9 +39,7 @@ import cn.smssdk.EventHandler;
 import cn.smssdk.OnSendMessageHandler;
 import cn.smssdk.SMSSDK;
 import cn.smssdk.UserInterruptException;
-
 import com.mob.tools.FakeActivity;
-import cn.smssdk.utils.SMSLog;
 
 /** 短信注册页面*/
 public class RegisterPage extends FakeActivity implements OnClickListener,
@@ -177,7 +175,7 @@ public class RegisterPage extends FakeActivity implements OnClickListener,
 										return;
 									}
 								} catch (Exception e) {
-									SMSLog.getInstance().w(e);
+									e.printStackTrace();
 								}
 								// 如果木有找到资源，默认提示
 								int resId = getStringRes(activity,
@@ -212,12 +210,22 @@ public class RegisterPage extends FakeActivity implements OnClickListener,
 		TelephonyManager tm = (TelephonyManager) activity.getSystemService(Context.TELEPHONY_SERVICE);
 		// 返回当前手机注册的网络运营商所在国家的MCC+MNC. 如果没注册到网络就为空.
 		String networkOperator = tm.getNetworkOperator();
-		if (!TextUtils.isEmpty(networkOperator)) {
-			return networkOperator;
-		}
 
 		// 返回SIM卡运营商所在国家的MCC+MNC. 5位或6位. 如果没有SIM卡返回空
-		return tm.getSimOperator();
+		String simOperator = tm.getSimOperator();
+
+		String mcc = null;
+		if (!TextUtils.isEmpty(networkOperator) && networkOperator.length() >= 5) {
+			mcc = networkOperator.substring(0, 3);
+		}
+
+		if (TextUtils.isEmpty(mcc)) {
+			if (!TextUtils.isEmpty(simOperator) && simOperator.length() >= 5) {
+				mcc = simOperator.substring(0, 3);
+			}
+		}
+
+		return mcc;
 	}
 
 	public void onResume() {

@@ -52,6 +52,7 @@ import boom.boom.wheelcity.WheelView;
 import boom.boom.wheelcity.adapters.AbstractWheelTextAdapter;
 import boom.boom.wheelcity.adapters.ArrayWheelAdapter;
 import boom.boom.widget1.MyAlertDialog;
+import boom.boom.youxiangyanzheng.Youxiangyanzheng_activity;
 
 /**
  * Created by Administrator on 2015/7/9.
@@ -308,6 +309,7 @@ public class Bianjixinxi_Fragment extends Fragment {
         thisView = view;
         SysApplication.getInstance().addActivity(getActivity());
         FontManager.changeFonts(FontManager.getContentView(getActivity()), getActivity());//字体
+
         dialog = new LoadingDialog(getActivity(),"正在加载...");
         dialog.show();
         dialog.setCancelable(false);
@@ -337,6 +339,9 @@ public class Bianjixinxi_Fragment extends Fragment {
         timer=new Timer(true);
         timer.schedule(task, 5000);
         return view;
+
+
+
     }
 
 

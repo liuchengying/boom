@@ -10,9 +10,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.zip.GZIPInputStream;
 
-import cn.smssdk.utils.SMSLog;
-import com.mob.tools.utils.Hashon;
-
+import m.framework.utils.Hashon;
 import android.content.Context;
 
 public class SearchEngine {
@@ -40,7 +38,7 @@ public class SearchEngine {
 								hanzi2Pinyin = new Hashon().fromJson(json);
 							}
 						} catch (Throwable t) {
-							SMSLog.getInstance().w(t);
+							t.printStackTrace();
 							hanzi2Pinyin = new HashMap<String, Object>();
 						}
 					}

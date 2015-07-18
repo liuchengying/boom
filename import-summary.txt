@@ -18,10 +18,11 @@ Eclipse projects. Here's how the projects were restructured:
 * libs\arm64-v8a\libsmssdk.so => sMSSDK\src\main\jniLibs\arm64-v8a\libsmssdk.so
 * libs\armeabi-v7a\libsmssdk.so => sMSSDK\src\main\jniLibs\armeabi-v7a\libsmssdk.so
 * libs\armeabi\libsmssdk.so => sMSSDK\src\main\jniLibs\armeabi\libsmssdk.so
+* libs\mframework.jar => sMSSDK\libs\mframework.jar
 * libs\mips64\libsmssdk.so => sMSSDK\src\main\jniLibs\mips64\libsmssdk.so
 * libs\mips\libsmssdk.so => sMSSDK\src\main\jniLibs\mips\libsmssdk.so
 * libs\MobTools.jar => sMSSDK\libs\MobTools.jar
-* libs\SMSSDK-1.2.2.jar => sMSSDK\libs\SMSSDK-1.2.2.jar
+* libs\SMSSDK-1.2.0.jar => sMSSDK\libs\SMSSDK-1.2.0.jar
 * libs\x86\libsmssdk.so => sMSSDK\src\main\jniLibs\x86\libsmssdk.so
 * libs\x86_64\libsmssdk.so => sMSSDK\src\main\jniLibs\x86_64\libsmssdk.so
 * res\ => sMSSDK\src\main\res\

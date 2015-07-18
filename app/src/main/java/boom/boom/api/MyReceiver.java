@@ -13,7 +13,7 @@ import boom.boom.xinxizhongxin.xinxizhongxin_activity;
 public class MyReceiver extends PushMessageReceiver {
     @Override
     public void onBind(Context context, int i, String s, String s1, String s2, String s3) {
-        Log.e("123", "111");
+        Log.e("push", i + "   " + s );
     }
 
     @Override

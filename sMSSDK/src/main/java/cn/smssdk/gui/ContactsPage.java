@@ -12,7 +12,6 @@ import java.util.HashMap;
 import java.util.HashSet;
 
 
-
 import android.app.Dialog;
 import android.content.Context;
 import android.text.Editable;
@@ -25,10 +24,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import cn.smssdk.EventHandler;
 import cn.smssdk.SMSSDK;
-
 import com.mob.tools.FakeActivity;
-import cn.smssdk.utils.SMSLog;
-
 import static com.mob.tools.utils.R.getIdRes;
 import static com.mob.tools.utils.R.getStringRes;
 import static com.mob.tools.utils.R.getLayoutRes;
@@ -191,7 +187,7 @@ public class ContactsPage extends FakeActivity implements OnClickListener, TextW
 				return true;
 			}
 		} catch (Exception e) {
-			SMSLog.getInstance().w(e);
+			e.printStackTrace();
 		}
 		return super.onKeyEvent(keyCode, event);
 	}

@@ -2,18 +2,18 @@
 <items version="2" >
 
     <item
-        jar="D:\workspace\BoomTime\app\libs\nineoldandroids-2.4.0.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="59f19e43354d32de831379c23ce03bb259a4c2b7">
-        <dex dex="D:\workspace\BoomTime\app\build\intermediates\pre-dexed\debug\nineoldandroids-2.4.0-b2d87a670b7a0ca27d42a0431d5e2f065e6f9af0.jar" />
-    </item>
-    <item
         jar="D:\workspace\BoomTime\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\19.1.0\classes.jar"
         jumboMode="false"
         revision="21.1.2"
         sha1="3499ceba05ca1f6037c6a2fad73df8f636224a28">
         <dex dex="D:\workspace\BoomTime\app\build\intermediates\pre-dexed\debug\classes-cc75af89cd8c3b95a82eac46d5c6755153051800.jar" />
+    </item>
+    <item
+        jar="D:\workspace\BoomTime\app\libs\ShareSDK-Wechat-Core-2.6.0.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="026345fd0ea8105f21cd9688849f1301232eecf9">
+        <dex dex="D:\workspace\BoomTime\app\build\intermediates\pre-dexed\debug\ShareSDK-Wechat-Core-2.6.0-3ef34812e0598ab2080bef2b01f043b9f6677cbf.jar" />
     </item>
     <item
         jar="D:\workspace\BoomTime\app\libs\httpmime-4.3.6.jar"
@@ -23,11 +23,53 @@
         <dex dex="D:\workspace\BoomTime\app\build\intermediates\pre-dexed\debug\httpmime-4.3.6-afc9283e4acd08c0b27c9aaac0fb4b9a9c6f8c4b.jar" />
     </item>
     <item
-        jar="D:\workspace\BoomTime\app\libs\httpcore-4.3.3.jar"
+        jar="D:\workspace\BoomTime\app\build\intermediates\exploded-aar\BoomTime\sMSSDK\unspecified\libs\mframework.jar"
         jumboMode="false"
         revision="21.1.2"
-        sha1="f91b7a4aadc5cf486df6e4634748d7dd7a73f06d">
-        <dex dex="D:\workspace\BoomTime\app\build\intermediates\pre-dexed\debug\httpcore-4.3.3-274fec5ced0da238c328a4b5e6cd0daece319574.jar" />
+        sha1="25509058b34a5ee08dbf66e57078e3083735d200">
+        <dex dex="D:\workspace\BoomTime\app\build\intermediates\pre-dexed\debug\mframework-454f7229b08278a408b96ffa227af635bca7f5f1.jar" />
+    </item>
+    <item
+        jar="D:\workspace\BoomTime\app\build\intermediates\exploded-aar\BoomTime\sMSSDK\unspecified\classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="2e23dc6423603a0846f6271ac6086918392f3907">
+        <dex dex="D:\workspace\BoomTime\app\build\intermediates\pre-dexed\debug\classes-09509a0e68134f9dd466e3e2d6ea3f86e1fe19ce.jar" />
+    </item>
+    <item
+        jar="D:\workspace\BoomTime\app\libs\ShareSDK-QQ-2.6.0.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="e6c6b568ccacd915fbf96b9b73697fecb778d36e">
+        <dex dex="D:\workspace\BoomTime\app\build\intermediates\pre-dexed\debug\ShareSDK-QQ-2.6.0-cc8401f043eab75c5fd201a655c95f97e2943969.jar" />
+    </item>
+    <item
+        jar="D:\workspace\BoomTime\app\libs\ShareSDK-SinaWeibo-2.6.0.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="4850471ee42c51d046ac83448be0d56aa1dff1f5">
+        <dex dex="D:\workspace\BoomTime\app\build\intermediates\pre-dexed\debug\ShareSDK-SinaWeibo-2.6.0-90c8c7e713551eae3214ff84bb727b530f8ee3a8.jar" />
+    </item>
+    <item
+        jar="D:\workspace\BoomTime\app\libs\nineoldandroids-2.4.0.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="59f19e43354d32de831379c23ce03bb259a4c2b7">
+        <dex dex="D:\workspace\BoomTime\app\build\intermediates\pre-dexed\debug\nineoldandroids-2.4.0-b2d87a670b7a0ca27d42a0431d5e2f065e6f9af0.jar" />
+    </item>
+    <item
+        jar="D:\workspace\BoomTime\app\libs\ShareSDK-Wechat-Favorite-2.6.0.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="a9d272ae8dcbc00d9a0c8709c72ce0b79f0982fa">
+        <dex dex="D:\workspace\BoomTime\app\build\intermediates\pre-dexed\debug\ShareSDK-Wechat-Favorite-2.6.0-361d27e88975bbd1efe1e502c13583776a5b5dd4.jar" />
+    </item>
+    <item
+        jar="D:\workspace\BoomTime\app\build\intermediates\exploded-aar\BoomTime\sMSSDK\unspecified\libs\SMSSDK-1.2.0.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="9ea7c96011d2ed697325efab6d02a361429a86df">
+        <dex dex="D:\workspace\BoomTime\app\build\intermediates\pre-dexed\debug\SMSSDK-1.2.0-59e5de0488feb6408f1c285cb4bd98c03dd87a68.jar" />
     </item>
     <item
         jar="E:\sdk\extras\android\m2repository\com\android\support\support-v4\19.1.0\support-v4-19.1.0.jar"
@@ -37,25 +79,11 @@
         <dex dex="D:\workspace\BoomTime\app\build\intermediates\pre-dexed\debug\support-v4-19.1.0-2e6e25d109b7d5cb6678a669b8dfd80fa379256f.jar" />
     </item>
     <item
-        jar="D:\workspace\BoomTime\app\build\intermediates\exploded-aar\BoomTime\sMSSDK\unspecified\classes.jar"
+        jar="D:\workspace\BoomTime\app\libs\ShareSDK-QZone-2.6.0.jar"
         jumboMode="false"
         revision="21.1.2"
-        sha1="473471887f618b8c2298c1435d58ad0f28358742">
-        <dex dex="D:\workspace\BoomTime\app\build\intermediates\pre-dexed\debug\classes-09509a0e68134f9dd466e3e2d6ea3f86e1fe19ce.jar" />
-    </item>
-    <item
-        jar="D:\workspace\BoomTime\app\build\intermediates\exploded-aar\BoomTime\sMSSDK\unspecified\libs\SMSSDK-1.2.2.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="fdbdc82cc81d5d26e2ef56ab5f4ffb0fc04b4b00">
-        <dex dex="D:\workspace\BoomTime\app\build\intermediates\pre-dexed\debug\SMSSDK-1.2.2-4f4b92b8e3aa7e8490c146eec83bac09c135f1e8.jar" />
-    </item>
-    <item
-        jar="D:\workspace\BoomTime\app\build\intermediates\exploded-aar\BoomTime\sMSSDK\unspecified\libs\MobTools.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="c41aaf9ac27d8a39338463e980799f855ee3d432">
-        <dex dex="D:\workspace\BoomTime\app\build\intermediates\pre-dexed\debug\MobTools-00598e47e24be1a032bdc13aac11a6b7548212e9.jar" />
+        sha1="220b0f41eb09db85c24113a0f8d69cf1011b0e07">
+        <dex dex="D:\workspace\BoomTime\app\build\intermediates\pre-dexed\debug\ShareSDK-QZone-2.6.0-9ae762e9ec86e61196dffcb0a10799715c1fc2cf.jar" />
     </item>
     <item
         jar="D:\workspace\BoomTime\app\libs\pushservice-4.5.1.8.jar"
@@ -63,6 +91,48 @@
         revision="21.1.2"
         sha1="12e032c029dcede1ee7166e22eb9c458cfc5e545">
         <dex dex="D:\workspace\BoomTime\app\build\intermediates\pre-dexed\debug\pushservice-4.5.1.8-91ad89c29d07fee90a59240a2c0d5d026081d1a0.jar" />
+    </item>
+    <item
+        jar="D:\workspace\BoomTime\app\libs\ShareSDK-Wechat-Moments-2.6.0.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="58cc538afcaea68397481e5447836e62797551cc">
+        <dex dex="D:\workspace\BoomTime\app\build\intermediates\pre-dexed\debug\ShareSDK-Wechat-Moments-2.6.0-b0c817f7b24f303ac76401f7f92ee0a5edb1d3ec.jar" />
+    </item>
+    <item
+        jar="D:\workspace\BoomTime\app\libs\httpcore-4.3.3.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="f91b7a4aadc5cf486df6e4634748d7dd7a73f06d">
+        <dex dex="D:\workspace\BoomTime\app\build\intermediates\pre-dexed\debug\httpcore-4.3.3-274fec5ced0da238c328a4b5e6cd0daece319574.jar" />
+    </item>
+    <item
+        jar="D:\workspace\BoomTime\app\libs\ShareSDK-Wechat-2.6.0.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="af48a61a1270951dc870e1579a48a415ff10c1cc">
+        <dex dex="D:\workspace\BoomTime\app\build\intermediates\pre-dexed\debug\ShareSDK-Wechat-2.6.0-388ffc22927eb97c9f376b8c70a744e74982d491.jar" />
+    </item>
+    <item
+        jar="D:\workspace\BoomTime\app\build\intermediates\exploded-aar\BoomTime\sMSSDK\unspecified\libs\MobTools.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="b2cba35ceab382729de67845f613556d38a32133">
+        <dex dex="D:\workspace\BoomTime\app\build\intermediates\pre-dexed\debug\MobTools-00598e47e24be1a032bdc13aac11a6b7548212e9.jar" />
+    </item>
+    <item
+        jar="D:\workspace\BoomTime\app\libs\ShareSDK-TencentWeibo-2.6.0.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="7a060ee498fb065bb769b89dd78d63c4a6da2407">
+        <dex dex="D:\workspace\BoomTime\app\build\intermediates\pre-dexed\debug\ShareSDK-TencentWeibo-2.6.0-883bda83ec1c6ddd8115c176b360af2d47f82001.jar" />
+    </item>
+    <item
+        jar="D:\workspace\BoomTime\app\libs\ShareSDK-Core-2.6.0.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="ce77708798f39a79b83785dd24dd551b4680e469">
+        <dex dex="D:\workspace\BoomTime\app\build\intermediates\pre-dexed\debug\ShareSDK-Core-2.6.0-0dd4694f76c25f3a48cb8f546cd71f2983c0e437.jar" />
     </item>
 
 </items>

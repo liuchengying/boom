@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 
 import boom.boom.FontManager.FontManager;
 import boom.boom.R;
@@ -15,7 +16,7 @@ import boom.boom.myview.SildingFinishLayout;
  * Created by 刘成英 on 2015/3/12.
  */
 public class Mimazhaohui_emall_activity extends Activity {
-    private LinearLayout mmzh_emall_fh;
+    private RelativeLayout mmzh_emall_fh;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +37,7 @@ public class Mimazhaohui_emall_activity extends Activity {
 
         SysApplication.getInstance().addActivity(this);
         FontManager.changeFonts(FontManager.getContentView(this), this);//字体
-        mmzh_emall_fh = (LinearLayout)findViewById(R.id.mmzh_emill_fh);
+        mmzh_emall_fh = (RelativeLayout)findViewById(R.id.mmzh_emill_fh);
         mmzh_emall_fh.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

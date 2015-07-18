@@ -14,8 +14,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map.Entry;
 
-import cn.smssdk.utils.SMSLog;
-
 import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup;
@@ -133,8 +131,8 @@ public class CountryAdapter extends GroupAdapter {
 		if(countries.size() != 0){
 			try {
 				countriesArray = countries.get(group).get(position);
-			} catch (Throwable e) {
-				SMSLog.getInstance().w(e);
+			} catch (ArrayIndexOutOfBoundsException e) {
+				e.printStackTrace();
 			}
 			return countriesArray;
 		}else{

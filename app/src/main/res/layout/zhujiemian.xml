@@ -113,23 +113,27 @@
             android:gravity="center"
             android:layout_marginTop="15dp">
             <Button
+                android:id="@+id/sinaSign"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/android_5"
                 />
             <Button
+                android:id="@+id/wechatSign"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/android_4"
                 android:layout_marginLeft="10dp"
                 />
             <Button
+                android:id="@+id/qqSign"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/android_6"
                 android:layout_marginLeft="10dp"
                 />
             <Button
+                android:id="@+id/main_share"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/android_7"

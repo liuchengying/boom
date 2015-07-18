@@ -86,18 +86,28 @@
     </content>
     <orderEntry type="jdk" jdkName="Android API 21 Platform" jdkType="Android SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" exported="" name="assets" level="project" />
+    <orderEntry type="library" exported="" name="ShareSDK-TencentWeibo-2.6.0" level="project" />
+    <orderEntry type="library" exported="" name="ShareSDK-SinaWeibo-2.6.0" level="project" />
+    <orderEntry type="library" exported="" name="ShareSDK-Wechat-Favorite-2.6.0" level="project" />
     <orderEntry type="library" exported="" name="httpclient-4.4.1" level="project" />
-    <orderEntry type="library" exported="" name="pushservice-4.5.1.8" level="project" />
+    <orderEntry type="library" exported="" name="ShareSDK-Wechat-Moments-2.6.0" level="project" />
     <orderEntry type="library" exported="" name="appcompat-v7-19.1.0" level="project" />
     <orderEntry type="library" exported="" name="nineoldandroids-2.4.0" level="project" />
     <orderEntry type="library" exported="" name="1_nineoldandroids-2.4.0" level="project" />
     <orderEntry type="library" exported="" name="commons-logging-1.2" level="project" />
     <orderEntry type="library" exported="" name="support-v4-19.1.0" level="project" />
+    <orderEntry type="library" exported="" name="ShareSDK-Wechat-2.6.0" level="project" />
+    <orderEntry type="library" exported="" name="ShareSDK-Wechat-Core-2.6.0" level="project" />
+    <orderEntry type="library" exported="" name="httpmime-4.3.6" level="project" />
+    <orderEntry type="library" exported="" name="assets" level="project" />
+    <orderEntry type="library" exported="" name="MobTools" level="project" />
+    <orderEntry type="library" exported="" name="ShareSDK-QZone-2.6.0" level="project" />
+    <orderEntry type="library" exported="" name="pushservice-4.5.1.8" level="project" />
+    <orderEntry type="library" exported="" name="ShareSDK-QQ-2.6.0" level="project" />
     <orderEntry type="library" exported="" name="commons-codec-1.9" level="project" />
     <orderEntry type="library" exported="" name="httpcore-4.3.3" level="project" />
     <orderEntry type="library" exported="" name="httpclient-win-4.4.1" level="project" />
-    <orderEntry type="library" exported="" name="httpmime-4.3.6" level="project" />
+    <orderEntry type="library" exported="" name="ShareSDK-Core-2.6.0" level="project" />
     <orderEntry type="module" module-name="sMSSDK" exported="" />
   </component>
 </module>

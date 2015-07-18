@@ -16,10 +16,10 @@ import org.json.JSONObject;
  */
 public class User {
     private static final String USER_LOGIN_URL = Utils.serveraddr + "/api/userlogin.php";
-    private static String session_id;
+    public static String session_id;
     private String username;
     private String password;
-    private boolean ifUserLoggedIn;
+    public boolean ifUserLoggedIn;
     private String ServerErr;
     private String result = null;
     private HttpIO io;
@@ -85,12 +85,6 @@ public class User {
         get.addItem("passhash",Utils.StrToMD5(this.password));
         String url_request = get.toString();
         final HttpIO io = new HttpIO(url_request);
-        /*
-        List<NameValuePair> post = new ArrayList<NameValuePair>();
-        post.add(new BasicNameValuePair("name", this.username));
-        post.add(new BasicNameValuePair("passhash", Utils.StrToMD5(this.password)));
-        io.POSTToHTTPServer(post);
-        */
         new Thread(new Runnable() {
             @Override
             public void run() {

@@ -25,10 +25,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 import cn.smssdk.EventHandler;
 import cn.smssdk.SMSSDK;
-
 import com.mob.tools.FakeActivity;
-import cn.smssdk.utils.SMSLog;
-
 import cn.smssdk.gui.GroupListView.OnItemClickListener;
 
 /** 国家列表界面*/
@@ -214,8 +211,8 @@ public class CountryPage extends FakeActivity implements OnClickListener, TextWa
 				etSearch.setText("");
 				return true;
 			}
-		} catch (Throwable e) {
-			SMSLog.getInstance().w(e);
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 		return super.onKeyEvent(keyCode, event);
 	}

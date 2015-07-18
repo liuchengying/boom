@@ -9,10 +9,8 @@ package cn.smssdk.gui;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-
-import com.mob.tools.gui.AsyncImageView;
-import com.mob.tools.gui.BitmapProcessor;
-
+import m.framework.ui.widget.asyncview.AsyncImageView;
+import m.framework.ui.widget.asyncview.BitmapProcessor;
 import android.graphics.Bitmap;
 import android.text.TextUtils;
 import android.util.Log;
@@ -109,8 +107,8 @@ public class DefaultContactViewItem implements cn.smssdk.gui.ContactItemMaker {
 				Bitmap bm = BitmapProcessor.getBitmapFromCache(iconUrl);
 				if (bm != null && !bm.isRecycled()) {
 					viewHolder.ivContact.setImageBitmap(bm);
-				} else{
-					viewHolder.ivContact.execute(iconUrl, resId);
+				}else{
+					viewHolder.ivContact.execute(iconUrl);
 				}
 			}
 

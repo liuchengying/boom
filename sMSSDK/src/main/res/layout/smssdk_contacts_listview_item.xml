@@ -7,7 +7,7 @@
     android:gravity="center_vertical"
     android:background="#ffffffff">
 
-    <com.mob.tools.gui.AsyncImageView
+    <m.framework.ui.widget.asyncview.AsyncImageView
         android:id="@+id/iv_contact"
         android:layout_width="41dip"
         android:layout_height="41dip"

@@ -87,7 +87,8 @@
     </content>
     <orderEntry type="jdk" jdkName="Android API 15 Platform" jdkType="Android SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" exported="" name="SMSSDK-1.2.0" level="project" />
     <orderEntry type="library" exported="" name="MobTools" level="project" />
-    <orderEntry type="library" exported="" name="SMSSDK-1.2.2" level="project" />
+    <orderEntry type="library" exported="" name="mframework" level="project" />
   </component>
 </module>

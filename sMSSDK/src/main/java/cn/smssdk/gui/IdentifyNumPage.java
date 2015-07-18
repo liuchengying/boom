@@ -40,9 +40,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import cn.smssdk.EventHandler;
 import cn.smssdk.SMSSDK;
-
 import com.mob.tools.FakeActivity;
-import cn.smssdk.utils.SMSLog;
 
 /** 验证码输入页面*/
 public class IdentifyNumPage extends FakeActivity implements OnClickListener,
@@ -439,14 +437,15 @@ public class IdentifyNumPage extends FakeActivity implements OnClickListener,
 					Throwable throwable = (Throwable) data;
 					// 根据服务器返回的网络错误，给toast提示
 					try {
-						JSONObject object = new JSONObject(throwable.getMessage());
+						JSONObject object = new JSONObject(
+								throwable.getMessage());
 						String des = object.optString("detail");
 						if (!TextUtils.isEmpty(des)) {
 							Toast.makeText(activity, des, Toast.LENGTH_SHORT).show();
 							return;
 						}
 					} catch (JSONException e) {
-						SMSLog.getInstance().w(e);
+						e.printStackTrace();
 					}
 					// / 如果木有找到资源，默认提示
 					int resId = getStringRes(activity, "smssdk_network_error");
@@ -490,7 +489,7 @@ public class IdentifyNumPage extends FakeActivity implements OnClickListener,
 							return;
 						}
 					} catch (JSONException e) {
-						SMSLog.getInstance().w(e);
+						e.printStackTrace();
 					}
 					//  如果木有找到资源，默认提示
 					int resId = getStringRes(activity, "smssdk_network_error");

@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.SimpleAdapter;
@@ -27,6 +28,7 @@ import boom.boom.api.FriendList;
 import boom.boom.api.SysApplication;
 import boom.boom.gerenzhuye.Gerenzhuye_activity;
 import boom.boom.search_friends.Search_friends_activity;
+import cn.sharesdk.onekeyshare.OnekeyShare;
 
 /**
  * Created by Administrator on 2015/7/11.
@@ -35,6 +37,7 @@ public class haoyouliebiao_fragment extends Fragment {
 
 
     ListView lv;
+    LinearLayout invite;
     RelativeLayout haoyouliebiao_fh;
     SimpleAdapter mSimpleAdapter;
     TextView hylb_search;
@@ -60,6 +63,34 @@ public class haoyouliebiao_fragment extends Fragment {
             return true;
         }
     });
+    private void showShare() {
+        OnekeyShare oks = new OnekeyShare();
+        //关闭sso授权
+        oks.disableSSOWhenAuthorize();
+
+// 分享时Notification的图标和文字  2.5.9以后的版本不调用此方法
+        //oks.setNotification(R.drawable.ic_launcher, getString(R.string.app_name));
+        // title标题，印象笔记、邮箱、信息、微信、人人网和QQ空间使用
+        oks.setTitle("BOOM--民间吉尼斯");
+        // titleUrl是标题的网络链接，仅在人人网和QQ空间使用
+        oks.setTitleUrl("http://boom.corling.com");
+        // text是分享文本，所有平台都需要这个字段
+        oks.setText("撕逼挑战神器一一BOOM，全国首款让用户以视频的方式展现自己特殊技能的短视频挑战应用，全新的互动体验，千奇百怪的挑战内容、实时的动态排名，以及享受游戏给用户带来的无尽的乐趣");
+        oks.setImageUrl("http://boom.corling.com/resources/boom_avatar.png");
+        // imagePath是图片的本地路径，Linked-In以外的平台都支持此参数
+        //oks.setImagePath("/sdcard/small.jpg");//确保SDcard下面存在此张图片
+        // url仅在微信（包括好友和朋友圈）中使用
+        oks.setUrl("http://sharesdk.cn");
+        // comment是我对这条分享的评论，仅在人人网和QQ空间使用
+        oks.setComment("asdasdasd");
+        // site是分享此内容的网站名称，仅在QQ空间使用
+        oks.setSite(getString(R.string.app_name));
+        // siteUrl是分享此内容的网站地址，仅在QQ空间使用
+        oks.setSiteUrl("http://boom.corling.com");
+
+// 启动分享GUI
+        oks.show(getActivity());
+    }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.haoyouliebiao_frame,container,false);
@@ -75,6 +106,13 @@ public class haoyouliebiao_fragment extends Fragment {
                                 "avatar", "nickname"},
                         new int[]{R.id.haoyouliebiao_touxiang, R.id.haoyouliebiao_nicheng}
                 );
+                invite = (LinearLayout) v.findViewById(R.id.haoyouiebiao_yaoqing);
+                invite.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        showShare();
+                    }
+                });
                 mSimpleAdapter.setViewBinder(new SimpleAdapter.ViewBinder() {
                     @Override
                     public boolean setViewValue(View view, final Object data, String textRepresentation) {

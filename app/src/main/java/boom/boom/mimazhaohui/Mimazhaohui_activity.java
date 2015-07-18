@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 
 import boom.boom.FontManager.FontManager;
 import boom.boom.R;
@@ -41,7 +42,7 @@ public class Mimazhaohui_activity extends Activity {
 
         SysApplication.getInstance().addActivity(this);
         FontManager.changeFonts(FontManager.getContentView(this), this);//字体
-        LinearLayout mmzh_fh = (LinearLayout)findViewById(R.id.mmzh_fh);
+        RelativeLayout mmzh_fh = (RelativeLayout)findViewById(R.id.mmzh_fh);
         mmzh_phone= (Button)findViewById(R.id.mmzh_phone);
         mmzh_emill= (Button)findViewById(R.id.mmzh_emill);
         mmzh_fh.setOnClickListener(new View.OnClickListener() {

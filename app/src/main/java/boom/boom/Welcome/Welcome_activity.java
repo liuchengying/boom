@@ -37,6 +37,7 @@ import boom.boom.api.UserData;
 import boom.boom.api.Utils;
 import boom.boom.tianzhan.Tiaozhan_activity;
 import boom.boom.zhujiemian.Main_activity;
+import cn.sharesdk.framework.ShareSDK;
 import cn.smssdk.SMSSDK;
 
 /**
@@ -138,6 +139,11 @@ public class Welcome_activity extends Activity {
         SysApplication.getInstance().addActivity(this);
         FontManager.changeFonts(FontManager.getContentView(this), this);//字体
         SMSSDK.initSDK(this, "8d930e70baed", "421e26e130df780c049c7c22f07fb18c");
+        try {
+            ShareSDK.initSDK(Welcome_activity.this, "8dfb7359498a");
+        }catch (Exception e){
+            e.printStackTrace();
+        }
         File file = new File(Utils.getWorkPath());
         if (!file.exists() && !file.isDirectory()){
             Log.e("BASE_FILE", "Unable to find the base data directory. Generate new one.");
