@@ -1,0 +1,526 @@
+-- Merging decision tree log ---
+manifest
+ADDED from AndroidManifest.xml:1:1
+	xmlns:uses-feature
+		ADDED from AndroidManifest.xml:2:5
+	xmlns:android
+		ADDED from AndroidManifest.xml:1:11
+	package
+		ADDED from AndroidManifest.xml:3:5
+		INJECTED from AndroidManifest.xml:0:0
+		INJECTED from AndroidManifest.xml:0:0
+	android:versionName
+		INJECTED from AndroidManifest.xml:0:0
+		INJECTED from AndroidManifest.xml:0:0
+	android:versionCode
+		INJECTED from AndroidManifest.xml:0:0
+		INJECTED from AndroidManifest.xml:0:0
+uses-sdk
+ADDED from AndroidManifest.xml:4:5
+MERGED from com.android.support:appcompat-v7:19.1.0:18:5
+MERGED from BoomTime:sMSSDK:unspecified:7:5
+	android:targetSdkVersion
+		INJECTED from AndroidManifest.xml:0:0
+		INJECTED from AndroidManifest.xml:0:0
+	android:minSdkVersion
+		ADDED from AndroidManifest.xml:4:15
+		INJECTED from AndroidManifest.xml:0:0
+		INJECTED from AndroidManifest.xml:0:0
+uses-permission#android.permission.VIBRATE
+ADDED from AndroidManifest.xml:6:5
+	android:name
+		ADDED from AndroidManifest.xml:6:22
+uses-permission#com.android.launcher.permission.INSTALL_SHORTCUT
+ADDED from AndroidManifest.xml:8:5
+	android:name
+		ADDED from AndroidManifest.xml:8:22
+uses-permission#android.permission.INTERNET
+ADDED from AndroidManifest.xml:9:5
+	android:name
+		ADDED from AndroidManifest.xml:9:22
+uses-permission#android.permission.ACCESS_NETWORK_STATE
+ADDED from AndroidManifest.xml:10:5
+	android:name
+		ADDED from AndroidManifest.xml:10:22
+uses-permission#android.permission.RECORD_AUDIO
+ADDED from AndroidManifest.xml:11:5
+	android:name
+		ADDED from AndroidManifest.xml:11:22
+uses-permission#android.permission.CAMERA
+ADDED from AndroidManifest.xml:12:5
+	android:name
+		ADDED from AndroidManifest.xml:12:22
+uses-feature#android.hardware.camera
+ADDED from AndroidManifest.xml:13:5
+	android:name
+		ADDED from AndroidManifest.xml:13:19
+uses-feature#android.hardware.camera.autofocus
+ADDED from AndroidManifest.xml:14:5
+	android:name
+		ADDED from AndroidManifest.xml:14:19
+uses-permission#android.permission.WRITE_EXTERNAL_STORAGE
+ADDED from AndroidManifest.xml:15:5
+	android:name
+		ADDED from AndroidManifest.xml:15:22
+uses-permission#android.permission.READ_PHONE_STATE
+ADDED from AndroidManifest.xml:16:5
+	android:name
+		ADDED from AndroidManifest.xml:16:22
+uses-permission#android.permission.RECEIVE_BOOT_COMPLETED
+ADDED from AndroidManifest.xml:17:5
+	android:name
+		ADDED from AndroidManifest.xml:17:22
+uses-permission#android.permission.WRITE_SETTINGS
+ADDED from AndroidManifest.xml:18:5
+	android:name
+		ADDED from AndroidManifest.xml:18:22
+uses-permission#android.permission.ACCESS_DOWNLOAD_MANAGER
+ADDED from AndroidManifest.xml:20:5
+	android:name
+		ADDED from AndroidManifest.xml:20:22
+uses-permission#android.permission.DOWNLOAD_WITHOUT_NOTIFICATION
+ADDED from AndroidManifest.xml:21:5
+	android:name
+		ADDED from AndroidManifest.xml:21:22
+uses-permission#android.permission.DISABLE_KEYGUARD
+ADDED from AndroidManifest.xml:22:5
+	android:name
+		ADDED from AndroidManifest.xml:22:22
+uses-permission#android.permission.ACCESS_COARSE_LOCATION
+ADDED from AndroidManifest.xml:23:5
+	android:name
+		ADDED from AndroidManifest.xml:23:22
+uses-permission#android.permission.ACCESS_WIFI_STATE
+ADDED from AndroidManifest.xml:24:5
+	android:name
+		ADDED from AndroidManifest.xml:24:22
+uses-permission#android.permission.EXPAND_STATUS_BAR
+ADDED from AndroidManifest.xml:25:5
+	android:name
+		ADDED from AndroidManifest.xml:25:22
+uses-permission#android.permission.BROADCAST_STICKY
+ADDED from AndroidManifest.xml:26:5
+	android:name
+		ADDED from AndroidManifest.xml:26:22
+uses-permission#android.permission.GET_TASKS
+ADDED from AndroidManifest.xml:28:5
+	android:name
+		ADDED from AndroidManifest.xml:28:22
+uses-permission#android.permission.CHANGE_WIFI_STATE
+ADDED from AndroidManifest.xml:32:5
+	android:name
+		ADDED from AndroidManifest.xml:32:22
+uses-permission#android.permission.MANAGE_ACCOUNTS
+ADDED from AndroidManifest.xml:35:5
+	android:name
+		ADDED from AndroidManifest.xml:35:22
+uses-permission#android.permission.GET_ACCOUNTS
+ADDED from AndroidManifest.xml:36:5
+	android:name
+		ADDED from AndroidManifest.xml:36:22
+uses-permission#android.permission.BLUETOOTH
+ADDED from AndroidManifest.xml:38:5
+	android:name
+		ADDED from AndroidManifest.xml:38:22
+uses-permission#android.permission.BLUETOOTH_ADMIN
+ADDED from AndroidManifest.xml:39:5
+	android:name
+		ADDED from AndroidManifest.xml:39:22
+application
+ADDED from AndroidManifest.xml:41:5
+MERGED from com.android.support:appcompat-v7:19.1.0:19:5
+MERGED from BoomTime:sMSSDK:unspecified:11:5
+	android:debuggable
+		ADDED from BoomTime:sMSSDK:unspecified:13:9
+	android:label
+		ADDED from AndroidManifest.xml:41:45
+	android:allowBackup
+		ADDED from AndroidManifest.xml:41:18
+	android:icon
+		ADDED from AndroidManifest.xml:42:9
+	android:theme
+		ADDED from AndroidManifest.xml:42:42
+	android:largeHeap
+		ADDED from AndroidManifest.xml:43:9
+activity#boom.boom.Welcome.Welcome_activity
+ADDED from AndroidManifest.xml:44:9
+	android:theme
+		ADDED from AndroidManifest.xml:45:13
+	android:name
+		ADDED from AndroidManifest.xml:44:19
+	android:launchMode
+		ADDED from AndroidManifest.xml:46:13
+intent-filter#android.intent.action.MAIN+android.intent.category.LAUNCHER
+ADDED from AndroidManifest.xml:47:13
+action#android.intent.action.MAIN
+ADDED from AndroidManifest.xml:48:17
+	android:name
+		ADDED from AndroidManifest.xml:48:25
+category#android.intent.category.LAUNCHER
+ADDED from AndroidManifest.xml:49:17
+	android:name
+		ADDED from AndroidManifest.xml:49:27
+activity#boom.boom.zhujiemian.Main_activity
+ADDED from AndroidManifest.xml:52:14
+	android:screenOrientation
+		ADDED from AndroidManifest.xml:54:18
+	android:theme
+		ADDED from AndroidManifest.xml:53:25
+	android:name
+		ADDED from AndroidManifest.xml:52:24
+activity#boom.boom.tianzhan.Tiaozhan_activity
+ADDED from AndroidManifest.xml:55:9
+	android:theme
+		ADDED from AndroidManifest.xml:56:13
+	android:name
+		ADDED from AndroidManifest.xml:55:19
+activity#boom.boom.denglu.dengluzhuce_activity
+ADDED from AndroidManifest.xml:57:9
+	android:theme
+		ADDED from AndroidManifest.xml:58:13
+	android:name
+		ADDED from AndroidManifest.xml:57:19
+activity#boom.boom.shezhi.Shezhi_activity
+ADDED from AndroidManifest.xml:59:9
+	android:theme
+		ADDED from AndroidManifest.xml:60:13
+	android:name
+		ADDED from AndroidManifest.xml:59:19
+activity#boom.boom.wanshanxinxi.Wanshanxinxi_activity
+ADDED from AndroidManifest.xml:61:9
+	android:theme
+		ADDED from AndroidManifest.xml:62:13
+	android:name
+		ADDED from AndroidManifest.xml:61:19
+activity#boom.boom.zhucechenggong.Zhucechenggong_activity
+ADDED from AndroidManifest.xml:63:9
+	android:theme
+		ADDED from AndroidManifest.xml:64:13
+	android:name
+		ADDED from AndroidManifest.xml:63:19
+activity#boom.boom.guizejieshao.Guizejieshao_activity
+ADDED from AndroidManifest.xml:65:9
+	android:theme
+		ADDED from AndroidManifest.xml:66:13
+	android:name
+		ADDED from AndroidManifest.xml:65:19
+activity#boom.boom.paishetiaozhan.Paishetiaozhan_activity
+ADDED from AndroidManifest.xml:67:9
+	android:theme
+		ADDED from AndroidManifest.xml:68:13
+	android:name
+		ADDED from AndroidManifest.xml:67:19
+activity#boom.boom.shangchuanchenggong.Shangchuanchenggong1_activity
+ADDED from AndroidManifest.xml:69:8
+	android:theme
+		ADDED from AndroidManifest.xml:70:13
+	android:name
+		ADDED from AndroidManifest.xml:69:18
+activity#boom.boom.shangchuandengdai.Shangchuandengdai_activity
+ADDED from AndroidManifest.xml:71:9
+	android:theme
+		ADDED from AndroidManifest.xml:72:13
+	android:name
+		ADDED from AndroidManifest.xml:71:19
+activity#boom.boom.xinxizhongxin.xinxizhongxin_activity
+ADDED from AndroidManifest.xml:73:9
+	android:theme
+		ADDED from AndroidManifest.xml:74:13
+	android:name
+		ADDED from AndroidManifest.xml:73:19
+	android:launchMode
+		ADDED from AndroidManifest.xml:75:13
+activity#boom.boom.shouquanshibai.Shouquanshibai_activity
+ADDED from AndroidManifest.xml:76:9
+	android:theme
+		ADDED from AndroidManifest.xml:77:13
+	android:name
+		ADDED from AndroidManifest.xml:76:19
+activity#boom.boom.shouquanchenggong.Shouquanchengong_activity
+ADDED from AndroidManifest.xml:78:9
+	android:theme
+		ADDED from AndroidManifest.xml:79:13
+	android:name
+		ADDED from AndroidManifest.xml:78:19
+activity#boom.boom.zhuceyanzheng.Zhuceyanzheng_activity
+ADDED from AndroidManifest.xml:80:9
+	android:theme
+		ADDED from AndroidManifest.xml:81:13
+	android:name
+		ADDED from AndroidManifest.xml:80:19
+activity#boom.boom.shezhimima.Shezhimima_activity
+ADDED from AndroidManifest.xml:82:9
+	android:theme
+		ADDED from AndroidManifest.xml:83:13
+	android:name
+		ADDED from AndroidManifest.xml:82:19
+activity#boom.boom.qiandao.Qiandao_activity
+ADDED from AndroidManifest.xml:84:9
+	android:theme
+		ADDED from AndroidManifest.xml:85:13
+	android:name
+		ADDED from AndroidManifest.xml:84:19
+activity#boom.boom.mimazhaohui.Mimazhaohui_activity
+ADDED from AndroidManifest.xml:86:9
+	android:theme
+		ADDED from AndroidManifest.xml:87:13
+	android:name
+		ADDED from AndroidManifest.xml:86:19
+activity#boom.boom.mimazhaohui_phone.Mimazhaohui_phone_activity
+ADDED from AndroidManifest.xml:88:9
+	android:theme
+		ADDED from AndroidManifest.xml:89:13
+	android:name
+		ADDED from AndroidManifest.xml:88:19
+activity#boom.boom.mimazhaohui_emall.Mimazhaohui_emall_activity
+ADDED from AndroidManifest.xml:90:9
+	android:theme
+		ADDED from AndroidManifest.xml:91:13
+	android:name
+		ADDED from AndroidManifest.xml:90:19
+activity#boom.boom.gerenzhuye.Gerenzhuye_activity
+ADDED from AndroidManifest.xml:92:9
+	android:theme
+		ADDED from AndroidManifest.xml:93:13
+	android:name
+		ADDED from AndroidManifest.xml:92:19
+activity#boom.boom.paihangbang.Paihangbang_activity
+ADDED from AndroidManifest.xml:94:9
+	android:theme
+		ADDED from AndroidManifest.xml:95:13
+	android:name
+		ADDED from AndroidManifest.xml:94:19
+activity#boom.boom.bianjixinxi.Bianjixinxi_activity
+ADDED from AndroidManifest.xml:96:9
+	android:windowSoftInputMode
+		ADDED from AndroidManifest.xml:98:13
+	android:theme
+		ADDED from AndroidManifest.xml:97:13
+	android:name
+		ADDED from AndroidManifest.xml:96:19
+activity#boom.boom.mimaxiugai.Mimaxiugai_activity
+ADDED from AndroidManifest.xml:99:9
+	android:theme
+		ADDED from AndroidManifest.xml:100:13
+	android:name
+		ADDED from AndroidManifest.xml:99:19
+activity#boom.boom.faqitianzhan.Faqitianzhan_activity
+ADDED from AndroidManifest.xml:101:9
+	android:theme
+		ADDED from AndroidManifest.xml:102:13
+	android:name
+		ADDED from AndroidManifest.xml:101:19
+activity#boom.boom.zinitiaozhan.Zinitianzhan_activity
+ADDED from AndroidManifest.xml:103:9
+	android:theme
+		ADDED from AndroidManifest.xml:104:13
+	android:name
+		ADDED from AndroidManifest.xml:103:19
+activity#boom.boom.bangzhuyufankui.Bangzhuyufankui_activity
+ADDED from AndroidManifest.xml:105:9
+	android:theme
+		ADDED from AndroidManifest.xml:106:13
+	android:name
+		ADDED from AndroidManifest.xml:105:19
+activity#boom.boom.guanyuwomen.Guanyuwomen_activity
+ADDED from AndroidManifest.xml:107:9
+	android:theme
+		ADDED from AndroidManifest.xml:108:13
+	android:name
+		ADDED from AndroidManifest.xml:107:19
+activity#boom.boom.tongxunlu.tongxunlu_activity
+ADDED from AndroidManifest.xml:109:9
+	android:theme
+		ADDED from AndroidManifest.xml:110:13
+	android:name
+		ADDED from AndroidManifest.xml:109:19
+activity#boom.boom.haoyouliebiao.Haoyouliebiao_activity
+ADDED from AndroidManifest.xml:111:9
+	android:theme
+		ADDED from AndroidManifest.xml:112:13
+	android:name
+		ADDED from AndroidManifest.xml:111:19
+activity#boom.boom.shipintianzhanpinglun.Shipintianzhan_pinglun
+ADDED from AndroidManifest.xml:113:9
+	android:theme
+		ADDED from AndroidManifest.xml:114:13
+	android:name
+		ADDED from AndroidManifest.xml:113:19
+activity#boom.boom.liuyan.Liuyan_activity
+ADDED from AndroidManifest.xml:115:9
+	android:theme
+		ADDED from AndroidManifest.xml:116:9
+	android:name
+		ADDED from AndroidManifest.xml:115:19
+activity#boom.boom.wangqitiaozhan.wangqitiaozhan
+ADDED from AndroidManifest.xml:117:9
+	android:theme
+		ADDED from AndroidManifest.xml:118:13
+	android:name
+		ADDED from AndroidManifest.xml:117:19
+activity#boom.boom.liuyanbanpinglun.Liuyanban_pinglun
+ADDED from AndroidManifest.xml:119:9
+	android:theme
+		ADDED from AndroidManifest.xml:120:13
+	android:name
+		ADDED from AndroidManifest.xml:119:19
+activity#boom.boom.liuyanhuifu.Liuyanhuifu_activity
+ADDED from AndroidManifest.xml:121:9
+	android:theme
+		ADDED from AndroidManifest.xml:122:13
+	android:name
+		ADDED from AndroidManifest.xml:121:19
+activity#boom.boom.search_friends.Search_friends_activity
+ADDED from AndroidManifest.xml:123:9
+	android:theme
+		ADDED from AndroidManifest.xml:124:13
+	android:name
+		ADDED from AndroidManifest.xml:123:19
+activity#boom.boom.youxiangyanzheng.Youxiangyanzheng_activity
+ADDED from AndroidManifest.xml:125:9
+	android:theme
+		ADDED from AndroidManifest.xml:126:13
+	android:name
+		ADDED from AndroidManifest.xml:125:19
+receiver#boom.boom.api.MyReceiver
+ADDED from AndroidManifest.xml:127:9
+	android:name
+		ADDED from AndroidManifest.xml:127:19
+intent-filter#com.baidu.android.pushservice.action.MESSAGE+com.baidu.android.pushservice.action.RECEIVE+com.baidu.android.pushservice.action.notification.CLICK
+ADDED from AndroidManifest.xml:128:13
+action#com.baidu.android.pushservice.action.MESSAGE
+ADDED from AndroidManifest.xml:131:17
+	android:name
+		ADDED from AndroidManifest.xml:131:25
+action#com.baidu.android.pushservice.action.RECEIVE
+ADDED from AndroidManifest.xml:133:17
+	android:name
+		ADDED from AndroidManifest.xml:133:25
+action#com.baidu.android.pushservice.action.notification.CLICK
+ADDED from AndroidManifest.xml:134:17
+	android:name
+		ADDED from AndroidManifest.xml:134:25
+receiver#com.baidu.android.pushservice.PushServiceReceiver
+ADDED from AndroidManifest.xml:138:9
+	android:process
+		ADDED from AndroidManifest.xml:140:13
+	android:name
+		ADDED from AndroidManifest.xml:139:13
+intent-filter#android.intent.action.ACTION_POWER_CONNECTED+android.intent.action.ACTION_POWER_DISCONNECTED+android.intent.action.BOOT_COMPLETED+android.intent.action.MEDIA_MOUNTED+android.intent.action.USER_PRESENT+android.net.conn.CONNECTIVITY_CHANGE+com.baidu.android.pushservice.action.media.CLICK+com.baidu.android.pushservice.action.notification.SHOW
+ADDED from AndroidManifest.xml:141:13
+action#android.intent.action.BOOT_COMPLETED
+ADDED from AndroidManifest.xml:142:17
+	android:name
+		ADDED from AndroidManifest.xml:142:25
+action#android.net.conn.CONNECTIVITY_CHANGE
+ADDED from AndroidManifest.xml:143:17
+	android:name
+		ADDED from AndroidManifest.xml:143:25
+action#com.baidu.android.pushservice.action.notification.SHOW
+ADDED from AndroidManifest.xml:144:17
+	android:name
+		ADDED from AndroidManifest.xml:144:25
+action#com.baidu.android.pushservice.action.media.CLICK
+ADDED from AndroidManifest.xml:145:17
+	android:name
+		ADDED from AndroidManifest.xml:145:25
+action#android.intent.action.MEDIA_MOUNTED
+ADDED from AndroidManifest.xml:147:17
+	android:name
+		ADDED from AndroidManifest.xml:147:25
+action#android.intent.action.USER_PRESENT
+ADDED from AndroidManifest.xml:148:17
+	android:name
+		ADDED from AndroidManifest.xml:148:25
+action#android.intent.action.ACTION_POWER_CONNECTED
+ADDED from AndroidManifest.xml:149:17
+	android:name
+		ADDED from AndroidManifest.xml:149:25
+action#android.intent.action.ACTION_POWER_DISCONNECTED
+ADDED from AndroidManifest.xml:150:17
+	android:name
+		ADDED from AndroidManifest.xml:150:25
+receiver#com.baidu.android.pushservice.RegistrationReceiver
+ADDED from AndroidManifest.xml:153:9
+	android:process
+		ADDED from AndroidManifest.xml:155:13
+	android:name
+		ADDED from AndroidManifest.xml:154:13
+intent-filter#com.baidu.android.pushservice.action.BIND_SYNC+com.baidu.android.pushservice.action.METHOD
+ADDED from AndroidManifest.xml:156:13
+action#com.baidu.android.pushservice.action.METHOD
+ADDED from AndroidManifest.xml:157:17
+	android:name
+		ADDED from AndroidManifest.xml:157:25
+action#com.baidu.android.pushservice.action.BIND_SYNC
+ADDED from AndroidManifest.xml:158:17
+	android:name
+		ADDED from AndroidManifest.xml:158:25
+intent-filter#android.intent.action.PACKAGE_REMOVED
+ADDED from AndroidManifest.xml:160:13
+action#android.intent.action.PACKAGE_REMOVED
+ADDED from AndroidManifest.xml:161:17
+	android:name
+		ADDED from AndroidManifest.xml:161:25
+data
+ADDED from AndroidManifest.xml:163:17
+	android:scheme
+		ADDED from AndroidManifest.xml:163:23
+service#com.baidu.android.pushservice.PushService
+ADDED from AndroidManifest.xml:167:9
+	android:process
+		ADDED from AndroidManifest.xml:170:13
+	android:exported
+		ADDED from AndroidManifest.xml:169:13
+	android:name
+		ADDED from AndroidManifest.xml:168:13
+intent-filter#com.baidu.android.pushservice.action.PUSH_SERVICE
+ADDED from AndroidManifest.xml:171:13
+action#com.baidu.android.pushservice.action.PUSH_SERVICE
+ADDED from AndroidManifest.xml:172:17
+	android:name
+		ADDED from AndroidManifest.xml:172:25
+service#com.baidu.android.pushservice.CommandService
+ADDED from AndroidManifest.xml:175:9
+	android:exported
+		ADDED from AndroidManifest.xml:177:13
+	android:name
+		ADDED from AndroidManifest.xml:176:13
+activity#com.mob.tools.MobUIShell
+ADDED from AndroidManifest.xml:179:9
+	android:windowSoftInputMode
+		ADDED from AndroidManifest.xml:184:13
+	android:screenOrientation
+		ADDED from AndroidManifest.xml:183:13
+	android:configChanges
+		ADDED from AndroidManifest.xml:182:13
+	android:theme
+		ADDED from AndroidManifest.xml:181:13
+	android:name
+		ADDED from AndroidManifest.xml:180:13
+intent-filter#android.intent.action.VIEW+android.intent.category.BROWSABLE+android.intent.category.DEFAULT
+ADDED from AndroidManifest.xml:185:13
+action#android.intent.action.VIEW
+ADDED from AndroidManifest.xml:187:17
+	android:name
+		ADDED from AndroidManifest.xml:187:25
+category#android.intent.category.BROWSABLE
+ADDED from AndroidManifest.xml:188:17
+	android:name
+		ADDED from AndroidManifest.xml:188:27
+category#android.intent.category.DEFAULT
+ADDED from AndroidManifest.xml:189:17
+	android:name
+		ADDED from AndroidManifest.xml:189:27
+activity#boom.boom.wxapi.WXEntryActivity
+ADDED from AndroidManifest.xml:192:9
+	android:screenOrientation
+		ADDED from AndroidManifest.xml:197:13
+	android:configChanges
+		ADDED from AndroidManifest.xml:195:13
+	android:theme
+		ADDED from AndroidManifest.xml:194:13
+	android:exported
+		ADDED from AndroidManifest.xml:196:13
+	android:name
+		ADDED from AndroidManifest.xml:193:13
