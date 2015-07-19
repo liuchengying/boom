@@ -152,6 +152,7 @@ public class Main_activity extends Activity {
                 @Override
                 public void run() {
                     Map = hashMap;
+
                     comletedPlat = platform;
                     userId = platform.getDb().getUserId();
                     if (platform.getName().equals("SinaWeibo")) {
