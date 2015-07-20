@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:expandableTextView="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center_horizontal"
+    android:orientation="vertical"
+    >
+    <boom.boom.ExpandableTextView.ExpandableTextView
+        android:id="@+id/expand_text_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        expandableTextView:maxCollapsedLines="4"
+        expandableTextView:animAlphaStart="1">
+        <RelativeLayout
+            android:orientation="vertical" android:layout_width="335dp"
+            android:layout_height="wrap_content"
+
+            android:background="@drawable/android_94"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="18dp">
+
+
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/xxx_cursor"
+                android:background="@drawable/android_99"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="15dp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="圣诞有礼 挑战积分双倍送！"
+                android:id="@+id/xxx_title"
+                android:layout_gravity="center_horizontal"
+                android:password="false"
+                android:textColor="#ffe24723"
+                android:textSize="16dp"
+
+                android:layout_toRightOf="@+id/xxx_cursor"
+                android:layout_toEndOf="@+id/xxx_cursor"
+                android:layout_marginLeft="10dp"
+                android:layout_alignTop="@+id/xxx_cursor" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:text="活动期间 战可双\n\n\n\n\n\n\n\nn\n\n"
+                android:id="@+id/xxx_content"
+                android:textColor="#ff959595"
+                android:layout_gravity="center_vertical|right"
+                android:textSize="15dp"
+                android:singleLine="false"
+                android:layout_alignLeft="@+id/xxx_title"
+                android:layout_alignStart="@+id/xxx_title"
+                android:layout_below="@+id/xxx_title"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginRight="20dp" />
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:id="@+id/imageView9"
+                android:background="@drawable/android_97"
+
+                android:layout_alignTop="@+id/xxx_time"
+                android:layout_toLeftOf="@+id/xxx_time"
+                android:layout_toStartOf="@+id/xxx_time" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="2014.12.31 21:56"
+                android:id="@+id/xxx_time"
+                android:textColor="#ff020202"
+
+
+                android:layout_below="@+id/xxx_content"
+                android:layout_alignRight="@+id/xxx_title"
+                android:layout_alignEnd="@+id/xxx_title" />
+
+
+        </RelativeLayout>
+    </boom.boom.ExpandableTextView.ExpandableTextView>
+</LinearLayout>

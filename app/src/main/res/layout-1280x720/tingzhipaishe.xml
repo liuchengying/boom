@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffdadada"
+    android:orientation="vertical"
+    android:weightSum="1">
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="60dp"
+        android:background="#ffe14723"
+        android:orientation="horizontal"
+        android:gravity="center">
+        <LinearLayout
+            android:layout_weight="0.39"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:gravity="center_vertical"
+            >
+            <Button
+
+                android:id="@+id/tingzhipaishefanhui"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/android_20"
+                android:gravity="center_horizontal"
+                android:layout_marginLeft="10dp"/>
+            <!--视频录制界面返回按钮   左上角-->
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:gravity="center_vertical">
+            <TextView
+                android:layout_marginLeft="60dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="拍摄挑战"
+                android:textSize="25sp" />
+        </LinearLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center">
+        <VideoView
+            android:layout_width="fill_parent"
+            android:layout_height="260dp" />
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/android_73"
+            android:gravity="center"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:text="20S"
+                android:layout_marginLeft="10dp"/>
+            <ImageView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:src="@drawable/android_70"/>
+        </LinearLayout>
+        <FrameLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_gravity="center"
+            android:background="@drawable/android_69">
+            <Button
+                android:id="@+id/tingzhipaishe"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/android_74"
+                android:layout_gravity="center"/>
+            <!--停止录制视频按钮-->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="停止"
+                android:layout_gravity="center"
+                android:textSize="25sp"/>
+
+        </FrameLayout>
+
+    </LinearLayout>
+
+
+</LinearLayout>

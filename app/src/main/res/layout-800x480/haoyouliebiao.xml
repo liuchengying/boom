@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<boom.boom.myview.SildingFinishLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:id="@+id/sildingFinishLayout">
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent"
+        android:background="#ffdadada"
+        >
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="#ffe14723">
+            <RelativeLayout
+                android:id="@+id/haoyouliebiao_fh"
+                android:layout_width="75dp"
+                android:layout_height="match_parent">
+                <Button
+                    android:layout_centerVertical="true"
+                    android:id="@+id/zhucufanhui"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/android_20"
+                    android:gravity="center_horizontal"
+                    android:layout_marginLeft="10dp"/>
+                </RelativeLayout>
+            <TextView
+                android:layout_centerInParent="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="好友列表"
+                android:textSize="22sp"
+                android:textColor="#eeeeee"
+                />
+            </RelativeLayout>
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/haoyouliebiao_frame">
+
+        </FrameLayout>
+<!--
+        <LinearLayout
+            android:id="@+id/yincang_haoyouliebiao"
+            android:layout_width="fill_parent"
+            android:layout_height="60dp"
+            android:background="#ffe14723"
+            android:orientation="horizontal"
+            android:gravity="center"
+
+
+            >
+            <LinearLayout
+                android:id="@+id/haoyouliebiao_fh"
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:gravity="center_vertical"
+                >
+                <Button
+                    android:id="@+id/zhucufanhui"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/android_20"
+                    android:gravity="center_horizontal"
+                    android:layout_marginLeft="10dp"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:gravity="center">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="好友列表"
+                    android:textSize="25sp"
+                    android:textColor="#eeeeee"
+
+
+                    />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:gravity="right">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="    "
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginRight="10dp"/>
+            </LinearLayout>
+
+
+        </LinearLayout>
+-->
+
+    </LinearLayout>
+</boom.boom.myview.SildingFinishLayout>

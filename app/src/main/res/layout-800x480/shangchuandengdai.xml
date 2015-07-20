@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="1"
+    android:background="#ffdadada">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:background="#ffe14723"
+        android:weightSum="1">
+
+
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="0.33">
+            <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/android_20"
+            android:gravity="center_horizontal"
+            android:layout_marginLeft="10dp"
+            android:layout_gravity="center_vertical"
+            android:id="@+id/shangchuandengdaifanhui" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:gravity="center_vertical">
+            <TextView
+                android:layout_marginLeft="45dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="上传等待"
+                android:textSize="28sp"
+                android:textColor="#ffffffff" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <FrameLayout
+           android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <boom.boom.myview.ProgressBar
+
+
+            android:id="@+id/progress123"
+            android:layout_width="265dp"
+            android:layout_height="265dp"
+            android:layout_gravity="center"
+            style="?android:attr/progressBarStyleLarge"/>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:id="@+id/imageView"
+            android:layout_gravity="center"
+            android:src="@drawable/android_170" />
+
+
+
+    </FrameLayout>
+    <LinearLayout
+        android:layout_marginTop="5dp"
+        android:layout_width="fill_parent"
+        android:layout_height="40dp"
+        android:gravity="center">
+        <TextView
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text=""
+            android:id="@+id/scdd_jindu"
+            android:layout_gravity="center"
+            android:textColor="#ffe14723"
+            android:textSize="25sp" />
+        </LinearLayout>
+
+
+<LinearLayout
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    android:gravity="bottom">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="注意:"
+        android:id="@+id/textView4"
+        android:layout_gravity="center_horizontal"
+        android:textColor="#ffe24723" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="保持网络环境畅通"
+        android:id="@+id/textView2"
+        android:layout_gravity="center_horizontal"
+        android:textColor="#ffe24723" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="切勿在上传过程中离开此页面"
+        android:id="@+id/textView3"
+        android:layout_gravity="center_horizontal"
+        android:textColor="#ffe24723" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="建议您在WIFI环境下上传视频"
+        android:id="@+id/textView5"
+        android:layout_gravity="center_horizontal"
+        android:textColor="#ffe24723" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="放弃视频"
+        android:id="@+id/fangqishangchuan"
+        android:layout_gravity="center_horizontal|bottom"
+        android:background="@drawable/android_77"
+        android:textColor="#ffffffff"
+        />
+</LinearLayout>
+</LinearLayout>

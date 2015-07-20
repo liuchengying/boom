@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<boom.boom.myview.SildingFinishLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:id="@+id/sildingFinishLayout">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:background="#ffdadada"
+    android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="60dp"
+        android:background="#ffe14723"
+        android:orientation="horizontal"
+        android:gravity="center"
+
+
+        >
+        <LinearLayout
+            android:layout_weight="0.40"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:gravity="center_vertical"
+            >
+            <Button
+                android:id="@+id/zhucufanhui"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/android_20"
+                android:gravity="center_horizontal"
+                android:layout_marginLeft="10dp"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:gravity="center_vertical">
+            <TextView
+                android:layout_marginLeft="60dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="设置密码"
+                android:textSize="25sp"
+                android:textColor="#eeeeee"
+
+
+                />
+        </LinearLayout>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="150dp"
+        android:gravity="center_horizontal"
+        >
+        <ImageView
+            android:layout_width="160dp"
+            android:layout_height="100dp"
+            android:src="@drawable/android_19"
+            android:layout_gravity="bottom" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        >
+        <EditText
+            android:id="@+id/zhuceyonghuming"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/android_17"
+            android:hint="请输入用户名"
+            android:gravity="center"
+            android:layout_marginTop="10dp"/>
+        <EditText
+            android:id="@+id/zhucemima"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/android_17"
+            android:hint="请输入密码"
+            android:gravity="center"
+            android:layout_marginTop="10dp"
+            android:password="true"/>
+        <TextView
+            android:id="@+id/zhucemima1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:text="密码必须含有a-z字母以及阿拉伯数字"
+            android:textColor="#FF0000"
+            android:gravity="center"
+            android:layout_marginTop="10dp"
+            />
+        <Button
+            android:id="@+id/zhucetijiao"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/android_18"
+            android:hint="提交"
+            android:gravity="center"
+            android:layout_marginTop="10dp"/>
+    </LinearLayout>
+
+
+
+</LinearLayout>
+</boom.boom.myview.SildingFinishLayout>

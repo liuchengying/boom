@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_horizontal">
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/android_123"
+        android:orientation="horizontal"
+        android:layout_marginTop="15dp"
+        >
+        <LinearLayout
+            android:layout_width="100dp"
+            android:layout_height="fill_parent"
+            >
+            <boom.boom.myview.RoundedImageView
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_width="85dp"
+                android:layout_height="85dp"
+                android:src="@drawable/android_130"
+                android:id="@+id/search_avatar" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_marginLeft="0dp"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:orientation="vertical">
+            <TextView
+                android:layout_marginTop="8dp"
+                android:layout_width="226dp"
+                android:layout_height="wrap_content"
+                android:text="XXX"
+                android:textSize="25sp"
+                android:textColor="#ff0000"
+                android:id="@+id/search_nickname" />
+            <TextView
+                android:gravity="center_vertical"
+                android:id="@+id/lyb_text"
+                android:layout_width="230dp"
+                android:layout_height="30dp"
+                android:text="点击访问个人主页"
+                android:textSize="16sp"/>
+            <TextView
+                android:layout_width="230dp"
+                android:layout_height="35dp"
+                android:text="共完成45个挑战，累计获得1390积分"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</LinearLayout>

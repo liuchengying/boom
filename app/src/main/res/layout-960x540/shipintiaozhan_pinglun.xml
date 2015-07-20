@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<boom.boom.myview.SildingFinishLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:id="@+id/sildingFinishLayout">
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="#ffdadada"
+        >
+    <FrameLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="50dp"
+    android:id="@+id/shipinpinglun_frame">
+
+    </FrameLayout>
+     <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="#ffe14723">
+            <RelativeLayout
+                android:id="@+id/shipinpinglun_fh"
+                android:layout_width="75dp"
+                android:layout_height="match_parent">
+                <Button
+                    android:layout_centerVertical="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/android_20"
+                    android:gravity="center_horizontal"
+                    android:layout_marginLeft="10dp"
+                    android:layout_gravity="center_vertical"
+                    />
+                </RelativeLayout>
+            <TextView
+                android:layout_centerInParent="true"
+                android:layout_marginLeft="50dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="评论"
+                android:textSize="22sp"
+                android:textColor="#ffffffff" />
+            <RelativeLayout
+                android:id="@+id/pinglun_liuyan"
+                android:layout_width="75dp"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true">
+                <TextView
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="留言"
+                    android:textSize="22sp"
+                    android:textColor="#ffffffff" />
+                </RelativeLayout>
+            </RelativeLayout>
+
+
+
+    </RelativeLayout>
+</boom.boom.myview.SildingFinishLayout>
