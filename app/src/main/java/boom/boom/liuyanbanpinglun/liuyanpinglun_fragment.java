@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.SimpleAdapter;
@@ -55,6 +56,26 @@ public class liuyanpinglun_fragment extends Fragment {
     private LinearLayout lypl_horizon;
     ToggleButton mTogBtn;
     private ArrayList<String> avatarlist;
+    public static void setListViewHeightBasedOnChildren(ListView listView) {
+        if(listView == null) return;
+
+        ListAdapter listAdapter = listView.getAdapter();
+        if (listAdapter == null) {
+            // pre-condition
+            return;
+        }
+
+        int totalHeight = 0;
+        for (int i = 0; i < listAdapter.getCount(); i++) {
+            View listItem = listAdapter.getView(i, null, listView);
+            listItem.measure(0, 0);
+            totalHeight += listItem.getMeasuredHeight();
+        }
+
+        ViewGroup.LayoutParams params = listView.getLayoutParams();
+        params.height = totalHeight + (listView.getDividerHeight() * (listAdapter.getCount() - 1));
+        listView.setLayoutParams(params);
+    }
 
     List<Map<String , Object>> listItem = new ArrayList<Map<String,Object>>();
     android.os.Handler myMessageHandler = new android.os.Handler() {
@@ -63,6 +84,7 @@ public class liuyanpinglun_fragment extends Fragment {
             super.handleMessage(msg);
             mSimpleAdapter.notifyDataSetChanged();
             LoadImage();
+            setListViewHeightBasedOnChildren(lv);
         }
     };
     private void LoadImage (){
@@ -277,7 +299,7 @@ public class liuyanpinglun_fragment extends Fragment {
             }
         });
 
-
+        setListViewHeightBasedOnChildren(lv);
         mTogBtn.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView,boolean isChecked) {
@@ -301,6 +323,7 @@ public class liuyanpinglun_fragment extends Fragment {
         super.onActivityResult(requestCode, resultCode, data);
         LoadData();
         mSimpleAdapter.notifyDataSetChanged();
+        setListViewHeightBasedOnChildren(lv);
     }
 
 

@@ -3,6 +3,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#ffdadada">
+    <ScrollView
+
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent">
+    <LinearLayout
+        android:gravity="center_horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
     <LinearLayout
 
         android:id="@+id/list_all"
@@ -302,16 +311,17 @@
                 android:layout_height="25dp"
                 android:src="@drawable/android_205"/>
         </LinearLayout>
-        <boom.boom.myview.Touchanimation
+        <ListView
 
             android:layout_width="332dp"
             android:layout_height="fill_parent"
             android:id="@+id/shipinpinglun_listview"
             >
 
-        </boom.boom.myview.Touchanimation>
+        </ListView>
 
     </LinearLayout>
 
-
+    </LinearLayout>
+    </ScrollView>
 </LinearLayout>

@@ -17,6 +17,7 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.SimpleAdapter;
@@ -72,12 +73,33 @@ public class Shipinpinglun_fragment extends Fragment{
     private LinearLayout sppl_horizon;
     private ArrayList<String> avatarlist;
     private ArrayList<HashMap<String, Object>> listItem= new ArrayList<HashMap<String,     Object>>();
+    public static void setListViewHeightBasedOnChildren(ListView listView) {
+        if(listView == null) return;
+
+        ListAdapter listAdapter = listView.getAdapter();
+        if (listAdapter == null) {
+            // pre-condition
+            return;
+        }
+
+        int totalHeight = 0;
+        for (int i = 0; i < listAdapter.getCount(); i++) {
+            View listItem = listAdapter.getView(i, null, listView);
+            listItem.measure(0, 0);
+            totalHeight += listItem.getMeasuredHeight();
+        }
+
+        ViewGroup.LayoutParams params = listView.getLayoutParams();
+        params.height = totalHeight + (listView.getDividerHeight() * (listAdapter.getCount() - 1));
+        listView.setLayoutParams(params);
+    }
     android.os.Handler myMessageHandler = new android.os.Handler() {
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
             mSimpleAdapter.notifyDataSetChanged();
             LoadImage();
+            setListViewHeightBasedOnChildren(lv);
         }
     };
     Handler getdataHandler = new Handler(new Handler.Callback() {
@@ -146,6 +168,7 @@ public class Shipinpinglun_fragment extends Fragment{
             }else {
                 Toast.makeText(getActivity(), "网络连接错误！请检查网络连接", Toast.LENGTH_SHORT).show();
             }
+            setListViewHeightBasedOnChildren(lv);
             return true;
         }
     });
@@ -196,6 +219,7 @@ public class Shipinpinglun_fragment extends Fragment{
         super.onActivityResult(requestCode, resultCode, data);
         LoadData();
         mSimpleAdapter.notifyDataSetChanged();
+        setListViewHeightBasedOnChildren(lv);
     }
 
     @Override
@@ -243,6 +267,7 @@ public class Shipinpinglun_fragment extends Fragment{
         cl_id = intent.getStringExtra("cl_id");
         ID = intent.getStringExtra("ID");
         LoadData();
+        setListViewHeightBasedOnChildren(lv);
         /*nickname = intent.getStringExtra("nickname");
         cl_name = intent.getStringExtra("cl_name");
         date = intent.getStringExtra("date");

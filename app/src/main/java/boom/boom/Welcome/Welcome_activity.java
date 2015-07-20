@@ -140,17 +140,6 @@ public class Welcome_activity extends Activity {
         SysApplication.getInstance().addActivity(this);
         FontManager.changeFonts(FontManager.getContentView(this), this);//字体
         SMSSDK.initSDK(this, "8d930e70baed", "421e26e130df780c049c7c22f07fb18c");
-        try{
-            if(!PushManager.isConnected(Welcome_activity.this))
-                PushManager.startWork(getApplicationContext(),
-                        PushConstants.LOGIN_TYPE_API_KEY,
-                        "0IeoZXE2Wd6pNCjVk9yQAK3H");
-            if (!PushManager.isPushEnabled(Welcome_activity.this)){
-                PushManager.resumeWork(Welcome_activity.this);
-            }
-        }catch (Exception e){
-            e.printStackTrace();
-        }
         try {
             ShareSDK.initSDK(Welcome_activity.this, "8dfb7359498a");
         }catch (Exception e){
