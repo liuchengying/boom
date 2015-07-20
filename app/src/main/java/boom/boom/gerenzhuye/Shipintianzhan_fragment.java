@@ -109,7 +109,6 @@ public class Shipintianzhan_fragment extends Fragment implements XListView.IXLis
     {
         View v=inflater.inflate(R.layout.tianjiahaoyou1, container, false);
         lv= (XListView) v.findViewById(R.id.listView4);
-        lv.mContext = getActivity();
         try {
             mSimpleAdapter = new SimpleAdapter(getActivity(), listItem,//需要绑定的数据
                     R.layout.shipintiaozhan_item,//每一行的布局//动态数组中的数据源的键对应到定义布局的View中
@@ -128,7 +127,9 @@ public class Shipintianzhan_fragment extends Fragment implements XListView.IXLis
         lv.setPullRefreshEnable(true);
         lv.setXListViewListener(this);
         lv.setAdapter(mSimpleAdapter);
-        all = ((Gerenzhuye_activity)getActivity()).allLinear;
+        lv.mContext = getActivity();
+        lv.transit = (ViewGroup) getActivity().findViewById(R.id.shangbanbufen);
+        lv.transit_top = (ViewGroup) getActivity().findViewById(R.id.transit_top);
 
         lv.setOnTouchListener(new View.OnTouchListener() {
             @Override

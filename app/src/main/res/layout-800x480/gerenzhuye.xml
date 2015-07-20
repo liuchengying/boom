@@ -126,7 +126,7 @@
          android:background="#ffe14723"
          android:orientation="horizontal"
          android:gravity="center"
-
+         android:id="@+id/transit_top"
 
          >
          <RelativeLayout

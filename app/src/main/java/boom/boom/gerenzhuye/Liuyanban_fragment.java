@@ -157,6 +157,8 @@ public class Liuyanban_fragment extends Fragment implements XListView.IXListView
         lv.setXListViewListener(this);
         lv.setAdapter(mSimpleAdapter);
         lv.mContext = getActivity();
+        lv.transit = (ViewGroup) getActivity().findViewById(R.id.shangbanbufen);
+        lv.transit_top = (ViewGroup) getActivity().findViewById(R.id.transit_top);
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {

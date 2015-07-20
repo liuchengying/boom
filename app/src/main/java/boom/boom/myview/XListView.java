@@ -7,6 +7,7 @@ import android.util.AttributeSet;
 import android.util.DisplayMetrics;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.ViewTreeObserver.OnGlobalLayoutListener;
 import android.view.animation.Animation;
 import android.view.animation.AnimationSet;
@@ -69,6 +70,10 @@ public class XListView extends ListView implements OnScrollListener {
 	private final static float OFFSET_RADIO = 1.8f; // support iOS like pull
 				 									// feature.
     public Context mContext;
+	public int offset;
+	public int top_height;
+	public ViewGroup transit_top;
+	public ViewGroup transit;
 	/**
 	 * @param context
 	 */
@@ -294,8 +299,11 @@ public class XListView extends ListView implements OnScrollListener {
 		case MotionEvent.ACTION_MOVE:
             z = ev.getRawY();
             F = z - Y;
+
             try {
                 all = ((Gerenzhuye_activity) mContext).allLinear;
+				top_height = transit_top.getHeight();
+				offset = transit.getHeight();
             }catch (Exception e)
             {
                 e.printStackTrace();
@@ -308,8 +316,9 @@ public class XListView extends ListView implements OnScrollListener {
                         if (!animating) {
                             if (!ok) {
                                 AnimationSet animationSet = new AnimationSet(true);
-                                TranslateAnimation translateAnimation = new TranslateAnimation(0, 0, 0, -500);
+                                TranslateAnimation translateAnimation = new TranslateAnimation(0, 0, 0, -offset);
                                 translateAnimation.setDuration(500);
+								translateAnimation.setFillAfter(true);
                                 translateAnimation.setAnimationListener(new Animation.AnimationListener() {
                                     @Override
                                     public void onAnimationStart(Animation animation) {
@@ -321,7 +330,7 @@ public class XListView extends ListView implements OnScrollListener {
                                         RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(
                                                 all.getLayoutParams());
 
-                                        params.setMargins(0, -400, 0, 0);
+                                        params.setMargins(0, -(offset-top_height), 0, 0);
                                         animating = false;
                                         all.clearAnimation();
                                         all.setLayoutParams(params);
@@ -350,8 +359,9 @@ public class XListView extends ListView implements OnScrollListener {
                         if (!animating) {
                             if (ok) {
                                 AnimationSet animationSet = new AnimationSet(true);
-                                TranslateAnimation translateAnimation = new TranslateAnimation(0, 0, 0, 480);
+                                TranslateAnimation translateAnimation = new TranslateAnimation(0, 0, 0, offset);
                                 translateAnimation.setDuration(500);
+								translateAnimation.setFillAfter(true);
                                 translateAnimation.setAnimationListener(new Animation.AnimationListener() {
                                     @Override
                                     public void onAnimationStart(Animation animation) {
@@ -363,7 +373,7 @@ public class XListView extends ListView implements OnScrollListener {
                                         RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(
                                                 all.getLayoutParams());
 
-                                        params.setMargins(0, 100, 0, 0);
+                                        params.setMargins(0, top_height, 0, 0);
                                         animating = false;
                                         all.clearAnimation();
                                         all.setLayoutParams(params);
