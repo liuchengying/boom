@@ -93,7 +93,7 @@ public class Bianjixinxi_Fragment extends Fragment {
     TextView location;
     EditText school;
     EditText company;
-    EditText email;
+    TextView email;
     EditText sign;
     Bitmap avatar;
     Timer timer;
@@ -230,8 +230,16 @@ public class Bianjixinxi_Fragment extends Fragment {
                     school.setText(editInformation.school);
                     company = (EditText) Bianjixinxi_Fragment.thisView.findViewById(R.id.bjxx_gs);
                     company.setText(editInformation.company);
-                    email = (EditText) Bianjixinxi_Fragment.thisView.findViewById(R.id.bjxx_yx);
+                    email = (TextView) Bianjixinxi_Fragment.thisView.findViewById(R.id.bjxx_yx);
                     email.setText(editInformation.email);
+                    email.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent intent = new Intent();
+                            intent.setClass(getActivity(),Youxiangyanzheng_activity.class);
+                            startActivityForResult(intent,500);
+                        }
+                    });
                     sz_touxiang.setImageBitmap(Static.avatarImage);
                     save = (RelativeLayout) getActivity().findViewById(R.id.bianjixinxi_baocun);
                     dialog.dismiss();
@@ -247,7 +255,7 @@ public class Bianjixinxi_Fragment extends Fragment {
                             editInformation.address = location.getText().toString();
                             editInformation.school = school.getText().toString();
                             editInformation.company = company.getText().toString();
-                            editInformation.email = email.getText().toString();
+                            //editInformation.email = email.getText().toString();
                             editInformation.avatarImage = avatar;
                             editInformation.uniquesign = sign.getText().toString();
 
@@ -302,6 +310,7 @@ public class Bianjixinxi_Fragment extends Fragment {
             e.printStackTrace();
         }
     }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -458,6 +467,8 @@ public class Bianjixinxi_Fragment extends Fragment {
                 default:
                     break;
             }
+        }else if (resultCode == 500){
+            email.setText(data.getStringExtra("data"));
         }
     }
 

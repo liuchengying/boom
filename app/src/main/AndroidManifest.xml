@@ -123,7 +123,7 @@
         <activity android:name= "boom.boom.search_friends.Search_friends_activity"
             android:theme="@android:style/Theme.Translucent"></activity>
         <activity android:name= "boom.boom.youxiangyanzheng.Youxiangyanzheng_activity"
-            android:theme="@android:style/Theme.Translucent"></activity>
+            android:theme="@android:style/Theme.NoTitleBar"></activity>
         <receiver android:name="boom.boom.api.MyReceiver" >
             <intent-filter>
 

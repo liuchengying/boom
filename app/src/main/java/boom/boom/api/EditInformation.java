@@ -155,7 +155,7 @@ public class EditInformation implements Serializable {
                 post.add(new BasicNameValuePair("location", Utils.UTF8str(address)));
                 post.add(new BasicNameValuePair("school", Utils.UTF8str(school)));
                 post.add(new BasicNameValuePair("company", Utils.UTF8str(company)));
-                post.add(new BasicNameValuePair("email", Utils.UTF8str(email)));
+                //post.add(new BasicNameValuePair("email", Utils.UTF8str(email)));
                 post.add(new BasicNameValuePair("uniquesign", Utils.UTF8str(uniquesign)));
                 post.add(new BasicNameValuePair("avatar", Utils.UTF8str(avatar)));
                 new Thread(new Runnable() {

@@ -276,7 +276,7 @@ public class tongxunlu_activity extends Activity{
                     horizon.addView(imageView);
                     Bitmap avatar;
                     final Object data = list.get(i).get("avatar");
-                    if ((avatar = AsyncLoadAvatar.GetLocalImage((String) data)) == null)           //获取存在本地的Bitmap
+                    if ((avatar = AsyncLoadAvatar.GetLocalImage(tongxunlu_activity.this,(String) data)) == null)           //获取存在本地的Bitmap
                     {
                         Thread thread = new Thread(new Runnable() {
                             @Override
@@ -326,7 +326,7 @@ public class tongxunlu_activity extends Activity{
             holder.cb.setChecked(getIsSelected().get(list.get(position).get("position")));
             Bitmap avatar;
             final Object data = list.get(position).get("avatar");
-            if ((avatar = AsyncLoadAvatar.GetLocalImage((String) data)) == null)           //获取存在本地的Bitmap
+            if ((avatar = AsyncLoadAvatar.GetLocalImage(tongxunlu_activity.this,(String) data)) == null)           //获取存在本地的Bitmap
             {
                 Thread thread = new Thread(new Runnable() {
                     @Override

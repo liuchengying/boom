@@ -96,7 +96,7 @@ public class  Gerenzhuye_activity extends FragmentActivity
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
-            avatar = AsyncLoadAvatar.GetLocalImage((String) data);
+            avatar = AsyncLoadAvatar.GetLocalImage(Gerenzhuye_activity.this,(String) data);
             gerenzhuye_touxing.setImageBitmap(avatar);
         }
     };
@@ -218,7 +218,7 @@ public class  Gerenzhuye_activity extends FragmentActivity
                     sign.setText(obj.getString("uniquesign"));
                     gerenzhuye_touxing = (CircleImageView) findViewById(R.id.gerenzhuye_touxiang);
                     data = obj.getString("avatar");
-                    if ((avatar = AsyncLoadAvatar.GetLocalImage((String) data)) == null)           //获取存在本地的Bitmap
+                    if ((avatar = AsyncLoadAvatar.GetLocalImage(Gerenzhuye_activity.this,(String) data)) == null)           //获取存在本地的Bitmap
                     {
                         Thread thread = new Thread(new Runnable() {
                             @Override

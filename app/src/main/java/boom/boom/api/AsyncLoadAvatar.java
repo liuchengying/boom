@@ -1,8 +1,10 @@
 package boom.boom.api;
 
+import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -29,10 +31,15 @@ import boom.boom.R;
 
 public class AsyncLoadAvatar {
 
-    public static Bitmap GetLocalImage(String avatarUID)
+    public static Bitmap GetLocalImage(Context context, String avatarUID)
     {
         String pathString = Utils.getImagePath() + avatarUID + ".png";
         Bitmap bitmap = null;
+        if (avatarUID.equals("null")||avatarUID.equals("")){
+            Resources res= context.getResources();
+            bitmap = BitmapFactory.decodeResource(res,R.drawable.android_150);
+            return bitmap;
+        }
         try
         {
             File file = new File(pathString);

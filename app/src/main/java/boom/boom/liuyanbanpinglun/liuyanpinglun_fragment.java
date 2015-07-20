@@ -75,7 +75,7 @@ public class liuyanpinglun_fragment extends Fragment {
             lypl_horizon.addView(imageView);
             Bitmap avatar;
             final String data = avatarlist.get(i);
-            if ((avatar = AsyncLoadAvatar.GetLocalImage((String) data)) == null)           //获取存在本地的Bitmap
+            if ((avatar = AsyncLoadAvatar.GetLocalImage(getActivity(),(String) data)) == null)           //获取存在本地的Bitmap
             {
                 Thread thread = new Thread(new Runnable() {
                     @Override
@@ -215,7 +215,7 @@ public class liuyanpinglun_fragment extends Fragment {
                 Bitmap avatar;
                 if (view instanceof ImageView && data instanceof String) {
                     ImageView imageView = (ImageView) view;
-                    if ((avatar = AsyncLoadAvatar.GetLocalImage((String) data)) == null)           //获取存在本地的Bitmap
+                    if ((avatar = AsyncLoadAvatar.GetLocalImage(getActivity(),(String) data)) == null)           //获取存在本地的Bitmap
                     {
                         Thread thread = new Thread(new Runnable() {
                             @Override

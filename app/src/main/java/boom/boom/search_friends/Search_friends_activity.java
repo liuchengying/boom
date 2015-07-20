@@ -78,7 +78,7 @@ public class Search_friends_activity extends Activity{
                 Bitmap avatar;
                 if (view instanceof ImageView && data instanceof String) {
                     ImageView imageView = (ImageView) view;
-                    if ((avatar = AsyncLoadAvatar.GetLocalImage((String) data)) == null)           //获取存在本地的Bitmap
+                    if ((avatar = AsyncLoadAvatar.GetLocalImage(Search_friends_activity.this,(String) data)) == null)           //获取存在本地的Bitmap
                     {
                         Thread thread = new Thread(new Runnable() {
                             @Override

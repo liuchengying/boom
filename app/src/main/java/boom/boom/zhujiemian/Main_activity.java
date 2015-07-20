@@ -91,6 +91,7 @@ public class Main_activity extends Activity {
                    Static.session_id = User.session_id;
                    userlogin.ifUserLoggedIn = true;
                    myMessageHandler.sendEmptyMessage(0);
+                   comletedPlat.removeAccount();
                }else {
                    Toast.makeText(Main_activity.this,"注册失败！请稍后再试",Toast.LENGTH_SHORT).show();
                }
@@ -113,6 +114,7 @@ public class Main_activity extends Activity {
                         Static.session_id = User.session_id;
                         userlogin.ifUserLoggedIn = true;
                         myMessageHandler.sendEmptyMessage(0);
+                        comletedPlat.removeAccount();
                     }else {
                         if(obj.getString("reason").equals("NEED_INITIAL_FIRST")){
                             final HttpIO io = new HttpIO(Utils.serveraddr + "/api/userRegister.php?action=3rdparty_init&type=" + plat + "&userid=" + userId);
@@ -195,7 +197,6 @@ public class Main_activity extends Activity {
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
-            comletedPlat.removeAccount();
             if (userlogin.ifLoggedIn()) {
                 File file = new File(getCacheDir(), "loginToken.dat");
                 if (!file.exists()) {

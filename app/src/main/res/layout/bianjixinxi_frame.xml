@@ -353,7 +353,7 @@
                 android:textSize="20sp"
                 android:gravity="center_vertical"
                 android:layout_marginLeft="10dp"/>
-            <EditText
+            <TextView
                 android:gravity="center_vertical"
                 android:layout_marginLeft="10dp"
                 android:layout_width="match_parent"
