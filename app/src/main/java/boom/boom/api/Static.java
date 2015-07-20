@@ -31,4 +31,6 @@ public class Static {
     public static float width;
     public static float height;
     public static BadgeView badgeView;
+    public static String user_id;
+    public static String channel_id;
 }

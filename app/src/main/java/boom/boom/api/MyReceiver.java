@@ -14,6 +14,8 @@ public class MyReceiver extends PushMessageReceiver {
     @Override
     public void onBind(Context context, int i, String s, String s1, String s2, String s3) {
         Log.e("push", i + "   " + s );
+        Static.user_id = s1;
+        Static.channel_id = s2;
     }
 
     @Override

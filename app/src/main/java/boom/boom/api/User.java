@@ -83,6 +83,8 @@ public class User {
         get.addItem("action", "login");
         get.addItem("user",this.username);
         get.addItem("passhash",Utils.StrToMD5(this.password));
+        get.addItem("user_id",Static.user_id);
+        get.addItem("channel_id",Static.channel_id);
         String url_request = get.toString();
         final HttpIO io = new HttpIO(url_request);
         new Thread(new Runnable() {

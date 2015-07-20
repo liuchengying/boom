@@ -119,17 +119,7 @@ public class Tiaozhan_activity extends FragmentActivity {
                 mBadgeView.setTextSize(12);
                 xiaoxizhongxin_jiaobiao.addView(mBadgeView);
                 Static.badgeView = mBadgeView;
-                try{
-                    if(!PushManager.isConnected(Tiaozhan_activity.this))
-                        PushManager.startWork(getApplicationContext(),
-                            PushConstants.LOGIN_TYPE_API_KEY,
-                            "0IeoZXE2Wd6pNCjVk9yQAK3H");
-                    if (!PushManager.isPushEnabled(Tiaozhan_activity.this)){
-                        PushManager.resumeWork(Tiaozhan_activity.this);
-                    }
-                }catch (Exception e){
-                    e.printStackTrace();
-                }
+
 
 
                 tz_grzy = (Button) findViewById(R.id.tz_grzy);
