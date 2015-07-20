@@ -114,6 +114,7 @@ public class Welcome_activity extends Activity {
                     Intent intent = new Intent();
                     intent.setClass(Welcome_activity.this, Tiaozhan_activity.class);
                     startActivity(intent);
+                    Welcome_activity.this.finish();
                 }else{
                     Intent intent = new Intent(Welcome_activity.this,Main_activity.class);
                     intent.putExtra("State", 3);
