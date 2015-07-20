@@ -58,7 +58,7 @@ public class Mimazhaohui_activity extends Activity {
                 Intent intent = new Intent();
                 intent.setClass(Mimazhaohui_activity.this,Mimazhaohui_phone_activity.class);
                 startActivity(intent);
-
+                finish();
             }
         });
         mmzh_emill.setOnClickListener(new View.OnClickListener() {
@@ -67,6 +67,7 @@ public class Mimazhaohui_activity extends Activity {
                 Intent intent = new Intent();
                 intent.setClass(Mimazhaohui_activity.this, Mimazhaohui_emall_activity.class);
                 startActivity(intent);
+                finish();
     }});
     }
     @Override

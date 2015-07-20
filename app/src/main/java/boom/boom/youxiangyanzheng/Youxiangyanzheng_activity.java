@@ -72,6 +72,8 @@ public class Youxiangyanzheng_activity extends Activity {
                             Toast.makeText(Youxiangyanzheng_activity.this,"验证码错误！",Toast.LENGTH_SHORT).show();
                         }else if (obj.getString("reason").equals("CURRENT_MAIL_DID_NOT_APPLY")){
                             Toast.makeText(Youxiangyanzheng_activity.this,"请先获取验证码！",Toast.LENGTH_SHORT).show();
+                        }else {
+                            Toast.makeText(Youxiangyanzheng_activity.this, "提交失败！",Toast.LENGTH_SHORT).show();
                         }
                     }
                 }catch (Exception e){

@@ -56,17 +56,16 @@
         android:layout_height="match_parent"
         android:gravity="center_horizontal">
         <EditText
-
-            android:id="@+id/email_addr"
+            android:id="@+id/mail_addr"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/android_17"
-            android:hint="请输入邮箱号"
+            android:hint="请输入邮箱地址"
             android:gravity="center"
             android:layout_marginTop="10dp"/>
         <EditText
             android:layout_marginTop="10dp"
-            android:layout_below="@id/zhuceyonghuming"
+            android:layout_below="@id/mail_addr"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/android_102"
@@ -75,8 +74,9 @@
             android:id="@+id/zhmm_emill_yanzhengma"
             />
         <Button
+            android:id="@+id/getvcode"
             android:layout_marginTop="10dp"
-            android:layout_below="@id/zhuceyonghuming"
+            android:layout_below="@id/mail_addr"
             android:layout_toRightOf="@id/zhmm_emill_yanzhengma"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -103,6 +103,7 @@
             android:textColor="#FF0000"
             android:layout_marginTop="10dp"/>
         <Button
+            android:id="@+id/commit"
             android:layout_below="@id/zhmm_emill_text"
             android:layout_marginTop="12dp"
             android:layout_width="wrap_content"

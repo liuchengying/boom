@@ -28,6 +28,8 @@ import java.net.ConnectException;
 import java.net.HttpURLConnection;
 import java.net.URI;
 import java.net.URL;
+import java.net.URLDecoder;
+import java.net.URLEncoder;
 import java.util.List;
 
 import java.util.Timer;
@@ -154,6 +156,7 @@ public class HttpIO {
          *  HttpIO io = new HttpIO("http://example.com/test.php?name=likai");
          *  io.GetToHTTPServer();
          */
+
         String result = null;
         BufferedReader reader = null;
         try {
@@ -219,12 +222,14 @@ public class HttpIO {
         HttpURLConnection urlConn = null;
         BufferedReader buffer = null;
         try {
-            URL url = new URL(GetURL());
+            URL url = new URL( URLDecoder.decode(GetURL(), "UTF-8"));
             if (url != null) {
                 urlConn = (HttpURLConnection) url.openConnection();
                 urlConn.setConnectTimeout(5000);// 设置超时时间
                 urlConn.setRequestProperty("Accept-Encoding", "gzip, deflate");
                 urlConn.setRequestProperty("Cookie","PHPSESSID=" + this.SessionID);
+                urlConn.setRequestProperty("Accept-Charset", "utf-8");
+                urlConn.setRequestProperty("contentType", "utf-8");
                 try {
                     GZIPInputStream gin = new GZIPInputStream(urlConn.getInputStream());
                     in = new InputStreamReader(gin);
