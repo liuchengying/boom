@@ -12,6 +12,7 @@ import android.os.Message;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.baidu.android.pushservice.CustomPushNotificationBuilder;
 import com.baidu.android.pushservice.PushConstants;
 import com.baidu.android.pushservice.PushManager;
 

@@ -12,6 +12,7 @@ import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Message;
 import android.support.v4.app.FragmentActivity;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
@@ -20,6 +21,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.baidu.android.pushservice.CustomPushNotificationBuilder;
 import com.baidu.android.pushservice.PushConstants;
 import com.baidu.android.pushservice.PushManager;
 
@@ -91,6 +93,26 @@ public class Tiaozhan_activity extends FragmentActivity {
         String user_name = Static.username;
         String user_nickname = Static.nickname;
         int user_coins = Static.coins;
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        try{
+                            Log.e("push","try");
+                            if(!PushManager.isConnected(getApplicationContext())) {
+                                PushManager.startWork(getApplicationContext(),
+                                        PushConstants.LOGIN_TYPE_API_KEY,
+                                        "0IeoZXE2Wd6pNCjVk9yQAK3H");
+                                Log.e("push","started");
+                            }
+                            if (!PushManager.isPushEnabled(getApplicationContext())){
+                                PushManager.resumeWork(getApplicationContext());
+                            }
+                        }catch (Exception e){
+                            e.printStackTrace();
+                        }
+                    }
+                }).start();
+
         cehuatouxiang = (myImageView) findViewById(R.id.cehuatouxiang);
         cahuaanniu = (Button) findViewById(R.id.cehuaanniu);
         mLeftMenu = (SlidingMenu) findViewById(R.id.cehuacaidan);

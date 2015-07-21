@@ -18,6 +18,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.baidu.android.pushservice.BasicPushNotificationBuilder;
+import com.baidu.android.pushservice.CustomPushNotificationBuilder;
 import com.baidu.android.pushservice.PushConstants;
 import com.baidu.android.pushservice.PushManager;
 
@@ -50,7 +52,6 @@ import boom.boom.api.SysApplication;
 import boom.boom.api.User;
 import boom.boom.api.UserData;
 import boom.boom.api.Utils;
-import boom.boom.denglu.dengluzhuce_activity;
 import boom.boom.mimazhaohui.Mimazhaohui_activity;
 import boom.boom.tianzhan.Tiaozhan_activity;
 import boom.boom.zhuceyanzheng.Zhuceyanzheng_activity;
@@ -313,23 +314,7 @@ public class Main_activity extends Activity {
         if (!isNetworkAvailable(Main_activity.this)){
             Toast.makeText(getApplicationContext(), "当前没有可用网络！", Toast.LENGTH_LONG).show();
         }
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try{
-                    if(!PushManager.isConnected(Main_activity.this))
-                        PushManager.startWork(getApplicationContext(),
-                                PushConstants.LOGIN_TYPE_API_KEY,
-                                "0IeoZXE2Wd6pNCjVk9yQAK3H");
-                    if (!PushManager.isPushEnabled(Main_activity.this)){
-                        PushManager.resumeWork(Main_activity.this);
-                    }
-                }catch (Exception e){
-                    e.printStackTrace();
-                }
-            }
-        }).start();
-
+ 
         Intent intent = getIntent();
         int state = intent.getIntExtra("State", 3);
         switch (state){

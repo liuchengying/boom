@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
+import android.util.Size;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
@@ -30,6 +31,7 @@ import android.widget.VideoView;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 import boom.boom.FontManager.FontManager;
 import boom.boom.R;
@@ -326,6 +328,8 @@ public class Paishetiaozhan_activity extends Activity implements SurfaceHolder.C
         camera = Camera.open();
         if (camera != null){
             Camera.Parameters params = camera.getParameters();
+            List<Camera.Size> pictsizes = params.getSupportedPictureSizes();
+            List<Camera.Size> pre = params.getSupportedPreviewSizes();
             camera.setParameters(params);
         }
         else {
@@ -333,18 +337,36 @@ public class Paishetiaozhan_activity extends Activity implements SurfaceHolder.C
             finish();
         }
     }
-
+    Camera.Size searchSizes(List<Camera.Size>sizes, double width , double height){
+        Camera.Size rlt = sizes.get(0);
+        double rltdiv = (double)rlt.height/(double)rlt.width;
+        double olddiv = height/width;
+        double min = Math.abs(rltdiv-olddiv);
+        for (int i=1;i<sizes.size();i++){
+            Camera.Size tmpsize = sizes.get(i);
+            double tmpdiv = (double)tmpsize.height/(double)tmpsize.width;
+            double tmpdiff = Math.abs(tmpdiv - olddiv);
+            if(tmpdiff<min){
+                rlt = tmpsize;
+                min = tmpdiff;
+            }
+        }
+        return rlt;
+    }
     @Override
     public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
         if (previewRunning){
             camera.stopPreview();
         }
         Camera.Parameters p = camera.getParameters();
-        //p.setPreviewSize(width, height);
+        List<Camera.Size> pre = p.getSupportedPreviewSizes();
+        Camera.Size size = searchSizes(pre,width,height);
+        //p.setPreviewSize(size.width, size.height);
         //p.setPreviewFormat(PixelFormat.JPEG);
         camera.setDisplayOrientation(90);
         camera.setParameters(p);
-
+        Camera.Size previewSize = p.getPreviewSize();
+        Camera.Size picSize = p.getPictureSize();
         try {
             camera.setPreviewDisplay(holder);
             camera.startPreview();
@@ -417,10 +439,14 @@ public class Paishetiaozhan_activity extends Activity implements SurfaceHolder.C
     }
 
     public void stopRecording(){
-        mediaRecorder.setOnErrorListener(null);
-        mediaRecorder.stop();
-        camera.setPreviewCallback(null);
-        camera.lock();
+        try {
+            mediaRecorder.setOnErrorListener(null);
+            mediaRecorder.stop();
+            camera.setPreviewCallback(null);
+            camera.lock();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
      private void msgbox(){
          final AlertDialog alertDialog=new AlertDialog.Builder(Paishetiaozhan_activity.this).create();

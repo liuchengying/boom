@@ -12,10 +12,20 @@ import boom.boom.xinxizhongxin.xinxizhongxin_activity;
 
 public class MyReceiver extends PushMessageReceiver {
     @Override
-    public void onBind(Context context, int i, String s, String s1, String s2, String s3) {
+    public void onBind(Context context, int i, final String s, final String s1, final String s2, String s3) {
         Log.e("push", i + "   " + s );
         Static.user_id = s1;
         Static.channel_id = s2;
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                HttpIO io = new HttpIO(Utils.serveraddr + "/api/userRegister.php?action=bring_channel&user_id=" + s1 + "&channel_id=" + s2);
+                io.SessionID = Static.session_id;
+                io.GETToHTTPServer();
+                String result = io.getResultData();
+                Log.e("push",result);
+            }
+        }).start();
     }
 
     @Override
@@ -55,9 +65,13 @@ public class MyReceiver extends PushMessageReceiver {
 
     @Override
     public void onNotificationArrived(Context context, String s, String s1, String s2) {
-        Log.e("11", "11");
-        int count = Static.badgeView.getBadgeCount();
-        count++;
-        Static.badgeView.setBadgeCount(count);
+        Log.e("11", s + "  " + s1 + "  " + s2);
+        try {
+            int count = Static.badgeView.getBadgeCount();
+            count++;
+            Static.badgeView.setBadgeCount(count);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 }
