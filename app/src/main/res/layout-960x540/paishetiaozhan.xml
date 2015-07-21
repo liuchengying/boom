@@ -114,6 +114,7 @@
             />
         </LinearLayout>
         <RelativeLayout
+            android:id="@+id/video_btn"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:layout_gravity="center"

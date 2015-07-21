@@ -14,6 +14,7 @@ import android.util.Log;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
+import android.view.ViewTreeObserver;
 import android.view.Window;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
@@ -64,6 +65,10 @@ public class Paishetiaozhan_activity extends Activity implements SurfaceHolder.C
     private VideoView vw;
     private boolean workingState;
     int paishexuanze=0;
+    private RelativeLayout all_hight;
+    private int yidongjuli;
+
+
 
     //private Handler myMessageHandler;
     /*Handler myMessageHandler = new Handler(){
@@ -177,6 +182,8 @@ public class Paishetiaozhan_activity extends Activity implements SurfaceHolder.C
         setContentView(R.layout.paishetiaozhan);
         SysApplication.getInstance().addActivity(this);
         FontManager.changeFonts(FontManager.getContentView(this), this);//字体
+        all_hight = (RelativeLayout) findViewById(R.id.video_btn);
+
         paishefanhui = (RelativeLayout) findViewById(R.id.paishefanhui);
         kaishipaishe = (Button) findViewById(R.id.kaishipaishe);
         fangqipaishe = (Button) findViewById(R.id.fangqipaishe);
@@ -199,7 +206,7 @@ public class Paishetiaozhan_activity extends Activity implements SurfaceHolder.C
             @Override
             public void onClick(View v) {
 
-                    paishexuanze = 1;
+                paishexuanze = 1;
 
                 if (kaishipaishe.getText().equals("开始")) {
                     Message m = new Message();
@@ -231,18 +238,18 @@ public class Paishetiaozhan_activity extends Activity implements SurfaceHolder.C
                     Message mm = new Message();
                     mm.what = 10000;
                     Paishetiaozhan_activity.this.on_thread_start_stop.sendMessage(mm);
-                }else if (kaishipaishe.getText().equals("上传")){
+                } else if (kaishipaishe.getText().equals("上传")) {
                     Intent intent = new Intent();
                     intent.putExtra("file_path", StoreFile.getAbsolutePath());
                     intent.putExtra("elapsed", a);
                     if (!workingState) {
                         intent.putExtra("challenge_name", cl_name);
                         intent.putExtra("challenge_id", cl_id);
-                        intent.putExtra("pf_iv",getIntent().getIntExtra("pf_iv",0));
+                        intent.putExtra("pf_iv", getIntent().getIntExtra("pf_iv", 0));
                         intent.setClass(Paishetiaozhan_activity.this, Shangchuandengdai_activity.class);
                         startActivity(intent);
                         Paishetiaozhan_activity.this.finish();
-                    }else{
+                    } else {
                         setResult(RESULT_OK, intent);
                         Paishetiaozhan_activity.this.finish();
                     }
@@ -264,7 +271,12 @@ public class Paishetiaozhan_activity extends Activity implements SurfaceHolder.C
 
     }
 
+
     public void onStopRecording(){
+        int hight = all_hight.getHeight();
+        int hight2 = kaishipaishe.getHeight();
+
+        yidongjuli = (hight/2)-(hight2/2);
         mediaRecorder.setOnErrorListener(null);
         stopRecording();
         kaishipaishe.setText("上传");
@@ -285,7 +297,7 @@ public class Paishetiaozhan_activity extends Activity implements SurfaceHolder.C
                 RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(
                         kaishipaishe.getLayoutParams());
 
-                params.setMargins(100,135,0,0);
+                params.setMargins(100,yidongjuli ,0,0);
 
                 kaishipaishe.clearAnimation();
                 kaishipaishe.setLayoutParams(params);
