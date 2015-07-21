@@ -179,8 +179,8 @@ public class Tiaozhan_activity extends FragmentActivity {
             public void onClick(View v) {
                 Intent intent = new Intent();
                 intent.setClass(Tiaozhan_activity.this, Guizejieshao_activity.class);
-
                 startActivity(intent);
+                overridePendingTransition(R.anim.base_slide_right_in,R.anim.base_slide_remain);
 
             }
         });

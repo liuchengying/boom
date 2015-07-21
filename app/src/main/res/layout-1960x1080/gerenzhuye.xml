@@ -7,7 +7,7 @@
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="950dp"
+    android:layout_height="965dp"
     android:background="#ffdadada"
     android:orientation="vertical">
  <RelativeLayout
@@ -168,12 +168,12 @@
 
  </RelativeLayout>
 </LinearLayout>
-    <AbsoluteLayout
+    <RelativeLayout
+        android:layout_marginBottom="280dp"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content">
         <LinearLayout
-            android:layout_x="0dp"
-            android:layout_y="520dp"
+
             android:layout_alignParentBottom="true"
             android:visibility="invisible"
             android:layout_width="fill_parent"
@@ -194,8 +194,8 @@
                 />
         </LinearLayout>
         <LinearLayout
-            android:layout_x="0dp"
-            android:layout_y="520dp"
+
+
             android:layout_alignParentBottom="true"
             android:visibility="invisible"
             android:layout_width="fill_parent"
@@ -225,7 +225,7 @@
                 android:background="@drawable/android_221" />
         </LinearLayout>
 
-    </AbsoluteLayout>
+    </RelativeLayout>
 
 
 
