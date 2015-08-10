@@ -222,16 +222,19 @@ public class HttpIO {
         HttpURLConnection urlConn = null;
         BufferedReader buffer = null;
         try {
-            URL url = new URL( URLDecoder.decode(GetURL(), "UTF-8"));
+            URL url = new URL(GetURL());
             if (url != null) {
                 urlConn = (HttpURLConnection) url.openConnection();
                 urlConn.setConnectTimeout(5000);// 设置超时时间
-                urlConn.setRequestProperty("Accept-Encoding", "deflate");
+                //urlConn.setRequestProperty("Accept-Encoding", "utf-8, deflate");
                 urlConn.setRequestProperty("Cookie","PHPSESSID=" + this.SessionID);
+                //urlConn.setRequestProperty("Accept-Charset", "utf-8");
+                //urlConn.setRequestProperty("contentType", "utf-8");
+                urlConn.setRequestProperty("Content-type", "text/html");
                 urlConn.setRequestProperty("Accept-Charset", "utf-8");
                 urlConn.setRequestProperty("contentType", "utf-8");
                 try {
-                    GZIPInputStream gin = new GZIPInputStream(urlConn.getInputStream());
+                    InputStream gin = urlConn.getInputStream();
                     in = new InputStreamReader(gin);
 
                 } catch (ConnectException e) {
