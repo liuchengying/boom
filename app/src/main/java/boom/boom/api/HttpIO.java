@@ -226,7 +226,7 @@ public class HttpIO {
             if (url != null) {
                 urlConn = (HttpURLConnection) url.openConnection();
                 urlConn.setConnectTimeout(5000);// 设置超时时间
-                urlConn.setRequestProperty("Accept-Encoding", "gzip, deflate");
+                urlConn.setRequestProperty("Accept-Encoding", "deflate");
                 urlConn.setRequestProperty("Cookie","PHPSESSID=" + this.SessionID);
                 urlConn.setRequestProperty("Accept-Charset", "utf-8");
                 urlConn.setRequestProperty("contentType", "utf-8");

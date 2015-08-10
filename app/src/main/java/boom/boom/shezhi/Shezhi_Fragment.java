@@ -1,5 +1,6 @@
 package boom.boom.shezhi;
 
+import android.app.AlertDialog;
 import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,10 +10,12 @@ import android.os.Vibrator;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
@@ -179,9 +182,31 @@ public class Shezhi_Fragment extends Fragment {
         tuichuzhanghu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                File file = new File(getActivity().getCacheDir(), "loginToken.dat");
-                if (file.exists())  file.delete();
-                SysApplication.getInstance().exit();
+                final AlertDialog alertDialog=new AlertDialog.Builder(getActivity()).create();
+                alertDialog.show();
+                alertDialog.setCancelable(false);
+                Window window=alertDialog.getWindow();
+                window.setContentView(R.layout.mbox_yesno);
+                TextView yn_title=(TextView)window.findViewById(R.id.yn_text);
+                TextView yn_text=(TextView)window.findViewById(R.id.yn_text);
+                yn_title.setText("注销账户");
+                yn_text.setText("是否注销当前账号？");
+                Button yes = (Button) window.findViewById(R.id.button_ok_yn);
+                Button no = (Button) window.findViewById(R.id.button_cancel_yn);
+                yes.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        File file = new File(getActivity().getCacheDir(), "loginToken.dat");
+                        if (file.exists())  file.delete();
+                        SysApplication.getInstance().exit();
+                    }
+                });
+                no.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        alertDialog.cancel();
+                    }
+                });
 
             }
         });

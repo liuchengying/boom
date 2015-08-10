@@ -217,19 +217,39 @@ public class Bianjixinxi_Fragment extends Fragment {
                     sex.setSelection(editInformation.sex, false);
                     star.setSelection(editInformation.star, false);
                     sign = (EditText) Bianjixinxi_Fragment.thisView.findViewById(R.id.gexingqianming);
-                    sign.setText(editInformation.uniquesign);
+                    if(editInformation.uniquesign.equals("null")){
+                        sign.setText("这家伙很懒，什么也没留下！");
+                    }else{
+                        sign.setText(editInformation.uniquesign);
+                    }
                     nickname = (EditText) Bianjixinxi_Fragment.thisView.findViewById(R.id.bjxx_nc);
                     nickname.setText(editInformation.nickname);
                     age = (EditText) Bianjixinxi_Fragment.thisView.findViewById(R.id.bjxx_nl);
                     age.setText("" + editInformation.age);
                     job = (EditText) Bianjixinxi_Fragment.thisView.findViewById(R.id.bjxx_zy);
-                    job.setText(editInformation.job);
+                    if(editInformation.job.equals("null")){
+                        job.setText("未填写");
+                    }else {
+                        job.setText(editInformation.job);
+                    }
                     location = (TextView) Bianjixinxi_Fragment.thisView.findViewById(R.id.bjxx_szd);
-                    location.setText(editInformation.address);
+                    if(editInformation.address.equals("null")){
+                        location.setText("未选择");
+                    }else {
+                        location.setText(editInformation.address);
+                    }
                     school = (EditText) Bianjixinxi_Fragment.thisView.findViewById(R.id.bjxx_xx);
-                    school.setText(editInformation.school);
+                    if(editInformation.school.equals("null")){
+                        school.setText("未填写");
+                    }else {
+                        school.setText(editInformation.school);
+                    }
                     company = (EditText) Bianjixinxi_Fragment.thisView.findViewById(R.id.bjxx_gs);
-                    company.setText(editInformation.company);
+                    if(editInformation.company.equals("null")){
+                        company.setText("未填写");
+                    }else {
+                        company.setText(editInformation.company);
+                    }
                     email = (TextView) Bianjixinxi_Fragment.thisView.findViewById(R.id.bjxx_yx);
                     email.setText(editInformation.email);
                     email.setOnClickListener(new View.OnClickListener() {

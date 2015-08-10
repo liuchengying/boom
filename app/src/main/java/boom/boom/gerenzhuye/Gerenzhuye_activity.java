@@ -215,7 +215,12 @@ public class  Gerenzhuye_activity extends FragmentActivity
                     nickname = obj.getString("nickname");
                     username.setText(nickname);
                     sign = (TextView) findViewById(R.id.gerenzhuye_qianming);
-                    sign.setText(obj.getString("uniquesign"));
+                    String uniquesign = obj.getString("uniquesign");
+                    if(!uniquesign.equals("null")){
+                        sign.setText(obj.getString("uniquesign"));
+                    }else {
+                        sign.setText("这家伙很懒，什么也没留下！");
+                    }
                     gerenzhuye_touxing = (CircleImageView) findViewById(R.id.gerenzhuye_touxiang);
                     data = obj.getString("avatar");
                     if ((avatar = AsyncLoadAvatar.GetLocalImage(Gerenzhuye_activity.this,(String) data)) == null)           //获取存在本地的Bitmap

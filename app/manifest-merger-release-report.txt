@@ -524,3 +524,15 @@ ADDED from AndroidManifest.xml:192:9
 		ADDED from AndroidManifest.xml:196:13
 	android:name
 		ADDED from AndroidManifest.xml:193:13
+supports-screens
+ADDED from AndroidManifest.xml:200:5
+	android:largeScreens
+		ADDED from AndroidManifest.xml:203:9
+	android:anyDensity
+		ADDED from AndroidManifest.xml:204:9
+	android:normalScreens
+		ADDED from AndroidManifest.xml:202:9
+	android:xlargeScreens
+		ADDED from AndroidManifest.xml:205:9
+	android:smallScreens
+		ADDED from AndroidManifest.xml:201:9

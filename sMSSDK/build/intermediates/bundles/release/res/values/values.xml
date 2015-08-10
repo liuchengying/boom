@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- From: file:/D:/workspace/BoomTime/sMSSDK/src/main/res/values/smssdk_arrays.xml -->
+    <!-- From: file:/E:/android%20project/BoomTime/sMSSDK/src/main/res/values/smssdk_arrays.xml -->
     <eat-comment/>
     <string-array name="smssdk_country_group_a">
 		<item>阿尔巴尼亚,355,108,276</item>
@@ -270,7 +270,7 @@
 		<item>中非共和国,236,69,623</item>
 		<item>中国,86,42,460|461</item>
     </string-array>
-    <!-- From: file:/D:/workspace/BoomTime/sMSSDK/src/main/res/values/smssdk_colors.xml -->
+    <!-- From: file:/E:/android%20project/BoomTime/sMSSDK/src/main/res/values/smssdk_colors.xml -->
     <eat-comment/>
     <color name="smssdk_black">#ff000000</color>
     <color name="smssdk_gray">#ff898989</color>
@@ -283,7 +283,7 @@
     <color name="smssdk_white">#ffffffff</color>
     <drawable name="smssdk_dialog_btn_nor">#00000000</drawable>
     <drawable name="smssdk_dialog_btn_pre">#ff282a2b</drawable>
-    <!-- From: file:/D:/workspace/BoomTime/sMSSDK/src/main/res/values/smssdk_strings.xml -->
+    <!-- From: file:/E:/android%20project/BoomTime/sMSSDK/src/main/res/values/smssdk_strings.xml -->
     <eat-comment/>
     <string name="smssdk_add_contact">添加</string>
     <string name="smssdk_back">返回 </string>
@@ -297,7 +297,7 @@
     <string name="smssdk_contacts_phones">手机号码: </string>
     <string name="smssdk_country">国家和地区</string>
     <string name="smssdk_country_not_support_currently">当前服务暂不支持此国家，请选择其它国家</string>
-    <!-- From: file:/D:/workspace/BoomTime/sMSSDK/src/main/res/values/smssdk_errors.xml -->
+    <!-- From: file:/E:/android%20project/BoomTime/sMSSDK/src/main/res/values/smssdk_errors.xml -->
     <eat-comment/>
     <string name="smssdk_error_desc_511">无效请求</string>
     <string name="smssdk_error_desc_512">禁止访问</string>
@@ -332,7 +332,7 @@
     <string name="smssdk_error_detail_524">客户端请求发送短信验证过于频繁</string>
     <string name="smssdk_error_detail_525">需要签名检验</string>
     <string name="smssdk_error_detail_526">余额不足</string>
-    <!-- From: file:/D:/workspace/BoomTime/sMSSDK/src/main/res/values/smssdk_strings.xml -->
+    <!-- From: file:/E:/android%20project/BoomTime/sMSSDK/src/main/res/values/smssdk_strings.xml -->
     <eat-comment/>
     <string name="smssdk_get_phone_verifycode_today_frequentlly">很抱歉，该手机号申请验证码次数过多，请明天重试！</string>
     <string name="smssdk_get_verifycode_frequentlly">发送验证码太频繁，请稍后再发！</string>
@@ -366,7 +366,7 @@
     <string name="smssdk_write_mobile_phone">请填写手机号码</string>
     <string name="smssdk_write_right_mobile_phone">请填写正确的手机号码</string>
     <string name="smssdk_your_ccount_is_verified">验证成功</string>
-    <!-- From: file:/D:/workspace/BoomTime/sMSSDK/src/main/res/values/smssdk_styles.xml -->
+    <!-- From: file:/E:/android%20project/BoomTime/sMSSDK/src/main/res/values/smssdk_styles.xml -->
     <eat-comment/>
     <style name="AppTheme" parent="android:Theme.Light">
         <item name="android:windowNoTitle">true</item>

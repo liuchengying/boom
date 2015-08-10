@@ -218,7 +218,7 @@ public class xinxizhongxin_activity extends Activity implements XListView.IXList
 //        Button rightSideButton;
         final ArrayList<Map<String, Object>> listItem = new ArrayList<Map<String, Object>>();
         list = (XListView) findViewById(R.id.challenge_list);
-        list.setPullLoadEnable(true);
+        list.setPullLoadEnable(false);
         list.setPullRefreshEnable(true);
         list.setXListViewListener(this);
         list.setAdapter(adapter);

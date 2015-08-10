@@ -70,6 +70,7 @@ public class Tiaozhan_activity extends FragmentActivity {
     private LinearLayout ch_xitongshezhi;
     private LinearLayout ch_haoyouliebiao;
     private LinearLayout xiaoxizhongxin_jiaobiao;
+    private LinearLayout jifenshangcheng;
     private BadgeView mBadgeView;
 
     public android.os.Handler myMessageHandler = new android.os.Handler() {
@@ -301,7 +302,21 @@ public class Tiaozhan_activity extends FragmentActivity {
                 overridePendingTransition(R.anim.base_slide_right_in, R.anim.base_slide_remain);
             }
         });
-        ch_haoyouliebiao = (LinearLayout) findViewById(R.id.ch_haoyouliebiao);
+        jifenshangcheng = (LinearLayout) findViewById(R.id.ch_jifenshangcheng);
+                jifenshangcheng.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Toast.makeText(Tiaozhan_activity.this,"此功能未开放！",Toast.LENGTH_SHORT).show();
+                    }
+                });
+                jiangpin = (Button) findViewById(R.id.jiangpin);
+                jiangpin.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Toast.makeText(Tiaozhan_activity.this,"此功能未开放！",Toast.LENGTH_SHORT).show();
+                    }
+                });
+                ch_haoyouliebiao = (LinearLayout) findViewById(R.id.ch_haoyouliebiao);
         ch_haoyouliebiao.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View v) {

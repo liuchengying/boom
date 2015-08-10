@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- From: file:/D:/workspace/BoomTime/sMSSDK/build/intermediates/bundles/debug/res/values/values.xml -->
+    <!-- From: file:/E:/android%20project/BoomTime/sMSSDK/build/intermediates/bundles/debug/res/values/values.xml -->
     <eat-comment/>
     <string-array name="smssdk_country_group_a">
 		<item>阿尔巴尼亚,355,108,276</item>

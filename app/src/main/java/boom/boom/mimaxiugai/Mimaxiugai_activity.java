@@ -15,6 +15,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.File;
+
 import boom.boom.FontManager.FontManager;
 import boom.boom.R;
 import boom.boom.api.LoadingDialog;
@@ -57,6 +59,8 @@ public class Mimaxiugai_activity extends Activity{
                     ok.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
+                            File file = new File(Mimaxiugai_activity.this.getCacheDir(), "loginToken.dat");
+                            if (file.exists())  file.delete();
                             Intent i = getBaseContext().getPackageManager()
                                     .getLaunchIntentForPackage(getBaseContext().getPackageName());
                             i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);

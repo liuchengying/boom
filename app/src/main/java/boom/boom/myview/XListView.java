@@ -301,9 +301,11 @@ public class XListView extends ListView implements OnScrollListener {
             F = z - Y;
 
             try {
-                all = ((Gerenzhuye_activity) mContext).allLinear;
-				top_height = transit_top.getHeight();
-				offset = transit.getHeight();
+				if(mContext != null) {
+					all = ((Gerenzhuye_activity) mContext).allLinear;
+					top_height = transit_top.getHeight();
+					offset = transit.getHeight();
+				}
             }catch (Exception e)
             {
                 e.printStackTrace();

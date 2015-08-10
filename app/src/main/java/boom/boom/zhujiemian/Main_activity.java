@@ -290,7 +290,7 @@ public class Main_activity extends Activity {
                 });
                 thread.start();
 
-                if (String.valueOf(data.QueryData("coins")) == "null"){
+                if (String.valueOf(data.QueryData("coins")).equals("null")){
                     Static.coins = 0;
                 }else {
                     Static.coins = Integer.parseInt(String.valueOf(data.QueryData("coins")));

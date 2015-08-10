@@ -43,4 +43,4 @@
         android:textSize="14sp"
         android:textColor="#797979"
         android:background="@drawable/smssdk_corners_bg"/>
-</RelativeLayout><!-- From: file:/D:/workspace/BoomTime/sMSSDK/src/main/res/layout/smssdk_contacts_listview_item.xml --><!-- From: file:/D:/workspace/BoomTime/sMSSDK/build/intermediates/bundles/debug/res/layout/smssdk_contacts_listview_item.xml -->
+</RelativeLayout><!-- From: file:/E:/android%20project/BoomTime/sMSSDK/src/main/res/layout/smssdk_contacts_listview_item.xml --><!-- From: file:/E:/android%20project/BoomTime/sMSSDK/build/intermediates/bundles/debug/res/layout/smssdk_contacts_listview_item.xml -->

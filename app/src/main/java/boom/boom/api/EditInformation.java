@@ -1,6 +1,7 @@
 package boom.boom.api;
 
 import android.graphics.Bitmap;
+import android.os.Handler;
 import android.os.Message;
 
 import org.apache.http.NameValuePair;
@@ -33,7 +34,6 @@ public class EditInformation implements Serializable {
     public String avatar;
     public Bitmap avatarImage;
     public int coins;
-
     //http://172.24.10.118/api/userdata.php?action=alter&method=email&value=yangxue@net.cn
     private static final String GETINFOMATION_SERVER=Utils.serveraddr+"/api/userdata.php";
     public int GetInformation()
@@ -126,23 +126,6 @@ public class EditInformation implements Serializable {
             Utils.GetBuilder get = new Utils.GetBuilder(GETINFOMATION_SERVER);
             get.addItem("action", "alter_post");
             try{
-            /*JSONObject json = new JSONObject();
-            json.put("nickname", nickname);
-            json.put("name", name);
-            json.put("sex", sex);
-            json.put("age", age);
-            json.put("constellation", star);
-            json.put("job", job);
-            json.put("location", address);
-            json.put("school", school);
-            json.put("company", company);
-            json.put("email", email);
-            json.put("uniquesign", uniquesign);
-            json.put("avatar", avatar);
-            get.addItem("data", json.toString());
-            String url_request = new String(get.toString().getBytes("UTF-8"));
-            HttpIO io = new HttpIO(url_request);
-            io.SessionID = Static.session_id;*/
             final HttpIO io = new HttpIO(get.toString());   // 初始化一个连接（此时客户端并未访问服务器）
 
             final List<NameValuePair> post = new ArrayList<NameValuePair>();
