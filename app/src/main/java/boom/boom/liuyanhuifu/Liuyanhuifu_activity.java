@@ -62,7 +62,7 @@ public class Liuyanhuifu_activity extends Activity {
                     final HttpIO io = new HttpIO(Utils.serveraddr + "/api/comment.php?action=refer&type=" + type + "&id=" + ID + "&comment=" + URLEncoder.encode(comment, "UTF-8"));
                     if (type.equals("3")) {
                         io.SetURL(Utils.serveraddr + "/api/comment.php?action=comment&type=3&comment=" + URLEncoder.encode(comment, "UTF-8") + "&positionId=" + ID);
-
+                    }
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
@@ -85,7 +85,7 @@ public class Liuyanhuifu_activity extends Activity {
                     e.printStackTrace();
                     Toast.makeText(Liuyanhuifu_activity.this,"留言失败！",Toast.LENGTH_SHORT).show();
                 }
-                    }
+
                 }catch (Exception e){
                     e.printStackTrace();
                 }
