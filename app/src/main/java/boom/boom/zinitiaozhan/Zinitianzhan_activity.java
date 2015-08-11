@@ -200,7 +200,7 @@ public class Zinitianzhan_activity extends Activity {
                     Intent intent = new Intent();
                     intent.setClass(Zinitianzhan_activity.this, Paishetiaozhan_activity.class);
                     intent.putExtra("IfReturn", true);
-                    startActivityForResult(intent, 0);
+                    startActivityForResult(intent, 111);
                 }
             }
         });

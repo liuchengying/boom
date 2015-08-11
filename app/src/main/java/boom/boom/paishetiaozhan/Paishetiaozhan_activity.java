@@ -463,6 +463,7 @@ public class Paishetiaozhan_activity extends Activity implements SurfaceHolder.C
              @Override
              public void onClick(View v) {
                  Paishetiaozhan_activity.this.finish();
+                 stopRecording();
                  alertDialog.cancel();
              }
          });

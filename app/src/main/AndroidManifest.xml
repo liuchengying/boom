@@ -115,7 +115,7 @@
         <activity android:name="boom.boom.bianjixinxi.Bianjixinxi_activity"
             android:theme="@android:style/Theme.Black.NoTitleBar"
             android:windowSoftInputMode="adjustUnspecified|stateHidden"
-            android:launchMode="singleTask"></activity>
+            ></activity>
         <activity android:name= "boom.boom.mimaxiugai.Mimaxiugai_activity"
             android:theme="@android:style/Theme.Black.NoTitleBar"
             android:launchMode="singleTask"></activity>
@@ -139,7 +139,7 @@
             android:launchMode="singleTask"></activity>
         <activity android:name= "boom.boom.shipintianzhanpinglun.Shipintianzhan_pinglun"
             android:theme="@android:style/Theme.NoTitleBar"
-            android:launchMode="singleTask"></activity>
+            ></activity>
         <activity android:name= "boom.boom.liuyan.Liuyan_activity"
         android:theme="@android:style/Theme.Translucent"
             android:launchMode="singleTask"></activity>
@@ -149,7 +149,7 @@
 
         <activity android:name= "boom.boom.liuyanbanpinglun.Liuyanban_pinglun"
             android:theme="@android:style/Theme.Translucent"
-            android:launchMode="singleTask"></activity>
+            ></activity>
         <activity android:name= "boom.boom.liuyanhuifu.Liuyanhuifu_activity"
             android:theme="@android:style/Theme.Translucent"
             android:launchMode="singleTask"></activity>

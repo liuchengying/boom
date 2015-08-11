@@ -35,7 +35,7 @@
         <LinearLayout
             android:layout_marginLeft="5dp"
             android:layout_width="match_parent"
-            android:layout_height="fill_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
             <TextView
                 android:layout_marginTop="8dp"
@@ -48,7 +48,7 @@
             <TextView
                 android:id="@+id/lypl_text"
                 android:layout_width="250dp"
-                android:layout_height="38dp"
+                android:layout_height="wrap_content"
                 android:text="今天试了一下斜立易拉罐今天试了一下斜立易拉罐"/>
             <LinearLayout
                 android:gravity="bottom"
