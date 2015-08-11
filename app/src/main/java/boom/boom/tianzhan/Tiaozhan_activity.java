@@ -99,12 +99,12 @@ public class Tiaozhan_activity extends FragmentActivity {
                     public void run() {
                         try{
                             Log.e("push","try");
-                            if(!PushManager.isConnected(getApplicationContext())) {
+
                                 PushManager.startWork(getApplicationContext(),
                                         PushConstants.LOGIN_TYPE_API_KEY,
                                         "0IeoZXE2Wd6pNCjVk9yQAK3H");
                                 Log.e("push","started");
-                            }
+
                             if (!PushManager.isPushEnabled(getApplicationContext())){
                                 PushManager.resumeWork(getApplicationContext());
                             }
