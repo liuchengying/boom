@@ -1,6 +1,7 @@
 package boom.boom.gerenzhuye;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.graphics.drawable.BitmapDrawable;
@@ -13,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.SimpleAdapter;
@@ -28,6 +30,7 @@ import java.util.HashMap;
 import java.util.Locale;
 
 import boom.boom.R;
+import boom.boom.api.AsyncLoadAvatar;
 import boom.boom.api.HttpIO;
 import boom.boom.api.Static;
 import boom.boom.api.Utils;
@@ -81,7 +84,7 @@ public class Liuyanban_fragment extends Fragment implements XListView.IXListView
                             JSONObject tmp;
                             int i = 0;
                             while ((tmp = Utils.GetSubJSONObject(obj, "line" + i)) != null) {
-                                String title = null, text = null, time = null, ID = null;
+                                String title = null, text = null, time = null, ID = null, avatar = null;
                                 int like = 0, comment = 0;
                                 if (obj != null) try {
                                     ID = tmp.getString("ID");
@@ -90,6 +93,7 @@ public class Liuyanban_fragment extends Fragment implements XListView.IXListView
                                     like = tmp.getInt("heart_like");
                                     comment = tmp.getInt("refer_sum");
                                     time = tmp.getString("assign_date");
+                                    avatar = tmp.getString("avatar");
                                 } catch (JSONException e) {
                                     e.printStackTrace();
                                 }
@@ -100,6 +104,7 @@ public class Liuyanban_fragment extends Fragment implements XListView.IXListView
                                 map.put("comment", comment);
                                 map.put("time", time);
                                 map.put("ID",ID);
+                                map.put("avatar",avatar);
                                 listItem.add(map);
                                 i++;
                             }
@@ -145,9 +150,42 @@ public class Liuyanban_fragment extends Fragment implements XListView.IXListView
             mSimpleAdapter = new SimpleAdapter(getActivity(), listItem,//需要绑定的数据
                     R.layout.liuyanban_item,//每一行的布局//动态数组中的数据源的键对应到定义布局的View中
                     new String[]{
-                            "title", "text", "like", "comment", "time"},
-                    new int[]{R.id.nickname, R.id.lyb_text, R.id.like, R.id.comment, R.id.date}
+                            "title", "text", "like", "comment", "time", "avatar"},
+                    new int[]{R.id.nickname, R.id.lyb_text, R.id.like, R.id.comment, R.id.date,R.id.lyb_avatar}
             );
+            mSimpleAdapter.setViewBinder(new SimpleAdapter.ViewBinder() {
+                @Override
+                public boolean setViewValue(View view, final Object data, String s) {
+                    Bitmap avatar;
+                    if (view instanceof ImageView && data instanceof String) {
+                        ImageView imageView = (ImageView) view;
+                        if ((avatar = AsyncLoadAvatar.GetLocalImage(getActivity(), (String) data)) == null)           //获取存在本地的Bitmap
+                        {
+                            Thread thread = new Thread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    if (AsyncLoadAvatar.SaveBitmapToLocal(AsyncLoadAvatar.DownloadBitmap((String) data), (String) data));  //returned Bitmap   把Bitmap保存到本地
+                                    {
+                                        getActivity().runOnUiThread(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            mSimpleAdapter.notifyDataSetChanged();
+                                        }
+                                    });
+                                    }
+                                }
+                            });
+                            thread.start();
+                            imageView.setImageResource(R.drawable.android_181);
+                            return true;
+                        } else {
+                            imageView.setImageBitmap(avatar);
+                            return true;
+                        }
+                    }
+                    return false;
+                }
+            });
         }catch (Exception e)
         {
             e.printStackTrace();

@@ -20,18 +20,26 @@
         android:layout_height="95dp"
         android:layout_marginLeft="0dp"
         android:layout_gravity="center_vertical">
-        <ImageView
+        <boom.boom.myview.RoundedImageView
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:src="@drawable/android_214"
             android:layout_gravity="center"
             android:id="@+id/xxzx_item_icon" />
-        <ImageView
+        <boom.boom.myview.CircleImageView
             android:layout_width="30dp"
             android:layout_height="30dp"
+            android:src="#ffffff"
+            android:id="@+id/whiteshader"
+            android:layout_gravity="top|right"/>
+        <boom.boom.myview.CircleImageView
+            android:layout_width="23dp"
+            android:layout_height="23dp"
             android:src="@drawable/android_215"
             android:layout_gravity="top|right"
-            android:id="@+id/xxzx_item_smallicon" />
+            android:id="@+id/xxzx_item_smallicon"
+            android:layout_marginRight="3dp"
+            android:layout_marginTop="3dp"/>
 
         </FrameLayout>
     <RelativeLayout

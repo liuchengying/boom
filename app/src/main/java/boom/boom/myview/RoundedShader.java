@@ -15,7 +15,7 @@ public class RoundedShader extends ShaderHelper {
     private final RectF borderRect = new RectF();
     private final RectF imageRect = new RectF();
 
-    private int radius = 15;
+    private int radius = 30;
     private int bitmapRadius;
 
     public RoundedShader() {

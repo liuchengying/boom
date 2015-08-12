@@ -48,11 +48,13 @@ public class liuyanpinglun_fragment extends Fragment {
     private String ID;
     private SimpleAdapter mSimpleAdapter;
     private String nickname;
+    private String avatar;
     private String text;
     private String time;
     private TextView nickname_tv;
     private TextView text_tv;
     private TextView time_tv;
+    private boom.boom.myview.RoundedImageView avatarImage;
     private LinearLayout lypl_horizon;
     ToggleButton mTogBtn;
     private ArrayList<String> avatarlist;
@@ -138,6 +140,7 @@ public class liuyanpinglun_fragment extends Fragment {
                 text = data.getString("text_value");
                 JSONObject host_user = Utils.GetSubJSONObject(obj, "host_user");
                 nickname = host_user.getString("nickname");
+                avatar = host_user.getString("avatar");
                 time = data.getString("assign_date");
                 int liked = data.getInt("heart_like");
                 mTogBtn.setChecked(liked>0);
@@ -226,6 +229,28 @@ public class liuyanpinglun_fragment extends Fragment {
         text_tv = (TextView) v.findViewById(R.id.lypl_text);
         time_tv = (TextView) v.findViewById(R.id.lypl_time);
         nickname_tv.setText(nickname);
+        avatarImage = (RoundedImageView) v.findViewById(R.id.lypl_avatar);
+        Bitmap bpAvatar;
+        if ((bpAvatar = AsyncLoadAvatar.GetLocalImage(getActivity(), (String) avatar)) == null)           //获取存在本地的Bitmap
+        {
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    if (AsyncLoadAvatar.SaveBitmapToLocal(AsyncLoadAvatar.DownloadBitmap((String) avatar), (String) avatar))  //returned Bitmap   把Bitmap保存到本地
+                    {
+                        getActivity().runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            avatarImage.setImageBitmap(AsyncLoadAvatar.GetLocalImage(getActivity(), (String) avatar));
+                        }
+                    });
+                    }
+                }
+            }).start();
+            avatarImage.setImageResource(R.drawable.android_181);
+        } else {
+            avatarImage.setImageBitmap(bpAvatar);
+        }
         text_tv.setText(text);
         time_tv.setText(time);
         mSimpleAdapter = new SimpleAdapter(getActivity(),listItem,R.layout.shipinpinglun_item,new String[]{

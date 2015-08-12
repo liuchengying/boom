@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.media.Image;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -33,9 +34,11 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Objects;
 
 import boom.boom.FontManager.FontManager;
 import boom.boom.R;
+import boom.boom.api.AsyncLoadAvatar;
 import boom.boom.api.Msg;
 import boom.boom.api.Static;
 import boom.boom.api.SysApplication;
@@ -271,7 +274,27 @@ public class xinxizhongxin_activity extends Activity implements XListView.IXList
         list = arrlist;
         //sampleStrings = mContext.getResources().getStringArray(R.array.sampleStrings);
     }
-
+    private View updateUI(View view,HashMap<String,Object>hashMap, ViewGroup parent){
+        view = LayoutInflater.from(mContext).inflate(R.layout.xiaoxizhongxin_item2, parent, false);
+        TextView title2 = (TextView) view.findViewById(R.id.xxzx_item_title);
+        TextView text2 = (TextView) view.findViewById(R.id.xxzx_item_text);
+        TextView date2 = (TextView) view.findViewById(R.id.xxzx_item_date);
+        ImageView icon2 = (ImageView) view.findViewById(R.id.xxzx_item_icon);
+        ImageView smallicon = (ImageView) view.findViewById(R.id.xxzx_item_smallicon);
+        title2.setText((String) hashMap.get("title"));
+        text2.setText((String) hashMap.get("content"));
+        date2.setText((String) hashMap.get("date"));
+        icon2.setImageBitmap((Bitmap) hashMap.get("icon"));
+        Bitmap bmSmallicon = (Bitmap) hashMap.get("smallicon");
+        if (bmSmallicon == null) {
+            smallicon.setVisibility(View.INVISIBLE);
+            ImageView whiteshader = (ImageView) view.findViewById(R.id.whiteshader);
+            whiteshader.setVisibility(View.INVISIBLE);
+        } else {
+            smallicon.setImageBitmap(bmSmallicon);
+        }
+        return view;
+    }
     @Override
     public int getCount() {
         int size = 0;
@@ -311,31 +334,37 @@ public class xinxizhongxin_activity extends Activity implements XListView.IXList
                     date.setText((String) hashMap.get("date"));
                     icon.setImageBitmap((Bitmap) hashMap.get("icon"));
                     break;
-                case 1:
-                case 2:
-                case 3:
                 case 5:
-                case 6:
                 case 7:
                 case 8:
+                case 9:
+                    view = updateUI(view , hashMap, parent);
+                    final ImageView imgviewAvatar = (ImageView) view.findViewById((hashMap.get("smallavatar")!=null)?R.id.xxzx_item_smallicon:R.id.xxzx_item_icon);
+                    final String data = (String) hashMap.get("avatar");
+                    final Bitmap avatar;
+                            if ((avatar = AsyncLoadAvatar.GetLocalImage(mContext, (String) data)) == null)           //获取存在本地的Bitmap
+                            {
+                                Thread thread = new Thread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        if (AsyncLoadAvatar.SaveBitmapToLocal(AsyncLoadAvatar.DownloadBitmap((String) data), (String) data));  //returned Bitmap   把Bitmap保存到本地
+                                        {
+                                            ((Activity)mContext).runOnUiThread(new Runnable() {
+                                                @Override
+                                                public void run() {
+                                                    imgviewAvatar.setImageBitmap(AsyncLoadAvatar.GetLocalImage(mContext, (String) data));
+                                                }
+                                            });
+                                        }
+                                    }
+                                });
+                                thread.start();
+                        }else {
+                                imgviewAvatar.setImageBitmap(avatar);
+                            }
+                    break;
                 default:
-                    view = LayoutInflater.from(mContext).inflate(R.layout.xiaoxizhongxin_item2, parent, false);
-                    TextView title2 = (TextView) view.findViewById(R.id.xxzx_item_title);
-                    TextView text2 = (TextView) view.findViewById(R.id.xxzx_item_text);
-                    TextView date2 = (TextView) view.findViewById(R.id.xxzx_item_date);
-                    ImageView icon2 = (ImageView) view.findViewById(R.id.xxzx_item_icon);
-                    ImageView smallicon = (ImageView) view.findViewById(R.id.xxzx_item_smallicon);
-                    title2.setText((String) hashMap.get("title"));
-                    text2.setText((String) hashMap.get("content"));
-                    date2.setText((String) hashMap.get("date"));
-                    icon2.setImageBitmap((Bitmap) hashMap.get("icon"));
-                    Bitmap bmSmallicon = (Bitmap) hashMap.get("smallicon");
-                    if (bmSmallicon == null) {
-                        smallicon.setVisibility(View.INVISIBLE);
-                    } else {
-                        smallicon.setImageBitmap(bmSmallicon);
-                    }
-
+                    view = updateUI(view , hashMap, parent);
             }
             return view;
         }

@@ -182,6 +182,7 @@ public class Msg {
                             map.put("icon",icon);
                             map.put("ID",data.getString("ID"));
                             map.put("cl_id",data.getString("cl_id"));
+                            map.put("avatar",data.getString("avatar"));
                             /*map.put("nickname",data.getString("nickname"));
                             map.put("text",data.getString("text_value"));
                             map.put("elapsed",data.getString("elapsed_time"));*/
@@ -193,9 +194,11 @@ public class Msg {
                             icon = BitmapFactory.decodeResource(res,R.drawable.android_209);
                             smallicon = BitmapFactory.decodeResource(res,R.drawable.android_208);
                             map.put("icon",icon);
+                            map.put("smallavatar",true);
                             map.put("cl_id",data.getString("cl_id"));
                             map.put("smallicon",smallicon);
                             map.put("pf_iv",data.getInt("ID"));
+                            map.put("avatar",data.getString("host_avatar"));
                             break;
                         case 9://好友同意或拒绝
                             boolean passed = false;
@@ -210,6 +213,7 @@ public class Msg {
                             map.put("smallicon",smallicon);
                             icon = BitmapFactory.decodeResource(res,R.drawable.android_209);
                             map.put("pass",passed?true:false);
+                            map.put("avatar",data.getString("avatar"));
                             map.put("guest_id",data.getString("guest_id"));
                             map.put("icon",icon);
                             break;
