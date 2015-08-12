@@ -7,6 +7,28 @@
     android:weightSum="1">
     <RelativeLayout
         android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+        <FrameLayout
+            android:id="@+id/paisheshipin_frame"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+
+            <VideoView
+                android:layout_width="fill_parent"
+                android:layout_height="480dp"
+                android:id="@+id/on_surface_covered_view"
+                />
+
+            <SurfaceView
+                android:id="@+id/syncRecord_monitor"
+                android:layout_width="fill_parent"
+                android:layout_height="480dp" />
+        </FrameLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
         android:layout_height="50dp"
         android:background="#ffe14723">
         <RelativeLayout
@@ -29,6 +51,7 @@
             android:textSize="22sp"
             android:textColor="#ffffff"/>
         </RelativeLayout>
+
 <!--
     <LinearLayout
         android:layout_width="fill_parent"
@@ -69,25 +92,12 @@
     </LinearLayout>
 -->
     <LinearLayout
+        android:layout_alignParentBottom="true"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:gravity="center">
-        <FrameLayout
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content">
 
-        <VideoView
-                android:layout_width="fill_parent"
-                android:layout_height="260dp"
-            android:id="@+id/on_surface_covered_view"
-            />
-
-            <SurfaceView
-                android:id="@+id/syncRecord_monitor"
-                android:layout_width="fill_parent"
-                android:layout_height="260dp" />
-    </FrameLayout>
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
@@ -116,13 +126,13 @@
         <RelativeLayout
             android:id="@+id/video_btn"
             android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
+            android:layout_height="120dp"
             android:layout_gravity="center"
             android:background="@drawable/android_69">
             <Button
                 android:id="@+id/kaishipaishe"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="90dp"
+                android:layout_height="90dp"
                 android:background="@drawable/android_74"
                 android:text="开始"
                 android:textSize="25dp"
@@ -131,8 +141,8 @@
                 android:layout_centerInParent="true" />
             <Button
 
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="90dp"
+                android:layout_height="90dp"
                 android:background="@drawable/android_159"
                 android:layout_gravity="center"
                 android:text="放弃"
@@ -152,5 +162,5 @@
 
         </LinearLayout>
 
-
+</RelativeLayout>
     </LinearLayout>

@@ -12,7 +12,7 @@ import boom.boom.xinxizhongxin.xinxizhongxin_activity;
 
 public class MyReceiver extends PushMessageReceiver {
     @Override
-    public void onBind(Context context, int i, final String s, final String s1, final String s2, String s3) {
+    public void onBind(Context context, final int i, final String s, final String s1, final String s2, String s3) {
         Log.e("push", i + "   " + s );
         Static.user_id = s1;
         Static.channel_id = s2;
@@ -23,7 +23,7 @@ public class MyReceiver extends PushMessageReceiver {
                 io.SessionID = Static.session_id;
                 io.GETToHTTPServer();
                 String result = io.getResultData();
-                Log.e("push",result);
+                Log.e("push",result + i + " " + s + " " + s1 + " " + s2);
             }
         }).start();
     }
