@@ -68,6 +68,7 @@ public class Guizejieshao_activity extends Activity{
                     challenge_title.setText(challenge_data.getString("frontname"));
                     challenge_date.setText(challenge_data.getString("date"));
                     demoToken = challenge_data.getString("demovideo");
+                    Log.e("url",Utils.serveraddr+Utils.getVideoAPI(demoToken)+"&"+Utils.parsSessionViaGET());
                     frame_frontvideo.setVideoURI(Uri.parse(Utils.serveraddr+Utils.getVideoAPI(demoToken)+"&"+Utils.parsSessionViaGET()));
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -88,7 +89,7 @@ public class Guizejieshao_activity extends Activity{
         FontManager.changeFonts(FontManager.getContentView(this), this);//字体
         Intent intent = getIntent();
 
-        final String position = intent.getStringExtra("challenge_number");
+        final int position = intent.getIntExtra("challenge_number", 0);
         final int ifFaqi = intent.getIntExtra("ifFaqi",0);
         fanhuitianzhan = (RelativeLayout) findViewById(R.id.fanhuitiaozhan);
         woyaotianzhan = (Button) findViewById(R.id.woyaotiaozhan);
@@ -102,6 +103,7 @@ public class Guizejieshao_activity extends Activity{
             try {
                 //challenge_data = new JSONObject(Challenge.getChallengeByIdentify(position));
                 HttpIO.GetHttpEX(Guizejieshao_activity.this,faqiHandler,Utils.serveraddr + "/api/getChallenge.php?action=fetchbyIdentifyDigit&identify=" + position);
+                Log.e("gzjs",position+"");
             } catch (Exception e) {
                 e.printStackTrace();
             }

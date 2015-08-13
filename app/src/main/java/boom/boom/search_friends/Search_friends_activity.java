@@ -66,6 +66,12 @@ public class Search_friends_activity extends Activity{
         search = (EditText) findViewById(R.id.ss_search);
         search_listview = (ListView) findViewById(R.id.search_listview);
         hylb_fh = (RelativeLayout) findViewById(R.id.haoyouliebiao_fh);
+        hylb_fh.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
         mSimpleAdapter = new SimpleAdapter(Search_friends_activity.this, listItem,//需要绑定的数据
                 R.layout.search_friends_item,//每一行的布局//动态数组中的数据源的键对应到定义布局的View中
                 new String[]{

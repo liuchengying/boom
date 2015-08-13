@@ -76,10 +76,11 @@ public class Quanguopaihang_fragment extends Fragment implements XListView.IXLis
             @Override
             public void run() {
                 //http://172.24.10.118/api/rank.php?action=board_hero
+                listItem.clear();
                 Utils.GetBuilder getImageUrl = new Utils.GetBuilder(Utils.serveraddr +"api/rank.php");
                 getImageUrl.addItem("action", "board_hero");
                 getImageUrl.addItem("start", "1");
-                getImageUrl.addItem("line","5");
+                getImageUrl.addItem("line","10");
                 final String url = getImageUrl.toString();
                 new Thread(new Runnable() {
                     @Override

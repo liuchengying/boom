@@ -251,6 +251,7 @@ public class xinxizhongxin_activity extends Activity implements XListView.IXList
     @Override
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
+        Static.badgeView.setBadgeCount(0);
         onRefresh();
     }
 
