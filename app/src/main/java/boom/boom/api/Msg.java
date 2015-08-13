@@ -195,7 +195,7 @@ public class Msg {
                             smallicon = BitmapFactory.decodeResource(res,R.drawable.android_208);
                             map.put("icon",icon);
                             map.put("smallavatar",true);
-                            map.put("cl_id",data.getString("cl_id"));
+                            map.put("cl_id",data.getInt("cl_id"));
                             map.put("smallicon",smallicon);
                             map.put("pf_iv",data.getInt("ID"));
                             map.put("avatar",data.getString("host_avatar"));
@@ -249,6 +249,7 @@ public class Msg {
                             map.put("icon",icon);
                             map.put("commentType",data.getInt("commentType"));
                             map.put("ID",data.getString("ID"));
+                            map.put("avatar",data.getString("avatar"));
                             map.put("cl_id",data.getString("cl_id"));
                             break;
                     }

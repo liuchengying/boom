@@ -152,7 +152,7 @@
             ></activity>
         <activity android:name= "boom.boom.liuyanhuifu.Liuyanhuifu_activity"
             android:theme="@android:style/Theme.Translucent"
-            android:launchMode="singleTask"></activity>
+            ></activity>
         <activity android:name= "boom.boom.search_friends.Search_friends_activity"
             android:theme="@android:style/Theme.Translucent"
             android:launchMode="singleTask"></activity>

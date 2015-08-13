@@ -140,7 +140,7 @@ public class xinxizhongxin_activity extends Activity implements XListView.IXList
                                 break;
                             case 8:
                                 Intent intent7 = new Intent();
-                                intent7.putExtra("challenge_number",(String)adapter.list.get(position-1).get("cl_id"));
+                                intent7.putExtra("challenge_number",(int)adapter.list.get(position-1).get("cl_id"));
                                 intent7.putExtra("pf_iv",(int)adapter.list.get(position-1).get("pf_iv"));
                                 intent7.putExtra("ifFaqi",1);
                                 intent7.setClass(xinxizhongxin_activity.this,Guizejieshao_activity.class);
@@ -320,7 +320,7 @@ public class xinxizhongxin_activity extends Activity implements XListView.IXList
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         View view = null;
-
+        System.gc();
             HashMap<String, Object> hashMap = list.get(position);
             int type = (int) hashMap.get("type");
             switch (type) {
@@ -339,6 +339,7 @@ public class xinxizhongxin_activity extends Activity implements XListView.IXList
                 case 7:
                 case 8:
                 case 9:
+                case 12:
                     view = updateUI(view , hashMap, parent);
                     final ImageView imgviewAvatar = (ImageView) view.findViewById((hashMap.get("smallavatar")!=null)?R.id.xxzx_item_smallicon:R.id.xxzx_item_icon);
                     final String data = (String) hashMap.get("avatar");
