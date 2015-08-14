@@ -3,6 +3,7 @@ package boom.boom.haoyouliebiao;
 import android.app.Fragment;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -116,7 +117,7 @@ public class haoyouliebiao_fragment extends Fragment {
                 mSimpleAdapter.setViewBinder(new SimpleAdapter.ViewBinder() {
                     @Override
                     public boolean setViewValue(View view, final Object data, String textRepresentation) {
-                        Bitmap avatar;
+                        Drawable avatar;
                         if (view instanceof ImageView && data instanceof String) {
                             ImageView imageView = (ImageView) view;
                             if ((avatar = AsyncLoadAvatar.GetLocalImage(getActivity(),(String) data)) == null)           //获取存在本地的Bitmap
@@ -135,7 +136,7 @@ public class haoyouliebiao_fragment extends Fragment {
                                 imageView.setImageResource(R.drawable.android_181);
                                 return true;
                             } else {
-                                imageView.setImageBitmap(avatar);
+                                imageView.setImageDrawable(avatar);
                                 return true;
                             }
                         }

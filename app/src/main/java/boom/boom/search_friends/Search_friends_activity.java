@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Message;
 import android.util.Log;
@@ -81,7 +82,7 @@ public class Search_friends_activity extends Activity{
         mSimpleAdapter.setViewBinder(new SimpleAdapter.ViewBinder() {
             @Override
             public boolean setViewValue(View view, final Object data, String textRepresentation) {
-                Bitmap avatar;
+                Drawable avatar;
                 if (view instanceof ImageView && data instanceof String) {
                     ImageView imageView = (ImageView) view;
                     if ((avatar = AsyncLoadAvatar.GetLocalImage(Search_friends_activity.this,(String) data)) == null)           //获取存在本地的Bitmap
@@ -100,7 +101,7 @@ public class Search_friends_activity extends Activity{
                         imageView.setImageResource(R.drawable.android_181);
                         return true;
                     } else {
-                        imageView.setImageBitmap(avatar);
+                        imageView.setImageDrawable(avatar);
                         return true;
                     }
                 }

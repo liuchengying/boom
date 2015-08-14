@@ -5,6 +5,7 @@ import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -31,30 +32,39 @@ import boom.boom.R;
 
 public class AsyncLoadAvatar {
 
-    public static Bitmap GetLocalImage(Context context, String avatarUID)
+    public static Drawable GetLocalImage(Context context, String avatarUID)
     {
         String pathString = Utils.getImagePath() + avatarUID + ".png";
-        Bitmap bitmap = null;
+        Resources res= context.getResources();
+        //Bitmap bitmap = null;
+        Drawable drawable = null;
         if (avatarUID.equals("null")||avatarUID.equals("")){
-            Resources res= context.getResources();
-            bitmap = BitmapFactory.decodeResource(res,R.drawable.android_150);
-            return bitmap;
+            /*bitmap = BitmapFactory.decodeResource(res,R.drawable.android_150);
+            return bitmap;*/
+            drawable = res.getDrawable(R.drawable.android_150);
+            return drawable;
         }
         try
         {
             File file = new File(pathString);
             if(file.exists())
             {
-                bitmap = BitmapFactory.decodeFile(pathString);
+                /*try {
+                    bitmap = BitmapFactory.decodeFile(pathString);
+                }catch (Exception e){
+                    bitmap = null;
+                }*/
+                drawable = new BitmapDrawable(res,pathString);
             }
             else {
-                bitmap = null;
+                //bitmap = null;
+                drawable = null;
             }
         } catch (Exception e)
         {
             e.printStackTrace();
         }
-        return bitmap;
+        return drawable;
     }
 
     public static boolean SaveBitmapToLocal(Bitmap target , String avatarUID)

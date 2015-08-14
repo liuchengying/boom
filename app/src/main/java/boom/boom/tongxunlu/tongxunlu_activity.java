@@ -3,6 +3,8 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -274,7 +276,7 @@ public class tongxunlu_activity extends Activity{
                     imageView.setPadding(10, 0, 0, 0);
                     imageView.setId(i);
                     horizon.addView(imageView);
-                    Bitmap avatar;
+                    Drawable avatar;
                     final Object data = list.get(i).get("avatar");
                     if ((avatar = AsyncLoadAvatar.GetLocalImage(tongxunlu_activity.this,(String) data)) == null)           //获取存在本地的Bitmap
                     {
@@ -291,9 +293,7 @@ public class tongxunlu_activity extends Activity{
                         thread.start();
                         imageView.setImageResource(R.drawable.android_181);
                     } else {
-                        avatar = Utils.zoomImage(avatar,85,85);
-
-                        imageView.setImageBitmap(avatar);
+                        imageView.setImageDrawable(new BitmapDrawable(Utils.zoomImage(Utils.drawableToBitmap(avatar), 85, 85)));
                     }
 
                 }
@@ -321,10 +321,10 @@ public class tongxunlu_activity extends Activity{
                 holder = (ViewHolder) convertView.getTag();
             }
             // 设置list中TextView的显示
-            holder.tv.setText((String)list.get(position).get("nickname"));
+            holder.tv.setText((String) list.get(position).get("nickname"));
             // 根据isSelected来设置checkbox的选中状况
             holder.cb.setChecked(getIsSelected().get(list.get(position).get("position")));
-            Bitmap avatar;
+            Drawable avatar;
             final Object data = list.get(position).get("avatar");
             if ((avatar = AsyncLoadAvatar.GetLocalImage(tongxunlu_activity.this,(String) data)) == null)           //获取存在本地的Bitmap
             {
@@ -340,9 +340,8 @@ public class tongxunlu_activity extends Activity{
                 });
                 thread.start();
                 holder.iv.setImageResource(R.drawable.android_181);
-
             } else {
-                holder.iv.setImageBitmap(avatar);
+                holder.iv.setImageDrawable(avatar);
             }
             return convertView;
         }

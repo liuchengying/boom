@@ -3,6 +3,7 @@ package boom.boom.shipintianzhanpinglun;
 import android.app.Fragment;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -180,7 +181,7 @@ public class Shipinpinglun_fragment extends Fragment{
             imageView.setPadding(10, 0, 0, 0);
             imageView.setId(i);
             sppl_horizon.addView(imageView);
-            Bitmap avatar;
+            Drawable avatar;
             final String data = avatarlist.get(i);
             if ((avatar = AsyncLoadAvatar.GetLocalImage(getActivity(),(String) data)) == null)           //获取存在本地的Bitmap
             {
@@ -198,12 +199,13 @@ public class Shipinpinglun_fragment extends Fragment{
                 imageView.setImageResource(R.drawable.android_181);
             } else {
                 Log.e("1","width:"+Static.width+" height:"+Static.height);
+                Bitmap bmAvatar;
                 if(Static.width == 480 && Static.height == 854)
-                    avatar = Utils.zoomImage(avatar,10,15);
+                    bmAvatar = Utils.zoomImage(Utils.drawableToBitmap(avatar),10,15);
                 else
-                    avatar = Utils.zoomImage(avatar,60,70);
+                    bmAvatar = Utils.zoomImage(Utils.drawableToBitmap(avatar),60,70);
 
-                imageView.setImageBitmap(avatar);
+                imageView.setImageBitmap(bmAvatar);
             }
 
         }
@@ -284,7 +286,7 @@ public class Shipinpinglun_fragment extends Fragment{
         mSimpleAdapter.setViewBinder(new SimpleAdapter.ViewBinder() {
             @Override
             public boolean setViewValue(View view, final Object data, String textRepresentation) {
-                Bitmap avatar;
+                Drawable avatar;
                 if (view instanceof ImageView && data instanceof String) {
                     ImageView imageView = (ImageView) view;
                     if ((avatar = AsyncLoadAvatar.GetLocalImage(getActivity(),(String) data)) == null)           //获取存在本地的Bitmap
@@ -303,7 +305,7 @@ public class Shipinpinglun_fragment extends Fragment{
                         imageView.setImageResource(R.drawable.android_181);
                         return true;
                     } else {
-                        imageView.setImageBitmap(avatar);
+                        imageView.setImageDrawable(avatar);
                         return true;
                     }
                 }

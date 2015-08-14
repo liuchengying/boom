@@ -3,6 +3,8 @@ package boom.boom.liuyanbanpinglun;
 import android.app.Fragment;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Message;
 import android.view.LayoutInflater;
@@ -97,7 +99,7 @@ public class liuyanpinglun_fragment extends Fragment {
             imageView.setPadding(10, 0, 0, 0);
             imageView.setId(i);
             lypl_horizon.addView(imageView);
-            Bitmap avatar;
+            Drawable avatar;
             final String data = avatarlist.get(i);
             if ((avatar = AsyncLoadAvatar.GetLocalImage(getActivity(),(String) data)) == null)           //获取存在本地的Bitmap
             {
@@ -114,9 +116,7 @@ public class liuyanpinglun_fragment extends Fragment {
                 thread.start();
                 imageView.setImageResource(R.drawable.android_181);
             } else {
-                avatar = Utils.zoomImage(avatar, 60, 70);
-
-                imageView.setImageBitmap(avatar);
+                imageView.setImageDrawable(new BitmapDrawable(Utils.zoomImage(Utils.drawableToBitmap(avatar), 60, 70)));
             }
 
         }
@@ -230,7 +230,7 @@ public class liuyanpinglun_fragment extends Fragment {
         time_tv = (TextView) v.findViewById(R.id.lypl_time);
         nickname_tv.setText(nickname);
         avatarImage = (RoundedImageView) v.findViewById(R.id.lypl_avatar);
-        Bitmap bpAvatar;
+        Drawable bpAvatar;
         if ((bpAvatar = AsyncLoadAvatar.GetLocalImage(getActivity(), (String) avatar)) == null)           //获取存在本地的Bitmap
         {
             new Thread(new Runnable() {
@@ -241,7 +241,7 @@ public class liuyanpinglun_fragment extends Fragment {
                         getActivity().runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            avatarImage.setImageBitmap(AsyncLoadAvatar.GetLocalImage(getActivity(), (String) avatar));
+                            avatarImage.setImageDrawable(AsyncLoadAvatar.GetLocalImage(getActivity(), (String) avatar));
                         }
                     });
                     }
@@ -249,7 +249,7 @@ public class liuyanpinglun_fragment extends Fragment {
             }).start();
             avatarImage.setImageResource(R.drawable.android_181);
         } else {
-            avatarImage.setImageBitmap(bpAvatar);
+            avatarImage.setImageDrawable(bpAvatar);
         }
         text_tv.setText(text);
         time_tv.setText(time);
@@ -259,7 +259,7 @@ public class liuyanpinglun_fragment extends Fragment {
         mSimpleAdapter.setViewBinder(new SimpleAdapter.ViewBinder() {
             @Override
             public boolean setViewValue(View view, final Object data, String textRepresentation) {
-                Bitmap avatar;
+                Drawable avatar;
                 if (view instanceof ImageView && data instanceof String) {
                     ImageView imageView = (ImageView) view;
                     if ((avatar = AsyncLoadAvatar.GetLocalImage(getActivity(),(String) data)) == null)           //获取存在本地的Bitmap
@@ -279,7 +279,7 @@ public class liuyanpinglun_fragment extends Fragment {
                         imageView.setImageResource(R.drawable.android_181);
                         return true;
                     } else {
-                        imageView.setImageBitmap(avatar);
+                        imageView.setImageDrawable(avatar);
                         return true;
                     }
                 }

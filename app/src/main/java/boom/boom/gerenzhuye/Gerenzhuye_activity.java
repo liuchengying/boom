@@ -7,6 +7,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.app.FragmentActivity;
@@ -75,7 +76,7 @@ public class  Gerenzhuye_activity extends FragmentActivity
     private CircleImageView gerenzhuye_touxing;
     public static JSONObject obj;
     private String result;
-    private Bitmap avatar;
+    private Drawable avatar;
     private ImageView mTabline;
     private int mScreen1_3;
     private String data;
@@ -97,7 +98,7 @@ public class  Gerenzhuye_activity extends FragmentActivity
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
             avatar = AsyncLoadAvatar.GetLocalImage(Gerenzhuye_activity.this,(String) data);
-            gerenzhuye_touxing.setImageBitmap(avatar);
+            gerenzhuye_touxing.setImageDrawable(avatar);
         }
     };
     Handler type2Handler = new Handler(new Handler.Callback() {
@@ -240,7 +241,7 @@ public class  Gerenzhuye_activity extends FragmentActivity
                         gerenzhuye_touxing.setImageResource(R.drawable.android_181);
 
                     } else {
-                        gerenzhuye_touxing.setImageDrawable(new BitmapDrawable(avatar));
+                        gerenzhuye_touxing.setImageDrawable(avatar);
                         //gerenzhuye_touxing.setImageBitmap(avatar);
                     }
                 }catch (Exception e)

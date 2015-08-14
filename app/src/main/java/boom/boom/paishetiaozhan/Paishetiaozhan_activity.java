@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.graphics.PixelFormat;
 import android.hardware.Camera;
 import android.media.CamcorderProfile;
+import android.media.MediaPlayer;
 import android.media.MediaRecorder;
 import android.os.Bundle;
 import android.os.Handler;
@@ -145,27 +146,7 @@ public class Paishetiaozhan_activity extends Activity implements SurfaceHolder.C
                         while (video_path == null);
                         vw.setVideoPath(video_path);
                         vw.start();
-                        new Thread(new Runnable() {
-                            int buffer, currentPosition, duration;
-                            @Override
-                            public void run() {
-                                while (true) {
-                                    try {
-                                        if (vw.getCurrentPosition() == vw.getDuration()) {
-                                            Message m = new Message();
-                                            m.what = 20000;
-                                            Paishetiaozhan_activity.this.on_thread_start_stop.sendMessage(m);
-                                        }
-                                    }catch (Exception e)
-                                    {
-                                        e.printStackTrace();
-                                    }
-                                }
-                            }
-                        }).start();
-                    case 20000:
-                        vw.stopPlayback();
-                        vw.start();
+                        break;
                 }
             }
     };
@@ -197,6 +178,20 @@ public class Paishetiaozhan_activity extends Activity implements SurfaceHolder.C
         });
         vw = (VideoView)findViewById(R.id.on_surface_covered_view);
         vw.setVisibility(View.INVISIBLE);
+        vw.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+            @Override
+            public void onPrepared(MediaPlayer mediaPlayer) {
+                mediaPlayer.start();
+                mediaPlayer.setLooping(true);
+            }
+        });
+        vw.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+            @Override
+            public void onCompletion(MediaPlayer mediaPlayer) {
+                vw.setVideoPath(video_path);
+                vw.start();
+            }
+        });
         sv = (SurfaceView) findViewById(R.id.syncRecord_monitor);
         mprogress = (ProgressBar) findViewById(R.id.mprogress);
         sss= (TextView) findViewById(R.id.ssss);

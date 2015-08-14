@@ -2,6 +2,7 @@ package boom.boom.gerenzhuye;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
 import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.graphics.drawable.BitmapDrawable;
@@ -156,7 +157,7 @@ public class Liuyanban_fragment extends Fragment implements XListView.IXListView
             mSimpleAdapter.setViewBinder(new SimpleAdapter.ViewBinder() {
                 @Override
                 public boolean setViewValue(View view, final Object data, String s) {
-                    Bitmap avatar;
+                    Drawable avatar;
                     if (view instanceof ImageView && data instanceof String) {
                         ImageView imageView = (ImageView) view;
                         if ((avatar = AsyncLoadAvatar.GetLocalImage(getActivity(), (String) data)) == null)           //获取存在本地的Bitmap
@@ -179,7 +180,7 @@ public class Liuyanban_fragment extends Fragment implements XListView.IXListView
                             imageView.setImageResource(R.drawable.android_181);
                             return true;
                         } else {
-                            imageView.setImageBitmap(avatar);
+                            imageView.setImageDrawable(avatar);
                             return true;
                         }
                     }
