@@ -77,7 +77,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content">
 
-        <VideoView
+        <boom.boom.api.myVideoView
                 android:layout_width="fill_parent"
                 android:layout_height="260dp"
             android:id="@+id/on_surface_covered_view"

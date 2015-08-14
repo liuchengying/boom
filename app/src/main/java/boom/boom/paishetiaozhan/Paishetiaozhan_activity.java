@@ -38,6 +38,7 @@ import boom.boom.FontManager.FontManager;
 import boom.boom.R;
 import boom.boom.api.SysApplication;
 import boom.boom.api.Utils;
+import boom.boom.api.myVideoView;
 import boom.boom.guizejieshao.Guizejieshao_activity;
 import boom.boom.shangchuandengdai.Shangchuandengdai_activity;
 
@@ -65,7 +66,7 @@ public class Paishetiaozhan_activity extends Activity implements SurfaceHolder.C
     private String cl_id;
     private String cl_name;
     private boolean onStartStopState = false;
-    private VideoView vw;
+    private myVideoView vw;
     private boolean workingState;
     int paishexuanze=0;
     private RelativeLayout all_hight;
@@ -176,7 +177,7 @@ public class Paishetiaozhan_activity extends Activity implements SurfaceHolder.C
                 msgbox();
             }
         });
-        vw = (VideoView)findViewById(R.id.on_surface_covered_view);
+        vw = (myVideoView) findViewById(R.id.on_surface_covered_view);
         vw.setVisibility(View.INVISIBLE);
         vw.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
             @Override
