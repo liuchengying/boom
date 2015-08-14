@@ -142,7 +142,7 @@ public class liuyanpinglun_fragment extends Fragment {
                 nickname = host_user.getString("nickname");
                 avatar = host_user.getString("avatar");
                 time = data.getString("assign_date");
-                int liked = data.getInt("heart_like");
+                int liked = data.getInt("if_i_like");
                 mTogBtn.setChecked(liked>0);
             }catch (Exception e){
                 e.printStackTrace();

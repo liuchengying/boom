@@ -1,5 +1,6 @@
 package boom.boom.paihangbang;
 
+import android.content.Intent;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.os.Handler;
@@ -29,6 +30,7 @@ import boom.boom.api.HttpIO;
 import boom.boom.api.Static;
 import boom.boom.api.Utils;
 import boom.boom.myview.XListView;
+import boom.boom.shipintianzhanpinglun.Shipinpinglun_fragment;
 
 /**
  * Created by 刘成英 on 2015/3/12.
@@ -67,7 +69,15 @@ public class Diqupaihang_fragment extends Fragment implements XListView.IXListVi
                 new int[]{R.id.qgph_nickname, R.id.qgph_count, R.id.qgph_addr, R.id.qgph_committime, R.id.qgph_usedtime}
         );
         lv.setAdapter(mSimpleAdapter);
-
+        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Intent intent = new Intent();
+                intent.putExtra("ID", (String) listItem.get(i-1).get("ID"));
+                intent.setClass(getActivity(), Shipinpinglun_fragment.class);
+                startActivity(intent);
+            }
+        });
 
 
 //        popupWindowView = inflater.inflate(R.layout.shezhi_touxiang, null);
@@ -116,6 +126,7 @@ public class Diqupaihang_fragment extends Fragment implements XListView.IXListVi
             @Override
             public void run() {
                 try {
+                    listItem.clear();
                     String httpResult;
                     Utils.GetBuilder getImageUrl = new Utils.GetBuilder(Utils.serveraddr + "api/rank.php");
                     getImageUrl.addItem("action", "board_hero");
@@ -152,6 +163,7 @@ public class Diqupaihang_fragment extends Fragment implements XListView.IXListVi
                                     map.put("address", address);
                                     map.put("commit", committime);
                                     map.put("used", usedtime);
+                                    map.put("ID",line.getString("ID"));
                                     listItem.add(map);
                                 }
                                 //mSimpleAdapter.notifyDataSetChanged();
