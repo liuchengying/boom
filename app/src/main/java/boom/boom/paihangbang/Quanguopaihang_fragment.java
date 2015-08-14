@@ -1,5 +1,6 @@
 package boom.boom.paihangbang;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -7,6 +8,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.SimpleAdapter;
 
 import org.json.JSONObject;
@@ -22,6 +24,7 @@ import boom.boom.api.HttpIO;
 import boom.boom.api.Static;
 import boom.boom.api.Utils;
 import boom.boom.myview.XListView;
+import boom.boom.shipintianzhanpinglun.Shipintianzhan_pinglun;
 
 /**
  * Created by 刘成英 on 2015/3/12.
@@ -63,6 +66,15 @@ public class Quanguopaihang_fragment extends Fragment implements XListView.IXLis
         lv.setPullRefreshEnable(true);
         lv.setXListViewListener(Quanguopaihang_fragment.this);
         lv.setAdapter(mSimpleAdapter);
+        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Intent intent = new Intent();
+                intent.putExtra("ID", (String) listItem.get(i-1).get("ID"));
+                intent.setClass(getActivity(), Shipintianzhan_pinglun.class);
+                startActivity(intent);
+            }
+        });
         return v;
     }
     private void onLoad() {
@@ -115,6 +127,7 @@ public class Quanguopaihang_fragment extends Fragment implements XListView.IXLis
                                 map.put("address",address);
                                 map.put("commit",committime);
                                 map.put("used",usedtime);
+                                map.put("ID",line.getString("ID"));
                                 listItem.add(map);
                             }
                             //mSimpleAdapter.notifyDataSetChanged();

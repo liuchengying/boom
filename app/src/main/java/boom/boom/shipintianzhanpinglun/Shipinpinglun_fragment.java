@@ -116,10 +116,10 @@ public class Shipinpinglun_fragment extends Fragment{
                         date = data.getString("date");
                         elapsed = data.getString("elapsed_time");
                         frame_frontvideo.setVideoURI(Uri.parse(Utils.serveraddr + Utils.getVideoAPI(data.getString("video")) + "&" + Utils.parsSessionViaGET()));
-                        int liked = data.getInt("heart_like");
-                        heartlike.setChecked(liked > 0);
                         JSONObject winner_user = Utils.GetSubJSONObject(obj, "winner_user");
                         nickname = winner_user.getString("nickname");
+                        int liked = winner_user.getInt("heart_like");
+                        heartlike.setChecked(liked > 0);
                         nickname_tv.setText(nickname);
                         cl_name_tv.setText(cl_name);
                         date_tv.setText(date);
@@ -266,7 +266,6 @@ public class Shipinpinglun_fragment extends Fragment{
         });
         Intent intent = getActivity().getIntent();
         //guestID = intent.getStringExtra("guestID");
-        cl_id = intent.getStringExtra("cl_id");
         ID = intent.getStringExtra("ID");
         LoadData();
         setListViewHeightBasedOnChildren(lv);

@@ -35,6 +35,8 @@ public class CheckIn {
                 String httpResult = io.getResultData();
                 JSONObject obj = new JSONObject(httpResult);
                 String status = obj.getString("state");
+                Static.coins = obj.getInt("current_coins");
+                Static.tiaozhan_handler.sendEmptyMessage(0);
                 if (status.equalsIgnoreCase("FAILED")) {
                     if(obj.getString("reason").equals("ALREADY_CHECKIN_TODAY"))
                     {

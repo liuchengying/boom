@@ -2,7 +2,6 @@ package boom.boom.zinitiaozhan;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -13,7 +12,6 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -32,7 +30,6 @@ import boom.boom.api.ProgressListener;
 import boom.boom.api.Static;
 import boom.boom.api.Utils;
 import boom.boom.api.uploadFile;
-import boom.boom.myview.SildingFinishLayout;
 import boom.boom.paishetiaozhan.Paishetiaozhan_activity;
 import boom.boom.tianzhan.Tiaozhan_activity;
 
@@ -54,21 +51,22 @@ public class Zinitianzhan_activity extends Activity {
     int a = 0;
     int percent = 0;
 
-    Handler handler_onUploadMonitor = new Handler(){
+    Handler handler_onUploadMonitor = new Handler() {
         @Override
-        public void handleMessage(Message msg){
+        public void handleMessage(Message msg) {
             super.handleMessage(msg);
-                    if (a == 9) {
-                        mprogress2.setProgress(percent);
-                        zn_dianjishangchuan.setText("上传成功");
-                        znsc_scchenggong.setVisibility(View.VISIBLE);
-                    }
+            mprogress2.setProgress(percent);
+            if (percent >= 99) {
+                zn_dianjishangchuan.setText("上传成功");
+                znsc_scchenggong.setVisibility(View.VISIBLE);
+            }
+
         }
     };
 
-    Handler handler_onUploadFailure = new Handler(){
+    Handler handler_onUploadFailure = new Handler() {
         @Override
-        public void handleMessage(Message msg){
+        public void handleMessage(Message msg) {
             super.handleMessage(msg);
             Toast.makeText(Zinitianzhan_activity.this, "对不起，上传失败。", Toast.LENGTH_SHORT).show();
             zn_dianjishangchuan.setText("录制完毕，等待上传");
@@ -114,17 +112,17 @@ public class Zinitianzhan_activity extends Activity {
         zntz_fh.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(file_path!=null) {
-                    final AlertDialog alertDialog=new AlertDialog.Builder(Zinitianzhan_activity.this).create();
+                if (file_path != null) {
+                    final AlertDialog alertDialog = new AlertDialog.Builder(Zinitianzhan_activity.this).create();
                     alertDialog.show();
                     alertDialog.setCancelable(false);
-                    Window window=alertDialog.getWindow();
+                    Window window = alertDialog.getWindow();
                     window.setContentView(R.layout.mbox_yesno);
-                    TextView ok_title=(TextView)window.findViewById(R.id.yn_title);
-                    TextView ok_text=(TextView)window.findViewById(R.id.yn_text);
+                    TextView ok_title = (TextView) window.findViewById(R.id.yn_title);
+                    TextView ok_text = (TextView) window.findViewById(R.id.yn_text);
                     ok_title.setText("提示");
                     ok_text.setText("您已录制过一次视频，你想要放弃之前录制的视频吗？");
-                    Button yes=(Button)window.findViewById(R.id.button_ok_yn);
+                    Button yes = (Button) window.findViewById(R.id.button_ok_yn);
                     yes.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
@@ -132,14 +130,14 @@ public class Zinitianzhan_activity extends Activity {
                             overridePendingTransition(0, R.anim.base_slide_right_out);
                         }
                     });
-                    Button no = (Button)window.findViewById(R.id.button_cancel_yn);
+                    Button no = (Button) window.findViewById(R.id.button_cancel_yn);
                     no.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
                             alertDialog.cancel();
                         }
                     });
-                }else {
+                } else {
                     finish();
                 }
             }
@@ -169,16 +167,16 @@ public class Zinitianzhan_activity extends Activity {
                                 }
                             }).
                             setNegativeButton("取消", null).show();*/
-                    final AlertDialog alertDialog=new AlertDialog.Builder(Zinitianzhan_activity.this).create();
+                    final AlertDialog alertDialog = new AlertDialog.Builder(Zinitianzhan_activity.this).create();
                     alertDialog.show();
                     alertDialog.setCancelable(false);
-                    Window window=alertDialog.getWindow();
+                    Window window = alertDialog.getWindow();
                     window.setContentView(R.layout.mbox_yesno);
-                    TextView ok_title=(TextView)window.findViewById(R.id.yn_title);
-                    TextView ok_text=(TextView)window.findViewById(R.id.yn_text);
+                    TextView ok_title = (TextView) window.findViewById(R.id.yn_title);
+                    TextView ok_text = (TextView) window.findViewById(R.id.yn_text);
                     ok_title.setText("提示");
                     ok_text.setText("您已录制过一次视频，你想要放弃之前录制的视频吗？");
-                    Button yes=(Button)window.findViewById(R.id.button_ok_yn);
+                    Button yes = (Button) window.findViewById(R.id.button_ok_yn);
                     yes.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
@@ -189,14 +187,14 @@ public class Zinitianzhan_activity extends Activity {
                             alertDialog.cancel();
                         }
                     });
-                    Button no = (Button)window.findViewById(R.id.button_cancel_yn);
+                    Button no = (Button) window.findViewById(R.id.button_cancel_yn);
                     no.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
                             alertDialog.cancel();
                         }
                     });
-                }else{
+                } else {
                     Intent intent = new Intent();
                     intent.setClass(Zinitianzhan_activity.this, Paishetiaozhan_activity.class);
                     intent.putExtra("IfReturn", true);
@@ -266,7 +264,7 @@ public class Zinitianzhan_activity extends Activity {
                                             io.GETToHTTPServer();
                                         }
                                     }).start();
-                                    while(io.getResultData() == null);
+                                    while (io.getResultData() == null) ;
                                     if (io.LastError == 0) {
                                         String result1 = io.getResultData();
                                         JSONObject obj1 = new JSONObject(result1);
@@ -288,27 +286,28 @@ public class Zinitianzhan_activity extends Activity {
                         }
                     }).start();
                 }
-             }
-        });
-        }
-        @Override
-        public void onBackPressed () {
-            super.onBackPressed();
-            overridePendingTransition(0, R.anim.base_slide_right_out);
-        }
-
-        @Override
-        protected void onActivityResult ( int requestCode, int resultCode, Intent data){
-            switch (resultCode) {
-                case RESULT_OK:
-                    String tmp;
-                    this.file_path = data.getStringExtra("file_path");
-                    zn_dianjishangchuan.setText("录制完毕，等待上传");
-                    if ((tmp = this.file_path) == null) tmp = "NULL";
-                    Log.e("File path", tmp);
-                    forRecordState = true;
             }
+        });
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        overridePendingTransition(0, R.anim.base_slide_right_out);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        switch (resultCode) {
+            case RESULT_OK:
+                String tmp;
+                this.file_path = data.getStringExtra("file_path");
+                zn_dianjishangchuan.setText("录制完毕，等待上传");
+                if ((tmp = this.file_path) == null) tmp = "NULL";
+                Log.e("File path", tmp);
+                forRecordState = true;
         }
     }
+}
 
 
