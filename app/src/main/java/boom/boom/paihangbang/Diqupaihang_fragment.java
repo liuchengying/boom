@@ -155,6 +155,12 @@ public class Diqupaihang_fragment extends Fragment implements XListView.IXListVi
                                     nickname = line.getString("winner_nickname");
                                     count = "观看次数 " + line.getString("play_time") + " 次";
                                     address = line.getString("location_intent");
+                                    try{
+                                        JSONObject loc = new JSONObject(address);
+                                        address = Utils.locationlessthan5(loc.getString("province"),loc.getString("city"));
+                                    }catch (Exception e){
+                                        e.printStackTrace();
+                                    }
                                     committime = line.getString("date");
                                     usedtime = line.getString("elapsed_time") + "s";
                                     HashMap<String, Object> map = new HashMap<String, Object>();

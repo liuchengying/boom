@@ -75,6 +75,8 @@ public class Shipintianzhan_fragment extends Fragment implements XListView.IXLis
                         title = tmp.getString("frontname");
                         text = "观看次数" + tmp.getString("play_time") + "次";
                         location = tmp.getString("location_intent");
+                        JSONObject loc = new JSONObject(location);
+                        location = Utils.locationlessthan5(loc.getString("province"),loc.getString("city"));
                         assign_time = tmp.getString("date");
                         elapsed = tmp.getString("elapsed_time");
                         cl_id = tmp.getString("challenge_id");

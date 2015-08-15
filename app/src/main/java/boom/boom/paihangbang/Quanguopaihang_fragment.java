@@ -70,7 +70,7 @@ public class Quanguopaihang_fragment extends Fragment implements XListView.IXLis
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Intent intent = new Intent();
-                intent.putExtra("ID", (String) listItem.get(i-1).get("ID"));
+                intent.putExtra("ID", (String) listItem.get(i - 1).get("ID"));
                 intent.setClass(getActivity(), Shipintianzhan_pinglun.class);
                 startActivity(intent);
             }
@@ -119,6 +119,12 @@ public class Quanguopaihang_fragment extends Fragment implements XListView.IXLis
                                 nickname = line.getString("winner_nickname");
                                 count ="观看次数 " +line.getString("play_time")+ " 次";
                                 address = line.getString("location_intent");
+                                try{
+                                    JSONObject loc = new JSONObject(address);
+                                    address = Utils.locationlessthan5(loc.getString("province"),loc.getString("city"));
+                                }catch (Exception e){
+                                    e.printStackTrace();
+                                }
                                 committime = line.getString("date");
                                 usedtime = line.getString("elapsed_time")+"s";
                                 HashMap<String, Object> map = new HashMap<String, Object>();

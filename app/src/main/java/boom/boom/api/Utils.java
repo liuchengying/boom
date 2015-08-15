@@ -292,4 +292,13 @@ public class Utils {
         return bitmap;
 
     }
+    public static String locationlessthan5(String province, String city){
+        String tmp;
+        tmp = province + city;
+        if (tmp.length()>5){
+            return city;
+        }else {
+            return tmp;
+        }
+    }
 }
