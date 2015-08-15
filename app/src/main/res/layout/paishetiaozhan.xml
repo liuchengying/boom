@@ -87,6 +87,7 @@
                 android:id="@+id/syncRecord_monitor"
                 android:layout_width="fill_parent"
                 android:layout_height="270dp" />
+
     </FrameLayout>
         <LinearLayout
             android:layout_width="fill_parent"

@@ -76,8 +76,8 @@ public class Search_friends_activity extends Activity{
         mSimpleAdapter = new SimpleAdapter(Search_friends_activity.this, listItem,//需要绑定的数据
                 R.layout.search_friends_item,//每一行的布局//动态数组中的数据源的键对应到定义布局的View中
                 new String[]{
-                        "nickname","avatar"},
-                new int[]{R.id.search_nickname,R.id.search_avatar}
+                        "nickname","avatar","text"},
+                new int[]{R.id.search_nickname,R.id.search_avatar,R.id.search_shuju}
         );
         mSimpleAdapter.setViewBinder(new SimpleAdapter.ViewBinder() {
             @Override
@@ -167,7 +167,9 @@ public class Search_friends_activity extends Activity{
                                                 map.put("nickname",item.getString("nickname"));
                                                 map.put("avatar",item.getString("avatar"));
                                                 map.put("identifyDigit",item.getString("identifyDigit"));
-                                                map.put("friendship",item.getString("friendship"));
+                                                map.put("friendship", item.getString("friendship"));
+                                                String text = "共完成 "+item.getString("completed_cl_sum")+" 个挑战，累计获得 "+item.getString("coins")+" 积分";
+                                                map.put("text",text);
                                                 listItem.add(map);
                                             }
                                         }

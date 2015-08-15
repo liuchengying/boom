@@ -43,6 +43,7 @@
                 android:text="点击访问个人主页"
                 android:textSize="16sp"/>
             <TextView
+                android:id="@+id/search_shuju"
                 android:layout_width="230dp"
                 android:layout_height="35dp"
                 android:text="共完成45个挑战，累计获得1390积分"/>
