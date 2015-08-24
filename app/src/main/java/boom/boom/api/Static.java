@@ -17,6 +17,7 @@ public class Static {
     public static String session_id = null;
     public static String username = null;
     public static String nickname = null;
+    public static int sex = 0;
     public static int logintime;
     public static int coins;
     public static String avatar = null;

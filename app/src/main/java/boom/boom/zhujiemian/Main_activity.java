@@ -4,6 +4,7 @@ package boom.boom.zhujiemian;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.ConnectivityManager;
@@ -251,6 +252,7 @@ public class Main_activity extends Activity {
                     Static.uniqueSign = data.QueryData("uniquesign");
                     Static.identifyDigit = data.QueryData("identifyDigit");
                     Static.avatar = data.QueryData("avatar");
+                    Static.sex = Integer.parseInt(data.QueryData("sex"));
                 /*HttpIO io = new HttpIO("http://172.24.10.118/api/getimage.php?token=" + Static.avatar);
                 io.SessionID=Static.session_id;
                 Static.avatarImage = io.getImage();*/
@@ -266,31 +268,41 @@ public class Main_activity extends Activity {
                         InputStream in = null;
                         HttpURLConnection urlConn = null;
                         BufferedReader buffer = null;
-                        try {
-                            Utils.GetBuilder get = new Utils.GetBuilder(Utils.serveraddr + "/api/getimage.php");
-                            get.addItem("token", Static.avatar);
-                            URL url = new URL(get.toString());
-                            if (url != null) {
-                                urlConn = (HttpURLConnection) url.openConnection();
-                                urlConn.setConnectTimeout(5000);// 设置超时时间
-                                urlConn.setRequestProperty("Cookie","PHPSESSID=" + Static.session_id);
-                                try {
-                                    in = urlConn.getInputStream();
-                                } catch (ConnectException e) {
-                                    e.printStackTrace();
+                        if(!Static.avatar.equals("null")){
+                            try {
+                                Utils.GetBuilder get = new Utils.GetBuilder(Utils.serveraddr + "/api/getimage.php");
+                                get.addItem("token", Static.avatar);
+                                URL url = new URL(get.toString());
+                                if (url != null) {
+                                    urlConn = (HttpURLConnection) url.openConnection();
+                                    urlConn.setConnectTimeout(5000);// 设置超时时间
+                                    urlConn.setRequestProperty("Cookie","PHPSESSID=" + Static.session_id);
+                                    try {
+                                        in = urlConn.getInputStream();
+                                    } catch (ConnectException e) {
+                                        e.printStackTrace();
+                                    }
                                 }
+                                //解析得到图片
+                                bitmap = BitmapFactory.decodeStream(in);
+                                //关闭数据流
+                                in.close();
+                                urlConn.disconnect();
                             }
-                            //解析得到图片
-                            bitmap = BitmapFactory.decodeStream(in);
-                            //关闭数据流
-                            in.close();
-                            urlConn.disconnect();
+                            catch (Exception e)
+                            {
+                                e.printStackTrace();
+                            }
                         }
-                        catch (Exception e)
-                        {
-                            e.printStackTrace();
+                        else {
+                            Resources res = getResources();
+                            if(Static.sex == 0) {
+                                bitmap = BitmapFactory.decodeResource(res, R.drawable.android_icon_boy);
+                            }else {
+                                bitmap = BitmapFactory.decodeResource(res,R.drawable.android_icon_girl);
+                            }
                         }
-                        Static.avatarImage=bitmap;
+                        Static.avatarImage = bitmap;
                     }
                 });
                 thread.start();

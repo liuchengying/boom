@@ -47,7 +47,7 @@ public class Shangchuandengdai_activity extends Activity {
 //    private FileUploadAsyncTask ftask;
 //    private File upload_file;
     private long file_length;
-
+    private Thread uploadThread;
     Handler myMessageHandler = new Handler(){
         @Override
         public void handleMessage(Message msg) {
@@ -64,19 +64,24 @@ public class Shangchuandengdai_activity extends Activity {
         setContentView(R.layout.shangchuandengdai);
         SysApplication.getInstance().addActivity(this);
         FontManager.changeFonts(FontManager.getContentView(this), this);//字体
-        initEvent();
         Intent intent = getIntent();
         path = intent.getStringExtra("file_path");
         cl_name  = intent.getStringExtra("challenge_name");
         elapsed = intent.getIntExtra("elapsed", 20);
         cl_id = intent.getStringExtra("challenge_id");
-        pf_iv = intent.getIntExtra("pf_iv",0);
+        pf_iv = intent.getIntExtra("pf_iv", 0);
         shangchuandengdaifanhui = (Button) findViewById(R.id.shangchuandengdaifanhui);
         progressBar = (boom.boom.myview.ProgressBar) findViewById(R.id.progress123);
         fangqishangchuang = (Button) findViewById(R.id.fangqishangchuan);
+        fangqishangchuang.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                uploadThread.interrupt();
+            }
+        });
         scdd_jindu = (TextView) findViewById(R.id.scdd_jindu);
         progress = new Integer("0");
-        new Thread(new Runnable() {
+        uploadThread = new Thread(new Runnable() {
             @Override
             public void run() {
                 try {
@@ -123,7 +128,8 @@ public class Shangchuandengdai_activity extends Activity {
                     e.printStackTrace();
                 }
             }
-        }).start();
+        });
+        uploadThread.start();
         shangchuandengdaifanhui.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -133,15 +139,6 @@ public class Shangchuandengdai_activity extends Activity {
             }
         });
 
-    }
-
-    private void initEvent() {
-        findViewById(R.id.fangqishangchuan).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
     }
 
     private  void showDialog1(){

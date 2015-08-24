@@ -12,16 +12,9 @@ import android.os.Message;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.baidu.android.pushservice.CustomPushNotificationBuilder;
-import com.baidu.android.pushservice.PushConstants;
-import com.baidu.android.pushservice.PushManager;
 import com.loopj.android.http.PersistentCookieStore;
 
 import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.io.InputStream;
 import java.net.ConnectException;
 import java.net.HttpURLConnection;
@@ -64,6 +57,7 @@ public class Welcome_activity extends Activity {
                         Static.uniqueSign = data.QueryData("uniquesign");
                         Static.identifyDigit = data.QueryData("identifyDigit");
                         Static.avatar = data.QueryData("avatar");
+                        Static.sex = Integer.parseInt(data.QueryData("sex"));
                         Static.coins = Integer.parseInt(data.QueryData("coins"));
                        /* Static.province = Utils.GetSubJSONObject(data.toJSONObject(), "location").getString("province");
                         Static.city = Utils.GetSubJSONObject(data.toJSONObject(), "location").getString("city");
@@ -108,7 +102,11 @@ public class Welcome_activity extends Activity {
                             }
                             else {
                                 Resources res = getResources();
-                                bitmap = BitmapFactory.decodeResource(res,R.drawable.android_114);
+                                if(Static.sex == 0) {
+                                    bitmap = BitmapFactory.decodeResource(res, R.drawable.android_icon_boy);
+                                }else {
+                                    bitmap = BitmapFactory.decodeResource(res,R.drawable.android_icon_girl);
+                                }
                             }
                             Static.avatarImage = bitmap;
                         }

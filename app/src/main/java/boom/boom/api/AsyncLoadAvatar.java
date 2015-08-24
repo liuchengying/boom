@@ -41,7 +41,7 @@ public class AsyncLoadAvatar {
         if (avatarUID.equals("null")||avatarUID.equals("")){
             /*bitmap = BitmapFactory.decodeResource(res,R.drawable.android_150);
             return bitmap;*/
-            drawable = res.getDrawable(R.drawable.android_150);
+            drawable = res.getDrawable(R.drawable.android_icon_boy);
             return drawable;
         }
         try

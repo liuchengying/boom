@@ -67,6 +67,7 @@ public class  Gerenzhuye_activity extends FragmentActivity
     private List<Fragment> mDatas;
     private TextView username;
     private TextView sign;
+    private int sex;
     private TextView mChatTextView;
     private TextView mFriendTextView;
     private TextView mContactTextView;
@@ -215,6 +216,7 @@ public class  Gerenzhuye_activity extends FragmentActivity
                     username = (TextView) findViewById(R.id.gerenzhuye_yonghuming);
                     nickname = obj.getString("nickname");
                     username.setText(nickname);
+                    sex= obj.getInt("sex");
                     sign = (TextView) findViewById(R.id.gerenzhuye_qianming);
                     String uniquesign = obj.getString("uniquesign");
                     if(!uniquesign.equals("null")){
@@ -224,25 +226,33 @@ public class  Gerenzhuye_activity extends FragmentActivity
                     }
                     gerenzhuye_touxing = (CircleImageView) findViewById(R.id.gerenzhuye_touxiang);
                     data = obj.getString("avatar");
-                    if ((avatar = AsyncLoadAvatar.GetLocalImage(Gerenzhuye_activity.this,(String) data)) == null)           //获取存在本地的Bitmap
-                    {
-                        Thread thread = new Thread(new Runnable() {
-                            @Override
-                            public void run() {
-                                if (AsyncLoadAvatar.SaveBitmapToLocal(AsyncLoadAvatar.DownloadBitmap((String) data), (String) data));  //returned Bitmap   把Bitmap保存到本地
-                                {
-                                    Message m = new Message();
-                                    Gerenzhuye_activity.this.myMessageHandler.sendMessage(m);
+                    if(data.equals("null")||data.equals("")){
+                        if(sex == 0) {
+                            gerenzhuye_touxing.setImageResource(R.drawable.android_icon_boy);
+                        }else {
+                            gerenzhuye_touxing.setImageResource(R.drawable.android_icon_girl);
+                        }
+                    }else {
+                        if ((avatar = AsyncLoadAvatar.GetLocalImage(Gerenzhuye_activity.this, (String) data)) == null)           //获取存在本地的Bitmap
+                        {
+                            Thread thread = new Thread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    if (AsyncLoadAvatar.SaveBitmapToLocal(AsyncLoadAvatar.DownloadBitmap((String) data), (String) data))//returned Bitmap   把Bitmap保存到本地
+                                    {
+                                        Message m = new Message();
+                                        Gerenzhuye_activity.this.myMessageHandler.sendMessage(m);
+                                    }
                                 }
-                            }
-                        });
-                        thread.start();
+                            });
+                            thread.start();
 
-                        gerenzhuye_touxing.setImageResource(R.drawable.android_181);
+                            gerenzhuye_touxing.setImageResource(R.drawable.android_icon_boy);
 
-                    } else {
-                        gerenzhuye_touxing.setImageDrawable(avatar);
-                        //gerenzhuye_touxing.setImageBitmap(avatar);
+                        } else {
+                            gerenzhuye_touxing.setImageDrawable(avatar);
+                            //gerenzhuye_touxing.setImageBitmap(avatar);
+                        }
                     }
                 }catch (Exception e)
                 {
