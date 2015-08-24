@@ -104,7 +104,9 @@ public class User {
             {   ifUserLoggedIn = false;
                 ServerErr="用户名或密码错误！";
             }
-            if (status.equalsIgnoreCase("SUCCESS")) ifUserLoggedIn = true;
+            if (status.equalsIgnoreCase("SUCCESS")) {
+                ifUserLoggedIn = true;
+            }
         }
         else {
             ifUserLoggedIn = false;

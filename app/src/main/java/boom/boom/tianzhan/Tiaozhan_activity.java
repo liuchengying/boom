@@ -37,6 +37,7 @@ import boom.boom.FontManager.FontManager;
 import boom.boom.R;
 import boom.boom.api.Static;
 import boom.boom.api.SysApplication;
+import boom.boom.api.Utils;
 import boom.boom.api.myImageView;
 import boom.boom.faqitianzhan.Faqitianzhan_activity;
 import boom.boom.gerenzhuye.Gerenzhuye_activity;
@@ -90,6 +91,7 @@ public class Tiaozhan_activity extends FragmentActivity {
         SysApplication.getInstance().addActivity(this);
         FontManager.changeFonts(FontManager.getContentView(this), this);//字体
         Static.tiaozhan_handler=this.myMessageHandler;
+        Utils.getResolution(Tiaozhan_activity.this);
         Intent intent = getIntent();
         String user_name = Static.username;
         String user_nickname = Static.nickname;

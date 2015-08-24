@@ -67,7 +67,7 @@ public class Liuyanhuifu_activity extends Activity {
                     @Override
                     public void run() {
                         io.SessionID = Static.session_id;
-                        io.getJson();
+                        io.GETToHTTPServer();
                     }
                 }).start();
                 while(io.getResultData() == null);

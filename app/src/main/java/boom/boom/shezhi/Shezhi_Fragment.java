@@ -198,6 +198,8 @@ public class Shezhi_Fragment extends Fragment {
                     public void onClick(View v) {
                         File file = new File(getActivity().getCacheDir(), "loginToken.dat");
                         if (file.exists())  file.delete();
+                        Static.cookieStore.clear();
+                        HttpIO.getCookies();
                         SysApplication.getInstance().exit();
                     }
                 });

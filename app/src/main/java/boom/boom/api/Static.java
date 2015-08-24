@@ -2,6 +2,8 @@ package boom.boom.api;
 
 import android.graphics.Bitmap;
 
+import com.loopj.android.http.PersistentCookieStore;
+
 import org.json.JSONObject;
 
 import boom.boom.myview.BadgeView;
@@ -33,4 +35,5 @@ public class Static {
     public static BadgeView badgeView;
     public static String user_id;
     public static String channel_id;
+    public static PersistentCookieStore cookieStore;
 }

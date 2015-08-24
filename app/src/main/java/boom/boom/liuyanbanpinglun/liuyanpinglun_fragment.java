@@ -116,7 +116,7 @@ public class liuyanpinglun_fragment extends Fragment {
                 thread.start();
                 imageView.setImageResource(R.drawable.android_181);
             } else {
-                imageView.setImageDrawable(new BitmapDrawable(Utils.zoomImage(Utils.drawableToBitmap(avatar), 60, 70)));
+                imageView.setImageBitmap(Utils.zoomImage(Utils.drawableToBitmap(avatar),60,70));
             }
 
         }

@@ -22,6 +22,7 @@ import com.baidu.android.pushservice.BasicPushNotificationBuilder;
 import com.baidu.android.pushservice.CustomPushNotificationBuilder;
 import com.baidu.android.pushservice.PushConstants;
 import com.baidu.android.pushservice.PushManager;
+import com.loopj.android.http.PersistentCookieStore;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
@@ -42,6 +43,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.prefs.PreferenceChangeEvent;
 
 import boom.boom.FontManager.FontManager;
 import boom.boom.R;
@@ -92,7 +94,7 @@ public class Main_activity extends Activity {
                if(obj.getString("state").equals("SUCCESS")) {
                    userlogin = new User("", "");
                    User.session_id = obj.getString("s_id");
-                   Static.session_id = User.session_id;
+                   //Static.session_id = User.session_id;
                    userlogin.ifUserLoggedIn = true;
                    myMessageHandler.sendEmptyMessage(0);
                    comletedPlat.removeAccount();
@@ -109,13 +111,15 @@ public class Main_activity extends Activity {
         @Override
         public boolean handleMessage(Message msg) {
             if(msg.what == 1){
+                Static.cookieStore = new PersistentCookieStore(Main_activity.this);
+                HttpIO.getCookies();
                 String Data = msg.getData().getString("data");
                 try{
                     JSONObject obj = new JSONObject(Data);
                     if(obj.getString("state").equals("SUCCESS")){
                         userlogin = new User("","");
                         User.session_id = obj.getString("s_id");
-                        Static.session_id = User.session_id;
+                        //Static.session_id = User.session_id;
                         userlogin.ifUserLoggedIn = true;
                         myMessageHandler.sendEmptyMessage(0);
                         comletedPlat.removeAccount();
@@ -202,7 +206,7 @@ public class Main_activity extends Activity {
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
             if (userlogin.ifLoggedIn()) {
-                File file = new File(getCacheDir(), "loginToken.dat");
+                /*File file = new File(getCacheDir(), "loginToken.dat");
                 if (!file.exists()) {
                     try {
                         file.createNewFile();
@@ -227,8 +231,9 @@ public class Main_activity extends Activity {
                         }
                     } catch (FileNotFoundException e) {
                         e.printStackTrace();
-                    }
-
+                    }*/
+                    Static.cookieStore = new PersistentCookieStore(Main_activity.this);
+                    HttpIO.getCookies();
                     UserData data = new UserData(userlogin.getSessionId());
                     Intent intent = new Intent();
 //                    intent.putExtra("session_id", userlogin.getSessionId());
@@ -237,7 +242,7 @@ public class Main_activity extends Activity {
 //                    intent.putExtra("uniquesign", data.QueryData("uniquesign"));
 //                    intent.putExtra("coins", data.QueryData("coins"));
                     try {
-                    Static.session_id = userlogin.getSessionId();
+                    //Static.session_id = userlogin.getSessionId();
                     Static.province = Utils.GetSubJSONObject(data.toJSONObject(), "location").getString("province");
                     Static.city = Utils.GetSubJSONObject(data.toJSONObject(), "location").getString("city");
                     Static.area = Utils.GetSubJSONObject(data.toJSONObject(), "location").getString("area");

@@ -8,8 +8,15 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.os.StrictMode;
+import android.util.Log;
 import android.widget.Toast;
 
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.PersistentCookieStore;
+import com.loopj.android.http.SyncHttpClient;
+import com.loopj.android.http.TextHttpResponseHandler;
+
+import org.apache.http.Header;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
@@ -45,6 +52,8 @@ public class HttpIO {
     private boolean sessionState;
     public String SessionID;
     public List<Cookie> cookiearray;
+    public Context mContext;
+    public PersistentCookieStore mCookieStore;
     private static String SESSION_MAGIC_STRING = "PHPSESSID";   // SESSION中的魔法字串
     Boolean bFinished;          //多线程同步事件
     HttpResponse response;
@@ -92,7 +101,16 @@ public class HttpIO {
         ResultBuffer = null;
     }
 
-
+    public static List<Cookie> getCookies(){
+        //PersistentCookieStore cookieStore = new PersistentCookieStore();
+        //client.setCookieStore(Static.cookieStore);
+        List<Cookie> cookies = Static.cookieStore.getCookies();
+        Log.e("cookie","Got");
+        if(cookies.size()>0) {
+            Static.session_id = cookies.get(0).getValue();
+        }
+        return cookies;
+    }
     public String POSTToHTTPServer(List<NameValuePair> postParameters) {
         /*
          *  POSTToHTTPServer() 用法：
@@ -158,7 +176,7 @@ public class HttpIO {
          */
 
         String result = null;
-        BufferedReader reader = null;
+        /*BufferedReader reader = null;
         try {
             DefaultHttpClient client = new DefaultHttpClient();
             HttpGet request = new HttpGet();
@@ -193,9 +211,29 @@ public class HttpIO {
                     e.printStackTrace();
                 }
             }
+        }*/
+
+        SyncHttpClient client = new SyncHttpClient();
+        if(mCookieStore != null) {
+            client.setCookieStore(mCookieStore);
+        }else {
+            client.setCookieStore(Static.cookieStore);
         }
-        this.ResultBuffer = result;
-        return result;
+        client.get(this.GetURL(), new TextHttpResponseHandler() {
+            @Override
+            public void onFailure(int i, Header[] headers, String s, Throwable throwable) {
+
+            }
+
+            @Override
+            public void onSuccess(int i, Header[] headers, String s) {
+                Log.e("Async",s);
+                getCookies();
+                ResultBuffer = s;
+            }
+        });
+        //this.ResultBuffer = result;
+        return ResultBuffer;
     }
 
     public JSONObject getJSONObject(){
@@ -281,6 +319,7 @@ public class HttpIO {
                     return null;
                 }
             }
+            AsyncHttpClient client = new AsyncHttpClient();
 
 
             //解析得到图片
@@ -306,6 +345,8 @@ public class HttpIO {
             loadingDialog.show();*/
             final HttpIO io = new HttpIO(URL);
             io.SessionID = Static.session_id;
+            io.mContext = context;
+            Static.cookieStore = new PersistentCookieStore(context);
             final TimerTask task = new TimerTask() {
                 @Override
                 public void run() {
@@ -322,6 +363,7 @@ public class HttpIO {
                 @Override
                 public void run() {
                     io.GETToHTTPServer();
+                    while(io.getResultData()==null);
                     if(io.LastError==0) {
                         Message msg = new Message();
                         msg.what = 1;

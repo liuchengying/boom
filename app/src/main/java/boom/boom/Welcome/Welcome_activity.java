@@ -15,6 +15,7 @@ import android.widget.Toast;
 import com.baidu.android.pushservice.CustomPushNotificationBuilder;
 import com.baidu.android.pushservice.PushConstants;
 import com.baidu.android.pushservice.PushManager;
+import com.loopj.android.http.PersistentCookieStore;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -31,6 +32,7 @@ import java.util.TimerTask;
 
 import boom.boom.FontManager.FontManager;
 import boom.boom.R;
+import boom.boom.api.HttpIO;
 import boom.boom.api.Static;
 import boom.boom.api.SysApplication;
 import boom.boom.api.User;
@@ -54,7 +56,7 @@ public class Welcome_activity extends Activity {
             if(msg.what == 1){
                 if (user.ifLoggedIn()){
                     UserData data  = new UserData(session);
-                    Static.session_id = session;
+                    //Static.session_id = session;
                     Log.e("Test", "Test3");
                     try {
                         Static.username = data.QueryData("name");
@@ -147,7 +149,24 @@ public class Welcome_activity extends Activity {
         }catch (Exception e){
             e.printStackTrace();
         }
-        File file = new File(Utils.getWorkPath());
+        Static.cookieStore = new PersistentCookieStore(Welcome_activity.this);
+        if(HttpIO.getCookies().size() == 0){
+            Timer timer = new Timer();
+            TimerTask task = new TimerTask(){
+                @Override
+                public void run() {
+                    Intent intent = new Intent(Welcome_activity.this,Main_activity.class);
+                    intent.putExtra("State", 3);
+                    startActivity(intent);
+                    msg_delivered = true;
+                    Welcome_activity.this.finish();
+                }
+            };
+            timer.schedule(task, 1000);
+        }else {
+            user = new User(session,Welcome_activity.this,loginHandler);
+        }
+        /*File file = new File(Utils.getWorkPath());
         if (!file.exists() && !file.isDirectory()){
             Log.e("BASE_FILE", "Unable to find the base data directory. Generate new one.");
             Log.e("BASE_FILE", "The folder will be created at " + file.getAbsolutePath());
@@ -193,6 +212,6 @@ public class Welcome_activity extends Activity {
             }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
-        }
+        }*/
     }
 }

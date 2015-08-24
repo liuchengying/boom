@@ -240,7 +240,6 @@ public class Shipinpinglun_fragment extends Fragment{
         mSildingFinishLayout.setTouchView(mSildingFinishLayout);
         SysApplication.getInstance().addActivity(getActivity());
         FontManager.changeFonts(FontManager.getContentView(getActivity()), getActivity());//字体
-        Utils.getResolution(getActivity());
         allLinear = (LinearLayout) v.findViewById(R.id.list_all);
         lv = (ListView) v.findViewById(R.id.shipinpinglun_listview);
         nickname_tv = (TextView) v.findViewById(R.id.nickname);
