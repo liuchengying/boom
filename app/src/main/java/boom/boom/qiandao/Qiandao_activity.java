@@ -59,6 +59,7 @@ public class Qiandao_activity extends Activity {
         wancheng.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 finish();
 
                 overridePendingTransition(0, R.anim.base_slide_right_out);

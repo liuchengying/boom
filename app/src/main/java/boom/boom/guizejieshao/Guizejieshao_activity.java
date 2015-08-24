@@ -99,6 +99,7 @@ public class Guizejieshao_activity extends Activity{
         challenge_title = (TextView) findViewById(R.id.challenge_title);
         challenge_text = (TextView) findViewById(R.id.challenge_text);
         challenge_date = (TextView) findViewById(R.id.challenge_date);
+
         if(ifFaqi == 1) {
             try {
                 //challenge_data = new JSONObject(Challenge.getChallengeByIdentify(position));

@@ -71,6 +71,7 @@ public class Paishetiaozhan_activity extends Activity implements SurfaceHolder.C
     int paishexuanze=0;
     private RelativeLayout all_hight;
     private int yidongjuli;
+    private int yidongjuki_hengxiang;
 
 
 
@@ -171,6 +172,7 @@ public class Paishetiaozhan_activity extends Activity implements SurfaceHolder.C
         paishefanhui = (RelativeLayout) findViewById(R.id.paishefanhui);
         kaishipaishe = (Button) findViewById(R.id.kaishipaishe);
         fangqipaishe = (Button) findViewById(R.id.fangqipaishe);
+        fangqipaishe.setRight(yidongjuki_hengxiang);
         fangqipaishe.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -273,6 +275,8 @@ public class Paishetiaozhan_activity extends Activity implements SurfaceHolder.C
     public void onStopRecording(){
         int hight = all_hight.getHeight();
         int hight2 = kaishipaishe.getHeight();
+        int width = all_hight.getWidth();
+        yidongjuki_hengxiang = (width/2)-(width/3);
 
         yidongjuli = (hight/2)-(hight2/2);
         mediaRecorder.setOnErrorListener(null);
@@ -295,7 +299,7 @@ public class Paishetiaozhan_activity extends Activity implements SurfaceHolder.C
                 RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(
                         kaishipaishe.getLayoutParams());
 
-                params.setMargins(100,yidongjuli ,0,0);
+                params.setMargins(yidongjuki_hengxiang,yidongjuli ,0,0);
 
                 kaishipaishe.clearAnimation();
                 kaishipaishe.setLayoutParams(params);

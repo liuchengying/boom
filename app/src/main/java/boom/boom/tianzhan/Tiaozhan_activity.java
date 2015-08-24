@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.Message;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
@@ -25,6 +26,8 @@ import com.baidu.android.pushservice.CustomPushNotificationBuilder;
 import com.baidu.android.pushservice.PushConstants;
 import com.baidu.android.pushservice.PushManager;
 
+import org.json.JSONObject;
+
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.net.ConnectException;
@@ -35,6 +38,7 @@ import java.util.TimerTask;
 
 import boom.boom.FontManager.FontManager;
 import boom.boom.R;
+import boom.boom.api.HttpIO;
 import boom.boom.api.Static;
 import boom.boom.api.SysApplication;
 import boom.boom.api.Utils;
@@ -55,6 +59,7 @@ import cn.smssdk.SMSSDK;
 /**
  * Created by 刘成英 on 2015/1/13.
  */
+
 public class Tiaozhan_activity extends FragmentActivity {
     private SlidingMenu mLeftMenu ;
     private Button cahuaanniu;
@@ -73,6 +78,7 @@ public class Tiaozhan_activity extends FragmentActivity {
     private LinearLayout xiaoxizhongxin_jiaobiao;
     private LinearLayout jifenshangcheng;
     private BadgeView mBadgeView;
+    int a =0;
 
     public android.os.Handler myMessageHandler = new android.os.Handler() {
         @Override
@@ -83,6 +89,29 @@ public class Tiaozhan_activity extends FragmentActivity {
             cehuatouxiang.setImageBitmap(Static.avatarImage);
         }
     };
+    Handler coinsHandler = new Handler(new Handler.Callback() {
+        @Override
+        public boolean handleMessage(Message msg) {
+            if(msg.what == 1) {
+                try {
+                    JSONObject obj = new JSONObject(msg.getData().getString("data"));
+                    coins.setText("" + obj.getString("coins"));
+                     a = 1;
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                Intent intent = new Intent();
+                intent.setClass(Tiaozhan_activity.this, Qiandao_activity.class);
+                startActivity(intent);
+                overridePendingTransition(R.anim.base_slide_right_in, R.anim.base_slide_remain);
+            }
+            else {
+                Toast.makeText(Tiaozhan_activity.this,"网络连接失败！请检查网络连接",Toast.LENGTH_SHORT).show();
+            }
+            return true;
+        }
+    });
 
             @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -95,7 +124,7 @@ public class Tiaozhan_activity extends FragmentActivity {
         Intent intent = getIntent();
         String user_name = Static.username;
         String user_nickname = Static.nickname;
-        int user_coins = Static.coins;
+        final int user_coins = Static.coins;
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
@@ -174,18 +203,22 @@ public class Tiaozhan_activity extends FragmentActivity {
         qiandao.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View v) {
-                Intent intent = new Intent();
-                intent.setClass(Tiaozhan_activity.this, Qiandao_activity.class);
-                startActivity(intent);
-                Timer timer=new Timer();
-                TimerTask timerTask=new TimerTask() {
-                    @Override
-                    public void run() {
-                        dianjicehua(v);
-                    }
-                };
-                timer.schedule(timerTask, 800);
-                overridePendingTransition(R.anim.base_slide_right_in, R.anim.base_slide_remain);
+               if(a==1) {
+                   Timer timer = new Timer();
+                   TimerTask timerTask = new TimerTask() {
+                       @Override
+                       public void run() {
+                           dianjicehua(v);
+                       }
+                   };
+                   timer.schedule(timerTask, 800);
+                   a = 0;
+               }
+                Utils.GetBuilder get = new Utils.GetBuilder(Utils.serveraddr + Utils.userdata_api);
+                get.addItem("action", "getState");
+                Log.e("URI", get.toString());
+                HttpIO.GetHttpEX(Tiaozhan_activity.this,coinsHandler, Utils.serveraddr + Utils.userdata_api);
+
             }
         });
 //        View.OnClickListener toBeginSingleChallenge = new View.OnClickListener() {

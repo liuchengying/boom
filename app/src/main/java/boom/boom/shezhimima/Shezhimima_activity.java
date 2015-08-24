@@ -78,10 +78,14 @@ public class Shezhimima_activity extends Activity {
             public void onClick(View v) {
                 password_1 = password_one.getText().toString();
                 password_2 = password_two.getText().toString();
-                if(password_1.equals(password_2)){
-                    HttpIO.GetHttpEX(Shezhimima_activity.this,commitHandler, Utils.serveraddr+"/api/userRegister.php?action=newuser&passhash="+Utils.StrToMD5(password_1)+"&identify="+identifyDigit);
+                if(password_1.equals("")||password_2.equals("")){
+                    Toast.makeText(Shezhimima_activity.this,"密码不能为空！",Toast.LENGTH_SHORT).show();
                 }else {
-                    Toast.makeText(Shezhimima_activity.this,"两次输入的密码不一致！",Toast.LENGTH_SHORT).show();
+                    if (password_1.equals(password_2)) {
+                        HttpIO.GetHttpEX(Shezhimima_activity.this, commitHandler, Utils.serveraddr + "/api/userRegister.php?action=newuser&passhash=" + Utils.StrToMD5(password_1) + "&identify=" + identifyDigit);
+                    } else {
+                        Toast.makeText(Shezhimima_activity.this, "两次输入的密码不一致！", Toast.LENGTH_SHORT).show();
+                    }
                 }
             }
         });
