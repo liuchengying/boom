@@ -127,6 +127,7 @@
         android:textSize="20sp"
         android:singleLine="true"
         android:id="@+id/ss_search"
+        android:imeOptions="actionSearch"
         >
         <requestFocus />
         </EditText>

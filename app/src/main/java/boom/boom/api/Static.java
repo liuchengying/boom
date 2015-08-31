@@ -23,7 +23,6 @@ public class Static {
     public static String avatar = null;
     public static String uniqueSign = null;
     public static String reg_date = null;
-    public static JSONObject object = null;
     public static String tempStr = null;
     public static android.os.Handler tiaozhan_handler;
     public static String identifyDigit = null;

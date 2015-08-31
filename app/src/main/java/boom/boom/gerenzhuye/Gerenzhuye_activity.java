@@ -285,7 +285,10 @@ public class  Gerenzhuye_activity extends FragmentActivity
         agree = (Button) findViewById(R.id.grzy_ty_bt);
         disagree = (Button) findViewById(R.id.grzy_jj_bt);
         guestID = getIntent().getStringExtra("guestID");
-        type = getIntent().getIntExtra("type",1);
+        type = getIntent().getIntExtra("type", 1);
+        if(guestID.equals(Static.identifyDigit)){
+            type = 1; //是自己就都不显示
+        }
         ID = getIntent().getStringExtra("ID");
         switch (type)
         {
